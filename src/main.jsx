@@ -4,8 +4,10 @@ import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Main from './layout/Main';
 import Home from './pages/Home/Home/Home';
-
-
+import { I18nextProvider } from 'react-i18next';
+import enTranslation from "../public/en.json";
+import bnTranslation from "../public/bn.json";
+import i18n from "i18next";
 
 const router = createBrowserRouter([
   {
@@ -21,11 +23,24 @@ const router = createBrowserRouter([
   },
 ]);
 
-
+i18n.init({
+  interpolation: { escapeValue: false },
+  lng: "en",
+  resources: {
+    en: {
+      translation: enTranslation,
+    },
+    bn: {
+      translation: bnTranslation,
+    },
+  },
+});
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <div>
-      <RouterProvider router={router} />
+    <I18nextProvider i18n={i18n}>
+        <RouterProvider router={router} />
+      </I18nextProvider>
     </div>
   </React.StrictMode>,
 )
