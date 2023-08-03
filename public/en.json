@@ -1,8 +1,9 @@
 {
     "heading": "You will build the roof, calculate the construction materials yourself easily.",
-    "contact": "Contact",
-    "about": "About Me",
-    "home": "Home",
-    "login": "Log In",
+    "header": {
+      "number": "+8809611677639",
+      "login": "LogIn",
+      "registration": "Registration"
+    },
     "demo": "Demo"
   }
