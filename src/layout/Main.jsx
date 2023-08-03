@@ -13,7 +13,7 @@ const Main = () => {
         // Simulate a delay to demonstrate loading animation
         const timer = setTimeout(() => {
             setIsLoading(false);
-        }, 2000);
+        }, 500);
 
         // Clean up the timer when the component unmounts
         return () => clearTimeout(timer);

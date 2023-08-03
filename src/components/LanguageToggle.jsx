@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-
+import { AiOutlineRight } from "react-icons/ai";
 const LanguageToggle = () => {
   const [language, setLanguage] = useState(true);
   const { i18n } = useTranslation();
@@ -14,17 +14,25 @@ const LanguageToggle = () => {
     <>
       {language ? (
         <button
-          className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-500 hover:to-gray-800 hover:from-gray-500 text-white py-2 px-2 rounded text-xs lg:text-xl"
+          className=" hover:to-gray-800 hover:from-gray-500 text-white py-2 px-2 rounded text-xs lg:text-xl"
           onClick={() => handleLanguageChange("bn")}
         >
-          বাংলাই দেখুন
+          <div className="flex items-center">
+          <p className="text-black text-sm">English</p>
+            <AiOutlineRight color="black" className="text-sm"/>
+            <p className="text-black text-sm">বাংলা</p>
+          </div>
         </button>
       ) : (
         <button
-          className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-500 hover:to-gray-800 hover:from-gray-500 text-white py-2 px-2 rounded text-xs lg:text-xl"
+          className=" hover:to-gray-800 hover:from-gray-500 text-white py-2 px-2 rounded text-xs lg:text-xl"
           onClick={() => handleLanguageChange("en")}
         >
-          Translate to English
+          <div className="flex items-center">
+          <p className="text-black text-sm">বাংলা</p>
+            <AiOutlineRight color="black" className="text-sm"/>
+            <p className="text-black text-sm">English</p>
+          </div>
         </button>
       )}
     </>
