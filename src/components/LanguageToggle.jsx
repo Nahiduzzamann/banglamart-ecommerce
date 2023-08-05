@@ -14,24 +14,24 @@ const LanguageToggle = () => {
     <>
       {language ? (
         <button
-          className=" hover:to-gray-800 hover:from-gray-500 text-white py-2 px-2 rounded text-xs lg:text-xl"
+          className="p-1 "
           onClick={() => handleLanguageChange("bn")}
         >
           <div className="flex items-center">
-          <p className="text-black text-sm text-gray-600">English</p>
-            <AiOutlineRight className="text-sm text-gray-600"/>
-            <p className="text-gray-600 text-sm">বাংলা</p>
+          <p className=" text-SubTextColor">English</p>
+            <AiOutlineRight className="text-[12px] text-SubTextColor hover:text-TextColor"/>
+            <p className="text-SubTextColor ">বাংলা</p>
           </div>
         </button>
       ) : (
         <button
-          className=" hover:to-gray-800 hover:from-gray-500 text-white py-2 px-2 rounded text-xs lg:text-xl"
+          className="p-1"
           onClick={() => handleLanguageChange("en")}
         >
           <div className="flex items-center">
-          <p className="text-black text-sm">বাংলা</p>
-            <AiOutlineRight color="black" className="text-sm"/>
-            <p className="text-black text-sm">English</p>
+          <p className="text-SubTextColor">বাংলা</p>
+            <AiOutlineRight color="" className="text-[12px] text-SubTextColor hover:text-TextColor"/>
+            <p className="text-SubTextColor">English</p>
           </div>
         </button>
       )}

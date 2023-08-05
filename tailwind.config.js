@@ -5,6 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    colors:{
+     'MainColor' :'#5dade2',
+     'TextColor':'#1C2833',
+     'SubTextColor':'#566573',
+     'BackgroundColor':'#EAEDED',
+     'BorderColor':'#FAD7A0',
+     'CardColor':'#fff'
+    },
     extend: {},
   },
   plugins: [],

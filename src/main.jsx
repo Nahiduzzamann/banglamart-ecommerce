@@ -37,7 +37,7 @@ i18n.init({
 });
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <div className='bg-gray-400'>
+    <div className='bg-BackgroundColor'>
     <I18nextProvider i18n={i18n}>
         <RouterProvider router={router} />
       </I18nextProvider>
