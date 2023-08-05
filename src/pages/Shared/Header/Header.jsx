@@ -9,6 +9,7 @@ import {
 import LanguageToggle from "../../../components/LanguageToggle";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import Burger from "./Nav/Burger";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -16,8 +17,9 @@ const Header = () => {
   const handleCloseAdd = () => {
     setHide(true);
   };
+
   return (
-    <div>
+    <div className="shadow-lg">
       {/* Add Section  */}
       <div
         className={`relative h-[35px] flex justify-end items-center ${
@@ -32,8 +34,8 @@ const Header = () => {
           src="https://banglamartecommerce.com/public/uploads/all/rD8sXSsY9A88MC4VkZcnlNtSckkDnycHQcWKqGhV.png"
         ></img>
       </div>
-      {/* Log In Section  */}
-      <div className="bg-CardColor border-b-[1px] border-b-BorderColor">
+      {/* LogIn Section  */}
+      <div className="bg-CardColor border-b-[1px] border-b-BorderColor p-1">
         <div className="container mx-auto">
           <div className="flex justify-between">
             <div>
@@ -45,9 +47,15 @@ const Header = () => {
                 {t("header.number")}
               </p>
               <Link>
-              <p className="mr-4 text-SubTextColor hover:text-TextColor">{t("header.login")}</p>
+                <p className="mr-4 text-SubTextColor hover:text-TextColor">
+                  {t("header.login")}
+                </p>
               </Link>
-              <Link><p className="text-SubTextColor hover:text-TextColor">{t("header.registration")}</p></Link>
+              <Link>
+                <p className="text-SubTextColor hover:text-TextColor">
+                  {t("header.registration")}
+                </p>
+              </Link>
             </div>
           </div>
         </div>
@@ -78,7 +86,7 @@ const Header = () => {
               <button className="flex items-center ml-5 relative">
                 <AiOutlineHeart className="text-[30px] text-SubTextColor" />
                 <div className="">
-                  <div className="absolute flex justify-center right-[68px] -top-2 text-[10px] bg-MainColor text-CardColor rounded-full h-5 w-5 items-center">
+                  <div className="absolute flex justify-center right-[60px] -top-2 text-[10px] bg-MainColor text-CardColor rounded-full h-5 w-5 items-center">
                     10
                   </div>
                   <p className=" text-SubTextColor">Wishlist</p>
@@ -87,10 +95,10 @@ const Header = () => {
               <button className="flex items-center ml-5 relative">
                 <AiOutlineShoppingCart className="text-[30px] text-SubTextColor" />
                 <div>
-                <div className="absolute flex justify-center right-[45px] -top-2 text-[10px] bg-MainColor text-CardColor rounded-full h-5 w-5 items-center">
+                  <div className="absolute flex justify-center right-[45px] -top-2 text-[10px] bg-MainColor text-CardColor rounded-full h-5 w-5 items-center">
                     10
                   </div>
-                  <p className="text-sm text-SubTextColor">Cart</p>
+                  <p className=" text-SubTextColor">Cart</p>
                 </div>
               </button>
             </div>
@@ -100,29 +108,36 @@ const Header = () => {
       {/* navigation section  */}
       <div className="bg-CardColor p-1">
         <div className="container mx-auto">
-        <div className="flex justify-around">
-        <Link className="" to='/'>
-        Flash Sale
-        </Link>
-        <Link>
-        Be A Seller
-        </Link>
-        <Link>
-        Best Sellers
-        </Link>
-        <Link>
-        Affiliating
-        </Link>
-        <Link>
-        Categories
-        </Link>
-        <Link>
-        Brands
-        </Link>
-        <Link>
-        Track Order
-        </Link>
-      </div>
+          {/* Big screen  */}
+          <div className=" hidden md:block">
+            <div className="flex justify-between">
+              <Link className="text-SubTextColor hover:text-TextColor" to="/">
+                Flash Sale
+              </Link>
+              <Link className="text-SubTextColor hover:text-TextColor" to="/">
+                Be A Seller
+              </Link>
+              <Link className="text-SubTextColor hover:text-TextColor" to="/">
+                Best Sellers
+              </Link>
+              <Link className="text-SubTextColor hover:text-TextColor" to="/">
+                Affiliating
+              </Link>
+              <Link className="text-SubTextColor hover:text-TextColor" to="/">
+                Categories
+              </Link>
+              <Link className="text-SubTextColor hover:text-TextColor" to="/">
+                Brands
+              </Link>
+              <Link className="text-SubTextColor hover:text-TextColor" to="/">
+                Track Order
+              </Link>
+            </div>
+          </div>
+          {/* Small screen  */}
+          <div className="relative block md:hidden p-1">
+            <Burger></Burger>
+          </div>
         </div>
       </div>
     </div>
