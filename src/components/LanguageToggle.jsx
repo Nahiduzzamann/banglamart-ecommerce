@@ -18,9 +18,9 @@ const LanguageToggle = () => {
           onClick={() => handleLanguageChange("bn")}
         >
           <div className="flex items-center">
-          <p className="text-black text-sm">English</p>
-            <AiOutlineRight color="black" className="text-sm"/>
-            <p className="text-black text-sm">বাংলা</p>
+          <p className="text-black text-sm text-gray-600">English</p>
+            <AiOutlineRight className="text-sm text-gray-600"/>
+            <p className="text-gray-600 text-sm">বাংলা</p>
           </div>
         </button>
       ) : (

@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { AiOutlineClose, AiFillPhone, AiOutlineSearch } from "react-icons/ai";
+import {
+  AiOutlineClose,
+  AiFillPhone,
+  AiOutlineSearch,
+  AiOutlineHeart,
+  AiOutlineShoppingCart,
+} from "react-icons/ai";
 import LanguageToggle from "../../../components/LanguageToggle";
 import { useTranslation } from "react-i18next";
 
@@ -33,10 +39,12 @@ const Header = () => {
               <LanguageToggle></LanguageToggle>
             </div>
             <div className="flex items-center">
-              <AiFillPhone className=" hidden lg:block" />
-              <p className="mr-4 hidden lg:block">{t("header.number")}</p>
-              <p className="mr-4">{t("header.login")}</p>
-              <p>{t("header.registration")}</p>
+              <AiFillPhone className=" hidden lg:block text-gray-600" />
+              <p className="mr-4 hidden lg:block text-gray-600">
+                {t("header.number")}
+              </p>
+              <p className="mr-4 text-gray-600">{t("header.login")}</p>
+              <p className="text-gray-600">{t("header.registration")}</p>
             </div>
           </div>
         </div>
@@ -53,19 +61,35 @@ const Header = () => {
               />
             </div>
             <div className="flex items-center">
-              <div className="relative mx-auto max-w-md">
+              <AiOutlineSearch className="text-[35px] lg:hidden text-gray-600" />
+              <div className="relative mx-auto max-w-md hidden lg:block">
                 <input
                   className="w-full pl-4 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500"
                   type="text"
                   placeholder="Search..."
                 />
-                <div className="absolute inset-y-0 right-0 pl-3 pr-3 flex items-center justify-center pointer-events-none bg-indigo-500 rounded-e-lg">
-                  <AiOutlineSearch className="text-white " />
+                <div className="absolute inset-y-0 right-0 pl-3 pr-3 flex items-center justify-center pointer-events-none bg-indigo-500 rounded-e-lg hover:bg-indigo-200">
+                  <AiOutlineSearch className="text-white text-[25px]" />
                 </div>
               </div>
-              <div>
-                cart
-              </div>
+              <button className="flex items-center ml-2">
+                <AiOutlineHeart className="text-[30px] text-gray-600" />
+                <div className="">
+                  <span className=" text-sm bg-indigo-500 text-white p-1 rounded-full">
+                    0
+                  </span>
+                  <p className="text-sm text-gray-600">Wishlist</p>
+                </div>
+              </button>
+              <button className="flex items-center ml-2">
+                <AiOutlineShoppingCart className="text-[30px] text-gray-600" />
+                <div>
+                  <span className="text-sm bg-indigo-500 text-white p-1 rounded-full">
+                    0
+                  </span>
+                  <p className="text-sm text-gray-600">Cart</p>
+                </div>
+              </button>
             </div>
           </div>
         </div>
