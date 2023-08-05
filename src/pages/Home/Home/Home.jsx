@@ -1,9 +1,10 @@
-import Banner from "../Banner/Banner";
+import TopBannerSection from "../../../components/TopBannerSection/TopBannerSection";
 
 const Home = () => {
     return (
         <div>
-            <Banner></Banner>
+            {/* <Banner></Banner> */}
+            <TopBannerSection></TopBannerSection>
         </div>
     );
 };
