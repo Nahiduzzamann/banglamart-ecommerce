@@ -5,7 +5,7 @@ const Banner = () => {
     return (
         <div className=''>
             <Carousel
-            className=' max-h-[340px]'
+            className=' max-h-[400px]'
                 autoPlay={true}
                 infiniteLoop={true}
                 showArrows={true}
