@@ -1,3 +1,4 @@
+import FlashSaleBanner from "../../../components/FlashSaleBanner";
 import TopBannerSection from "../TopBannerSection/TopBannerSection";
 
 const Home = () => {
@@ -5,6 +6,7 @@ const Home = () => {
         <div>
             {/* <Banner></Banner> */}
             <TopBannerSection></TopBannerSection>
+            <FlashSaleBanner></FlashSaleBanner>
         </div>
     );
 };
