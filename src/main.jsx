@@ -8,6 +8,8 @@ import { I18nextProvider } from 'react-i18next';
 import enTranslation from "../public/en.json";
 import bnTranslation from "../public/bn.json";
 import i18n from "i18next";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 const router = createBrowserRouter([
   {
