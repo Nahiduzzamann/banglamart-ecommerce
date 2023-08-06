@@ -1,4 +1,4 @@
-import TopBannerSection from "../../../components/TopBannerSection/TopBannerSection";
+import TopBannerSection from "../TopBannerSection/TopBannerSection";
 
 const Home = () => {
     return (
