@@ -75,7 +75,7 @@ const Categories = [
       "https://banglamartecommerce.com/public/uploads/all/LA2n6wYynDMGxyPCNCny6fDLHuAVlWrOpEj3x7i9.jpg",
   },
 ];
-const PopularCategory = ({ container = true }) => {
+const NewProducts = () => {
   const totalSlides = Categories?.length || 1;
   const [mainSlider, setMainSlider] = useState();
   const [currentSlide, setCurrentSlide] = useState(1);
@@ -126,13 +126,13 @@ const PopularCategory = ({ container = true }) => {
             <div className="relative w-full h-full">
               <span
                 onClick={goNext}
-                className="w-8 flex aspect-square text-CardColor shadow-lg rounded-full bg-MainColor hover:bg-MainColor right-0 top-1/2 justify-center items-center absolute z-10 cursor-pointer -translate-y-1/2 "
+                className="w-8 flex aspect-square text-CardColor shadow-lg rounded-full bg-MainColor hover:bg-[#489fb4] right-0 top-1/2 justify-center items-center absolute z-10 cursor-pointer -translate-y-1/2 "
               >
                 <HiOutlineChevronRight />
               </span>
               <span
                 onClick={goPrev}
-                className="w-10 flex aspect-square shadow-sm text-CardColor hover:text-CardColor rounded-full bg-MainColor left-0 top-1/2 justify-center items-center absolute z-10 cursor-pointer -translate-y-1/2"
+                className="w-8 flex aspect-square shadow-sm text-CardColor hover:bg-[#489fb4] rounded-full bg-MainColor left-0 top-1/2 justify-center items-center absolute z-10 cursor-pointer -translate-y-1/2"
               >
                 <HiOutlineChevronLeft />
               </span>
@@ -161,7 +161,7 @@ const PopularCategory = ({ container = true }) => {
   );
 };
 
-export default PopularCategory;
+export default NewProducts;
 const Cart = ({ category }) => {
   //const router = useRouter();
 
@@ -181,10 +181,10 @@ const Cart = ({ category }) => {
       {/* <span className="absolute inset-0 w-full h-full bg-primary/30" /> */}
       <div
         className={`absolute bottom-0 w-full flex justify-center items-center ${
-          hover ? "bg-MainColor " : "bg-[#ffffff91]"
+          hover ? "bg-MainColor" : "bg-[#ffffff91]"
         }`}
       >
-        <h2 className="relative p-4 text-TextColor md:text-lg">
+        <h2 className={`relative p-4 md:text-lg ${hover ? 'text-CardColor':'text-TextColor'} `}>
           {category.name}
         </h2>
       </div>
