@@ -10,7 +10,7 @@ const TopBannerSection = () => {
         </div>
         <div className="col-span-4 lg:col-span-3 p-1 lg:p-0">
           <Banner></Banner>
-          <div className="grid grid-cols-3 lg:grid-cols-9 gap-3 lg:gap-2 mt-4">
+          <div className="grid grid-cols-3 sm:grid-cols-9 gap-3 lg:gap-2 mt-4">
             <div className="flex flex-col items-center bg-CardColor p-1 rounded-md shadow-md hover:shadow-xl">
               <img
                 className="object-fill"
