@@ -5,7 +5,7 @@ import useMediaQuery from "../hooks/useMediaQuery";
 import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
-
+import { BsFillCartCheckFill, BsFillHeartFill } from "react-icons/bs";
 const Categories = [
   {
     id: 1,
@@ -169,6 +169,8 @@ const Cart = ({ category }) => {
   //const router = useRouter();
 
   const [hover, setHover] = useState(false);
+  const [heartIconHover, setHeartIconHover] = useState(false);
+  const [cartIconHover, setCartIconHover] = useState(false);
   return (
     <div
       onMouseEnter={() => setHover(true)}
@@ -184,7 +186,7 @@ const Cart = ({ category }) => {
       {/* <span className="absolute inset-0 w-full h-full bg-primary/30" /> */}
       <div
         className={`absolute bottom-0 w-full ${
-          hover ? "bg-MainColor" : "bg-[#ffffff91]"
+          hover ? "bg-MainColor" : "bg-[#ffffffd7]"
         }`}
       >
         <div className="pl-2 pt-1 pb-1 flex justify-between items-center pr-2">
@@ -195,7 +197,7 @@ const Cart = ({ category }) => {
               </p>
               <p
                 className={`relative ${
-                  hover ? "text-CardColor" : "text-MainColor"
+                  hover ? "text-CardColor" : "text-[#f84545]"
                 } `}
               >
                 1000 ৳
@@ -205,10 +207,10 @@ const Cart = ({ category }) => {
               initialRating={3.5}
               readonly
               emptySymbol={
-                <AiOutlineStar className="text-SubTextColor text-[14px]" />
+                <AiOutlineStar className="text-BorderColor text-[14px]" />
               }
               fullSymbol={
-                <AiFillStar className="text-SubTextColor text-[14px]" />
+                <AiFillStar className="text-BorderColor text-[14px]" />
               }
             />
             <p
@@ -220,12 +222,36 @@ const Cart = ({ category }) => {
             </p>
           </div>
           <div className="flex flex-col">
-            <button><AiOutlineHeart className={`text-[20px] mb-1 ${
-                  hover ? "text-CardColor" : "text-SubTextColor"
-                } `}/></button>
-            <button><AiOutlineShoppingCart className={`text-[20px] ${
-                  hover ? "text-CardColor" : "text-SubTextColor"
-                } `} /></button>
+            <button
+              onMouseEnter={() => setHeartIconHover(true)}
+              onMouseLeave={() => setHeartIconHover(false)}
+              className=" mb-1"
+            >
+              {heartIconHover ? (
+                <BsFillHeartFill className={` text-[20px] ${heartIconHover && 'text-CardColor'}`} />
+              ) : (
+                <AiOutlineHeart
+                  className={`text-[20px] ${
+                    hover ? "text-CardColor" : "text-SubTextColor"
+                  } `}
+                />
+              )}
+            </button>
+            <button
+              onMouseEnter={() => setCartIconHover(true)}
+              onMouseLeave={() => setCartIconHover(false)}
+              className=""
+            >
+              {cartIconHover ? (
+                <BsFillCartCheckFill className={` text-[20px] ${cartIconHover && 'text-CardColor'}`} />
+              ) : (
+                <AiOutlineShoppingCart
+                  className={`text-[20px] ${
+                    hover ? "text-CardColor" : "text-SubTextColor"
+                  } `}
+                />
+              )}
+            </button>
           </div>
         </div>
       </div>
