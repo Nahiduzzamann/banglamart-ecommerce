@@ -1,7 +1,10 @@
 import Slider from "react-slick/lib/slider";
 import { useState } from "react";
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
-import useMediaQuery from "../../../hooks/useMediaQuery";
+import useMediaQuery from "../hooks/useMediaQuery";
+import Rating from "react-rating";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 
 const Categories = [
   {
@@ -75,7 +78,7 @@ const Categories = [
       "https://banglamartecommerce.com/public/uploads/all/LA2n6wYynDMGxyPCNCny6fDLHuAVlWrOpEj3x7i9.jpg",
   },
 ];
-const NewProducts = () => {
+const ProductShowSlider = () => {
   const totalSlides = Categories?.length || 1;
   const [mainSlider, setMainSlider] = useState();
   const [currentSlide, setCurrentSlide] = useState(1);
@@ -122,17 +125,17 @@ const NewProducts = () => {
     <div className="flex justify-center">
       <div className="container ">
         {isSm && (
-          <div className="p-cat-slider mt-4 relative">
+          <div className="p-cat-slider relative">
             <div className="relative w-full h-full">
               <span
                 onClick={goNext}
-                className="w-8 flex aspect-square text-CardColor shadow-lg rounded-full bg-MainColor hover:bg-[#489fb4] right-0 top-1/2 justify-center items-center absolute z-10 cursor-pointer -translate-y-1/2 "
+                className="w-8 flex aspect-square text-CardColor shadow-lg rounded-full bg-MainColor hover:bg-MainColorHover -right-[6px] top-1/2 justify-center items-center absolute z-10 cursor-pointer -translate-y-1/2 "
               >
                 <HiOutlineChevronRight />
               </span>
               <span
                 onClick={goPrev}
-                className="w-8 flex aspect-square shadow-sm text-CardColor hover:bg-[#489fb4] rounded-full bg-MainColor left-0 top-1/2 justify-center items-center absolute z-10 cursor-pointer -translate-y-1/2"
+                className="w-8 flex aspect-square shadow-sm text-CardColor hover:bg-MainColorHover rounded-full bg-MainColor -left-4 top-1/2 justify-center items-center absolute z-10 cursor-pointer -translate-y-1/2"
               >
                 <HiOutlineChevronLeft />
               </span>
@@ -161,7 +164,7 @@ const NewProducts = () => {
   );
 };
 
-export default NewProducts;
+export default ProductShowSlider;
 const Cart = ({ category }) => {
   //const router = useRouter();
 
@@ -173,20 +176,58 @@ const Cart = ({ category }) => {
       onClick={() => {
         //router.push(category.href);
       }}
-      className="w-[90%] cursor-pointer group aspect-[357/370] rounded-xl relative overflow-hidden"
+      className="w-[95%] cursor-pointer group aspect-[20/25] rounded-xl relative overflow-hidden border border-BorderColor"
     >
       <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
         <img src={category.image} className="object-cover " />
       </div>
       {/* <span className="absolute inset-0 w-full h-full bg-primary/30" /> */}
       <div
-        className={`absolute bottom-0 w-full flex justify-center items-center ${
+        className={`absolute bottom-0 w-full ${
           hover ? "bg-MainColor" : "bg-[#ffffff91]"
         }`}
       >
-        <h2 className={`relative p-4 md:text-lg ${hover ? 'text-CardColor':'text-TextColor'} `}>
-          {category.name}
-        </h2>
+        <div className="pl-2 pt-1 pb-1 flex justify-between items-center pr-2">
+          <div>
+            <div className="flex">
+              <p className={`relative mr-1 line-through text-SubTextColor`}>
+                1200 ৳
+              </p>
+              <p
+                className={`relative ${
+                  hover ? "text-CardColor" : "text-MainColor"
+                } `}
+              >
+                1000 ৳
+              </p>
+            </div>
+            <Rating
+              initialRating={3.5}
+              readonly
+              emptySymbol={
+                <AiOutlineStar className="text-SubTextColor text-[14px]" />
+              }
+              fullSymbol={
+                <AiFillStar className="text-SubTextColor text-[14px]" />
+              }
+            />
+            <p
+              className={`relative ${
+                hover ? "text-CardColor" : "text-TextColor"
+              } `}
+            >
+              {category.name}
+            </p>
+          </div>
+          <div className="flex flex-col">
+            <button><AiOutlineHeart className={`text-[20px] mb-1 ${
+                  hover ? "text-CardColor" : "text-SubTextColor"
+                } `}/></button>
+            <button><AiOutlineShoppingCart className={`text-[20px] ${
+                  hover ? "text-CardColor" : "text-SubTextColor"
+                } `} /></button>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -197,20 +238,42 @@ const Cart2 = ({ category }) => {
     <div
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className="flex-shrink-0 w-[45%] snap-start cursor-pointer group aspect-[228/347]  rounded-xl relative overflow-hidden"
+      className="flex-shrink-0 w-[45%] snap-start cursor-pointer group aspect-[228/347]  rounded-xl relative overflow-hidden border border-BorderColor"
     >
       <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
         <img src={category.image} className="object-fill" />
       </div>
       {/* <span className="absolute inset-0 w-full h-full bg-primary/30" /> */}
       <div
-        className={`absolute bottom-0 w-full flex justify-center items-center ${
+        className={`absolute bottom-0 w-full ${
           hover ? "bg-MainColor " : "bg-[#ffffff91]"
         }`}
       >
-        <h2 className="relative p-4 text-TextColor md:text-lg">
-          {category.name}
-        </h2>
+        <div>
+          <div className="flex">
+            <p
+              className={`relative mr-1 ${
+                hover ? "text-CardColor" : "text-MainColor"
+              } `}
+            >
+              1200 ৳
+            </p>
+            <p
+              className={`relative ${
+                hover ? "text-CardColor" : "text-MainColor"
+              } `}
+            >
+              1000 ৳
+            </p>
+          </div>
+          <p
+            className={`relative ${
+              hover ? "text-CardColor" : "text-TextColor"
+            } `}
+          >
+            {category.name}
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ export default {
   theme: {
     colors:{
      'MainColor' :'#5dade2',
+     'MainColorHover' :'#489fb4',
      'TextColor':'#1C2833',
      'SubTextColor':'#566573',
      'BackgroundColor':'#EAEDED',

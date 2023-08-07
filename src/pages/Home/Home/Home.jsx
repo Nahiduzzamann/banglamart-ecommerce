@@ -1,5 +1,5 @@
 import FlashSaleBanner from "../../../components/FlashSaleBanner";
-import NewProducts from "../NewProducts/NewProducts";
+import FlashSale from "../FlashSale/FlashSale";
 import TopBannerSection from "../TopBannerSection/TopBannerSection";
 
 const Home = () => {
@@ -8,7 +8,7 @@ const Home = () => {
       {/* <Banner></Banner> */}
       <TopBannerSection></TopBannerSection>
       <FlashSaleBanner></FlashSaleBanner>
-      <NewProducts></NewProducts>
+      <FlashSale></FlashSale>
     </div>
   );
 };
