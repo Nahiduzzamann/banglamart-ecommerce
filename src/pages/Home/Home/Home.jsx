@@ -8,8 +8,10 @@ const Home = () => {
     <div>
       <TopBannerSection></TopBannerSection>
       <FlashSaleBanner></FlashSaleBanner>
-      <FlashSale></FlashSale>
-      <NewProducts></NewProducts>
+      <div className="container mx-auto">
+        <FlashSale></FlashSale>
+        <NewProducts></NewProducts>
+      </div>
     </div>
   );
 };
