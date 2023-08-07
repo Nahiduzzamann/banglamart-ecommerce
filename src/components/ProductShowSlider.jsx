@@ -181,7 +181,7 @@ const Cart = ({ category }) => {
       className="w-[95%] cursor-pointer group aspect-[20/25] rounded-xl relative overflow-hidden border border-BorderColor"
     >
       <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
-        <img src={category.image} className="object-cover " />
+        <img src={category.image} className="object-fill aspect-[20/25]" />
       </div>
       {/* <span className="absolute inset-0 w-full h-full bg-primary/30" /> */}
       <div
@@ -255,11 +255,18 @@ const Cart = ({ category }) => {
           </div>
         </div>
       </div>
+      <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-r-full top-2 p-1">
+          <p className="text-xs text-[#fc3e3e] mr-1">OFF</p>
+          <p className="text-sm text-CardColor p-1 bg-[#fc3e3e] rounded-full">15%</p>
+
+      </div>
     </div>
   );
 };
 const Cart2 = ({ category }) => {
   const [hover, setHover] = useState(false);
+  const [heartIconHover, setHeartIconHover] = useState(false);
+  const [cartIconHover, setCartIconHover] = useState(false);
   return (
     <div
       onMouseEnter={() => setHover(true)}
@@ -275,31 +282,76 @@ const Cart2 = ({ category }) => {
           hover ? "bg-MainColor " : "bg-[#ffffff91]"
         }`}
       >
-        <div>
-          <div className="flex">
-            <p
-              className={`relative mr-1 ${
-                hover ? "text-CardColor" : "text-MainColor"
-              } `}
-            >
-              1200 ৳
-            </p>
+        <div className="pl-2 pt-1 pb-1 flex justify-between items-center pr-2">
+          <div>
+            <div className="flex">
+              <p className={`relative mr-1 line-through text-SubTextColor`}>
+                1200 ৳
+              </p>
+              <p
+                className={`relative ${
+                  hover ? "text-CardColor" : "text-[#f84545]"
+                } `}
+              >
+                1000 ৳
+              </p>
+            </div>
+            <Rating
+              initialRating={3.5}
+              readonly
+              emptySymbol={
+                <AiOutlineStar className="text-BorderColor text-[14px]" />
+              }
+              fullSymbol={
+                <AiFillStar className="text-BorderColor text-[14px]" />
+              }
+            />
             <p
               className={`relative ${
-                hover ? "text-CardColor" : "text-MainColor"
+                hover ? "text-CardColor" : "text-TextColor"
               } `}
             >
-              1000 ৳
+              {category.name}
             </p>
           </div>
-          <p
-            className={`relative ${
-              hover ? "text-CardColor" : "text-TextColor"
-            } `}
-          >
-            {category.name}
-          </p>
+          <div className="flex flex-col">
+            <button
+              onMouseEnter={() => setHeartIconHover(true)}
+              onMouseLeave={() => setHeartIconHover(false)}
+              className=" mb-1"
+            >
+              {heartIconHover ? (
+                <BsFillHeartFill className={` text-[20px] ${heartIconHover && 'text-CardColor'}`} />
+              ) : (
+                <AiOutlineHeart
+                  className={`text-[20px] ${
+                    hover ? "text-CardColor" : "text-SubTextColor"
+                  } `}
+                />
+              )}
+            </button>
+            <button
+              onMouseEnter={() => setCartIconHover(true)}
+              onMouseLeave={() => setCartIconHover(false)}
+              className=""
+            >
+              {cartIconHover ? (
+                <BsFillCartCheckFill className={` text-[20px] ${cartIconHover && 'text-CardColor'}`} />
+              ) : (
+                <AiOutlineShoppingCart
+                  className={`text-[20px] ${
+                    hover ? "text-CardColor" : "text-SubTextColor"
+                  } `}
+                />
+              )}
+            </button>
+          </div>
         </div>
+      </div>
+      <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-r-full top-2 p-1">
+          <p className="text-xs text-[#fc3e3e] mr-1">OFF</p>
+          <p className="text-xs text-CardColor p-1 bg-[#fc3e3e] rounded-full">15%</p>
+
       </div>
     </div>
   );

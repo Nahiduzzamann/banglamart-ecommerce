@@ -1,13 +1,12 @@
 import ProductShowSlider from "../../../components/ProductShowSlider";
 
-const FlashSale = () => {
+const NewProducts = () => {
   return (
     <div className="container mx-auto mt-4 lg:mt-8 p-1 lg:p-0 bg-CardColor rounded-lg">
       <div className="flex border-b-[1px] border-b-BorderColor pl-10 pb-2 pt-2 justify-between items-center">
         <div className="border-b-[3px] border-b-MainColor ">
-          <h1 className="">Flash Sale</h1>
+          <h1 className="">New Products</h1>
         </div>
-        <div className="">time</div>
         <button className="mr-10 pb-1 pt-1 pl-3 pr-3 bg-MainColor rounded-full text-CardColor shadow-lg hover:bg-MainColorHover">
           View More
         </button>
@@ -19,4 +18,4 @@ const FlashSale = () => {
   );
 };
 
-export default FlashSale;
+export default NewProducts;
