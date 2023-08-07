@@ -178,7 +178,7 @@ const Cart = ({ category }) => {
       onClick={() => {
         //router.push(category.href);
       }}
-      className="w-[95%] cursor-pointer group aspect-[20/25] rounded-xl relative overflow-hidden border border-BorderColor"
+      className="w-[95%] cursor-pointer group aspect-[20/25] rounded-xl relative overflow-hidden border border-BorderColor hover:shadow-lg"
     >
       <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
         <img src={category.image} className="object-fill aspect-[20/25]" />
