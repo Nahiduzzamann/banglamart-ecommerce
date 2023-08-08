@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ProductShowSlider from "../../../components/ProductShowSlider";
 
 const FlashSale = () => {
-  const [countdownValue, setCountdownValue] = useState(1000000);
+  const [countdownValue, setCountdownValue] = useState(100000);
 
   useEffect(() => {
     const interval = setInterval(() => {
