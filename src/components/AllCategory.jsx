@@ -24,7 +24,10 @@ const AllCategory = () => {
 
     fetchCategorys();
   }, []);
-
+ 
+  const handleSubCategory =(subCategory) => {
+      // console.log(subCategory);
+  }
   return (
     <div className="relative ">
       <div className="bg-MainColor p-3 rounded-lg">
@@ -33,9 +36,11 @@ const AllCategory = () => {
       <div className="bg-CardColor p-3  max-h-[495px] overflow-y-auto">
         {categorys ? (
           categorys?.map((category) => {
+            // console.log(category);
             return (
               <button
                 onMouseEnter={() => {
+                  handleSubCategory(category.subCategory)
                   setCategoryHover({ isHover: true, category: category });
                   setSubCategorys(category.subCategory);
                 }}
@@ -85,14 +90,20 @@ const AllCategory = () => {
           >
             <div className="absolute -top-1 2xl:left-[347px] 2xl:h-[500px] xl:h-[470px] lg:h-[390px] 2xl:pl-[40px] xl:pl-[33px] lg:pl-[40px] xl:left-[290px] lg:left-[220px] z-50">
               <div className="bg-MainColor rounded-md p-2 2xl:min-w-[1150px] xl:min-w-[958px] lg:min-w-[765px] ">
-                <h1 className="text-center text-CardColor">
+                <h1 className="text-center text-CardColor p-4">
                   {categoryHover.category.name}
                 </h1>
                 <div className="p-2 flex justify-around">
                   {subCategorys.map((subCategory, i) => (
-                    <h2 className="text-CardColor" key={i}>
-                      {subCategory.name}
-                    </h2>
+                    <div key={i}>
+                      <h2 className="text-CardColor mb-1">{subCategory.name}</h2>
+                      <div className="pl-2">
+                        <p>hiiii</p>
+                        <p>hiiii</p>
+                        <p>hiiii</p>
+                        <p>hiiii</p>
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
