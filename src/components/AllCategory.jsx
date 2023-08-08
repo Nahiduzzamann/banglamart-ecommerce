@@ -4,6 +4,7 @@ import { AiFillCaretRight } from "react-icons/ai";
 const AllCategory = () => {
   const [categorys, setCategorys] = useState(null);
   const [subCategorys, setSubCategorys] = useState([]);
+  const [subCategoryHover, setSubCategoryHover] = useState(false);
   const [categoryHover, setCategoryHover] = useState({
     isHover: false,
     category: {},
@@ -55,7 +56,7 @@ const AllCategory = () => {
                   <h3 className="text-SubTextColor hover:text-TextColor">
                     {category.name}
                   </h3>
-                  {categoryHover.isHover && (
+                  {categoryHover.isHover || subCategoryHover ? (
                     <div>
                       {categoryHover.category.name === category.name && (
                         <div>
@@ -63,7 +64,7 @@ const AllCategory = () => {
                         </div>
                       )}
                     </div>
-                  )}
+                  ) : null}
                 </div>
               </button>
             );
@@ -75,22 +76,29 @@ const AllCategory = () => {
             </h3>
           </SkeletonTheme>
         )}
-        {categoryHover.isHover && (
-          <div className="absolute -top-1 2xl:left-[357px] 2xl:pl-[30px] xl:left-[323px] lg:left-[260px] z-50">
-            <div className="bg-MainColor rounded-md p-2 2xl:min-w-[1150px] xl:min-w-[958px] lg:min-w-[765px] ">
-              <h1 className="text-center text-CardColor">
-                {categoryHover.category.name}
-              </h1>
-              <div className="p-2 flex justify-around">
-                {subCategorys.map((subCategory, i) => (
-                  <h2 className="text-CardColor" key={i}>
-                    {subCategory.name}
-                  </h2>
-                ))}
+        {categoryHover.isHover || subCategoryHover ? (
+          <div
+            onMouseEnter={() => {
+              setSubCategoryHover(true);
+            }}
+            onMouseLeave={() => setSubCategoryHover(false)}
+          >
+            <div className="absolute -top-1 2xl:left-[347px] 2xl:h-[500px] 2xl:pl-[40px]  xl:left-[323px] lg:left-[260px] z-50">
+              <div className="bg-MainColor rounded-md p-2 2xl:min-w-[1150px] xl:min-w-[958px] lg:min-w-[765px] ">
+                <h1 className="text-center text-CardColor">
+                  {categoryHover.category.name}
+                </h1>
+                <div className="p-2 flex justify-around">
+                  {subCategorys.map((subCategory, i) => (
+                    <h2 className="text-CardColor" key={i}>
+                      {subCategory.name}
+                    </h2>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );
