@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { AiFillCaretRight } from "react-icons/ai";
 const AllCategory = () => {
-  const [categorys, setCategorys] = useState([]);
-  const [categoryHover, setCategoryHover] = useState(false);
+  const [categorys, setCategorys] = useState(null);
+  const [subCategorys, setSubCategorys] = useState([]);
+  const [categoryHover, setCategoryHover] = useState({
+    isHover: false,
+    category: {},
+  });
 
   const url = "http://192.168.1.11:1300";
   useEffect(() => {
@@ -19,31 +25,72 @@ const AllCategory = () => {
   }, []);
 
   return (
-    <div className="max-h-[495px] overflow-y-auto rounded-lg">
-      <div className="bg-MainColor p-3 sticky">
+    <div className="relative ">
+      <div className="bg-MainColor p-3 rounded-lg">
         <h2 className="text-CardColor">All Categories</h2>
       </div>
-      <div className="bg-CardColor p-3 ">
-        {categorys?.map((category) => (
-          <button
-            onMouseEnter={() => setCategoryHover(true)}
-            onMouseLeave={() => setCategoryHover(false)}
-            key={category.id}
-            className="flex p-1 items-center"
-          >
-            {/* TODO  */}
-            <img
-              className="h-6 w-6 mr-2"
-              crossOrigin="anonymous"
-              src={`${url}${category.icon}`}
-              alt=""
-            />
-            <h3 className="text-SubTextColor hover:text-TextColor">
-              {category.name}
+      <div className="bg-CardColor p-3  max-h-[495px] overflow-y-auto">
+        {categorys ? (
+          categorys?.map((category) => {
+            return (
+              <button
+                onMouseEnter={() => {
+                  setCategoryHover({ isHover: true, category: category });
+                  setSubCategorys(category.subCategory);
+                }}
+                onMouseLeave={() =>
+                  setCategoryHover({ isHover: false, category: category })
+                }
+                key={category.id}
+                className="flex pl-2 pt-2 pb-2 items-center w-full"
+              >
+                {/* TODO  */}
+                <img
+                  className="h-6 w-6 mr-2"
+                  crossOrigin="anonymous"
+                  src={`${url}${category.icon}`}
+                  alt=""
+                />
+                <div className="flex items-center justify-between w-full">
+                  <h3 className="text-SubTextColor hover:text-TextColor">
+                    {category.name}
+                  </h3>
+                  {categoryHover.isHover && (
+                    <div>
+                      {categoryHover.category.name === category.name && (
+                        <div>
+                          <AiFillCaretRight className="text-MainColor" />
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </button>
+            );
+          })
+        ) : (
+          <SkeletonTheme baseColor="#5dade2" highlightColor="#FAD7A0">
+            <h3>
+              <Skeleton count={8} />
             </h3>
-          </button>
-        ))}
-       
+          </SkeletonTheme>
+        )}
+        {categoryHover.isHover && (
+          <div className="absolute -top-1 2xl:left-[357px] 2xl:pl-[30px] xl:left-[323px] lg:left-[260px] z-50">
+            <div className="bg-MainColor rounded-md p-2 2xl:min-w-[1150px] xl:min-w-[958px] lg:min-w-[765px] ">
+              <h1 className="text-center text-CardColor">
+                {categoryHover.category.name}
+              </h1>
+              <div className="p-2 flex justify-around">
+                {subCategorys.map((subCategory, i) => (
+                  <h2 className="text-CardColor" key={i}>
+                    {subCategory.name}
+                  </h2>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

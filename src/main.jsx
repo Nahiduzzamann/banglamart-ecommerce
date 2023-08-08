@@ -10,6 +10,7 @@ import bnTranslation from "../public/bn.json";
 import i18n from "i18next";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const router = createBrowserRouter([
   {

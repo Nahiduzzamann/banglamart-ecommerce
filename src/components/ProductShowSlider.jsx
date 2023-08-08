@@ -325,7 +325,9 @@ const Cart2 = ({ category }) => {
               className=" mb-1"
             >
               {heartIconHover ? (
+                <div className="tooltip tooltip-info tooltip-left" data-tip="Add Wishlist">
                 <BsFillHeartFill className={` text-[20px] ${heartIconHover && 'text-CardColor'}`} />
+              </div>
               ) : (
                 <AiOutlineHeart
                   className={`text-[20px] ${
@@ -340,7 +342,9 @@ const Cart2 = ({ category }) => {
               className=""
             >
               {cartIconHover ? (
+                <div className="tooltip tooltip-info tooltip-left" data-tip="Add Cart">
                 <BsFillCartCheckFill className={` text-[20px] ${cartIconHover && 'text-CardColor'}`} />
+              </div>
               ) : (
                 <AiOutlineShoppingCart
                   className={`text-[20px] ${
