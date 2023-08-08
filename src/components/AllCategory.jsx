@@ -83,7 +83,7 @@ const AllCategory = () => {
             }}
             onMouseLeave={() => setSubCategoryHover(false)}
           >
-            <div className="absolute -top-1 2xl:left-[347px] 2xl:h-[500px] 2xl:pl-[40px]  xl:left-[323px] lg:left-[260px] z-50">
+            <div className="absolute -top-1 2xl:left-[347px] 2xl:h-[500px] xl:h-[470px] lg:h-[390px] 2xl:pl-[40px] xl:pl-[33px] lg:pl-[40px] xl:left-[290px] lg:left-[220px] z-50">
               <div className="bg-MainColor rounded-md p-2 2xl:min-w-[1150px] xl:min-w-[958px] lg:min-w-[765px] ">
                 <h1 className="text-center text-CardColor">
                   {categoryHover.category.name}
