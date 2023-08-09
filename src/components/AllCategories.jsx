@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { AiFillCaretRight } from "react-icons/ai";
-import SubCategory from "./SubCategory";
+import SubCategory from "./SubCategories";
 const AllCategory = () => {
-  const [categorys, setCategorys] = useState(null);
-  const [subCategorys, setSubCategorys] = useState([]);
+  const [categories, setCategories] = useState(null);
+  const [subCategories, setSubCategories] = useState([]);
   const [subCategoryHover, setSubCategoryHover] = useState(false);
   const [categoryHover, setCategoryHover] = useState({
     isHover: false,
@@ -13,17 +13,17 @@ const AllCategory = () => {
 // TODO 
   const url = "http://192.168.1.11:1300";
   useEffect(() => {
-    const fetchCategorys = async () => {
+    const fetchCategories = async () => {
       try {
         const response = await fetch(`${url}/category/getAll`);
         const data = await response.json();
-        setCategorys(data.data);
+        setCategories(data.data);
       } catch (error) {
         console.error("Error fetching instructor classes:", error);
       }
     };
 
-    fetchCategorys();
+    fetchCategories();
   }, []);
 
 
@@ -33,14 +33,14 @@ const AllCategory = () => {
         <h2 className="text-CardColor">All Categories</h2>
       </div>
       <div className="bg-CardColor p-3  max-h-[495px] overflow-y-auto">
-        {categorys ? (
-          categorys?.map((category) => {
+        {categories ? (
+          categories?.map((category) => {
             // console.log(category);
             return (
               <button
                 onMouseEnter={() => {
                   setCategoryHover({ isHover: true, category: category });
-                  setSubCategorys(category.subCategory);
+                  setSubCategories(category.subCategory);
                 }}
                 onMouseLeave={() =>
                   setCategoryHover({ isHover: false, category: category })
@@ -92,8 +92,8 @@ const AllCategory = () => {
                   {categoryHover.category.name}
                 </h1>
                 <div className="p-2 flex justify-around">
-                  {subCategorys.map((subCategory, i) => (
-                    <SubCategory subCategory={subCategory} key={i}></SubCategory>
+                  {subCategories.map((subCategories, i) => (
+                    <SubCategory subCategories={subCategories} key={i}></SubCategory>
                   ))}
                 </div>
               </div>

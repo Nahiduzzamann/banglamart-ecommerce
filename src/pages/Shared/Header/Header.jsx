@@ -8,7 +8,7 @@ import {
 } from "react-icons/ai";
 import LanguageToggle from "../../../components/LanguageToggle";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Burger from "./Nav/Burger";
 
 const Header = () => {
@@ -31,7 +31,7 @@ const Header = () => {
         </button>
         <img
           className="h-[35px] w-full object-cover"
-          src="https://banglamartecommerce.com/public/uploads/all/rD8sXSsY9A88MC4VkZcnlNtSckkDnycHQcWKqGhV.png"
+          src="https://www.pngkit.com/png/full/282-2825717_special-offer-banner-blue-special-offer-banner.png"
         ></img>
       </div>
       {/* LogIn Section  */}
@@ -65,11 +65,13 @@ const Header = () => {
         <div className="container mx-auto">
           <div className="flex justify-between p-1">
             <div className="bg-black rounded-full">
+              <Link to='/'>
               <img
                 className="h-16 w-16 lg:h-20 lg:w-20 xl:h-24 xl:w-24 "
                 src="https://i.ibb.co/9t1wQGK/banglamart-prev-ui.png"
                 alt=""
               />
+              </Link>
             </div>
             <div className="flex items-center">
               <AiOutlineSearch className="text-[30px] md:hidden text-SubTextColor hover:text-TextColor" />
@@ -123,9 +125,9 @@ const Header = () => {
               <Link className="text-SubTextColor hover:text-TextColor" to="/">
                 Affiliating
               </Link>
-              <Link className="text-SubTextColor hover:text-TextColor" to="/">
+              <NavLink className="text-SubTextColor hover:text-TextColor" to="/category">
                 Categories
-              </Link>
+              </NavLink>
               <Link className="text-SubTextColor hover:text-TextColor" to="/">
                 Brands
               </Link>

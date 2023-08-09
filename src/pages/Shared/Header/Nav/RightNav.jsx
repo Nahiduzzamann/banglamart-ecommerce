@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const Ul = styled.ul`
@@ -37,9 +37,9 @@ const RightNav = ({ open }) => {
       <Link className="text-CardColor hover:text-TextColor" to="/">
         <h3 className="p-2">Affiliating</h3>
       </Link>
-      <Link className="text-CardColor hover:text-TextColor" to="/">
+      <NavLink className="text-CardColor hover:text-TextColor" to="/category">
         <h3 className="p-2">Categories</h3>
-      </Link>
+      </NavLink>
       <Link className="text-CardColor hover:text-TextColor" to="/">
         <h3 className="p-2">Brands</h3>
       </Link>

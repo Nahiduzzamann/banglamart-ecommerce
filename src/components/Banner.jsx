@@ -17,11 +17,11 @@ const Banner = () => {
                 // centerSlidePercentage={95}
             >
                 <div className=''>
-                    <img className='object-fill  max-h-[340px]' src="https://banglamartecommerce.com/public/uploads/all/kXCe3Y1g843cxpLKM9P43kEEaNkX0hdVSHfEuOR1.jpg" alt="Slider Image 1" />
+                    <img className='object-fill max-h-[300px]' src="https://img.freepik.com/free-vector/stylish-glowing-digital-red-lines-banner_1017-23964.jpg" alt="Slider Image 1" />
                     
                 </div>
                 <div>
-                    <img className='object-fill  max-h-[340px]' src="https://banglamartecommerce.com/public/uploads/all/kXCe3Y1g843cxpLKM9P43kEEaNkX0hdVSHfEuOR1.jpg" alt="Slider Image 2" />
+                    <img className='object-fill max-h-[300px]' src="https://img.freepik.com/free-vector/stylish-glowing-digital-red-lines-banner_1017-23964.jpg" alt="Slider Image 2" />
                     
                 </div>
             </Carousel>

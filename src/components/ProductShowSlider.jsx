@@ -12,70 +12,70 @@ const Categories = [
     name: "Beautician",
     href: "/",
     image:
-      "https://banglamartecommerce.com/public/uploads/all/jrsFq1ROeFCQ1E0UIio5lzaHhYGXvMT6wYdJsD69.jpg",
+      "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
   },
   {
     id: 2,
     name: "It & Technology",
     href: "/",
     image:
-      "https://banglamartecommerce.com/public/uploads/all/dE5GUN3L9apMDRaLnSM1FUwKqbWnQGcdV2lLg8Vr.jpg",
+      "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
   },
   {
     id: 3,
     name: "Lawyer",
     href: "/",
     image:
-      "https://banglamartecommerce.com/public/uploads/all/dE5GUN3L9apMDRaLnSM1FUwKqbWnQGcdV2lLg8Vr.jpg",
+      "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
   },
   {
     id: 4,
     name: "Electrician",
     href: "/",
     image:
-      "https://banglamartecommerce.com/public/uploads/all/LA2n6wYynDMGxyPCNCny6fDLHuAVlWrOpEj3x7i9.jpg",
+      "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
   },
   {
     id: 5,
     name: "Electrician",
     href: "/",
     image:
-      "https://banglamartecommerce.com/public/uploads/all/LA2n6wYynDMGxyPCNCny6fDLHuAVlWrOpEj3x7i9.jpg",
+      "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
   },
   {
     id: 6,
     name: "Electrician",
     href: "/",
     image:
-      "https://banglamartecommerce.com/public/uploads/all/LA2n6wYynDMGxyPCNCny6fDLHuAVlWrOpEj3x7i9.jpg",
+      "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
   },
   {
     id: 7,
     name: "Electrician",
     href: "/",
     image:
-      "https://banglamartecommerce.com/public/uploads/all/LA2n6wYynDMGxyPCNCny6fDLHuAVlWrOpEj3x7i9.jpg",
+      "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
   },
   {
     id: 8,
     name: "Electrician",
     href: "/",
     image:
-      "https://banglamartecommerce.com/public/uploads/all/LA2n6wYynDMGxyPCNCny6fDLHuAVlWrOpEj3x7i9.jpg",
+      "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
   },
   {
     id: 9,
     name: "Electrician",
     href: "/",
     image:
-      "https://banglamartecommerce.com/public/uploads/all/LA2n6wYynDMGxyPCNCny6fDLHuAVlWrOpEj3x7i9.jpg",
+      "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
   },
   {
     id: 10,
     name: "Electrician",
     href: "/",
     image:
-      "https://banglamartecommerce.com/public/uploads/all/LA2n6wYynDMGxyPCNCny6fDLHuAVlWrOpEj3x7i9.jpg",
+      "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
   },
 ];
 const ProductShowSlider = () => {
@@ -144,8 +144,8 @@ const ProductShowSlider = () => {
                 ref={(slider1) => setMainSlider(slider1)}
                 {...sliderSettings}
               >
-                {Categories.map((category, i) => (
-                  <Cart category={category} key={i} />
+                {Categories.map((categorie, i) => (
+                  <Cart categorie={categorie} key={i} />
                 ))}
               </Slider>
             </div>
@@ -154,8 +154,8 @@ const ProductShowSlider = () => {
 
         {!isSm && (
           <div className="flex overflow-x-auto no-scrollbar gap-3 snap-x pt-5">
-            {Categories.map((category, i) => (
-              <Cart2 category={category} key={i} />
+            {Categories.map((categorie, i) => (
+              <Cart2 categorie={categorie} key={i} />
             ))}
           </div>
         )}
@@ -165,7 +165,7 @@ const ProductShowSlider = () => {
 };
 
 export default ProductShowSlider;
-const Cart = ({ category }) => {
+const Cart = ({ categorie }) => {
   //const router = useRouter();
 
   const [hover, setHover] = useState(false);
@@ -176,12 +176,12 @@ const Cart = ({ category }) => {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onClick={() => {
-        //router.push(category.href);
+        //router.push(categorie.href);
       }}
       className="w-[95%] cursor-pointer group aspect-[20/25] rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor hover:shadow-lg"
     >
       <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
-        <img src={category.image} className="object-fill aspect-[20/25]" />
+        <img src={categorie.image} className="object-fill aspect-[20/25]" />
       </div>
       {/* <span className="absolute inset-0 w-full h-full bg-primary/30" /> */}
       <div
@@ -218,7 +218,7 @@ const Cart = ({ category }) => {
                 hover ? "text-CardColor" : "text-TextColor"
               } `}
             >
-              {category.name}
+              {categorie.name}
             </p>
           </div>
           <div className="flex flex-col">
@@ -267,7 +267,7 @@ const Cart = ({ category }) => {
     </div>
   );
 };
-const Cart2 = ({ category }) => {
+const Cart2 = ({ categorie }) => {
   const [hover, setHover] = useState(false);
   const [heartIconHover, setHeartIconHover] = useState(false);
   const [cartIconHover, setCartIconHover] = useState(false);
@@ -278,7 +278,7 @@ const Cart2 = ({ category }) => {
       className="flex-shrink-0 w-[45%] snap-start cursor-pointer group aspect-[228/347]  rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor"
     >
       <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
-        <img src={category.image} className="object-fill" />
+        <img src={categorie.image} className="object-fill" />
       </div>
       {/* <span className="absolute inset-0 w-full h-full bg-primary/30" /> */}
       <div
@@ -315,7 +315,7 @@ const Cart2 = ({ category }) => {
                 hover ? "text-CardColor" : "text-TextColor"
               } `}
             >
-              {category.name}
+              {categorie.name}
             </p>
           </div>
           <div className="flex flex-col">

@@ -11,6 +11,7 @@ import i18n from "i18next";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import 'react-loading-skeleton/dist/skeleton.css'
+import Categories from './pages/Categories/Categories';
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,11 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-      }
+      },
+      {
+        path: "/category",
+        element: <Categories></Categories>,
+      },
     ],
   },
 ]);

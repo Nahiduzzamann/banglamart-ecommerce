@@ -25,3 +25,7 @@ h3{
     font-size: 14px;
     font-weight: 300;
 }
+.active {
+    text-decoration: underline;
+    color:#5dade2; /* You can adjust this to your desired active link color */
+  }
