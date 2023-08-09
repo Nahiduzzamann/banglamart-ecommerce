@@ -4,7 +4,6 @@ import SubCategory from "../../components/SubCategories";
 
 const Categories = () => {
   const [Categories, setCategories] = useState(null);
-  // const [subCategories, setSubCategories] = useState(null);
   // TODO
   const url = "http://192.168.1.11:1300";
   useEffect(() => {
@@ -21,23 +20,9 @@ const Categories = () => {
     fetchCategories();
   }, []);
 
-  // useEffect(() => {
-  //   const fetchSubCategories = async () => {
-  //     try {
-  //       const response = await fetch(`${url}/category/getSubCategory`);
-  //       const data = await response.json();
-  //       // setSubCategories(data);
-  //     } catch (error) {
-  //       console.error("Error fetching instructor classes:", error);
-  //     }
-  //   };
 
-  //   fetchSubCategories();
-  // }, []);
-
-  // console.log(Categories);
   return (
-    <div>
+    <div className="p-1 lg:p-0">
       <div className="container mx-auto">
         <h1 className="pt-4 pb-4">Categories</h1>
         {Categories ? (
@@ -58,7 +43,7 @@ const Categories = () => {
             </h3>
           </SkeletonTheme>
         )}
-        <div className="p-2 flex justify-around">
+        <div className="mt-4 grid grid-cols-1 2xl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-2">
           {Categories?.map((category, i) => {
             return (
               <div
@@ -66,7 +51,7 @@ const Categories = () => {
                 className=" bg-CardColor rounded-md border-[1px] border-BorderColor"
               >
                 <div className="p-2">
-                  <h1 className="text-center p-1 border-b-2 border-b-BorderColor">{category.name}</h1>
+                  <h1 className="text-center p-1 border-b-[3px] border-b-BorderColor">{category.name}</h1>
                   <div className="p-2">
                     {category?.subCategory.map((subCategories, i) => (
                       <SubCategory

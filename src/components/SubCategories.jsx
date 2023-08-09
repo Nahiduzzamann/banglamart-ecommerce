@@ -42,7 +42,7 @@ console.log(options);
             // console.log(category);
             return (
               <button key={i} className="flex p-1">
-                <p className="text-TextColor hover:underline tracking-[2px]">
+                <p className="text-SubTextColor hover:text-TextColor hover:underline tracking-[2px]">
                   {option.name}
                 </p>
               </button>
