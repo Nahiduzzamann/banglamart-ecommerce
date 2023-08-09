@@ -22,7 +22,7 @@ const SubCategory = ({ subCategories }) => {
     fetchCategories();
   }, [subCategories]);
 
-
+// console.log(options);
   return (
     <div>
       <h2 className="text-BorderColor mb-1">
