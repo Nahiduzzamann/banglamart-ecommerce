@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { AiFillCaretRight } from "react-icons/ai";
+import SubCategory from "./SubCategory";
 const AllCategory = () => {
   const [categorys, setCategorys] = useState(null);
   const [subCategorys, setSubCategorys] = useState([]);
@@ -9,7 +10,7 @@ const AllCategory = () => {
     isHover: false,
     category: {},
   });
-
+// TODO 
   const url = "http://192.168.1.11:1300";
   useEffect(() => {
     const fetchCategorys = async () => {
@@ -24,10 +25,8 @@ const AllCategory = () => {
 
     fetchCategorys();
   }, []);
- 
-  const handleSubCategory =(subCategory) => {
-      // console.log(subCategory);
-  }
+
+
   return (
     <div className="relative ">
       <div className="bg-MainColor p-3 rounded-lg">
@@ -40,7 +39,6 @@ const AllCategory = () => {
             return (
               <button
                 onMouseEnter={() => {
-                  handleSubCategory(category.subCategory)
                   setCategoryHover({ isHover: true, category: category });
                   setSubCategorys(category.subCategory);
                 }}
@@ -95,15 +93,7 @@ const AllCategory = () => {
                 </h1>
                 <div className="p-2 flex justify-around">
                   {subCategorys.map((subCategory, i) => (
-                    <div key={i}>
-                      <h2 className="text-CardColor mb-1">{subCategory.name}</h2>
-                      <div className="pl-2">
-                        <p>hiiii</p>
-                        <p>hiiii</p>
-                        <p>hiiii</p>
-                        <p>hiiii</p>
-                      </div>
-                    </div>
+                    <SubCategory subCategory={subCategory} key={i}></SubCategory>
                   ))}
                 </div>
               </div>
