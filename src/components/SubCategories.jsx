@@ -10,7 +10,7 @@ const SubCategory = ({ subCategories }) => {
     const fetchCategories = async () => {
       try {
         const response = await fetch(
-          `${url}/category/getOptions?subCategoryId=${subCategories.id}`
+          `${url}/category/getOptions?subCategoryId=${subCategories?.id}`
         );
         const data = await response.json();
         setOptions(data.data);
@@ -22,10 +22,10 @@ const SubCategory = ({ subCategories }) => {
     fetchCategories();
   }, [subCategories]);
 
-// console.log(options);
+console.log(options);
   return (
     <div>
-      <h2 className="text-BorderColor mb-1">
+      <h2 className="text-TextColor mb-1">
         {subCategories ? (
           subCategories.name
         ) : (
@@ -36,13 +36,13 @@ const SubCategory = ({ subCategories }) => {
           </SkeletonTheme>
         )}
       </h2>
-      <div className="pl-2 ml-1 border-l-2 border-l-BorderColor">
+      <div className="pl-2 ml-1 mb-4 border-l-2 border-l-BorderColor">
         {options ? (
-          options?.map((option, i) => {
+          options.map((option, i) => {
             // console.log(category);
             return (
               <button key={i} className="flex p-1">
-                <p className="text-CardColor hover:underline tracking-[2px]">
+                <p className="text-TextColor hover:underline tracking-[2px]">
                   {option.name}
                 </p>
               </button>

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-// import SubCategory from "../../components/SubCategories";
+import SubCategory from "../../components/SubCategories";
 
 const Categories = () => {
   const [Categories, setCategories] = useState(null);
-  const [subCategories, setSubCategories] = useState(null);
+  // const [subCategories, setSubCategories] = useState(null);
   // TODO
   const url = "http://192.168.1.11:1300";
   useEffect(() => {
@@ -21,21 +21,21 @@ const Categories = () => {
     fetchCategories();
   }, []);
 
-  useEffect(() => {
-    const fetchSubCategories = async () => {
-      try {
-        const response = await fetch(`${url}/category/getSubCategory`);
-        const data = await response.json();
-        setSubCategories(data);
-      } catch (error) {
-        console.error("Error fetching instructor classes:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchSubCategories = async () => {
+  //     try {
+  //       const response = await fetch(`${url}/category/getSubCategory`);
+  //       const data = await response.json();
+  //       // setSubCategories(data);
+  //     } catch (error) {
+  //       console.error("Error fetching instructor classes:", error);
+  //     }
+  //   };
 
-    fetchSubCategories();
-  }, []);
+  //   fetchSubCategories();
+  // }, []);
 
-  console.log(subCategories);
+  // console.log(Categories);
   return (
     <div>
       <div className="container mx-auto">
@@ -59,9 +59,26 @@ const Categories = () => {
           </SkeletonTheme>
         )}
         <div className="p-2 flex justify-around">
-          {/* {subCategories?.map((subCategories, i) => (
-            <SubCategory subCategories={subCategories} key={i}></SubCategory>
-          ))} */}
+          {Categories?.map((category, i) => {
+            return (
+              <div
+                key={i}
+                className=" bg-CardColor rounded-md border-[1px] border-BorderColor"
+              >
+                <div className="p-2">
+                  <h1 className="text-center p-1 border-b-2 border-b-BorderColor">{category.name}</h1>
+                  <div className="p-2">
+                    {category?.subCategory.map((subCategories, i) => (
+                      <SubCategory
+                        key={i}
+                        subCategories={subCategories}
+                      ></SubCategory>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
