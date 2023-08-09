@@ -1,5 +1,6 @@
 import AllCategory from "../../../components/AllCategories";
 import Banner from "../../../components/Banner";
+import BrandSlider from "../../../components/BrandSlider";
 
 const TopBannerSection = () => {
   return (
@@ -10,79 +11,8 @@ const TopBannerSection = () => {
         </div>
         <div className="col-span-4 lg:col-span-3 p-1 lg:p-0">
           <Banner></Banner>
-          <div className="grid grid-cols-3 sm:grid-cols-9 gap-3 lg:gap-2 mt-4">
-            <div className="flex flex-col items-center bg-CardColor p-1 rounded-md shadow-md hover:shadow-xl">
-              <img
-                className="object-fill"
-                src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
-                alt=""
-              />
-              <p className="line-clamp-1 text-TextColor">Women Fashion</p>
-            </div>
-            <div className="flex flex-col items-center bg-CardColor p-1 rounded-md shadow-md hover:shadow-xl">
-              <img
-                className="object-fill"
-                src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
-                alt=""
-              />
-              <p className="line-clamp-1 text-TextColor">Women Fashion</p>
-            </div>
-            <div className="flex flex-col items-center bg-CardColor p-1 rounded-md shadow-md hover:shadow-xl">
-              <img
-                className="object-fill"
-                src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
-                alt=""
-              />
-              <p className="line-clamp-1 text-TextColor">Women Fashion</p>
-            </div>
-            <div className="flex flex-col items-center bg-CardColor p-1 rounded-md shadow-md hover:shadow-xl">
-              <img
-                className="object-fill"
-                src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
-                alt=""
-              />
-              <p className="line-clamp-1 text-TextColor">Women Fashion</p>
-            </div>
-            <div className="flex flex-col items-center bg-CardColor p-1 rounded-md shadow-md hover:shadow-xl">
-              <img
-                className="object-fill"
-                src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
-                alt=""
-              />
-              <p className="line-clamp-1 text-TextColor">Women Fashion</p>
-            </div>
-            <div className="flex flex-col items-center bg-CardColor p-1 rounded-md shadow-md hover:shadow-xl">
-              <img
-                className="object-fill"
-                src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
-                alt=""
-              />
-              <p className="line-clamp-1 text-TextColor">Women Fashion</p>
-            </div>
-            <div className="flex flex-col items-center bg-CardColor p-1 rounded-md shadow-md hover:shadow-xl">
-              <img
-                className="object-fill"
-                src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
-                alt=""
-              />
-              <p className="line-clamp-1 text-TextColor">Women Fashion</p>
-            </div>
-            <div className="flex flex-col items-center bg-CardColor p-1 rounded-md shadow-md hover:shadow-xl">
-              <img
-                className="object-fill"
-                src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
-                alt=""
-              />
-              <p className="line-clamp-1 text-TextColor">Women Fashion</p>
-            </div>
-            <div className="flex flex-col items-center bg-CardColor p-1 rounded-md shadow-md hover:shadow-xl">
-              <img
-                className="object-fill"
-                src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
-                alt=""
-              />
-              <p className="line-clamp-1 text-TextColor">Women Fashion</p>
-            </div>
+          <div className="mt-4">
+            <BrandSlider></BrandSlider>
           </div>
         </div>
       </div>

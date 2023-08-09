@@ -24,7 +24,7 @@ const Categories = () => {
   return (
     <div className="p-1 lg:p-0">
       <div className="container mx-auto">
-        <h1 className="pt-4 pb-4">Categories</h1>
+        <h1 className="pt-4 pb-4">All Categories</h1>
         {Categories ? (
           Categories?.map((category, i) => {
             return (
