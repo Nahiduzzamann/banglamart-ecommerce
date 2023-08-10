@@ -1,17 +1,17 @@
 import { useState } from "react";
 
-const FilterCart = () => {
+const FilterCart = ({title}) => {
     const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckBox = () => {
     setIsChecked(!isChecked);
   };
     return (
-        <div>
+        <div className="mb-2">
             <div className="collapse bg-CardColor border border-BorderColor collapse-plus">
               <input type="checkbox" className="peer" />
               <div className="collapse-title  text-SubTextColor peer-checked:text-TextColor border border-CardColor peer-checked:border-b-BorderColor ">
-                <h1>Color</h1>
+                <h2>{title}</h2>
               </div>
               <div className="collapse-content bg-CardColor">
                 <div className="flex items-center mt-2">

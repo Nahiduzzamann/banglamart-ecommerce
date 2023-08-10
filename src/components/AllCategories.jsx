@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { AiFillCaretRight } from "react-icons/ai";
 import SubCategory from "./SubCategories";
+import './Style/ScrollbarStyles.css'
 const AllCategory = () => {
   const [categories, setCategories] = useState(null);
   const [subCategories, setSubCategories] = useState([]);
@@ -32,7 +33,7 @@ const AllCategory = () => {
       <div className="bg-MainColor p-3 rounded-lg">
         <h2 className="text-CardColor">All Categories</h2>
       </div>
-      <div className="bg-CardColor p-3  max-h-[495px] overflow-y-auto">
+      <div className="bg-CardColor p-3 lg:max-h-[365px] xl:max-h-[390px] 2xl:max-h-[415px] overflow-y-auto">
         {categories ? (
           categories?.map((category) => {
             // console.log(category);
@@ -56,7 +57,7 @@ const AllCategory = () => {
                   alt=""
                 />
                 <div className="flex items-center justify-between w-full">
-                  <h3 className="text-SubTextColor hover:text-TextColor">
+                  <h3 className="text-SubTextColor hover:text-TextColor line-clamp-1">
                     {category.name}
                   </h3>
                   {categoryHover.isHover || subCategoryHover ? (
@@ -91,7 +92,7 @@ const AllCategory = () => {
                 <h1 className="text-center text-CardColor p-4">
                   {categoryHover.category.name}
                 </h1>
-                <div className="p-2 flex justify-around">
+                <div className="p-2 flex justify-around flex-wrap">
                   {subCategories.map((subCategories, i) => (
                     <SubCategory subCategories={subCategories} key={i}></SubCategory>
                   ))}
