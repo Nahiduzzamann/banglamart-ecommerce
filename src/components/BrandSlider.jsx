@@ -143,17 +143,17 @@ const Cart = ({ categorie }) => {
       }}
       className="w-[95%] cursor-pointer group aspect-[25/20] rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor hover:shadow-md"
     >
-      <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
-        <img src={categorie.image} className="object-fill aspect-[25/20]" />
+      <div className="inset-0 absolute w-full aspect-[25/20] group-hover:scale-110 ease-in-out duration-300">
+        <img src={categorie.image} className="object-fill w-full aspect-[20/15]" />
       </div>
       <div
         className={`absolute bottom-0 w-full ${
           hover ? "bg-MainColor" : "bg-[#ffffffd7]"
         }`}
       >
-        <div className="pl-2 pt-1 pb-1 flex items-center pr-2">
+        <div className="">
           <p
-            className={`relative ${
+            className={`p-1 text-center ${
               hover ? "text-CardColor" : "text-TextColor"
             } `}
           >
