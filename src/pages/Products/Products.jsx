@@ -30,9 +30,24 @@ const Products = () => {
                 </h1>
                 <h1 className="text-MainColor">Filters</h1>
               </button>
-              <h3 className="text-TextColor">Total Products: 99</h3>
+              <h2 className="text-TextColor">Total Products: 99</h2>
             </div>
-            <div>Products</div>
+            <div className="mt-4 ">
+              <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2">
+                <div className="h-40 w-20 bg-MainColor"></div>
+                <div className="h-40 w-20 bg-MainColor"></div>
+                <div className="h-40 w-20 bg-MainColor"></div>
+                <div className="h-40 w-20 bg-MainColor"></div>
+                <div className="h-40 w-20 bg-MainColor"></div>
+                <div className="h-40 w-20 bg-MainColor"></div>
+                <div className="h-40 w-20 bg-MainColor"></div>
+                <div className="h-40 w-20 bg-MainColor"></div>
+                <div className="h-40 w-20 bg-MainColor"></div>
+                <div className="h-40 w-20 bg-MainColor"></div>
+                <div className="h-40 w-20 bg-MainColor"></div>
+                <div className="h-40 w-20 bg-MainColor"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

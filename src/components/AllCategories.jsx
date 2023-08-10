@@ -88,11 +88,11 @@ const AllCategory = () => {
             onMouseLeave={() => setSubCategoryHover(false)}
           >
             <div className="absolute -top-1 2xl:left-[347px] 2xl:h-[500px] xl:h-[470px] lg:h-[390px] 2xl:pl-[40px] xl:pl-[33px] lg:pl-[40px] xl:left-[290px] lg:left-[220px] z-50">
-              <div className="bg-MainColor rounded-md p-2 2xl:min-w-[1150px] xl:min-w-[958px] lg:min-w-[765px] ">
+              <div className="bg-MainColor rounded-md p-2 2xl:min-w-[1150px] xl:min-w-[958px] lg:min-w-[765px] lg:max-h-[418px] xl:max-h-[442px] 2xl:max-h-[467px] overflow-y-auto">
                 <h1 className="text-center text-CardColor p-4">
                   {categoryHover.category.name}
                 </h1>
-                <div className="p-2 flex justify-around flex-wrap">
+                <div className="m-2 flex flex-wrap">
                   {subCategories.map((subCategories, i) => (
                     <SubCategory subCategories={subCategories} key={i}></SubCategory>
                   ))}

@@ -25,8 +25,8 @@ const SubCategory = ({ subCategories }) => {
 
 // console.log(options);
   return (
-    <div>
-      <h2 className="text-TextColor mb-1">
+    <div className="">
+      <h2 className="text-TextColor mb-1 mr-4">
         {subCategories ? (
           subCategories.name
         ) : (
@@ -37,7 +37,7 @@ const SubCategory = ({ subCategories }) => {
           </SkeletonTheme>
         )}
       </h2>
-      <div className="pl-2 ml-1 mb-4 border-l-2 border-l-BorderColor">
+      <div className="pl-1 ml-1 mb-4 border-l-2 border-l-BorderColor ">
         {options ? (
           options.map((option, i) => {
             // console.log(category);
