@@ -4,70 +4,70 @@ import useMediaQuery from "../hooks/useMediaQuery";
 const Categories = [
   {
     id: 1,
-    name: "Beautician",
+    name: "Samsung",
     href: "/",
     image:
       "https://banglamartecommerce.com/public/uploads/all/TWjgWy18rJFdVbLw3UlLlYOhzAGFN1EO4VJlxLqY.png",
   },
   {
     id: 2,
-    name: "It & Technology",
+    name: "Sony",
     href: "/",
     image:
       "https://banglamartecommerce.com/public/uploads/all/V4ocaHg8gsJjD7sHLPzW1Rv7f3uHn5HHkcG53uLM.png",
   },
   {
     id: 3,
-    name: "Lawyer",
+    name: "Canon",
     href: "/",
     image:
       "	https://banglamartecommerce.com/public/uploads/all/LJo6SY6kiOjQbjD9y03xGwhltH0xQmYzsMNUR0SB.png",
   },
   {
     id: 4,
-    name: "Electrician",
+    name: "Shaowmi",
     href: "/",
     image:
       "	https://banglamartecommerce.com/public/uploads/all/thvGEjxTkdRYQP3LG0cJ6VwzLLsMwEK2evsiHjSj.png",
   },
   {
     id: 5,
-    name: "Electrician",
+    name: "Symphony",
     href: "/",
     image:
       "	https://banglamartecommerce.com/public/uploads/all/fKzLfPh3iCrTSBjSSn8aywBVf6JskLt7GDHOXgc4.jpg",
   },
   {
     id: 6,
-    name: "Electrician",
+    name: "LG",
     href: "/",
     image:
       "	https://banglamartecommerce.com/public/uploads/all/nATwNMgTp3SyPWazFIPfj0hk2AOrASZXEE9lMpuc.png",
   },
   {
     id: 7,
-    name: "Electrician",
+    name: "Huawei",
     href: "/",
     image:
       "	https://banglamartecommerce.com/public/uploads/all/DqIXFAOzCElMOWRaVYBRfJUPL8q0HAM6XYEMLoi5.jpg",
   },
   {
     id: 8,
-    name: "Electrician",
+    name: "Oppo",
     href: "/",
     image:
       "	https://banglamartecommerce.com/public/uploads/all/tFqlLqF179N7NwJ3ZOWfoxSdkpKpeC3aM9ugxhWZ.png",
   },
   {
     id: 9,
-    name: "Electrician",
+    name: "Yamaha",
     href: "/",
     image:
       "https://banglamartecommerce.com/public/uploads/all/43VEXCh4MiMtWOsBMk34WYwozfWWF0jcMxs49qYn.png",
   },
   {
     id: 10,
-    name: "Electrician",
+    name: "Suzuki",
     href: "/",
     image:
       "	https://banglamartecommerce.com/public/uploads/all/1hWjVqkIzP5no5zjblJjHvK0dmHH0lUdSA6gm7U1.png",
@@ -143,8 +143,8 @@ const Cart = ({ categorie }) => {
       }}
       className="w-[95%] cursor-pointer group aspect-[25/20] rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor hover:shadow-md"
     >
-      <div className="inset-0 absolute w-full aspect-[25/20] group-hover:scale-110 ease-in-out duration-300">
-        <img src={categorie.image} className="object-fill w-full aspect-[20/15]" />
+      <div className="inset-0 absolute w-full aspect-[20/14] group-hover:scale-110 ease-in-out duration-300">
+        <img src={categorie.image} className="object-fill w-full aspect-[20/14]" />
       </div>
       <div
         className={`absolute bottom-0 w-full ${

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { Link } from "react-router-dom";
 
 const SubCategory = ({ subCategories }) => {
   const [options, setOptions] = useState(null);
@@ -41,11 +42,11 @@ const SubCategory = ({ subCategories }) => {
           options.map((option, i) => {
             // console.log(category);
             return (
-              <button key={i} className="flex p-1">
+              <Link to='/products' key={i} className="flex p-1">
                 <p className="text-SubTextColor hover:text-TextColor hover:underline tracking-[2px]">
                   {option.name}
                 </p>
-              </button>
+              </Link>
             );
           })
         ) : (

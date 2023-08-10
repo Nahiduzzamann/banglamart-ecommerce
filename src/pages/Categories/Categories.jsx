@@ -25,15 +25,16 @@ const Categories = () => {
     <div className="p-1 lg:p-0">
       <div className="container mx-auto">
         <h1 className="pt-4 pb-4">All Categories</h1>
+        <div className="flex">
         {Categories ? (
           Categories?.map((category, i) => {
             return (
-              <button
+              <h1
                 key={i}
-                className="bg-CardColor rounded-md hover:bg-MainColor hover:text-CardColor p-1 border-[1px] border-BorderColor mr-2 mb-2"
+                className="rounded-md bg-MainColor text-CardColor p-2 border-[1px] border-BorderColor mr-2 mb-2"
               >
                 {category.name}
-              </button>
+              </h1>
             );
           })
         ) : (
@@ -43,6 +44,7 @@ const Categories = () => {
             </h3>
           </SkeletonTheme>
         )}
+        </div>
         <div className="mt-4 grid grid-cols-1 2xl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-2">
           {Categories?.map((category, i) => {
             return (
