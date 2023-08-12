@@ -3,9 +3,12 @@ import { AiFillStar, AiOutlineHeart, AiOutlineShoppingCart, AiOutlineStar } from
 import { BsFillCartCheckFill, BsFillHeartFill } from "react-icons/bs";
 import Rating from "react-rating";
 
-const ProductCart = ({ category }) => {
+const ProductCart = ({ product }) => {
+  // console.log(product);
     //const router = useRouter();
-  
+    // TODO 
+  const url = 'http://192.168.1.11:1300';
+
     const [hover, setHover] = useState(false);
     const [heartIconHover, setHeartIconHover] = useState(false);
     const [cartIconHover, setCartIconHover] = useState(false);
@@ -14,12 +17,13 @@ const ProductCart = ({ category }) => {
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         onClick={() => {
-          //router.push(category.href);
+          //router.push(product.href);
         }}
         className="w-[95%] cursor-pointer group aspect-[20/25] rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor hover:shadow-lg"
       >
         <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
-          <img src={category.image} className="object-fill aspect-[20/25]" />
+          {/* TODO  */}
+          <img src={`${url}${product.thumbnail}`} crossOrigin="anonymous" className="object-fill w-full" />
         </div>
         {/* <span className="absolute inset-0 w-full h-full bg-primary/30" /> */}
         <div
@@ -38,7 +42,7 @@ const ProductCart = ({ category }) => {
                     hover ? "text-CardColor" : "text-[#f84545]"
                   } `}
                 >
-                  1000 ৳
+                  {product?.price} ৳
                 </p>
               </div>
               <Rating
@@ -56,7 +60,7 @@ const ProductCart = ({ category }) => {
                   hover ? "text-CardColor" : "text-TextColor"
                 } `}
               >
-                {category.name}
+                {product.title}
               </p>
             </div>
             <div className="flex flex-col">

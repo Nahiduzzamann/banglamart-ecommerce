@@ -10,7 +10,7 @@ import ProductCart from "./ProductCart";
 const Categories = [
   {
     id: 1,
-    name: "Beautician",
+    title: "Beautician",
     href: "/",
     image:
       "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
@@ -145,9 +145,9 @@ const ProductShowSlider = () => {
                 ref={(slider1) => setMainSlider(slider1)}
                 {...sliderSettings}
               >
-                {Categories.map((category, i) => (
+                {Categories.map((product, i) => (
                   // <Cart categorie={categorie} key={i} />
-                  <ProductCart category={category} key={i} ></ProductCart>
+                  <ProductCart product={product} key={i} ></ProductCart>
                 ))}
               </Slider>
             </div>

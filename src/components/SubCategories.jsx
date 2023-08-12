@@ -40,9 +40,9 @@ const SubCategory = ({ subCategories }) => {
       <div className="pl-1 ml-1 mb-4 border-l-2 border-l-BorderColor ">
         {options ? (
           options.map((option, i) => {
-            // console.log(category);
+            
             return (
-              <Link to='/products' key={i} className="flex p-1">
+              <Link to={`/products/${option.id}`} key={i} className="flex p-1">
                 <p className="text-SubTextColor hover:text-TextColor hover:underline tracking-[2px]">
                   {option.name}
                 </p>
