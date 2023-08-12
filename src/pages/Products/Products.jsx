@@ -27,6 +27,19 @@ const Products = () => {
     fetchOptionProducts();
   }, []);
 
+  const itemsPerPage = 10; // Number of items per page
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(products?.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  const currentProducts = products?.slice(startIndex, endIndex);
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
+
   return (
     <div className="">
       <div className="container mx-auto">
@@ -62,8 +75,11 @@ const Products = () => {
             <div className="mt-4 ">
               <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2">
                 {products ? (
-                  products?.map((product) => (
-                    <ProductCart product={product} key={id}></ProductCart>
+                  currentProducts.map((product) => (
+                    <ProductCart
+                      product={product}
+                      key={product.id}
+                    ></ProductCart>
                   ))
                 ) : (
                   <SkeletonTheme baseColor="#5dade2" highlightColor="#FAD7A0">
@@ -72,6 +88,22 @@ const Products = () => {
                     </h3>
                   </SkeletonTheme>
                 )}
+              </div>
+              {/* Pagination */}
+              <div className="flex justify-center m-4">
+              <div className="join">
+                {Array.from({ length: totalPages }, (_, index) => (
+                  <button
+                    key={index}
+                    className={`join-item btn btn-md border border-BorderColor ${
+                      index + 1 === currentPage ? " btn-disabled" : "bg-MainColorHover"
+                    }`}
+                    onClick={() => handlePageChange(index + 1)}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+              </div>
               </div>
             </div>
           </div>
