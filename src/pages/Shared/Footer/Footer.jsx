@@ -62,14 +62,14 @@ const Footer = () => {
               <h1>USEFUL LINKS</h1>
             </div>
             <div className="flex flex-col">
-              <Link className="mb-1 text-SubTextColor hover:text-TextColor" to="/">Terms & Conditions</Link>
-              <Link className="mb-1 text-SubTextColor hover:text-TextColor" to="/">Privacy Policy</Link>
-              <Link className="mb-1 text-SubTextColor hover:text-TextColor" to="/">Seller Policy</Link>
-              <Link className="mb-1 text-SubTextColor hover:text-TextColor" to="/">Return Policy</Link>
-              <Link className="mb-1 text-SubTextColor hover:text-TextColor" to="/">Support Policy</Link>
-              <Link className="mb-1 text-SubTextColor hover:text-TextColor" to="/">Cancellation policy</Link>
-              <Link className="mb-1 text-SubTextColor hover:text-TextColor" to="/">FAQ</Link>
-              <Link className="mb-1 text-SubTextColor hover:text-TextColor" to="/">Blog</Link>
+              <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Terms & Conditions</Link>
+              <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Privacy Policy</Link>
+              <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Seller Policy</Link>
+              <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Return Policy</Link>
+              <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Support Policy</Link>
+              <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Cancellation policy</Link>
+              <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">FAQ</Link>
+              <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Blog</Link>
             </div>
           </div>
           <div>
@@ -77,11 +77,11 @@ const Footer = () => {
               <h1>ACCOUNT</h1>
             </div>
             <div className="flex flex-col">
-              <Link  className="mb-1 text-SubTextColor hover:text-TextColor" to="/">Login</Link>
-              <Link  className="mb-1 text-SubTextColor hover:text-TextColor" to="/">Wishlist</Link>
-              <Link  className="mb-1 text-SubTextColor hover:text-TextColor" to="/">Track Order</Link>
-              <Link  className="mb-1 text-SubTextColor hover:text-TextColor" to="/">Order History</Link>
-              <Link  className="mb-1 text-SubTextColor hover:text-TextColor" to="/">Affiliating</Link>
+              <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Login</Link>
+              <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Wishlist</Link>
+              <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Track Order</Link>
+              <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Order History</Link>
+              <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Affiliating</Link>
               <Link className="p-2 text-center rounded-full bg-MainColor hover:bg-MainColorHover text-CardColor shadow-md" to="/">BE A SELLER</Link>
               
             </div>
