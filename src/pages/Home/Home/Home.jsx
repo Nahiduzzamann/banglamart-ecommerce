@@ -10,7 +10,7 @@ const Home = () => {
     <div>
       <TopBannerSection></TopBannerSection>
       <FlashSaleBanner></FlashSaleBanner>
-      <div className="container mx-auto">
+      <div className="container mx-auto ">
         <FlashSale></FlashSale>
         <NewProducts></NewProducts>
         <BestSelling></BestSelling>
