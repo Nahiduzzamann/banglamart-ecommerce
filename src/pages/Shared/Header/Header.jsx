@@ -46,12 +46,12 @@ const Header = () => {
               <p className="mr-4 hidden lg:block text-SubTextColor">
                 {t("header.number")}
               </p>
-              <Link>
+              <Link to='/login'>
                 <p className="mr-4 text-SubTextColor hover:text-TextColor">
                   {t("header.login")}
                 </p>
               </Link>
-              <Link>
+              <Link to='registration'>
                 <p className="text-SubTextColor hover:text-TextColor">
                   {t("header.registration")}
                 </p>
