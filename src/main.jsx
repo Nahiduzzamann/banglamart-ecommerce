@@ -16,6 +16,7 @@ import Products from "./pages/Products/Products";
 import AuthProvider from "./providers/AuthProvider";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
+import TermsConditions from "./pages/Home/TermsConditions/TermsConditions";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/registration",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "/termsConditions",
+        element: <TermsConditions></TermsConditions>,
       },
     ],
   },

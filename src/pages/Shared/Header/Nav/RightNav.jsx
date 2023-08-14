@@ -29,14 +29,11 @@ const RightNav = ({ open }) => {
         <h3 className="p-2">Flash Sale</h3>
       </Link>
       <Link className="text-CardColor hover:text-TextColor" to="/">
-        <h3 className="p-2">Be A Seller</h3>
+        <h3 className="p-2">All Seller</h3>
       </Link>
-      <Link className="text-CardColor hover:text-TextColor" to="/">
-        <h3 className="p-2">Best Sellers</h3>
-      </Link>
-      <Link className="text-CardColor hover:text-TextColor" to="/">
+      {/* <Link className="text-CardColor hover:text-TextColor" to="/">
         <h3 className="p-2">Affiliating</h3>
-      </Link>
+      </Link> */}
       <NavLink className="text-CardColor hover:text-TextColor" to="/category">
         <h3 className="p-2">Categories</h3>
       </NavLink>
@@ -45,6 +42,9 @@ const RightNav = ({ open }) => {
       </Link>
       <Link className="text-CardColor hover:text-TextColor" to="/">
         <h3 className="p-2">Track Order</h3>
+      </Link>
+      <Link className="text-CardColor hover:text-TextColor" to="/">
+        <h3 className="p-2">Contact Us</h3>
       </Link>
       </div>
     </Ul>

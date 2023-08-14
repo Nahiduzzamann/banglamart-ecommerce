@@ -118,14 +118,11 @@ const Header = () => {
                   Flash Sale
                 </Link>
                 <Link className="text-SubTextColor hover:text-TextColor" to="/">
-                  Be A Seller
+                  All Seller
                 </Link>
-                <Link className="text-SubTextColor hover:text-TextColor" to="/">
-                  Best Sellers
-                </Link>
-                <Link className="text-SubTextColor hover:text-TextColor" to="/">
+                {/* <Link className="text-SubTextColor hover:text-TextColor" to="/">
                   Affiliating
-                </Link>
+                </Link> */}
                 <NavLink
                   className="text-SubTextColor hover:text-TextColor"
                   to="/category"
@@ -137,6 +134,9 @@ const Header = () => {
                 </Link>
                 <Link className="text-SubTextColor hover:text-TextColor" to="/">
                   Track Order
+                </Link>
+                <Link className="text-SubTextColor hover:text-TextColor" to="/">
+                  Contact Us
                 </Link>
               </div>
             </div>

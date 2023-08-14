@@ -4,6 +4,7 @@ import BestSelling from "../BestSelling/BestSelling";
 import FlashSale from "../FlashSale/FlashSale";
 import NewProducts from "../NewProducts/NewProducts";
 import TopBannerSection from "../TopBannerSection/TopBannerSection";
+import TopProducts from "../TopProducts/TopProducts";
 
 const Home = () => {
   return (
@@ -14,7 +15,11 @@ const Home = () => {
         <FlashSale></FlashSale>
         <NewProducts></NewProducts>
         <BestSelling></BestSelling>
-        <BestSellers/>
+      </div>
+      <FlashSaleBanner></FlashSaleBanner>
+      <div className="container mx-auto">
+        <TopProducts></TopProducts>
+        <BestSellers />
       </div>
     </div>
   );
