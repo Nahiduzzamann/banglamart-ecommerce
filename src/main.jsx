@@ -17,6 +17,7 @@ import AuthProvider from "./providers/AuthProvider";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import TermsConditions from "./pages/Home/TermsConditions/TermsConditions";
+import SellerPolicy from "./pages/SellerPolicy/SellerPolicy";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "/termsConditions",
         element: <TermsConditions></TermsConditions>,
+      },
+      {
+        path: "/sellerPolicy",
+        element: <SellerPolicy></SellerPolicy>,
       },
     ],
   },
