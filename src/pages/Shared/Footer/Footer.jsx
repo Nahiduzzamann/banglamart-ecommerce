@@ -67,7 +67,7 @@ const Footer = () => {
               <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/sellerPolicy">Seller Policy</Link>
               <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Return Policy</Link>
               <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Support Policy</Link>
-              <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Cancellation policy</Link>
+              <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/cancellationPolicy">Cancellation policy</Link>
               <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">FAQ</Link>
               <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Blog</Link>
             </div>
@@ -81,7 +81,7 @@ const Footer = () => {
               <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Wishlist</Link>
               <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Track Order</Link>
               <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Order History</Link>
-              <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Affiliating</Link>
+              {/* <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Affiliating</Link> */}
               <Link className="p-2 text-center rounded-full bg-MainColor hover:bg-MainColorHover text-CardColor shadow-md" to="/">BE A SELLER</Link>
               
             </div>

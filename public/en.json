@@ -70,5 +70,9 @@
     "sellerPolicy": {
       "sellerPolicyTitle": "Become a Banglamart Merchant",
       "sellerPolicyDescription": "Banglamart Believes the Importance of Relationship Between Marketplace and Merchants. We Aim to Create & Set an Example in the Industry About the Said Relationships. Please Register Through The Following Link If You Want to Become a Banglamart Merchant."
+    },
+    "CancellationPolicy": {
+      "CancellationPolicyTitle": "ORDER CANCELLATION",
+      "CancellationPolicyDescription": "Banglamart promises to deliver quality and authentic products to their customers. Therefore, Banglamart always runs Quality Control checks after receiving the ordered product from the authorized vendors. Banglamart reserves all rights to cancel any order of the customer after finding any quality issue from Quality Control checks of the ordered product, as we aim to give our customers the best online shopping experience. Banglamart also reserves all rights to cancel any order if the ordered product is unavailable or if it is out-of-stock. Product unavailability cannot be predetermined or predicted by the website, whether it is due to unavoidable inventory management issues, website management issues, vendor stock update issues or any other unpredictable reason."
     }
   }
