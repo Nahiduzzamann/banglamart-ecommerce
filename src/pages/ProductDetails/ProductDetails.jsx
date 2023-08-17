@@ -14,6 +14,7 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
 } from "react-share";
+import ReactImageZoom from "react-image-zoom";
 const ProductDetails = () => {
   const products = [
     {
@@ -30,15 +31,9 @@ const ProductDetails = () => {
       {/* product details  */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 bg-CardColor p-4">
         <div className="">
-          {/* <img
-            src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-math-90946.jpg&fm=jpg"
-            alt=""
-          /> */}
-          <div className="">
-            {products.map((product, index) => (
-              <ImageShow product={product} key={index}></ImageShow>
-            ))}
-          </div>
+          {products.map((product, index) => (
+            <ImageShow product={product} key={index}></ImageShow>
+          ))}
         </div>
         <div>
           <div className="border-b border-b-BorderColor p-4">
@@ -185,14 +180,17 @@ const ImageShow = ({ product }) => {
   const handleImageClick = (index) => {
     setCurrentImageIndex(index);
   };
+  const props = { width: 448, height: 200, zoomPosition: "original" };
   return (
     <div className="flex flex-col items-center">
-      <img
+      {/* <img
         src={product.images[currentImageIndex]}
         alt={`Product ${currentImageIndex + 1}`}
         className="max-w-md max-h-[400px] mb-4"
-      />
-
+      /> */}
+      <div className="mb-4">
+        <ReactImageZoom {...props} img={product.images[currentImageIndex]} />
+      </div>
       <div className="flex space-x-4">
         {product.images.map((image, index) => (
           <img
