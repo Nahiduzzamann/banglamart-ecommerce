@@ -1,4 +1,9 @@
-import { AiOutlineLine, AiOutlinePlus, AiOutlineShopping,AiOutlineShoppingCart } from "react-icons/ai";
+import {
+  AiOutlineLine,
+  AiOutlinePlus,
+  AiOutlineShopping,
+  AiOutlineShoppingCart,
+} from "react-icons/ai";
 import { Link } from "react-router-dom";
 const ProductDetails = () => {
   return (
@@ -62,31 +67,90 @@ const ProductDetails = () => {
             </p>
             <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-2">
               <button className="pl-3 pr-3 pt-2 pb-2 bg-[#d2eefd] rounded-full shadow-sm hover:shadow-md flex items-center justify-center">
-                
-                  <p>
-                    <AiOutlineShopping className="text-MainColor  mr-1"/>
-                  </p>
-                  <p className="text-MainColor">Add to cart</p>
-                
+                <p>
+                  <AiOutlineShopping className="text-MainColor  mr-1" />
+                </p>
+                <p className="text-MainColor">Add to cart</p>
               </button>
               <button className="pl-3 pr-3 pt-2 pb-2 bg-MainColor rounded-full shadow-sm hover:shadow-md flex items-center justify-center">
-              
-                  <p>
-                    <AiOutlineShoppingCart className="text-CardColor  mr-1"/>
-                  </p>
-                  <p className="text-CardColor">Buy Now</p>
-                
+                <p>
+                  <AiOutlineShoppingCart className="text-CardColor  mr-1" />
+                </p>
+                <p className="text-CardColor">Buy Now</p>
               </button>
               <button className="pl-3 pr-3 pt-2 pb-2 bg-[#d2eefd] rounded-full shadow-sm hover:shadow-md flex items-center justify-center">
-                
-                  <p>
-                    <AiOutlineShopping className="text-MainColor  mr-1"/>
-                  </p>
-                  <p className="text-MainColor">Add to wishlist</p>
-                
+                <p>
+                  <AiOutlineShopping className="text-MainColor  mr-1" />
+                </p>
+                <p className="text-MainColor">Add to wishlist</p>
               </button>
             </div>
-            <p className="text-SubTextColor">Refund: <span className="ml-2 text-MainColor hover:text-MainColorHover"><Link to='/'>Cash Back</Link></span> <span className="ml-2 text-MainColor hover:text-MainColorHover"><Link to='/'>View Policy</Link></span></p>
+            <p className="text-SubTextColor">
+              Refund:{" "}
+              <span className="ml-2 text-MainColor hover:text-MainColorHover">
+                <Link to="/">Cash Back</Link>
+              </span>{" "}
+              <span className="ml-2 text-MainColor hover:text-MainColorHover">
+                <Link to="/">View Policy</Link>
+              </span>
+            </p>
+            <div className="mt-4 flex justify-center items-center">
+              <p className="text-SubTextColor mr-2">Share:</p>
+              <div className="flex ">
+                <Link>
+                  <img
+                    className="h-10 w-10 rounded-full ml-2"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1024px-Facebook_Logo_%282019%29.png"
+                    alt=""
+                  />
+                </Link>
+                <Link>
+                  <img
+                    className="h-10 w-10 rounded-full ml-2"
+                    src="https://cdn-icons-png.flaticon.com/512/4102/4102940.png"
+                    alt=""
+                  />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* descriptions  */}
+      <div>
+        <div className=" mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg">
+          <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
+            <div className="border-b-[3px] border-b-MainColor ">
+              <h1 className="">Descriptions</h1>
+            </div>
+          </div>
+          <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
+            Description
+          </div>
+        </div>
+      </div>
+      {/* Reviews  */}
+      <div>
+        <div className=" mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg">
+          <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
+            <div className="border-b-[3px] border-b-MainColor ">
+              <h1 className="">Reviews</h1>
+            </div>
+          </div>
+          <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
+          Reviews
+          </div>
+        </div>
+      </div>
+      <div>
+        <div className=" mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg">
+          <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
+            <div className="border-b-[3px] border-b-MainColor ">
+              <h1 className="">Comments</h1>
+            </div>
+          </div>
+          <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
+          Comments
           </div>
         </div>
       </div>
