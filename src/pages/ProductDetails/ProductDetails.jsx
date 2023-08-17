@@ -1,4 +1,5 @@
 import { AiOutlineLine, AiOutlinePlus, AiOutlineShopping,AiOutlineShoppingCart } from "react-icons/ai";
+import { Link } from "react-router-dom";
 const ProductDetails = () => {
   return (
     <div className="container mx-auto mt-4">
@@ -59,24 +60,33 @@ const ProductDetails = () => {
               Total Price:
               <span className="text-[18px] text-MainColor ml-2">16000 ৳</span>
             </p>
-            <div className="p-4">
-              <button className="mr-4 pl-3 pr-3 pt-2 pb-2 bg-[#d2eefd] rounded-full shadow-sm hover:shadow-md">
-                <div className="flex items-center">
+            <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-2">
+              <button className="pl-3 pr-3 pt-2 pb-2 bg-[#d2eefd] rounded-full shadow-sm hover:shadow-md flex items-center justify-center">
+                
                   <p>
                     <AiOutlineShopping className="text-MainColor  mr-1"/>
                   </p>
                   <p className="text-MainColor">Add to cart</p>
-                </div>
+                
               </button>
-              <button className="pl-3 pr-3 pt-2 pb-2 bg-MainColor rounded-full shadow-sm hover:shadow-md">
-              <div className="flex items-center">
+              <button className="pl-3 pr-3 pt-2 pb-2 bg-MainColor rounded-full shadow-sm hover:shadow-md flex items-center justify-center">
+              
                   <p>
                     <AiOutlineShoppingCart className="text-CardColor  mr-1"/>
                   </p>
                   <p className="text-CardColor">Buy Now</p>
-                </div>
+                
+              </button>
+              <button className="pl-3 pr-3 pt-2 pb-2 bg-[#d2eefd] rounded-full shadow-sm hover:shadow-md flex items-center justify-center">
+                
+                  <p>
+                    <AiOutlineShopping className="text-MainColor  mr-1"/>
+                  </p>
+                  <p className="text-MainColor">Add to wishlist</p>
+                
               </button>
             </div>
+            <p className="text-SubTextColor">Refund: <span className="ml-2 text-MainColor hover:text-MainColorHover"><Link to='/'>Cash Back</Link></span> <span className="ml-2 text-MainColor hover:text-MainColorHover"><Link to='/'>View Policy</Link></span></p>
           </div>
         </div>
       </div>
