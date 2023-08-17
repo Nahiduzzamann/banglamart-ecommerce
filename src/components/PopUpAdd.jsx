@@ -33,11 +33,11 @@ const PopUpAdd = ({ setAdds }) => {
         className=""
       >
         <img
-          className="h-[40vw] w-[60vw]"
+          className="h-[30vw] w-[60vw]"
           src={images[currentIndex]} alt={`Image ${currentIndex}`} 
         />
       </div>
-      <div className="flex flex-col h-[40vw] justify-between">
+      <div className="flex flex-col h-[30vw] justify-between">
         <div className="">
           <button 
           onClick={showNextImage}

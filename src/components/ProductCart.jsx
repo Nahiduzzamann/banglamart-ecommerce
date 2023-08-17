@@ -1,18 +1,25 @@
 import { useState } from "react";
-import { AiFillStar, AiOutlineHeart, AiOutlineShoppingCart, AiOutlineStar } from "react-icons/ai";
+import {
+  AiFillStar,
+  AiOutlineHeart,
+  AiOutlineShoppingCart,
+  AiOutlineStar,
+} from "react-icons/ai";
 import { BsFillCartCheckFill, BsFillHeartFill } from "react-icons/bs";
 import Rating from "react-rating";
+import { Link } from "react-router-dom";
 
 const ProductCart = ({ product }) => {
   // console.log(product);
-    //const router = useRouter();
-    // TODO 
-  const url = 'http://192.168.1.9:1300';
+  //const router = useRouter();
+  // TODO
+  const url = "http://192.168.1.9:1300";
 
-    const [hover, setHover] = useState(false);
-    const [heartIconHover, setHeartIconHover] = useState(false);
-    const [cartIconHover, setCartIconHover] = useState(false);
-    return (
+  const [hover, setHover] = useState(false);
+  const [heartIconHover, setHeartIconHover] = useState(false);
+  const [cartIconHover, setCartIconHover] = useState(false);
+  return (
+    <Link to='/productDetails'>
       <div
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
@@ -23,7 +30,11 @@ const ProductCart = ({ product }) => {
       >
         <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
           {/* TODO  */}
-          <img src={`${url}${product.thumbnail}`} crossOrigin="anonymous" className="object-fill w-full" />
+          <img
+            src={`${url}${product.thumbnail}`}
+            crossOrigin="anonymous"
+            className="object-fill w-full"
+          />
         </div>
         {/* <span className="absolute inset-0 w-full h-full bg-primary/30" /> */}
         <div
@@ -70,8 +81,15 @@ const ProductCart = ({ product }) => {
                 className=" mb-1"
               >
                 {heartIconHover ? (
-                  <div className="tooltip tooltip-info tooltip-left" data-tip="Add Wishlist">
-                    <BsFillHeartFill className={` text-[20px] ${heartIconHover && 'text-CardColor'}`} />
+                  <div
+                    className="tooltip tooltip-info tooltip-left"
+                    data-tip="Add Wishlist"
+                  >
+                    <BsFillHeartFill
+                      className={` text-[20px] ${
+                        heartIconHover && "text-CardColor"
+                      }`}
+                    />
                   </div>
                 ) : (
                   <AiOutlineHeart
@@ -87,8 +105,15 @@ const ProductCart = ({ product }) => {
                 className=""
               >
                 {cartIconHover ? (
-                  <div className="tooltip tooltip-info tooltip-left" data-tip="Add Cart">
-                    <BsFillCartCheckFill className={` text-[20px] ${cartIconHover && 'text-CardColor'}`} />
+                  <div
+                    className="tooltip tooltip-info tooltip-left"
+                    data-tip="Add Cart"
+                  >
+                    <BsFillCartCheckFill
+                      className={` text-[20px] ${
+                        cartIconHover && "text-CardColor"
+                      }`}
+                    />
                   </div>
                 ) : (
                   <AiOutlineShoppingCart
@@ -102,11 +127,13 @@ const ProductCart = ({ product }) => {
           </div>
         </div>
         <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-r-full top-2 p-1">
-            <p className="text-xs text-[#fc3e3e] mr-1">OFF</p>
-            <p className="text-sm text-CardColor p-1 bg-[#fc3e3e] rounded-full">15%</p>
-  
+          <p className="text-xs text-[#fc3e3e] mr-1">OFF</p>
+          <p className="text-sm text-CardColor p-1 bg-[#fc3e3e] rounded-full">
+            15%
+          </p>
         </div>
       </div>
-    );
-  };
-  export default ProductCart ;
+    </Link>
+  );
+};
+export default ProductCart;
