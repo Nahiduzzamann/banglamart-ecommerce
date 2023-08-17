@@ -7,7 +7,7 @@ const ProductCart = ({ product }) => {
   // console.log(product);
     //const router = useRouter();
     // TODO 
-  const url = 'http://192.168.1.11:1300';
+  const url = 'http://192.168.1.9:1300';
 
     const [hover, setHover] = useState(false);
     const [heartIconHover, setHeartIconHover] = useState(false);

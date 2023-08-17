@@ -6,7 +6,7 @@ const SubCategory = ({ subCategories }) => {
   const [options, setOptions] = useState(null);
   // console.log(subCategories);
 
-  const url = "http://192.168.1.11:1300";
+  const url = "http://192.168.1.9:1300";
   useEffect(() => {
     const fetchCategories = async () => {
       try {

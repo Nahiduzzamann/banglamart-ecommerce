@@ -5,7 +5,7 @@ import SubCategory from "../../components/SubCategories";
 const Categories = () => {
   const [Categories, setCategories] = useState(null);
   // TODO
-  const url = "http://192.168.1.11:1300";
+  const url = "http://192.168.1.9:1300";
   useEffect(() => {
     const fetchCategories = async () => {
       try {

@@ -10,7 +10,7 @@ const Products = () => {
 
   const { id } = useParams();
   // console.log(id);
-  const url = "http://192.168.1.11:1300";
+  const url = "http://192.168.1.9:1300";
   useEffect(() => {
     const fetchOptionProducts = async () => {
       try {
