@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   AiOutlineLine,
   AiOutlinePlus,
@@ -5,16 +6,39 @@ import {
   AiOutlineShoppingCart,
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import {
+  FacebookIcon,
+  FacebookMessengerIcon,
+  FacebookMessengerShareButton,
+  FacebookShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+} from "react-share";
 const ProductDetails = () => {
+  const products = [
+    {
+      images: [
+        "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-math-90946.jpg&fm=jpg",
+        "https://thumbs.dreamstime.com/b/minsk-belarus-october-fujifilm-t-kit-xf-mm-silver-camera-body-brown-wooden-background-vintage-globe-232384370.jpg",
+        "https://st3.depositphotos.com/1005891/36027/i/450/depositphotos_360277418-stock-photo-fuji-x-t3-with-three.jpg",
+        "https://www.thephoblographer.com/wp-content/uploads/2022/03/Chris-Gampat-The-Phoblographer-Fujifilm-23mm-f1.4-R-WR-LM-review-product-images-1.41-1700s400.jpg",
+      ],
+    },
+  ];
   return (
     <div className="container mx-auto mt-4">
       {/* product details  */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 bg-CardColor p-4">
         <div className="">
-          <img
+          {/* <img
             src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-math-90946.jpg&fm=jpg"
             alt=""
-          />
+          /> */}
+          <div className="">
+            {products.map((product, index) => (
+              <ImageShow product={product} key={index}></ImageShow>
+            ))}
+          </div>
         </div>
         <div>
           <div className="border-b border-b-BorderColor p-4">
@@ -97,20 +121,15 @@ const ProductDetails = () => {
             <div className="mt-4 flex justify-center items-center">
               <p className="text-SubTextColor mr-2">Share:</p>
               <div className="flex ">
-                <Link>
-                  <img
-                    className="h-10 w-10 rounded-full ml-2"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1024px-Facebook_Logo_%282019%29.png"
-                    alt=""
-                  />
-                </Link>
-                <Link>
-                  <img
-                    className="h-10 w-10 rounded-full ml-2"
-                    src="https://cdn-icons-png.flaticon.com/512/4102/4102940.png"
-                    alt=""
-                  />
-                </Link>
+                <FacebookShareButton url="#">
+                  <FacebookIcon className="h-10 w-10 rounded-full ml-2" />
+                </FacebookShareButton>
+                <WhatsappShareButton url="#">
+                  <WhatsappIcon className="h-10 w-10 rounded-full ml-2" />
+                </WhatsappShareButton>
+                <FacebookMessengerShareButton url="#">
+                  <FacebookMessengerIcon className="h-10 w-10 rounded-full ml-2" />
+                </FacebookMessengerShareButton>
               </div>
             </div>
           </div>
@@ -138,7 +157,7 @@ const ProductDetails = () => {
             </div>
           </div>
           <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
-          Reviews
+            Reviews
           </div>
         </div>
       </div>
@@ -150,7 +169,7 @@ const ProductDetails = () => {
             </div>
           </div>
           <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
-          Comments
+            Comments
           </div>
         </div>
       </div>
@@ -159,3 +178,36 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
+
+const ImageShow = ({ product }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const handleImageClick = (index) => {
+    setCurrentImageIndex(index);
+  };
+  return (
+    <div className="flex flex-col items-center">
+      <img
+        src={product.images[currentImageIndex]}
+        alt={`Product ${currentImageIndex + 1}`}
+        className="max-w-md max-h-[400px] mb-4"
+      />
+
+      <div className="flex space-x-4">
+        {product.images.map((image, index) => (
+          <img
+            key={index}
+            src={image}
+            alt={`Product ${index + 1}`}
+            className={`cursor-pointer h-16 w-16 border-[2px] ${
+              currentImageIndex === index
+                ? "border-MainColor"
+                : "border-SubTextColor"
+            }`}
+            onClick={() => handleImageClick(index)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
