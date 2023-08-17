@@ -14,7 +14,7 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
 } from "react-share";
-import ReactImageZoom from "react-image-zoom";
+
 const ProductDetails = () => {
   const products = [
     {
@@ -180,16 +180,19 @@ const ImageShow = ({ product }) => {
   const handleImageClick = (index) => {
     setCurrentImageIndex(index);
   };
-  const props = { width: 448, height: 200, zoomPosition: "original" };
+  
   return (
     <div className="flex flex-col items-center">
-      {/* <img
-        src={product.images[currentImageIndex]}
-        alt={`Product ${currentImageIndex + 1}`}
-        className="max-w-md max-h-[400px] mb-4"
-      /> */}
-      <div className="mb-4">
-        <ReactImageZoom {...props} img={product.images[currentImageIndex]} />
+      <div className="mb-4 ">
+      {/* <SideBySideMagnifier
+           imageSrc={product.images[currentImageIndex]}
+           imageAlt={`Product ${currentImageIndex + 1}`}
+           largeImageSrc={product.images[currentImageIndex]}
+           alwaysInPlace
+           fillAvailableSpace
+           cursorStyle="none"
+        /> */}
+      
       </div>
       <div className="flex space-x-4">
         {product.images.map((image, index) => (
