@@ -199,7 +199,7 @@ const ImageShow = ({ product }) => {
             key={index}
             src={image}
             alt={`Product ${index + 1}`}
-            className={`cursor-pointer h-16 w-16 border-[2px] ${
+            className={`cursor-pointer h-16 w-16 border-[3px] ${
               currentImageIndex === index
                 ? "border-MainColor"
                 : "border-SubTextColor"
