@@ -23,6 +23,8 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
 import ReturnPolicy from "./pages/ReturnPolicy/ReturnPolicy";
 import SupportPolicy from "./pages/SupportPolicy/SupportPolicy";
+import Faq from "./pages/Faq/Faq";
+import Blog from "./pages/Blog/Blog";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +75,14 @@ const router = createBrowserRouter([
       {
         path: "/returnPolicy",
         element: <ReturnPolicy></ReturnPolicy>,
+      },
+      {
+        path: "/faq",
+        element: <Faq></Faq>,
+      },
+      {
+        path: "/blog",
+        element: <Blog></Blog>,
       },
       {
         path: "/supportPolicy",

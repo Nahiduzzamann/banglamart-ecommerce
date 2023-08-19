@@ -68,8 +68,8 @@ const Footer = () => {
               <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/returnPolicy">Return Policy</Link>
               <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/supportPolicy">Support Policy</Link>
               <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/cancellationPolicy">Cancellation policy</Link>
-              <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">FAQ</Link>
-              <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Blog</Link>
+              <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/faq">FAQ</Link>
+              <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/blog">Blog</Link>
             </div>
           </div>
           <div>
@@ -77,7 +77,7 @@ const Footer = () => {
               <h1>ACCOUNT</h1>
             </div>
             <div className="flex flex-col">
-              <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Login</Link>
+              <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/login">Login</Link>
               <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Wishlist</Link>
               <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Track Order</Link>
               <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Order History</Link>
