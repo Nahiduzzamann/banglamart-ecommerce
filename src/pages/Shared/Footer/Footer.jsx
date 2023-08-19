@@ -65,7 +65,7 @@ const Footer = () => {
               <Link to='/termsConditions' className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" >Terms & Conditions</Link>
               <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/privacyPolicy">Privacy Policy</Link>
               <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/sellerPolicy">Seller Policy</Link>
-              <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Return Policy</Link>
+              <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/returnPolicy">Return Policy</Link>
               <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Support Policy</Link>
               <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/cancellationPolicy">Cancellation policy</Link>
               <Link className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">FAQ</Link>
