@@ -14,7 +14,7 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
 } from "react-share";
-
+import ReactImageMagnify from "react-image-magnify";
 const ProductDetails = () => {
   const products = [
     {
@@ -22,7 +22,7 @@ const ProductDetails = () => {
         "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-math-90946.jpg&fm=jpg",
         "https://thumbs.dreamstime.com/b/minsk-belarus-october-fujifilm-t-kit-xf-mm-silver-camera-body-brown-wooden-background-vintage-globe-232384370.jpg",
         "https://st3.depositphotos.com/1005891/36027/i/450/depositphotos_360277418-stock-photo-fuji-x-t3-with-three.jpg",
-        "https://www.thephoblographer.com/wp-content/uploads/2022/03/Chris-Gampat-The-Phoblographer-Fujifilm-23mm-f1.4-R-WR-LM-review-product-images-1.41-1700s400.jpg",
+        
       ],
     },
   ];
@@ -180,19 +180,34 @@ const ImageShow = ({ product }) => {
   const handleImageClick = (index) => {
     setCurrentImageIndex(index);
   };
-  
   return (
     <div className="flex flex-col items-center">
-      <div className="mb-4 ">
-      {/* <SideBySideMagnifier
-           imageSrc={product.images[currentImageIndex]}
-           imageAlt={`Product ${currentImageIndex + 1}`}
-           largeImageSrc={product.images[currentImageIndex]}
-           alwaysInPlace
-           fillAvailableSpace
-           cursorStyle="none"
-        /> */}
-      
+      <div className="mb-4">
+      <ReactImageMagnify
+          {...{
+            smallImage: {
+              alt: `Product ${currentImageIndex + 1}`,
+              isFluidWidth: true,
+              src: product.images[currentImageIndex],
+              sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px',
+            },
+            largeImage: {
+              src: product.images[currentImageIndex],
+              width: 1200,
+              height: 1800,
+            },
+            enlargedImagePosition: 'over',
+            enlargedImageContainerDimensions: {
+              width: '200%',
+              height: '200%',
+            },
+            shouldUsePositiveSpaceLens: true,
+            lensStyle: { background: 'rgba(255,255,255,.5)' },
+            isHintEnabled: true,
+            hintBgOpacity: 1,
+            hintTextColor: '#000',
+          }}
+        />
       </div>
       <div className="flex space-x-4">
         {product.images.map((image, index) => (
