@@ -25,6 +25,7 @@ import ReturnPolicy from "./pages/ReturnPolicy/ReturnPolicy";
 import SupportPolicy from "./pages/SupportPolicy/SupportPolicy";
 import Faq from "./pages/Faq/Faq";
 import Blog from "./pages/Blog/Blog";
+import Cart from "./pages/Cart/Cart";
 
 const router = createBrowserRouter([
   {
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
       {
         path: "/productDetails",
         element: <ProductDetails></ProductDetails>,
+      },
+      {
+        path: "/cart",
+        element: <Cart></Cart>,
       },
     ],
   },

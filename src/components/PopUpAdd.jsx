@@ -37,7 +37,7 @@ const PopUpAdd = ({ setAdds }) => {
           src={images[currentIndex]} alt={`Image ${currentIndex}`} 
         />
       </div>
-      <div className="flex flex-col h-[30vw] justify-between">
+      <div className="flex flex-col h-[30vw] justify-between items-center">
         <div className="bg-SubTextColor flex items-center shadow-lg justify-center rounded-full h-10 w-10">
           <button 
           onClick={showNextImage}

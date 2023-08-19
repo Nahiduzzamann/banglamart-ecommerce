@@ -86,7 +86,7 @@ const Header = () => {
                     <AiOutlineSearch className="text-CardColor text-[25px]" />
                   </div>
                 </div>
-                <button className="flex items-center ml-5 relative">
+                {/* <button className="flex items-center ml-5 relative hover:border hover:border-BorderColor p-1 border border-CardColor rounded-md">
                   <AiOutlineHeart className="text-[30px] text-SubTextColor" />
                   <div className="">
                     <div className="absolute flex justify-center right-[60px] -top-2 text-[10px] bg-MainColor text-CardColor rounded-full h-5 w-5 items-center">
@@ -94,8 +94,8 @@ const Header = () => {
                     </div>
                     <p className=" text-SubTextColor">Wishlist</p>
                   </div>
-                </button>
-                <button className="flex items-center ml-5 relative">
+                </button> */}
+                <Link to='/cart' className="flex items-center ml-5 relative hover:border hover:border-BorderColor p-1 border border-CardColor rounded-md">
                   <AiOutlineShoppingCart className="text-[30px] text-SubTextColor" />
                   <div>
                     <div className="absolute flex justify-center right-[45px] -top-2 text-[10px] bg-MainColor text-CardColor rounded-full h-5 w-5 items-center">
@@ -103,7 +103,7 @@ const Header = () => {
                     </div>
                     <p className=" text-SubTextColor">Cart</p>
                   </div>
-                </button>
+                </Link>
               </div>
             </div>
           </div>
