@@ -50,6 +50,11 @@ const ProductDetails = () => {
             </button>
             <div className="hidden">logo</div>
           </div>
+
+          <div className="border-b border-b-BorderColor flex items-center p-4">
+              <p className="text-TextColor">Variant:</p>
+
+          </div>
           <div className="border-b border-b-BorderColor p-4">
             <p className="text-SubTextColor">
               Old Price:
