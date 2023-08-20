@@ -1,6 +1,70 @@
-import { useState } from "react";
-import { divisions, districts, subDistricts, unions } from "./locationData";
+import { useEffect, useState } from "react";
+// import { divisions, districts, subDistricts, unions } from "./locationData";
 const AddDeliveryAddressForm = () => {
+  const [divisions, setDivisions] = useState([]);
+  const [districts, setDistricts] = useState([]);
+  const [subDistricts, setSubDistricts] = useState([]);
+  const [unions, setUnions] = useState([]);
+
+  useEffect(() => {
+    const fetchDivisionsData = async () => {
+      try {
+        const response = await fetch("divisions.json");
+        const data = await response.json();
+        setDivisions(data);
+      } catch (error) {
+        console.error("Error fetching instructor classes:", error);
+      }
+    };
+
+    fetchDivisionsData();
+  }, []);
+
+  useEffect(() => {
+    const fetchDistrictsData = async () => {
+      try {
+        const response = await fetch("districts.json");
+        const data = await response.json();
+        setDistricts(data);
+      } catch (error) {
+        console.error("Error fetching instructor classes:", error);
+      }
+    };
+
+    fetchDistrictsData();
+  }, []);
+
+  useEffect(() => {
+    const fetchSubDistrictsData = async () => {
+      try {
+        const response = await fetch("subDistricts.json");
+        const data = await response.json();
+        setSubDistricts(data);
+      } catch (error) {
+        console.error("Error fetching instructor classes:", error);
+      }
+    };
+
+    fetchSubDistrictsData();
+  }, []);
+
+  useEffect(() => {
+    const fetchUnionsData = async () => {
+      try {
+        const response = await fetch("unions.json");
+        const data = await response.json();
+        setUnions(data);
+      } catch (error) {
+        console.error("Error fetching instructor classes:", error);
+      }
+    };
+
+    fetchUnionsData();
+  }, []);
+  // console.log(districts);
+
+
+
   const [formData, setFormData] = useState({
     fullName: "",
     contactNumber: "",
@@ -13,7 +77,7 @@ const AddDeliveryAddressForm = () => {
     streetAddress: "",
     postalCode: "",
   });
-  console.log(formData);
+  // console.log(formData);
   const [selectedDivision, setSelectedDivision] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [selectedSubDistrict, setSelectedSubDistrict] = useState("");
