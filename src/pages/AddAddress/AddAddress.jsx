@@ -25,11 +25,14 @@ const AddDeliveryAddressForm = () => {
     setSelectedDistrict("");
     setSelectedSubDistrict("");
     setSelectedUnion("");
-    
-console.log(event.target.name);
-    // const selectedDivisionData = divisions.find(
-    //     (division) => division.id === selectedDivision
-    //   );
+
+    const selectedDivisionData = divisions.find(
+      (division) => division.id == divisionId
+    );
+    setFormData((prevData) => ({
+      ...prevData,
+      division: selectedDivisionData.name,
+    }));
   };
 
   const handleDistrictChange = (event) => {
@@ -37,17 +40,43 @@ console.log(event.target.name);
     setSelectedDistrict(districtId);
     setSelectedSubDistrict("");
     setSelectedUnion("");
+
+    const selectedDistrictObject = districts.find(
+      (district) => district.id == districtId
+    );
+    // console.log(selectedDistrictObject.name);
+    setFormData((prevData) => ({
+      ...prevData,
+      district: selectedDistrictObject.name,
+    }));
   };
 
   const handleSubDistrictChange = (event) => {
     const subDistrictId = event.target.value;
     setSelectedSubDistrict(subDistrictId);
     setSelectedUnion("");
+
+    const filteredSubDistrictsData = subDistricts.filter(
+      (subDistrict) => subDistrict.id == subDistrictId
+    );
+    // console.log(filteredSubDistrictsData[0]);
+
+    setFormData((prevData) => ({
+      ...prevData,
+      subDistrict: filteredSubDistrictsData[0].name,
+    }));
   };
 
   const handleUnionChange = (event) => {
     const unionId = event.target.value;
     setSelectedUnion(unionId);
+
+    const filteredUnionsData = unions.filter((union) => union.id == unionId);
+    //   console.log(filteredUnionsData);
+    setFormData((prevData) => ({
+      ...prevData,
+      union: filteredUnionsData[0].name,
+    }));
   };
 
   const filteredDistricts = districts.filter(
@@ -68,7 +97,7 @@ console.log(event.target.name);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log("Form Data:", formData);
+    console.log("Form Data:", formData);
   };
   return (
     <div className="container mx-auto p-4">
@@ -105,13 +134,14 @@ console.log(event.target.name);
         <div className="relative mb-4">
           <label className="block mb-1">Division</label>
           <select
+            required
             value={selectedDivision}
             onChange={handleDivisionChange}
             className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md pr-10"
           >
             <option value="">Select Division</option>
             {divisions.map((division) => (
-              <option key={division.id} value={division.id} >
+              <option key={division.id} value={division.id}>
                 {division.name}
               </option>
             ))}
@@ -121,13 +151,14 @@ console.log(event.target.name);
         <div className="relative mb-4">
           <label className="block mb-1">District</label>
           <select
+            required
             value={selectedDistrict}
             onChange={handleDistrictChange}
             className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md pr-10"
           >
             <option value="">Select District</option>
             {filteredDistricts.map((district) => (
-              <option key={district.id} value={district.id} >
+              <option key={district.id} value={district.id}>
                 {district.name}
               </option>
             ))}
@@ -136,6 +167,7 @@ console.log(event.target.name);
         <div className="relative mb-4">
           <label className="block mb-1">Sub Districts</label>
           <select
+            required
             value={selectedSubDistrict}
             onChange={handleSubDistrictChange}
             className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md pr-10"
@@ -151,6 +183,7 @@ console.log(event.target.name);
         <div className="relative mb-4">
           <label className="block mb-1">Union</label>
           <select
+            required
             value={selectedUnion}
             onChange={handleUnionChange}
             className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md pr-10"

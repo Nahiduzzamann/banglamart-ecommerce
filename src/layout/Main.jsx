@@ -8,7 +8,7 @@ import PopUpAdd from "../components/PopUpAdd";
 
 const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [adds, setAdds] = useState(true);
+  const [adds, setAdds] = useState(false);
 
   useEffect(() => {
     // Simulate a delay to demonstrate loading animation
