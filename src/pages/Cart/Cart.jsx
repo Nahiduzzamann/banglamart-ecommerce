@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import { AiOutlineLine, AiOutlinePlus } from "react-icons/ai";
 const Cart = () => {
   const dummyProductData = [
     {
@@ -63,7 +63,7 @@ const Cart = () => {
       <div className="grid grid-cols-4 gap-4">
         <div className="p-3 bg-CardColor md:col-span-3 col-span-4">
           {dummyProductData.map((product, i) => (
-            <div key={i}>
+            <div key={i} className="border-b border-b-BorderColor mb-2">
               <div className="bg-BackgroundColor rounded-sm p-2 flex">
                 <img
                   src={product.sellerShopImage}
@@ -73,17 +73,48 @@ const Cart = () => {
                 <p className="text-TextColor ml-2">{product.sellerShopName}</p>
               </div>
               <div className="flex mt-2 mb-2">
-                <img src={product.productImage} className="h-16 w-16" alt="" />
                 <div>
+                  <img
+                    src={product.productImage}
+                    className="h-16 w-16"
+                    alt=""
+                  />
+                </div>
+                <div className="w-full">
                   <div className="flex justify-between">
-                    <h2>{product.productName}</h2>
-                    <h2>{product.price}</h2>
+                    <div>
+                      <h2>{product.productName}</h2>
+                    </div>
+                    <div>
+                      <h2>{product.price}৳</h2>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center mt-2">
+                    <div className="flex items-center">
+                      <p className="mr-2 text-SubTextColor">Quantity:</p>
+                      <button className="mr-2 rounded-full bg-[#d2eefd] p-2 shadow-sm hover:shadow-md">
+                        <AiOutlineLine className=" text-SubTextColor" />
+                      </button>
+                      <p className="mr-2 text-TextColor">2</p>
+                      <button className="mr-2 rounded-full bg-[#d2eefd] p-2 shadow-sm hover:shadow-md">
+                        <AiOutlinePlus className=" text-TextColor" />
+                      </button>
+                      <p className="mr-2 text-SubTextColor">
+                        available (<span>5</span>)
+                      </p>
+                    </div>
+                    <div>
+                      <button className="text-SubTextColor underline text-[14px] font-bold">
+                        remove
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
+
         <div className="rounded-md p-3 bg-CardColor md:col-span-1 col-span-4 h-min">
           <div className="flex flex-col justify-center items-center p-2 bg-BackgroundColor rounded">
             <p className="text-TextColor">Please add your address</p>
