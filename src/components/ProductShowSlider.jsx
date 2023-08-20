@@ -7,6 +7,7 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import { BsFillCartCheckFill, BsFillHeartFill } from "react-icons/bs";
 import ProductCart from "./ProductCart";
+import { Link } from "react-router-dom";
 const Categories = [
   {
     id: 1,
@@ -173,7 +174,7 @@ const Cart2 = ({ category }) => {
   const [heartIconHover, setHeartIconHover] = useState(false);
   const [cartIconHover, setCartIconHover] = useState(false);
   return (
-    <div
+    <Link to='/productDetails'
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       className="flex-shrink-0 w-[45%] snap-start cursor-pointer group aspect-[228/347]  rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor"
@@ -262,6 +263,6 @@ const Cart2 = ({ category }) => {
           <p className="text-xs text-CardColor p-1 bg-[#fc3e3e] rounded-full">15%</p>
 
       </div>
-    </div>
+    </Link>
   );
 };

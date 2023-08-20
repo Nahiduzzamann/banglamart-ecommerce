@@ -5,7 +5,7 @@ const Ul = styled.ul`
   list-style: none;
   display: flex;
   flex-flow: row nowrap;
-
+  
   @media (max-width: 768px) {
     flex-flow: column nowrap;
     background-color: #5dade2;
@@ -17,7 +17,7 @@ const Ul = styled.ul`
     width: 200px;
     padding-top: 3.5rem;
     transition: transform 0.3s ease-in-out;
-    z-index: 99999;
+    z-index: 999 
   }
 `;
 

@@ -80,9 +80,6 @@ const ProductDetails = () => {
             <p className="mr-4 text-SubTextColor">
               (<span>5</span>) available
             </p>
-            <p className=" text-SubTextColor">
-              minimum buy (<span>2</span>)
-            </p>
           </div>
           <div className="p-4">
             <p className="text-TextColor">

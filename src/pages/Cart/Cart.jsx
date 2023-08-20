@@ -118,7 +118,7 @@ const Cart = () => {
         <div className="rounded-md p-3 bg-CardColor md:col-span-1 col-span-4 h-min">
           <div className="flex flex-col justify-center items-center p-2 bg-BackgroundColor rounded">
             <p className="text-TextColor">Please add your address</p>
-            <Link className="bg-TextColor pl-4 pr-4 p-1 rounded mt-1 shadow-sm hover:shadow-md">
+            <Link to='/addDeliveryAddress' className="bg-TextColor pl-4 pr-4 p-1 rounded mt-1 shadow-sm hover:shadow-md">
               <p className="text-CardColor ">Add Address</p>
             </Link>
           </div>
