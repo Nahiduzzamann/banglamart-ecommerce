@@ -80,7 +80,7 @@ const Cart = () => {
                     alt=""
                   />
                 </div>
-                <div className="w-full">
+                <div className="w-full ml-2">
                   <div className="flex justify-between">
                     <div>
                       <h2>{product.productName}</h2>
