@@ -3,8 +3,9 @@ import {
   AiOutlineClose,
   AiFillPhone,
   AiOutlineSearch,
-  AiOutlineHeart,
+  // AiOutlineHeart,
   AiOutlineShoppingCart,
+  AiOutlineUser,
 } from "react-icons/ai";
 import LanguageToggle from "../../../components/LanguageToggle";
 import { useTranslation } from "react-i18next";
@@ -12,6 +13,7 @@ import { Link, NavLink } from "react-router-dom";
 import Burger from "./Nav/Burger";
 
 const Header = () => {
+  const user = false;
   const { t } = useTranslation();
   const [hide, setHide] = useState(false);
   const handleCloseAdd = () => {
@@ -36,18 +38,18 @@ const Header = () => {
       </div>
       <div className="sticky top-0">
         {/* LogIn Section  */}
-        <div className="bg-CardColor border-b-[1px] border-b-BorderColor p-1">
+        <div className="bg-CardColor border-b-[1px] border-b-BorderColor p-1 hidden md:block">
           <div className="container mx-auto">
             <div className="flex justify-between">
-              <div>
+              <div className="">
                 <LanguageToggle></LanguageToggle>
               </div>
               <div className="flex items-center">
-                <AiFillPhone className=" hidden lg:block text-SubTextColor" />
-                <p className="mr-4 hidden lg:block text-SubTextColor">
+                <AiFillPhone className=" text-SubTextColor" />
+                <p className="mr-1 lg:mr-0 text-SubTextColor">
                   {t("header.number")}
                 </p>
-                <Link to="/login">
+                {/* <Link to="/login">
                   <p className="mr-4 text-SubTextColor hover:text-TextColor">
                     {t("header.login")}
                   </p>
@@ -56,7 +58,7 @@ const Header = () => {
                   <p className="text-SubTextColor hover:text-TextColor">
                     {t("header.registration")}
                   </p>
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>
@@ -95,7 +97,10 @@ const Header = () => {
                     <p className=" text-SubTextColor">Wishlist</p>
                   </div>
                 </button> */}
-                <Link to='/cart' className="flex items-center ml-5 relative hover:border hover:border-BorderColor p-1 border border-CardColor rounded-md">
+                <Link
+                  to="/cart"
+                  className="flex items-center ml-5 relative hover:border hover:border-BorderColor p-1 border border-CardColor rounded-md"
+                >
                   <AiOutlineShoppingCart className="text-[30px] text-SubTextColor" />
                   <div>
                     <div className="absolute flex justify-center right-[45px] -top-2 text-[10px] bg-MainColor text-CardColor rounded-full h-5 w-5 items-center">
@@ -104,6 +109,46 @@ const Header = () => {
                     <p className=" text-SubTextColor">Cart</p>
                   </div>
                 </Link>
+
+                {user ? (
+                  <div className="dropdown dropdown-end">
+                    <label
+                      tabIndex={0}
+                      className="btn btn-ghost btn-circle avatar"
+                    >
+                      <div className="h-8 w-8 rounded-full">
+                        <img
+                          className="h-8 w-8"
+                          src="https://static.vecteezy.com/system/resources/previews/021/548/095/original/default-profile-picture-avatar-user-avatar-icon-person-icon-head-icon-profile-picture-icons-default-anonymous-user-male-and-female-businessman-photo-placeholder-social-network-avatar-portrait-free-vector.jpg"
+                        />
+                      </div>
+                    </label>
+                    <ul
+                      tabIndex={0}
+                      className="mt-3 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 "
+                    >
+                      <li>
+                        <Link>Profile</Link>
+                      </li>
+                      <li>
+                        <Link>My Orders</Link>
+                      </li>
+                      <li>
+                        <Link>Logout</Link>
+                      </li>
+                    </ul>
+                  </div>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="hover:border hover:border-BorderColor p-1 border border-CardColor rounded-md"
+                  >
+                    <div className="flex items-center">
+                      <AiOutlineUser className="text-[30px] text-SubTextColor" />
+                      <p className=" text-SubTextColor">Sign Up</p>
+                    </div>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
@@ -141,8 +186,9 @@ const Header = () => {
               </div>
             </div>
             {/* Small screen  */}
-            <div className="relative block md:hidden p-1">
+            <div className="relative md:hidden p-1 flex justify-between items-center">
               <Burger></Burger>
+              <LanguageToggle></LanguageToggle>
             </div>
           </div>
         </div>

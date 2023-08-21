@@ -1,6 +1,131 @@
+// import { useContext, useState } from "react";
+// import { Link, useLocation, useNavigate } from "react-router-dom";
+// import { AuthContext } from "../../providers/AuthProvider";
+// const Login = () => {
+//   const { signIn, signInWithGoogle } = useContext(AuthContext);
+//   const location = useLocation();
+//   const navigate = useNavigate();
+//   const from = location.state?.from?.pathname || "/";
+//   const [errorMessage, setErrorMessage] = useState("");
+//   const [isLoading, setIsLoading] = useState(false);
+
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+//     const form = event.target;
+//     const email = form.email.value;
+//     const password = form.password.value;
+//     setIsLoading(true);
+//     signIn(email, password)
+//       .then((result) => {
+//         const user = result.user;
+//         navigate(from, { replace: true });
+//         setIsLoading(false);
+//       })
+//       .catch((error) => {
+//         setErrorMessage(error.message);
+//         setIsLoading(false);
+//       });
+//   };
+//   const handleGoogleLogin = () => {
+//     setIsLoading(true);
+
+//     signInWithGoogle()
+//       .then((result) => {
+//         navigate(from, { replace: true });
+//         setIsLoading(false);
+//       })
+//       .catch((error) => {
+//         setIsLoading(false);
+//         setErrorMessage(error.message);
+//       });
+//   };
+//   return (
+//     <div className="flex items-center justify-center min-h-screen bg-gray-100">
+//       <div className="w-full max-w-md p-6 bg-white rounded-md shadow-md">
+//         <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
+//         {errorMessage && (
+//           <div
+//             className="bg-[#fdd5d5] border-l-4 border-[#ff8383] text-[#ff2b2b] p-4 mb-4"
+//             role="alert"
+//           >
+//             <p>{errorMessage}</p>
+//           </div>
+//         )}
+//         <form onSubmit={handleSubmit}>
+//           <div className="mb-4">
+//             <label htmlFor="email" className="block font-medium mb-2 text-SubTextColor">
+//               Email
+//             </label>
+//             <input
+//               type="email"
+//               name="email"
+//               id="email"
+//               className="input input-bordered w-full"
+//               placeholder="Enter your email"
+//               required
+//             />
+//           </div>
+//           <div className="mb-4">
+//             <label htmlFor="password" className="block font-medium mb-2 text-SubTextColor">
+//               Password
+//             </label>
+//             <input
+//               type="password"
+//               name="password"
+//               id="password"
+//               className="input input-bordered w-full"
+//               placeholder="Enter your password"
+//               required
+//             />
+//           </div>
+//           <button
+//             type="submit"
+//             className="bg-MainColor text-CardColor shadow-lg shadow-MainColorHover rounded-md p-2 w-full hover:bg-MainColorHover"
+//             disabled={isLoading}
+//           >
+//             {isLoading ? (
+//               <span className="loading loading-bars loading-md"></span>
+//             ) : (
+//               "Log in"
+//             )}
+//           </button>
+//         </form>
+//         <div className="text-center">
+//           <div className="divider text-SubTextColor">OR</div>
+//           <button
+//             onClick={handleGoogleLogin}
+//             className="bg-MainColor text-CardColor shadow-lg shadow-MainColorHover rounded-md p-2 w-full hover:bg-MainColorHover"
+//             disabled={isLoading}
+//           >
+//             {isLoading ? (
+//               <span className="loading loading-bars loading-md"></span>
+//             ) : (
+//               "Sign in with Google"
+//             )}
+//           </button>
+//           <p className="mt-4 text-SubTextColor">
+//             Don't have an account?{" "}
+//             <Link
+//               to="/registration"
+//               className="text-MainColor hover:text-MainColorHover hover:underline"
+//             >
+//               <h3>Register here</h3>
+//             </Link>
+//           </p>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Login;
+
+
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineGoogle } from "react-icons/ai";
+
 const Login = () => {
   const { signIn, signInWithGoogle } = useContext(AuthContext);
   const location = useLocation();
@@ -8,24 +133,30 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isPhoneSelected, setIsPhoneSelected] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
-    const email = form.email.value;
+    const identifier = isPhoneSelected
+      ? form.phoneNumber.value
+      : form.email.value;
     const password = form.password.value;
     setIsLoading(true);
-    signIn(email, password)
-      .then((result) => {
-        const user = result.user;
-        navigate(from, { replace: true });
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        setErrorMessage(error.message);
-        setIsLoading(false);
-      });
+
+    // signIn(identifier, password)
+    //   .then((result) => {
+    //     const user = result.user;
+    //     navigate(from, { replace: true });
+    //     setIsLoading(false);
+    //   })
+    //   .catch((error) => {
+    //     setErrorMessage(error.message);
+    //     setIsLoading(false);
+    //   });
   };
+
   const handleGoogleLogin = () => {
     setIsLoading(true);
 
@@ -39,13 +170,14 @@ const Login = () => {
         setErrorMessage(error.message);
       });
   };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-6 bg-white rounded-md shadow-md">
         <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
         {errorMessage && (
           <div
-            className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4"
+            className="bg-[#fdd5d5] border-l-4 border-[#ff8383] text-[#ff2b2b] p-4 mb-4"
             role="alert"
           >
             <p>{errorMessage}</p>
@@ -53,34 +185,83 @@ const Login = () => {
         )}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="email" className="block font-medium mb-2">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              className="input input-bordered w-full"
-              placeholder="Enter your email"
-              required
-            />
+            <div className="flex flex-col ">
+              <label className="block font-medium mb-2 ">
+                Login Using
+              </label>
+              <label className=" cursor-pointer text-[14px] text-SubTextColor">
+                <input
+                  type="radio"
+                  name="loginType"
+                  value="email"
+                  checked={!isPhoneSelected}
+                  onChange={() => setIsPhoneSelected(false)}
+                />
+                {' '}Email
+              </label>
+              <label className="cursor-pointer  text-[14px] text-SubTextColor">
+                <input
+                  type="radio"
+                  name="loginType"
+                  value="phone"
+                  checked={isPhoneSelected}
+                  onChange={() => setIsPhoneSelected(true)}
+                />
+                {' '}Phone Number
+              </label>
+            </div>
+            {isPhoneSelected ? (
+              <input
+                type="text"
+                name="phoneNumber"
+                className="input input-bordered w-full"
+                placeholder="Enter your phone number"
+                required
+              />
+            ) : (
+              <input
+                type="email"
+                name="email"
+                className="input input-bordered w-full"
+                placeholder="Enter your email"
+                required
+              />
+            )}
           </div>
-          <div className="mb-4">
-            <label htmlFor="password" className="block font-medium mb-2">
+          <div className="mb-2 relative">
+            <label className="block font-medium mb-2 text-TextColor">
               Password
             </label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
-              id="password"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full pr-10"
               placeholder="Enter your password"
               required
             />
+            <button
+              type="button"
+              className="absolute right-3 top-14 transform -translate-y-1/2 focus:outline-none"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? (
+                <AiOutlineEye/>
+              ) : (
+                <AiOutlineEyeInvisible/>
+              )}
+            </button>
+          </div>
+          <div className="mb-2 text-right">
+            <Link
+              to="/forgot-password"
+              className="text-MainColor hover:text-MainColorHover hover:underline"
+            >
+              Forgot Password?
+            </Link>
           </div>
           <button
             type="submit"
-            className="btn btn-primary w-full mb-4"
+            className="bg-MainColor text-CardColor shadow-lg shadow-MainColorHover rounded-md p-2 w-full hover:bg-MainColorHover"
             disabled={isLoading}
           >
             {isLoading ? (
@@ -91,22 +272,28 @@ const Login = () => {
           </button>
         </form>
         <div className="text-center">
-          <p className="text-gray-600">or</p>
+          <div className="divider text-SubTextColor">OR</div>
           <button
             onClick={handleGoogleLogin}
-            className="btn btn-primary w-full "
+            className="bg-MainColor text-CardColor shadow-lg shadow-MainColorHover rounded-md p-2 w-full hover:bg-MainColorHover"
             disabled={isLoading}
           >
             {isLoading ? (
               <span className="loading loading-bars loading-md"></span>
             ) : (
-              "Sign in with Google"
+              <div className="flex justify-center items-center">
+                <AiOutlineGoogle className="text-2xl mr-1"/>
+                <h2>Sign in with Google</h2>
+              </div>
             )}
           </button>
-          <p className="mt-2">
+          <p className="mt-4 text-SubTextColor">
             Don't have an account?{" "}
-            <Link to="/registration" className="text-blue-500 hover:underline">
-              Register here
+            <Link
+              to="/registration"
+              className="text-MainColor hover:text-MainColorHover hover:underline"
+            >
+              <h3>Register here</h3>
             </Link>
           </p>
         </div>
