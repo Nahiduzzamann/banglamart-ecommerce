@@ -172,8 +172,8 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-6 bg-white rounded-md shadow-md">
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="w-full max-w-md p-6 bg-BackgroundColor rounded-md shadow-lg m-4 ld:m-0">
         <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
         {errorMessage && (
           <div

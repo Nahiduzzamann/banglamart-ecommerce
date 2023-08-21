@@ -36,8 +36,8 @@ const Header = () => {
           src="https://www.pngkit.com/png/full/282-2825717_special-offer-banner-blue-special-offer-banner.png"
         ></img>
       </div>
-      <div className="sticky top-0">
-        {/* LogIn Section  */}
+      <div className="">
+        {/* number Section  */}
         <div className="bg-CardColor border-b-[1px] border-b-BorderColor p-1 hidden md:block">
           <div className="container mx-auto">
             <div className="flex justify-between">
@@ -66,8 +66,8 @@ const Header = () => {
         {/* search logo section  */}
         <div className="bg-CardColor border-b-[1px] border-b-BorderColor">
           <div className="container mx-auto">
-            <div className="flex justify-between p-1">
-              <div className="bg-black rounded-full">
+            <div className="flex justify-between items-center p-1">
+              <div className="rounded-full flex items-center justify-center h-16 w-24 lg:h-20 lg:w-20 xl:h-24 xl:w-24">
                 <Link to="/">
                   <img
                     className="h-16 w-16 lg:h-20 lg:w-20 xl:h-24 xl:w-24 "
@@ -76,19 +76,18 @@ const Header = () => {
                   />
                 </Link>
               </div>
-              <div className="flex items-center">
-                <AiOutlineSearch className="text-[30px] md:hidden text-SubTextColor hover:text-TextColor" />
-                <div className="relative mx-auto max-w-md hidden md:block">
-                  <input
-                    className="w-full pl-4 pr-4 py-2 rounded-lg border border-SubTextColor focus:outline-none focus:border-MainColor"
-                    type="text"
-                    placeholder="Search..."
-                  />
-                  <div className="absolute inset-y-0 right-0 pl-3 pr-3 flex items-center justify-center pointer-events-none bg-MainColor rounded-e-lg hover:bg-MainColor">
-                    <AiOutlineSearch className="text-CardColor text-[25px]" />
-                  </div>
+              {/* search  */}
+              <div className="relative xl:w-[600px] lg:w-[500px] md:w-[400px] w-full mr-2 md:mr-0 ml-2 md:ml-0">
+                <input
+                  className="w-full pl-4 pr-4 py-2 rounded-lg shadow-sm shadow-SubTextColor focus:outline-none focus:border-MainColor"
+                  type="text"
+                  placeholder="Search..."
+                />
+                <div className="absolute inset-y-0 right-0 pl-3 pr-3 flex items-center justify-center pointer-events-none bg-MainColor rounded-e-lg hover:bg-MainColor">
+                  <AiOutlineSearch className="text-CardColor text-[25px]" />
                 </div>
-                {/* <button className="flex items-center ml-5 relative hover:border hover:border-BorderColor p-1 border border-CardColor rounded-md">
+              </div>
+              {/* <button className="flex items-center ml-5 relative hover:border hover:border-BorderColor p-1 border border-CardColor rounded-md">
                   <AiOutlineHeart className="text-[30px] text-SubTextColor" />
                   <div className="">
                     <div className="absolute flex justify-center right-[60px] -top-2 text-[10px] bg-MainColor text-CardColor rounded-full h-5 w-5 items-center">
@@ -97,9 +96,10 @@ const Header = () => {
                     <p className=" text-SubTextColor">Wishlist</p>
                   </div>
                 </button> */}
+              <div className="flex items-center">
                 <Link
                   to="/cart"
-                  className="flex items-center ml-5 relative hover:border hover:border-BorderColor p-1 border border-CardColor rounded-md"
+                  className="flex items-center ml-2 relative hover:border hover:border-BorderColor p-1 border border-CardColor rounded-md"
                 >
                   <AiOutlineShoppingCart className="text-[30px] text-SubTextColor" />
                   <div>
@@ -141,7 +141,7 @@ const Header = () => {
                 ) : (
                   <Link
                     to="/login"
-                    className="hover:border hover:border-BorderColor p-1 border border-CardColor rounded-md"
+                    className="hover:border hover:border-BorderColor p-1 border border-CardColor rounded-md w-[83px]"
                   >
                     <div className="flex items-center">
                       <AiOutlineUser className="text-[30px] text-SubTextColor" />
