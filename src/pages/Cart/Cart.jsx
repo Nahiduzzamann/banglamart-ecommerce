@@ -63,7 +63,7 @@ const Cart = () => {
       <div className="grid grid-cols-4 gap-4">
         <div className="p-3 bg-CardColor md:col-span-3 col-span-4">
           {dummyProductData.map((product, i) => (
-            <div key={i} className="border-b border-b-BorderColor mb-2">
+            <div key={i} className="border-b border-b-BorderColor mb-2 shadow shadow-BorderColor">
               <div className="bg-BackgroundColor rounded-sm p-2 flex">
                 <img
                   src={product.sellerShopImage}

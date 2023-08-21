@@ -27,6 +27,8 @@ import Faq from "./pages/Faq/Faq";
 import Blog from "./pages/Blog/Blog";
 import Cart from "./pages/Cart/Cart";
 import AddDeliveryAddressForm from "./pages/AddAddress/AddAddress";
+import { Provider } from "react-redux";
+import store from "./services/store/store";
 
 const router = createBrowserRouter([
   {
@@ -88,7 +90,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/supportPolicy",
-        element: <SupportPolicy></SupportPolicy>
+        element: <SupportPolicy></SupportPolicy>,
       },
       {
         path: "/productDetails",
@@ -120,12 +122,14 @@ i18n.init({
 });
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProvider>
-      <div className="bg-BackgroundColor">
-        <I18nextProvider i18n={i18n}>
-          <RouterProvider router={router} />
-        </I18nextProvider>
-      </div>
-    </AuthProvider>
+    <Provider store={store}>
+      <AuthProvider>
+        <div className="bg-BackgroundColor">
+          <I18nextProvider i18n={i18n}>
+            <RouterProvider router={router} />
+          </I18nextProvider>
+        </div>
+      </AuthProvider>
+    </Provider>
   </React.StrictMode>
 );

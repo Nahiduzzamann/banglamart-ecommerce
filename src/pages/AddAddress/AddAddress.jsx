@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchDivisions } from "../../services/actions/divisionActions";
 // import { divisions, districts, subDistricts, unions } from "./locationData";
 const AddDeliveryAddressForm = () => {
   const [divisions, setDivisions] = useState([]);
@@ -62,8 +64,6 @@ const AddDeliveryAddressForm = () => {
     fetchUnionsData();
   }, []);
   // console.log(districts);
-
-
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -163,6 +163,25 @@ const AddDeliveryAddressForm = () => {
     event.preventDefault();
     console.log("Form Data:", formData);
   };
+
+
+
+
+
+
+  // const divisionsData = useSelector((state) => state.divisions);
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(fetchDivisions());
+  // }, [dispatch]);
+
+
+  // console.log(divisionsData);
+
+
+
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="font-semibold mb-4">Add Delivery Address</h1>
