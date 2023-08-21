@@ -85,7 +85,7 @@ const Cart = () => {
                     <div>
                       <h2>{product.productName}</h2>
                     </div>
-                    <div>
+                    <div className="mr-2">
                       <h2>{product.price}৳</h2>
                     </div>
                   </div>
@@ -104,7 +104,7 @@ const Cart = () => {
                       </p>
                     </div>
                     <div>
-                      <button className="text-SubTextColor underline text-[14px] font-bold">
+                      <button className="text-SubTextColor mr-2 underline text-[14px] font-bold">
                         remove
                       </button>
                     </div>
