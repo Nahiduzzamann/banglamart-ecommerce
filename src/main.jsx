@@ -29,6 +29,7 @@ import Cart from "./pages/Cart/Cart";
 import AddDeliveryAddressForm from "./pages/AddAddress/AddAddress";
 import { Provider} from "react-redux";
 import store from "./services/store/store";
+import SellerForm from "./pages/SellerForm/SellerForm";
 
 const router = createBrowserRouter([
   {
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
       {
         path: "/addDeliveryAddress",
         element: <AddDeliveryAddressForm></AddDeliveryAddressForm>,
+      },
+      {
+        path: "/seller-form",
+        element: <SellerForm></SellerForm>,
       },
     ],
   },

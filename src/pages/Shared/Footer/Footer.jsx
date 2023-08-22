@@ -78,11 +78,11 @@ const Footer = () => {
             </div>
             <div className="flex flex-col">
               <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/login">Login</Link>
-              <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Wishlist</Link>
+              {/* <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Wishlist</Link> */}
               <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Track Order</Link>
               <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Order History</Link>
               {/* <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Affiliating</Link> */}
-              <Link className="p-2 text-center rounded-full bg-MainColor hover:bg-MainColorHover text-CardColor shadow-md" to="/">BE A SELLER</Link>
+              <Link className="p-2 text-center rounded-full bg-MainColor hover:bg-MainColorHover text-CardColor shadow-md" to="/seller-form">BE A SELLER</Link>
               
             </div>
           </div>
