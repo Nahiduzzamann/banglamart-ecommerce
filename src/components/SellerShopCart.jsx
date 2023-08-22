@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 const SellerShopCart = () => {
   return (
-    <div className="mt-4">
-      <div className="border border-BorderColor flex rounded-md bg-CardColor shadow-sm hover:shadow-md">
+    <div className="mt-4 shadow-md shadow-BorderColor">
+      <div className=" flex rounded-md bg-CardColor">
         <div className="p-4 border-r border-r-BorderColor">
           <img className="rounded-full h-20 w-20" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Shop.svg/1200px-Shop.svg.png" alt="" />
         </div>
@@ -22,7 +22,7 @@ const SellerShopCart = () => {
           />
           </div>
           <div className="mt-1 ">
-          <Link className="pl-3 pr-3 pt-1 pb-1 rounded-full text-CardColor bg-MainColor hover:bg-MainColorHover shadow-md">Visit Store</Link>
+          <Link to='/' className="pl-3 pr-3 pt-1 pb-1 rounded-full text-CardColor bg-MainColor hover:bg-MainColorHover shadow-md">Visit Store</Link>
           </div>
         </div>
       </div>
