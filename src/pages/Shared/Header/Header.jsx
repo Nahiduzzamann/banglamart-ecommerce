@@ -77,13 +77,13 @@ const Header = () => {
                 </Link>
               </div>
               {/* search  */}
-              <div className="relative xl:w-[600px] lg:w-[500px] md:w-[400px] w-full mr-2 md:mr-0 ml-2 md:ml-0">
+              <div className="relative xl:w-[600px] lg:w-[500px] md:w-[400px] w-full mr-2 md:mr-0 ml-2 md:ml-0 rounded-full shadow-sm shadow-[#b6b6b6]">
                 <input
-                  className="w-full pl-4 pr-4 py-2 rounded-lg shadow-sm shadow-SubTextColor focus:outline-none focus:border-MainColor"
+                  className="w-full pl-4 pr-4 py-2 rounded-full focus:outline-none focus:border-MainColor"
                   type="text"
                   placeholder="Search..."
                 />
-                <div className="absolute inset-y-0 right-0 pl-3 pr-3 flex items-center justify-center pointer-events-none bg-MainColor rounded-e-lg hover:bg-MainColor">
+                <div className="absolute inset-y-0 right-0 pl-3 pr-3 flex items-center justify-center pointer-events-none bg-MainColor rounded-e-lg hover:bg-MainColor rounded-r-full">
                   <AiOutlineSearch className="text-CardColor text-[25px]" />
                 </div>
               </div>

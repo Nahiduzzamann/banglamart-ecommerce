@@ -221,7 +221,7 @@ const Cart2 = ({ category }) => {
             </p>
           </div>
           <div className="flex flex-col">
-            <button
+            {/* <button
               onMouseEnter={() => setHeartIconHover(true)}
               onMouseLeave={() => setHeartIconHover(false)}
               className=" mb-1"
@@ -237,7 +237,7 @@ const Cart2 = ({ category }) => {
                   } `}
                 />
               )}
-            </button>
+            </button> */}
             <button
               onMouseEnter={() => setCartIconHover(true)}
               onMouseLeave={() => setCartIconHover(false)}
