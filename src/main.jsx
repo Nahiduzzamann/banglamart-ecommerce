@@ -30,6 +30,7 @@ import AddDeliveryAddressForm from "./pages/AddAddress/AddAddress";
 import { Provider} from "react-redux";
 import store from "./services/store/store";
 import SellerForm from "./pages/SellerForm/SellerForm";
+import AllSeller from "./pages/AllSeller/AllSeller";
 
 const router = createBrowserRouter([
   {
@@ -108,6 +109,10 @@ const router = createBrowserRouter([
       {
         path: "/seller-form",
         element: <SellerForm></SellerForm>,
+      },
+      {
+        path: "/all-seller",
+        element: <AllSeller></AllSeller>,
       },
     ],
   },

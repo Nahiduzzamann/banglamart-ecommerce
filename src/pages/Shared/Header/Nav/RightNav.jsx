@@ -28,9 +28,9 @@ const RightNav = ({ open }) => {
       <Link className="text-CardColor hover:text-TextColor" to="/">
         <h3 className="p-2">Flash Sale</h3>
       </Link>
-      <Link className="text-CardColor hover:text-TextColor" to="/">
+      <NavLink className="text-CardColor hover:text-TextColor" to="/all-seller">
         <h3 className="p-2">All Seller</h3>
-      </Link>
+      </NavLink>
       {/* <Link className="text-CardColor hover:text-TextColor" to="/">
         <h3 className="p-2">Affiliating</h3>
       </Link> */}

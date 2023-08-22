@@ -162,9 +162,9 @@ const Header = () => {
                 <Link className="text-SubTextColor hover:text-TextColor" to="/">
                   Flash Sale
                 </Link>
-                <Link className="text-SubTextColor hover:text-TextColor" to="/">
+                <NavLink className="text-SubTextColor hover:text-TextColor" to="/all-seller">
                   All Seller
-                </Link>
+                </NavLink>
                 {/* <Link className="text-SubTextColor hover:text-TextColor" to="/">
                   Affiliating
                 </Link> */}
