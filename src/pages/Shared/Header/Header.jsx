@@ -83,8 +83,8 @@ const Header = () => {
                   type="text"
                   placeholder="Search..."
                 />
-                <div className="absolute inset-y-0 right-0 pl-3 pr-3 flex items-center justify-center pointer-events-none bg-MainColor rounded-e-lg hover:bg-MainColor rounded-r-full">
-                  <AiOutlineSearch className="text-CardColor text-[25px]" />
+                <div className="absolute inset-y-0 right-0 pl-3 pr-3 flex items-center justify-center bg-MainColor rounded-e-lg hover:bg-MainColor rounded-r-full">
+                  <button className=""><AiOutlineSearch className="text-CardColor text-[25px]  hover:text-[27px]" /></button>
                 </div>
               </div>
               {/* <button className="flex items-center ml-5 relative hover:border hover:border-BorderColor p-1 border border-CardColor rounded-md">
