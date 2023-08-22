@@ -5,6 +5,11 @@ import Header from "../pages/Shared/Header/Header";
 import Footer from "../pages/Shared/Footer/Footer";
 import Loading from "../components/Loading";
 import PopUpAdd from "../components/PopUpAdd";
+import { useDispatch } from "react-redux";
+import { fetchDivisions } from "../services/actions/divisionActions";
+import { fetchDistricts } from "../services/actions/districtAction";
+import { fetchUpazilas } from "../services/actions/upazilaAction";
+import { fetchUnions } from "../services/actions/unionAction";
 
 const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,6 +24,22 @@ const Main = () => {
     // Clean up the timer when the component unmounts
     return () => clearTimeout(timer);
   }, []);
+
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchDivisions());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchDistricts());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchUpazilas());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchUnions());
+  }, [dispatch]);
+
 
   return (
     <div>

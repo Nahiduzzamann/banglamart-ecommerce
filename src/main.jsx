@@ -27,7 +27,7 @@ import Faq from "./pages/Faq/Faq";
 import Blog from "./pages/Blog/Blog";
 import Cart from "./pages/Cart/Cart";
 import AddDeliveryAddressForm from "./pages/AddAddress/AddAddress";
-import { Provider } from "react-redux";
+import { Provider} from "react-redux";
 import store from "./services/store/store";
 
 const router = createBrowserRouter([
@@ -107,6 +107,8 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
+
 
 i18n.init({
   interpolation: { escapeValue: false },
