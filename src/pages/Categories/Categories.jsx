@@ -1,24 +1,14 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import SubCategory from "../../components/SubCategories";
+import { useSelector } from "react-redux";
 
 const Categories = () => {
-  const [Categories, setCategories] = useState(null);
-  // TODO
-  const url = "http://62.72.31.204:1300";
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await fetch(`${url}/category/getAll`);
-        const data = await response.json();
-        setCategories(data.data);
-      } catch (error) {
-        console.error("Error fetching instructor classes:", error);
-      }
-    };
+  // const [Categories, setCategories] = useState(null);
 
-    fetchCategories();
-  }, []);
+  const Categories = useSelector(
+    (state) => state.allCategories.AllCategories.data
+  );
 
   const handleCategorySearch = (name) => {
     const targetElement = document.getElementById(name);

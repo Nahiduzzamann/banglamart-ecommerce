@@ -42,8 +42,7 @@ const Main = () => {
   }, [dispatch]);
   useEffect(() => {
     dispatch(fetchAllCategories());
-    console.log('1');
-  }, []);
+  }, [dispatch]);
 
 
   return (
