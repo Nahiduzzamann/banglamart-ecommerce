@@ -31,12 +31,13 @@ import { Provider} from "react-redux";
 import store from "./services/store/store";
 import SellerForm from "./pages/SellerForm/SellerForm";
 import AllSeller from "./pages/AllSeller/AllSeller";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",

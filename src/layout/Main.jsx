@@ -10,6 +10,7 @@ import { fetchDivisions } from "../services/actions/divisionActions";
 import { fetchDistricts } from "../services/actions/districtAction";
 import { fetchUpazilas } from "../services/actions/upazilaAction";
 import { fetchUnions } from "../services/actions/unionAction";
+import { fetchAllCategories } from "../services/actions/allCategoriesAction";
 
 const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -39,6 +40,10 @@ const Main = () => {
   useEffect(() => {
     dispatch(fetchUnions());
   }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchAllCategories());
+    console.log('1');
+  }, []);
 
 
   return (

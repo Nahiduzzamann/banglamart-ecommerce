@@ -10,9 +10,9 @@ export const fetchUnionsRequest = () => ({
   type: FETCH_UNIONS_REQUEST,
 });
 
-export const fetchUnionsSuccess = (divisions) => ({
+export const fetchUnionsSuccess = (unions) => ({
   type: FETCH_UNIONS_SUCCESS,
-  payload: divisions,
+  payload: unions,
 });
 
 export const fetchUnionsFailure = (error) => ({

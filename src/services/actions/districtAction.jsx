@@ -10,9 +10,9 @@ export const fetchDistrictsRequest = () => ({
   type: FETCH_DISTRICTS_REQUEST,
 });
 
-export const fetchDistrictsSuccess = (divisions) => ({
+export const fetchDistrictsSuccess = (districts) => ({
   type: FETCH_DISTRICTS_SUCCESS,
-  payload: divisions,
+  payload: districts,
 });
 
 export const fetchDistrictsFailure = (error) => ({

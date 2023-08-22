@@ -10,9 +10,9 @@ export const fetchUpazilasRequest = () => ({
   type: FETCH_UPAZILAS_REQUEST,
 });
 
-export const fetchUpazilasSuccess = (divisions) => ({
+export const fetchUpazilasSuccess = (upazilas) => ({
   type: FETCH_UPAZILAS_SUCCESS,
-  payload: divisions,
+  payload: upazilas,
 });
 
 export const fetchUpazilasFailure = (error) => ({

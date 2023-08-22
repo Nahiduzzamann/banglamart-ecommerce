@@ -6,6 +6,7 @@ import divisionReducer from '../reducers/divisionReducer';
 import districtReducer from './../reducers/districtReducer';
 import upazilaReducer from './../reducers/upazilaReducer';
 import unionReducer from './../reducers/unionReducer';
+import allCategoriesReducer from '../reducers/allCategoriesReducer';
 // ...
 
 const rootReducer = combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   districts: districtReducer,
   upazilas: upazilaReducer,
   unions: unionReducer,
+  allCategories: allCategoriesReducer,
   
   // Add other reducers here
 });

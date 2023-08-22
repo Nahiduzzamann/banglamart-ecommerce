@@ -1,32 +1,27 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { AiFillCaretRight } from "react-icons/ai";
 import SubCategory from "./SubCategories";
-import './Style/ScrollbarStyles.css'
+import "./Style/ScrollbarStyles.css";
+import { useSelector } from "react-redux";
 const AllCategory = () => {
-  const [categories, setCategories] = useState(null);
+  const url = "http://62.72.31.204:1300";
+
+  // const [categories, setCategories] = useState(null);
   const [subCategories, setSubCategories] = useState([]);
   const [subCategoryHover, setSubCategoryHover] = useState(false);
   const [categoryHover, setCategoryHover] = useState({
     isHover: false,
     category: {},
   });
-// TODO 
-  const url = "http://192.168.1.9:1300";
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await fetch(`${url}/category/getAll`);
-        const data = await response.json();
-        setCategories(data.data);
-      } catch (error) {
-        console.error("Error fetching instructor classes:", error);
-      }
-    };
 
-    fetchCategories();
-  }, []);
 
+  const allCategoriesData = useSelector(
+    (state) => state.allCategories.AllCategories.data
+  );
+  // useEffect(() => {
+  //   setCategories(allCategoriesData);
+  // }, [allCategoriesData]);
 
   return (
     <div className="relative ">
@@ -34,8 +29,8 @@ const AllCategory = () => {
         <h2 className="text-CardColor">All Categories</h2>
       </div>
       <div className="bg-CardColor p-3 lg:max-h-[365px] xl:max-h-[390px] 2xl:max-h-[415px] overflow-y-auto">
-        {categories ? (
-          categories?.map((category) => {
+        {allCategoriesData ? (
+          allCategoriesData?.map((category) => {
             // console.log(category);
             return (
               <button
@@ -47,7 +42,7 @@ const AllCategory = () => {
                   setCategoryHover({ isHover: false, category: category })
                 }
                 key={category.id}
-                className="flex pl-2 pt-2 pb-2 items-center w-full"
+                className="flex pl-2 pt-2 pb-2 items-center w-full shadow-sm shadow-BackgroundColor hover:shadow-md"
               >
                 {/* TODO  */}
                 <img
@@ -94,7 +89,10 @@ const AllCategory = () => {
                 </h1>
                 <div className="m-2 flex flex-wrap">
                   {subCategories.map((subCategories, i) => (
-                    <SubCategory subCategories={subCategories} key={i}></SubCategory>
+                    <SubCategory
+                      subCategories={subCategories}
+                      key={i}
+                    ></SubCategory>
                   ))}
                 </div>
               </div>
