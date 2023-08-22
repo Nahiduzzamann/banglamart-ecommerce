@@ -161,7 +161,6 @@ const SignUp = () => {
 
       console.log("Form Data:", formData);
 
-      // Rest of your code for user creation and navigation
     }
   };
   return (
@@ -170,14 +169,7 @@ const SignUp = () => {
         <h2 className="text-2xl font-semibold text-center mb-6">
           Registration
         </h2>
-        {errorMessage && (
-          <div
-            className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4"
-            role="alert"
-          >
-            <p>{errorMessage}</p>
-          </div>
-        )}
+        
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="name" className="block font-medium mb-2">
@@ -262,20 +254,6 @@ const SignUp = () => {
               required
             />
           </div>
-          {/* <div className="mb-4">
-            <label htmlFor="division" className="block font-medium mb-2">
-              Division
-            </label>
-            <input
-              type="text"
-              id="division"
-              className="input input-bordered w-full"
-              placeholder="Enter your division"
-              value={division}
-              onChange={(e) => setDivision(e.target.value)}
-              required
-            />
-          </div> */}
           <div className="relative mb-4">
             <label className="block mb-1">Division</label>
             <select
@@ -384,9 +362,17 @@ const SignUp = () => {
               <option value="Other">Other</option>
             </select>
           </div>
+          {errorMessage && (
+          <div
+            className="bg-[#fdd5d5] border-l-4 border-[#ff8383] text-[#ff2b2b] p-4 mb-4"
+            role="alert"
+          >
+            <p>{errorMessage}</p>
+          </div>
+        )}
           <button
             type="submit"
-            className="btn btn-primary w-full mb-4"
+            className="bg-MainColor text-CardColor shadow-lg shadow-MainColorHover rounded-md p-2 w-full hover:bg-MainColorHover"
             disabled={isLoading}
           >
             {isLoading ? (
@@ -395,10 +381,10 @@ const SignUp = () => {
               "Register"
             )}
           </button>
-          <p className="mt-2">
+          <p className="mt-4 text-center">
             Already have an account?{" "}
-            <Link to="/login" className="text-blue-500 hover:underline">
-              Login here
+            <Link to="/login" className="text-MainColor hover:text-MainColorHover hover:underline">
+              <h3>Login here</h3>
             </Link>
           </p>
         </form>
