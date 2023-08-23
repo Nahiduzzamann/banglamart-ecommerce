@@ -21,7 +21,7 @@ const Categories = () => {
   return (
     <div className="p-1 lg:p-0">
       <div className="container mx-auto">
-        <h1 className="pt-4 pb-4">All Categories</h1>
+        <h1 className="pt-4 pb-4 text-SubTextColor">All Categories</h1>
         <div className="flex flex-wrap">
           {Categories ? (
             Categories.map((category, i) => {
@@ -52,8 +52,8 @@ const Categories = () => {
                   key={i}
                   className=" bg-CardColor rounded-md border-[1px] border-BorderColor"
                 >
-                  <div className="p-2">
-                    <h1 className="text-center p-1 border-b-[3px] border-b-BorderColor">
+                  <div className="p-2 ">
+                    <h1 className="text-center text-SubTextColor p-1 border-b-[3px] border-b-BorderColor">
                       {category.name}
                     </h1>
                     <div className="p-2 ">

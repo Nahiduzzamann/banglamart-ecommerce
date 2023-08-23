@@ -32,6 +32,8 @@ import store from "./services/store/store";
 import SellerForm from "./pages/SellerForm/SellerForm";
 import AllSeller from "./pages/AllSeller/AllSeller";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import FlashSalePage from "./pages/FlashSale/FlashSale";
+import BrandPage from "./pages/BrandPage/BrandPage";
 
 const router = createBrowserRouter([
   {
@@ -114,6 +116,14 @@ const router = createBrowserRouter([
       {
         path: "/all-seller",
         element: <AllSeller></AllSeller>,
+      },
+      {
+        path: "/flash-sell",
+        element: <FlashSalePage></FlashSalePage>,
+      },
+      {
+        path: "/brands",
+        element: <BrandPage></BrandPage>,
       },
     ],
   },

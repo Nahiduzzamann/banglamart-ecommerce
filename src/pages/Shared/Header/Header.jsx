@@ -159,9 +159,9 @@ const Header = () => {
             {/* Big screen  */}
             <div className=" hidden md:block">
               <div className="flex justify-between">
-                <Link className="text-SubTextColor hover:text-TextColor" to="/">
+                <NavLink className="text-SubTextColor hover:text-TextColor" to="/flash-sell">
                   Flash Sale
-                </Link>
+                </NavLink>
                 <NavLink className="text-SubTextColor hover:text-TextColor" to="/all-seller">
                   All Seller
                 </NavLink>
@@ -174,9 +174,9 @@ const Header = () => {
                 >
                   Categories
                 </NavLink>
-                <Link className="text-SubTextColor hover:text-TextColor" to="/">
+                <NavLink className="text-SubTextColor hover:text-TextColor" to="/brands">
                   Brands
-                </Link>
+                </NavLink>
                 <Link className="text-SubTextColor hover:text-TextColor" to="/">
                   Track Order
                 </Link>

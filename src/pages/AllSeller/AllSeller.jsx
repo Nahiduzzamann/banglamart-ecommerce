@@ -9,7 +9,7 @@ const AllSeller = () => {
           <Link to='/seller-form' id="animatedButton"></Link>
         </div>
         <div className="shadow-xl shadow-BackgroundColor rounded">
-            <h1 className=" lg:mt-10 border-b border-b[1px] border-b-BorderColor">All Sellers</h1>
+            <h1 className=" lg:mt-10 border-b border-b[1px] border-b-BorderColor text-SubTextColor">All Sellers</h1>
             <div className="p-4 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
                 <SellerShopCart></SellerShopCart>
                 <SellerShopCart></SellerShopCart>

@@ -25,9 +25,9 @@ const RightNav = ({ open }) => {
   return (
     <Ul open={open}>
       <div className="p-2">
-      <Link className="text-CardColor hover:text-TextColor" to="/">
+      <NavLink className="text-CardColor hover:text-TextColor" to="/flash-sell">
         <h3 className="p-2">Flash Sale</h3>
-      </Link>
+      </NavLink>
       <NavLink className="text-CardColor hover:text-TextColor" to="/all-seller">
         <h3 className="p-2">All Seller</h3>
       </NavLink>
@@ -37,9 +37,9 @@ const RightNav = ({ open }) => {
       <NavLink className="text-CardColor hover:text-TextColor" to="/category">
         <h3 className="p-2">Categories</h3>
       </NavLink>
-      <Link className="text-CardColor hover:text-TextColor" to="/">
+      <NavLink className="text-CardColor hover:text-TextColor" to="/brands">
         <h3 className="p-2">Brands</h3>
-      </Link>
+      </NavLink>
       <Link className="text-CardColor hover:text-TextColor" to="/">
         <h3 className="p-2">Track Order</h3>
       </Link>
