@@ -2,7 +2,7 @@ import EmptyContent from "../../components/EmptyContent";
 import FlashSaleBanner from "../../components/FlashSaleBanner";
 
 const FlashSalePage = () => {
-  const products = false;
+  const products = [];
   return (
     <div className="container mx-auto">
       <div>
@@ -14,10 +14,10 @@ const FlashSalePage = () => {
         </div>
         <div>
           <div>
-            {products ? (
+            {products.length > 0 ? (
               <div></div>
             ) : (
-              <EmptyContent text='Currently No Offer available!!!'></EmptyContent>
+              <EmptyContent text="Currently No Offer available!!!"></EmptyContent>
             )}
           </div>
         </div>

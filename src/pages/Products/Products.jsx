@@ -5,6 +5,7 @@ import { AiFillFilter } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import ProductCart from "../../components/ProductCart";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import EmptyContent from "../../components/EmptyContent";
 const Products = () => {
   const [products, setProducts] = useState(null);
 
@@ -75,12 +76,16 @@ const Products = () => {
             <div className="mt-4 ">
               <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2">
                 {products ? (
-                  currentProducts.map((product) => (
-                    <ProductCart
-                      product={product}
-                      key={product.id}
-                    ></ProductCart>
-                  ))
+                  products.length > 0 ? (
+                    currentProducts.map((product) => (
+                      <ProductCart
+                        product={product}
+                        key={product.id}
+                      ></ProductCart>
+                    ))
+                  ) : (
+                    <EmptyContent text="No Product Available!"></EmptyContent>
+                  )
                 ) : (
                   <SkeletonTheme baseColor="#5dade2" highlightColor="#FAD7A0">
                     <h3>
@@ -91,19 +96,21 @@ const Products = () => {
               </div>
               {/* Pagination */}
               <div className="flex justify-center m-4">
-              <div className="join">
-                {Array.from({ length: totalPages }, (_, index) => (
-                  <button
-                    key={index}
-                    className={`join-item btn btn-md border border-BorderColor ${
-                      index + 1 === currentPage ? " btn-disabled" : "bg-MainColorHover"
-                    }`}
-                    onClick={() => handlePageChange(index + 1)}
-                  >
-                    {index + 1}
-                  </button>
-                ))}
-              </div>
+                <div className="join">
+                  {Array.from({ length: totalPages }, (_, index) => (
+                    <button
+                      key={index}
+                      className={`join-item btn btn-md border border-BorderColor ${
+                        index + 1 === currentPage
+                          ? " btn-disabled"
+                          : "bg-MainColorHover"
+                      }`}
+                      onClick={() => handlePageChange(index + 1)}
+                    >
+                      {index + 1}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
