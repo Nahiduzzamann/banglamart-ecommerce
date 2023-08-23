@@ -25,6 +25,9 @@ const RightNav = ({ open }) => {
   return (
     <Ul open={open}>
       <div className="p-2">
+      <NavLink className="text-CardColor hover:text-TextColor" to="/">
+        <h3 className="p-2">Home</h3>
+      </NavLink>
       <NavLink className="text-CardColor hover:text-TextColor" to="/flash-sell">
         <h3 className="p-2">Flash Sale</h3>
       </NavLink>
@@ -43,9 +46,7 @@ const RightNav = ({ open }) => {
       <Link className="text-CardColor hover:text-TextColor" to="/">
         <h3 className="p-2">Track Order</h3>
       </Link>
-      <Link className="text-CardColor hover:text-TextColor" to="/">
-        <h3 className="p-2">Contact Us</h3>
-      </Link>
+      
       </div>
     </Ul>
   );

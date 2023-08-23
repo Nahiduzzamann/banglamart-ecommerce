@@ -7,6 +7,8 @@ import districtReducer from './../reducers/districtReducer';
 import upazilaReducer from './../reducers/upazilaReducer';
 import unionReducer from './../reducers/unionReducer';
 import allCategoriesReducer from '../reducers/allCategoriesReducer';
+import flashSellReducer from '../reducers/flashSellReducer';
+import flashSellDataReducer from '../reducers/flashSellDataReducer';
 // ...
 
 const rootReducer = combineReducers({
@@ -15,6 +17,8 @@ const rootReducer = combineReducers({
   upazilas: upazilaReducer,
   unions: unionReducer,
   allCategories: allCategoriesReducer,
+  flashSell: flashSellReducer,
+  flashSellData: flashSellDataReducer,
   
   // Add other reducers here
 });

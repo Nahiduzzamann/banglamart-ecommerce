@@ -5,17 +5,18 @@ import Header from "../pages/Shared/Header/Header";
 import Footer from "../pages/Shared/Footer/Footer";
 import Loading from "../components/Loading";
 import PopUpAdd from "../components/PopUpAdd";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchDivisions } from "../services/actions/divisionActions";
 import { fetchDistricts } from "../services/actions/districtAction";
 import { fetchUpazilas } from "../services/actions/upazilaAction";
 import { fetchUnions } from "../services/actions/unionAction";
 import { fetchAllCategories } from "../services/actions/allCategoriesAction";
+import { fetchFlashSell } from "../services/actions/flashSellCheckAction";
 
 const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [adds, setAdds] = useState(false);
-
+// loading animation 
   useEffect(() => {
     // Simulate a delay to demonstrate loading animation
     const timer = setTimeout(() => {
@@ -26,7 +27,7 @@ const Main = () => {
     return () => clearTimeout(timer);
   }, []);
 
-
+// data load 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchDivisions());
@@ -44,6 +45,10 @@ const Main = () => {
     dispatch(fetchAllCategories());
   }, [dispatch]);
 
+  // isFlash sell available or not 
+  useEffect(() => {
+    dispatch(fetchFlashSell());
+  }, [dispatch]);
 
   return (
     <div>
