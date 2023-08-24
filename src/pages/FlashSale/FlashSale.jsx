@@ -4,17 +4,18 @@ import FlashSaleBanner from "../../components/FlashSaleBanner";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchFlashSellData } from "../../services/actions/flashSellDataAction";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import ProductCart from "../../components/ProductCart";
+import ProductCartFlashSell from "../../components/ProductCartFlashSell";
 
 const FlashSalePage = () => {
-  const flashSell = useSelector((state) => state.flashSell.flashSell.data);
   const dispatch = useDispatch();
 
+  const flashSellId = useSelector((state) => state.flashSell.flashSell?.data[0]?.id);
+  // console.log(flashSellId);
   useEffect(() => {
-    dispatch(fetchFlashSellData(flashSell[0].id));
-  }, []);
+    dispatch(fetchFlashSellData(flashSellId));
+  }, [flashSellId]);
   const flashSellData = useSelector(
-    (state) => state.flashSellData.flashSellData.data
+    (state) => state.flashSellData?.flashSellData?.data
   );
 
   return (
@@ -24,13 +25,15 @@ const FlashSalePage = () => {
       </div>
       <div className="m-1 lg:m-0">
         <div className="mt-4">
-          <h1 className="text-SubTextColor mb-4">Hunt This Special Offer</h1>
+          <h1 className="text-SubTextColor mb-4">Hunt Special Offer</h1>
         </div>
         <div>
-          <div className="grid grid-cols-5 gap-4">
+          <div className="grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4">
             {flashSellData ? (
-              flashSellData.length > 0 ? (
-                flashSellData.map((data,i) => (<ProductCart product={data} key={i}></ProductCart>))
+              flashSellData?.length > 0 ? (
+                flashSellData?.map((data, i) => (
+                  <ProductCartFlashSell data={data} key={i}></ProductCartFlashSell>
+                ))
               ) : (
                 <EmptyContent text="Currently No Offer available!!!"></EmptyContent>
               )

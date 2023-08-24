@@ -1,16 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AiFillStar,
   AiOutlineHeart,
   AiOutlineShoppingCart,
   AiOutlineStar,
 } from "react-icons/ai";
+import { TbTruckDelivery } from "react-icons/tb";
 import { BsFillCartCheckFill, BsFillHeartFill } from "react-icons/bs";
 import Rating from "react-rating";
 import { Link } from "react-router-dom";
 
-const ProductCart = ({ product }) => {
-  // console.log(product);
+const ProductCartFlashSell = ({ data }) => {
+  const product = data.product;
+  const oldPrice = product.price;
   //const router = useRouter();
   // TODO
   const url = "http://62.72.31.204:1300";
@@ -18,8 +20,22 @@ const ProductCart = ({ product }) => {
   const [hover, setHover] = useState(false);
   const [heartIconHover, setHeartIconHover] = useState(false);
   const [cartIconHover, setCartIconHover] = useState(false);
+  const [newPrice, setNewPrice] = useState(oldPrice);
+
+  function calculatePercentage(value, percentage) {
+    return (value * percentage) / 100;
+  }
+
+  useEffect(() => {
+    if (data.percentage) {
+      setNewPrice(calculatePercentage(oldPrice, data.offer));
+    } else {
+      setNewPrice(oldPrice - data.offer);
+    }
+  }, [data]);
+
   return (
-    <Link to='/productDetails'>
+    <Link to="/productDetails">
       <div
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
@@ -46,24 +62,32 @@ const ProductCart = ({ product }) => {
             <div>
               <div className="flex">
                 <p className={`relative mr-1 line-through text-SubTextColor`}>
-                  1200 ৳
+                  {oldPrice} ৳
                 </p>
                 <p
                   className={`relative ${
                     hover ? "text-CardColor" : "text-[#f84545]"
                   } `}
                 >
-                  {product?.price} ৳
+                  {newPrice} ৳
                 </p>
               </div>
               <Rating
                 initialRating={3.5}
                 readonly
                 emptySymbol={
-                  <AiOutlineStar className={` text-[14px] ${hover ? 'text-BorderColor':'text-MainColor'}`} />
+                  <AiOutlineStar
+                    className={` text-[14px] ${
+                      hover ? "text-BorderColor" : "text-MainColor"
+                    }`}
+                  />
                 }
                 fullSymbol={
-                  <AiFillStar className={` text-[14px] ${hover ? 'text-BorderColor':'text-MainColorHover'}`} />
+                  <AiFillStar
+                    className={` text-[14px] ${
+                      hover ? "text-BorderColor" : "text-MainColorHover"
+                    }`}
+                  />
                 }
               />
               <p
@@ -126,14 +150,25 @@ const ProductCart = ({ product }) => {
             </div>
           </div>
         </div>
-        <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-r-full top-2 p-1">
-          <p className="text-xs text-[#fc3e3e] mr-1">OFF</p>
-          <p className="text-sm text-CardColor p-1 bg-[#fc3e3e] rounded-full">
-            15%
-          </p>
-        </div>
+        {data.percentage && (
+          <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-r-full top-2 p-1">
+            <p className="text-xs text-[#fc3e3e] mr-1">OFF</p>
+            <p className="text-sm text-CardColor p-1 bg-[#fc3e3e] rounded-full">
+              {data.offer}%
+            </p>
+          </div>
+        )}
+        {data.deliveryFree && (
+          <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-l-full top-2 p-1 right-0">
+            <TbTruckDelivery className="text-MainColor text-[25px] ml-1 mr-1"></TbTruckDelivery>
+            {/* <p className="text-xs text-[#fc3e3e] mr-1">OFF</p> */}
+            <p className="text-sm text-CardColor p-1 bg-MainColor rounded-full">
+              off
+            </p>
+          </div>
+        )}
       </div>
     </Link>
   );
 };
-export default ProductCart;
+export default ProductCartFlashSell;
