@@ -28,7 +28,8 @@ const ProductCartFlashSell = ({ data }) => {
 
   useEffect(() => {
     if (data.percentage) {
-      setNewPrice(calculatePercentage(oldPrice, data.offer));
+      const percentageValue= calculatePercentage(oldPrice, data.offer);
+      setNewPrice(oldPrice-percentageValue)
     } else {
       setNewPrice(oldPrice - data.offer);
     }
@@ -61,16 +62,16 @@ const ProductCartFlashSell = ({ data }) => {
           <div className="pl-2 pt-1 pb-1 flex justify-between items-center pr-2">
             <div>
               <div className="flex">
-                <p className={`relative mr-1 line-through text-SubTextColor`}>
+                <h3 className={`relative mr-1 line-through text-SubTextColor`}>
                   {oldPrice} ৳
-                </p>
-                <p
+                </h3>
+                <h3
                   className={`relative ${
                     hover ? "text-CardColor" : "text-[#f84545]"
                   } `}
                 >
                   {newPrice} ৳
-                </p>
+                </h3>
               </div>
               <Rating
                 initialRating={3.5}
