@@ -1,5 +1,5 @@
 import Slider from "react-slick/lib/slider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
 import useMediaQuery from "../hooks/useMediaQuery";
 import Rating from "react-rating";
@@ -17,6 +17,7 @@ const ProductShowSlider = ({flashSellData}) => {
   const [mainSlider, setMainSlider] = useState();
   const [currentSlide, setCurrentSlide] = useState(1);
   const isSm = useMediaQuery("(min-width: 640px)");
+ 
 
   const goNext = () => {
     mainSlider?.slickNext();
@@ -92,10 +93,7 @@ const ProductShowSlider = ({flashSellData}) => {
         {!isSm && (
           <div className="flex overflow-x-auto no-scrollbar gap-3 snap-x pt-5">
             {Categories?.map((data, i) => (
-              <ProductCartFlashSell
-              data={data}
-              key={i}
-            ></ProductCartFlashSell>
+              <Cart2 data={data} key={i} />
             ))}
           </div>
         )}
@@ -106,10 +104,30 @@ const ProductShowSlider = ({flashSellData}) => {
 
 export default ProductShowSlider;
 
-const Cart2 = ({ category }) => {
+const Cart2 = ({ data }) => {
+  const product = data.product;
+  const oldPrice = product.price;
+  //const router = useRouter();
+  // TODO
+  const url = "http://62.72.31.204:1300";
+
   const [hover, setHover] = useState(false);
   const [heartIconHover, setHeartIconHover] = useState(false);
   const [cartIconHover, setCartIconHover] = useState(false);
+  const [newPrice, setNewPrice] = useState(oldPrice);
+
+  function calculatePercentage(value, percentage) {
+    return (value * percentage) / 100;
+  }
+
+  useEffect(() => {
+    if (data.percentage) {
+      const percentageValue= calculatePercentage(oldPrice, data.offer);
+      setNewPrice(oldPrice-percentageValue)
+    } else {
+      setNewPrice(oldPrice - data.offer);
+    }
+  }, [data]);
   return (
     <Link to='/productDetails'
       onMouseEnter={() => setHover(true)}
@@ -117,45 +135,54 @@ const Cart2 = ({ category }) => {
       className="flex-shrink-0 w-[45%] snap-start cursor-pointer group aspect-[228/347]  rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor"
     >
       <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
-        <img src={category.image} className="object-fill" />
+        <img src={`${url}${product.thumbnail}`}
+            crossOrigin="anonymous" className="object-cover w-full h-full" />
       </div>
       {/* <span className="absolute inset-0 w-full h-full bg-primary/30" /> */}
       <div
         className={`absolute bottom-0 w-full ${
-          hover ? "bg-MainColor " : "bg-[#ffffff91]"
+          hover ? "bg-MainColor " : "bg-[#ffffffd7]"
         }`}
       >
         <div className="pl-2 pt-1 pb-1 flex justify-between items-center pr-2">
           <div>
             <div className="flex">
               <p className={`relative mr-1 line-through text-SubTextColor`}>
-                1200 ৳
+              {oldPrice} ৳
               </p>
               <p
                 className={`relative ${
                   hover ? "text-CardColor" : "text-[#f84545]"
                 } `}
               >
-                1000 ৳
+               {newPrice} ৳
               </p>
             </div>
             <Rating
               initialRating={3.5}
               readonly
               emptySymbol={
-                <AiOutlineStar className="text-BorderColor text-[14px]" />
-              }
-              fullSymbol={
-                <AiFillStar className="text-BorderColor text-[14px]" />
-              }
-            />
-            <p
-              className={`relative ${
-                hover ? "text-CardColor" : "text-TextColor"
-              } `}
-            >
-              {category.name}
-            </p>
+                <AiOutlineStar
+                    className={` text-[14px] ${
+                      hover ? "text-BorderColor" : "text-MainColor"
+                    }`}
+                  />
+                }
+                fullSymbol={
+                  <AiFillStar
+                    className={` text-[14px] ${
+                      hover ? "text-BorderColor" : "text-MainColorHover"
+                    }`}
+                  />
+                }
+              />
+              <p
+                className={`relative line-clamp-1 ${
+                  hover ? "text-CardColor line-clamp-none" : "text-TextColor"
+                } `}
+              >
+                {product.title}
+              </p>
           </div>
           <div className="flex flex-col">
             {/* <button
@@ -195,11 +222,23 @@ const Cart2 = ({ category }) => {
           </div>
         </div>
       </div>
-      <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-r-full top-2 p-1">
-          <p className="text-xs text-[#fc3e3e] mr-1">OFF</p>
-          <p className="text-xs text-CardColor p-1 bg-[#fc3e3e] rounded-full">15%</p>
-
-      </div>
+      {data.percentage && (
+          <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-r-full top-2 p-1">
+            <p className="text-xs text-[#fc3e3e] mr-1">OFF</p>
+            <p className="text-sm text-CardColor p-1 bg-[#fc3e3e] rounded-full">
+              {data.offer}%
+            </p>
+          </div>
+        )}
+        {data.deliveryFree && (
+          <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-l-full top-2 p-1 right-0">
+            <TbTruckDelivery className="text-MainColor text-[25px] ml-1 mr-1"></TbTruckDelivery>
+            {/* <p className="text-xs text-[#fc3e3e] mr-1">OFF</p> */}
+            <p className="text-sm text-CardColor p-1 bg-MainColor rounded-full">
+              off
+            </p>
+          </div>
+        )}
     </Link>
   );
 };
