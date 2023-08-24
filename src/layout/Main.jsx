@@ -5,7 +5,7 @@ import Header from "../pages/Shared/Header/Header";
 import Footer from "../pages/Shared/Footer/Footer";
 import Loading from "../components/Loading";
 import PopUpAdd from "../components/PopUpAdd";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchDivisions } from "../services/actions/divisionActions";
 import { fetchDistricts } from "../services/actions/districtAction";
 import { fetchUpazilas } from "../services/actions/upazilaAction";
@@ -48,7 +48,7 @@ const Main = () => {
   // isFlash sell available or not 
   useEffect(() => {
     dispatch(fetchFlashSell());
-  }, [dispatch]);
+  }, []);
 
   return (
     <div>

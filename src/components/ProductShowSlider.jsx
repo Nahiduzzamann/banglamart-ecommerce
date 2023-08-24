@@ -8,79 +8,11 @@ import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import { BsFillCartCheckFill, BsFillHeartFill } from "react-icons/bs";
 import ProductCart from "./ProductCart";
 import { Link } from "react-router-dom";
-const Categories = [
-  {
-    id: 1,
-    title: "Beautician",
-    href: "/",
-    image:
-      "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-  },
-  {
-    id: 2,
-    name: "It & Technology",
-    href: "/",
-    image:
-      "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-  },
-  {
-    id: 3,
-    name: "Lawyer",
-    href: "/",
-    image:
-      "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-  },
-  {
-    id: 4,
-    name: "Electrician",
-    href: "/",
-    image:
-      "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-  },
-  {
-    id: 5,
-    name: "Electrician",
-    href: "/",
-    image:
-      "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-  },
-  {
-    id: 6,
-    name: "Electrician",
-    href: "/",
-    image:
-      "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-  },
-  {
-    id: 7,
-    name: "Electrician",
-    href: "/",
-    image:
-      "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-  },
-  {
-    id: 8,
-    name: "Electrician",
-    href: "/",
-    image:
-      "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-  },
-  {
-    id: 9,
-    name: "Electrician",
-    href: "/",
-    image:
-      "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-  },
-  {
-    id: 10,
-    name: "Electrician",
-    href: "/",
-    image:
-      "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-  },
-];
-const ProductShowSlider = () => {
+import ProductCartFlashSell from "./ProductCartFlashSell";
+
+const ProductShowSlider = ({flashSellData}) => {
+  const Categories = flashSellData
+  console.log(Categories);
   const totalSlides = Categories?.length || 1;
   const [mainSlider, setMainSlider] = useState();
   const [currentSlide, setCurrentSlide] = useState(1);
@@ -146,9 +78,11 @@ const ProductShowSlider = () => {
                 ref={(slider1) => setMainSlider(slider1)}
                 {...sliderSettings}
               >
-                {Categories.map((product, i) => (
-                  // <Cart categorie={categorie} key={i} />
-                  <ProductCart product={product} key={i} ></ProductCart>
+                {Categories?.map((data, i) => (
+                  <ProductCartFlashSell
+                  data={data}
+                  key={i}
+                ></ProductCartFlashSell>
                 ))}
               </Slider>
             </div>
@@ -157,8 +91,11 @@ const ProductShowSlider = () => {
 
         {!isSm && (
           <div className="flex overflow-x-auto no-scrollbar gap-3 snap-x pt-5">
-            {Categories.map((category, i) => (
-              <Cart2 category={category} key={i} />
+            {Categories?.map((data, i) => (
+              <ProductCartFlashSell
+              data={data}
+              key={i}
+            ></ProductCartFlashSell>
             ))}
           </div>
         )}
