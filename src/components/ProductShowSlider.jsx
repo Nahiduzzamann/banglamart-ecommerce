@@ -12,7 +12,6 @@ import ProductCartFlashSell from "./ProductCartFlashSell";
 
 const ProductShowSlider = ({flashSellData}) => {
   const Categories = flashSellData
-  console.log(Categories);
   const totalSlides = Categories?.length || 1;
   const [mainSlider, setMainSlider] = useState();
   const [currentSlide, setCurrentSlide] = useState(1);

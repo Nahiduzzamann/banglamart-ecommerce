@@ -11,8 +11,8 @@ import Rating from "react-rating";
 import { Link } from "react-router-dom";
 
 const ProductCartFlashSell = ({ data }) => {
-  const product = data.product;
-  const oldPrice = product.price;
+  const product = data?.product;
+  const oldPrice = product?.price;
   //const router = useRouter();
   // TODO
   const url = "http://62.72.31.204:1300";
@@ -48,7 +48,7 @@ const ProductCartFlashSell = ({ data }) => {
         <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
           {/* TODO  */}
           <img
-            src={`${url}${product.thumbnail}`}
+            src={`${url}${product?.thumbnail}`}
             crossOrigin="anonymous"
             className="object-fill w-full h-full"
           />
@@ -96,7 +96,7 @@ const ProductCartFlashSell = ({ data }) => {
                   hover ? "text-CardColor line-clamp-none" : "text-TextColor"
                 } `}
               >
-                {product.title}
+                {product?.title}
               </p>
             </div>
             <div className="flex flex-col">
