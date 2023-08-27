@@ -12,7 +12,12 @@ const BestSellers = () => {
               View All Sellers
             </Link>
           </div>
-          <div className="flex flex-col items-center pb-4">
+          <div className="grid lg:grid-cols-3 grid-cols-2 gap-4 p-4">
+                <SellerShopCart/>
+                <SellerShopCart/>
+                <SellerShopCart/>
+                <SellerShopCart/>
+                <SellerShopCart/>
                 <SellerShopCart/>
                 <SellerShopCart/>
                 <SellerShopCart/>

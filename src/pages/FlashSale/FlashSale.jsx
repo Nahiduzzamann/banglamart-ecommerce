@@ -26,7 +26,6 @@ const FlashSalePage = () => {
   );
 
   const bannerURL = `${url}${flashSell.banner}`;
-  // console.log(bannerURL);
 
   //calculate time
 

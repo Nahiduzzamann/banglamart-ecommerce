@@ -22,7 +22,7 @@ const SellerShopCart = () => {
           />
           </div>
           <div className="mt-1 ">
-          <Link to='/' className="pl-3 pr-3 pt-1 pb-1 rounded-full text-CardColor bg-MainColor hover:bg-MainColorHover shadow-md">Visit Store</Link>
+          <Link to='/shop-page' className="pl-3 pr-3 pt-1 pb-1 rounded-full text-CardColor bg-MainColor hover:bg-MainColorHover shadow-md">Visit Store</Link>
           </div>
         </div>
       </div>

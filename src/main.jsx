@@ -34,6 +34,7 @@ import AllSeller from "./pages/AllSeller/AllSeller";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import FlashSalePage from "./pages/FlashSale/FlashSale";
 import BrandPage from "./pages/BrandPage/BrandPage";
+import ShopPage from "./pages/ShopPage/ShopPage";
 
 const router = createBrowserRouter([
   {
@@ -124,6 +125,10 @@ const router = createBrowserRouter([
       {
         path: "/brands",
         element: <BrandPage></BrandPage>,
+      },
+      {
+        path: "/shop-page",
+        element: <ShopPage></ShopPage>,
       },
     ],
   },
