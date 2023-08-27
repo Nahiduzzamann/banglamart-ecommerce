@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import ProductShowSlider from "../../../components/ProductShowSlider";
 import TimerFlashSell from "../../../components/TimerFlashSell";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchFlashSellData } from "../../../services/actions/flashSellDataAction";
 import EmptyContent from "../../../components/EmptyContent";
+import FlashSellProductShowSlider from "../../../components/FlashSellProductShowSlider";
 
 const FlashSale = () => {
   const [flashSellInformation, setFlashSellInformation] = useState([]);
@@ -85,7 +85,7 @@ const FlashSale = () => {
         {flashSellInformation.length <= 0 ? (
           <EmptyContent text="No Offer available"></EmptyContent>
         ) : (
-          <ProductShowSlider data={flashSellData}></ProductShowSlider>
+          <FlashSellProductShowSlider flashSellData={flashSellData}></FlashSellProductShowSlider>
         )}
       </div>
     </div>

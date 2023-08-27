@@ -10,7 +10,7 @@ import ProductCart from "./ProductCart";
 import { Link } from "react-router-dom";
 import ProductCartFlashSell from "./ProductCartFlashSell";
 
-const ProductShowSlider = ({flashSellData}) => {
+const FlashSellProductShowSlider = ({flashSellData}) => {
   const Categories = flashSellData
   const totalSlides = Categories?.length || 1;
   const [mainSlider, setMainSlider] = useState();
@@ -101,7 +101,7 @@ const ProductShowSlider = ({flashSellData}) => {
   );
 };
 
-export default ProductShowSlider;
+export default FlashSellProductShowSlider;
 
 const Cart2 = ({ data }) => {
   const product = data.product;
