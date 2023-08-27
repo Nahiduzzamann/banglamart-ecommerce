@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AiFillStar,
   AiOutlineHeart,
@@ -6,10 +6,13 @@ import {
   AiOutlineStar,
 } from "react-icons/ai";
 import { BsFillCartCheckFill, BsFillHeartFill } from "react-icons/bs";
+import { TbTruckDelivery } from "react-icons/tb";
 import Rating from "react-rating";
 import { Link } from "react-router-dom";
 
-const ProductCart = ({ product }) => {
+const ProductCart = ({ data }) => {
+  const product = data?.product;
+  const oldPrice = product?.price;
   // console.log(product);
   //const router = useRouter();
   // TODO
@@ -18,8 +21,23 @@ const ProductCart = ({ product }) => {
   const [hover, setHover] = useState(false);
   const [heartIconHover, setHeartIconHover] = useState(false);
   const [cartIconHover, setCartIconHover] = useState(false);
+  const [newPrice, setNewPrice] = useState(oldPrice);
+
+  function calculatePercentage(value, percentage) {
+    return (value * percentage) / 100;
+  }
+
+  useEffect(() => {
+    if (data.percentage) {
+      const percentageValue= calculatePercentage(oldPrice, data.offer);
+      setNewPrice(oldPrice-percentageValue)
+    } else {
+      setNewPrice(oldPrice - data.offer);
+    }
+  }, [data]);
+
   return (
-    <Link to='/productDetails'>
+    <Link to="/productDetails">
       <div
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
@@ -31,7 +49,7 @@ const ProductCart = ({ product }) => {
         <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
           {/* TODO  */}
           <img
-            src={`${url}${product.thumbnail}`}
+            src={`${url}${product?.thumbnail}`}
             crossOrigin="anonymous"
             className="object-fill w-full h-full"
           />
@@ -45,25 +63,33 @@ const ProductCart = ({ product }) => {
           <div className="pl-2 pt-1 pb-1 flex justify-between items-center pr-2">
             <div>
               <div className="flex">
-                <p className={`relative mr-1 line-through text-SubTextColor`}>
-                  1200 ৳
-                </p>
-                <p
+                <h3 className={`relative mr-1 line-through text-SubTextColor`}>
+                  {oldPrice} ৳
+                </h3>
+                <h3
                   className={`relative ${
                     hover ? "text-CardColor" : "text-[#f84545]"
                   } `}
                 >
-                  {product?.price} ৳
-                </p>
+                  {newPrice} ৳
+                </h3>
               </div>
               <Rating
                 initialRating={3.5}
                 readonly
                 emptySymbol={
-                  <AiOutlineStar className={` text-[14px] ${hover ? 'text-BorderColor':'text-MainColor'}`} />
+                  <AiOutlineStar
+                    className={` text-[14px] ${
+                      hover ? "text-BorderColor" : "text-MainColor"
+                    }`}
+                  />
                 }
                 fullSymbol={
-                  <AiFillStar className={` text-[14px] ${hover ? 'text-BorderColor':'text-MainColorHover'}`} />
+                  <AiFillStar
+                    className={` text-[14px] ${
+                      hover ? "text-BorderColor" : "text-MainColorHover"
+                    }`}
+                  />
                 }
               />
               <p
@@ -71,7 +97,7 @@ const ProductCart = ({ product }) => {
                   hover ? "text-CardColor line-clamp-none" : "text-TextColor"
                 } `}
               >
-                {product.title}
+                {product?.title}
               </p>
             </div>
             <div className="flex flex-col">
@@ -126,12 +152,23 @@ const ProductCart = ({ product }) => {
             </div>
           </div>
         </div>
-        <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-r-full top-2 p-1">
-          <p className="text-xs text-[#fc3e3e] mr-1">OFF</p>
-          <p className="text-sm text-CardColor p-1 bg-[#fc3e3e] rounded-full">
-            15%
-          </p>
-        </div>
+        {data?.percentage && (
+          <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-r-full top-2 p-1">
+            <p className="text-xs text-[#fc3e3e] mr-1">OFF</p>
+            <p className="text-sm text-CardColor p-1 bg-[#fc3e3e] rounded-full">
+              {data?.offer}%
+            </p>
+          </div>
+        )}
+        {data?.deliveryFree && (
+          <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-l-full top-2 p-1 right-0">
+            <TbTruckDelivery className="text-MainColor text-[25px] ml-1 mr-1"></TbTruckDelivery>
+            {/* <p className="text-xs text-[#fc3e3e] mr-1">OFF</p> */}
+            <p className="text-sm text-CardColor p-1 bg-MainColor rounded-full">
+              off
+            </p>
+          </div>
+        )}
       </div>
     </Link>
   );

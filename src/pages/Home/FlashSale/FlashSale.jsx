@@ -85,7 +85,7 @@ const FlashSale = () => {
         {flashSellInformation.length <= 0 ? (
           <EmptyContent text="No Offer available"></EmptyContent>
         ) : (
-          <ProductShowSlider flashSellData={flashSellData}></ProductShowSlider>
+          <ProductShowSlider data={flashSellData}></ProductShowSlider>
         )}
       </div>
     </div>

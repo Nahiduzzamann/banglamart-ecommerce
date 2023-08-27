@@ -21,10 +21,6 @@ const BestSellers = () => {
                 <SellerShopCart/>
                 <SellerShopCart/>
                 <SellerShopCart/>
-                <SellerShopCart/>
-                <SellerShopCart/>
-                <SellerShopCart/>
-                <SellerShopCart/>
           </div>
         </div>
       );

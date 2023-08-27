@@ -10,8 +10,8 @@ import ProductCart from "./ProductCart";
 import { Link } from "react-router-dom";
 import ProductCartFlashSell from "./ProductCartFlashSell";
 
-const ProductShowSlider = ({flashSellData}) => {
-  const Categories = flashSellData
+const ProductShowSlider = ({data}) => {
+  const Categories = data
   const totalSlides = Categories?.length || 1;
   const [mainSlider, setMainSlider] = useState();
   const [currentSlide, setCurrentSlide] = useState(1);
