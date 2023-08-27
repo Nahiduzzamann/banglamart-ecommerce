@@ -1,8 +1,9 @@
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import Rating from "react-rating";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const SellerShopCart = ({data}) => {
+  const location = useLocation()
   return (
     <div className="mt-4 shadow-md shadow-BorderColor">
       <div className=" flex rounded-md bg-CardColor">
@@ -27,13 +28,15 @@ const SellerShopCart = ({data}) => {
               }
             />
           </div>
-
-          <Link
-            to="/shop-page"
-            className="pl-3 pr-3 pt-1 pb-1 rounded-full text-CardColor bg-MainColor hover:bg-MainColorHover shadow-md text-center"
-          >
-            Visit Store
-          </Link>
+          {
+            location.pathname === '/shop-page'?(<p className="text-SubTextColor">{data.address}</p>):(<Link
+              to="/shop-page"
+              className="pl-3 pr-3 pt-1 pb-1 rounded-full text-CardColor bg-MainColor hover:bg-MainColorHover shadow-md text-center"
+            >
+              Visit Store
+            </Link>)
+          }
+          
         </div>
       </div>
     </div>
