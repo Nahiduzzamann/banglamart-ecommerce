@@ -8,10 +8,10 @@ import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import { BsFillCartCheckFill, BsFillHeartFill } from "react-icons/bs";
 import ProductCart from "./ProductCart";
 import { Link } from "react-router-dom";
-import ProductCartFlashSell from "./ProductCartFlashSell";
+import { TbTruckDelivery } from "react-icons/tb";
 
-const ProductShowSlider = ({flashSellData}) => {
-  const Categories = flashSellData
+const ProductShowSlider = ({data}) => {
+  const Categories = data
   const totalSlides = Categories?.length || 1;
   const [mainSlider, setMainSlider] = useState();
   const [currentSlide, setCurrentSlide] = useState(1);
@@ -79,10 +79,10 @@ const ProductShowSlider = ({flashSellData}) => {
                 {...sliderSettings}
               >
                 {Categories?.map((data, i) => (
-                  <ProductCartFlashSell
+                  <ProductCart
                   data={data}
                   key={i}
-                ></ProductCartFlashSell>
+                ></ProductCart>
                 ))}
               </Slider>
             </div>
@@ -104,11 +104,11 @@ const ProductShowSlider = ({flashSellData}) => {
 export default ProductShowSlider;
 
 const Cart2 = ({ data }) => {
-  const product = data.product;
-  const oldPrice = product.price;
+  const product = data;
+  const oldPrice = product?.oldPrice;
   //const router = useRouter();
   // TODO
-  const url = "http://62.72.31.204:1300";
+  // const url = "http://62.72.31.204:1300";
 
   const [hover, setHover] = useState(false);
   const [heartIconHover, setHeartIconHover] = useState(false);
@@ -120,11 +120,11 @@ const Cart2 = ({ data }) => {
   }
 
   useEffect(() => {
-    if (data.percentage) {
-      const percentageValue= calculatePercentage(oldPrice, data.offer);
+    if (product.percentage) {
+      const percentageValue= calculatePercentage(oldPrice, product.offer);
       setNewPrice(oldPrice-percentageValue)
     } else {
-      setNewPrice(oldPrice - data.offer);
+      setNewPrice(oldPrice - product.offer);
     }
   }, [data]);
   return (
@@ -134,7 +134,7 @@ const Cart2 = ({ data }) => {
       className="flex-shrink-0 w-[45%] snap-start cursor-pointer group aspect-[228/347]  rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor"
     >
       <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
-        <img src={`${url}${product.thumbnail}`}
+        <img src={product.thumbnail}
             crossOrigin="anonymous" className="object-cover w-full h-full" />
       </div>
       {/* <span className="absolute inset-0 w-full h-full bg-primary/30" /> */}
@@ -221,15 +221,15 @@ const Cart2 = ({ data }) => {
           </div>
         </div>
       </div>
-      {data.percentage && (
+      {product.percentage && (
           <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-r-full top-2 p-1">
             <p className="text-xs text-[#fc3e3e] mr-1">OFF</p>
             <p className="text-sm text-CardColor p-1 bg-[#fc3e3e] rounded-full">
-              {data.offer}%
+              {product.offer}%
             </p>
           </div>
         )}
-        {data.deliveryFree && (
+        {product.deliveryFree && (
           <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-l-full top-2 p-1 right-0">
             <TbTruckDelivery className="text-MainColor text-[25px] ml-1 mr-1"></TbTruckDelivery>
             {/* <p className="text-xs text-[#fc3e3e] mr-1">OFF</p> */}

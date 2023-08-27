@@ -2,22 +2,22 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import Rating from "react-rating";
 import { Link } from "react-router-dom";
 
-const SellerShopCart = () => {
+const SellerShopCart = ({data}) => {
   return (
     <div className="mt-4 shadow-md shadow-BorderColor">
       <div className=" flex rounded-md bg-CardColor">
         <div className="p-4 border-r border-r-BorderColor">
           <img
             className="rounded-full h-20 w-20"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Shop.svg/1200px-Shop.svg.png"
+            src={data.thumbnail}
             alt=""
           />
         </div>
         <div className="flex flex-col p-2 w-[220px] sm:w-[270px] md:w-[280px] lg:w-[300px]">
-          <h1>Shop Name</h1>
+          <h1 className="text-SubTextColor">{data.shopName}</h1>
           <div className="mt-1">
             <Rating
-              initialRating={3.5}
+              initialRating={data.ratings}
               readonly
               emptySymbol={
                 <AiOutlineStar className="text-BorderColor text-[14px]" />
