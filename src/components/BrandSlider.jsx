@@ -118,8 +118,8 @@ const BrandSlider = () => {
                 ref={(slider1) => setMainSlider(slider1)}
                 {...sliderSettings}
               >
-                {Categories.map((categorie, i) => (
-                  <BrandCart categorie={categorie} key={i} />
+                {Categories.map((data, i) => (
+                  <BrandCart data={data} key={i} />
                 ))}
               </Slider>
             </div>

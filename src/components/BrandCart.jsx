@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const BrandCart = ({ categorie }) => {
+const BrandCart = ({ data }) => {
   const [hover, setHover] = useState(false);
 
   return (
@@ -8,13 +8,13 @@ const BrandCart = ({ categorie }) => {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onClick={() => {
-        //router.push(categorie.href);
+        //router.push(data.href);
       }}
       className="w-[95%] bg-CardColor cursor-pointer group aspect-[25/20] rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor hover:shadow-md"
     >
       <div className="inset-0 absolute w-full aspect-[20/14] group-hover:scale-110 ease-in-out duration-300">
         <img
-          src={categorie.image}
+          src={data.image}
           className="object-fill w-full aspect-[20/14]"
         />
       </div>
@@ -29,7 +29,7 @@ const BrandCart = ({ categorie }) => {
               hover ? "text-CardColor" : "text-TextColor"
             } `}
           >
-            {categorie.name}
+            {data.name}
           </p>
         </div>
       </div>
