@@ -15,7 +15,7 @@ import { fetchFlashSell } from "../services/actions/flashSellCheckAction";
 
 const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [adds, setAdds] = useState(false);
+  const [adds, setAdds] = useState(true);
 // loading animation 
   useEffect(() => {
     // Simulate a delay to demonstrate loading animation

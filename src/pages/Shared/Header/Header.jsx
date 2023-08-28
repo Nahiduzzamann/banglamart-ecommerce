@@ -61,15 +61,15 @@ const Header = () => {
         className={`${position>30&& "fixed top-0 z-50 w-full shadow-md"}`}
       >
         {/* number Section  */}
-        <div className="bg-CardColor border-b-BorderColor hidden border-b-[1px] p-1 md:block">
-          <div className="container mx-auto">
+        <div className=" bg-CardColor border-b-BorderColor hidden border-b-[1px]  md:block">
+          <div className="container mx-auto p-2">
             <div className="flex justify-between">
-              <div className="">
+              <div className="-ml-1">
                 <LanguageToggle></LanguageToggle>
               </div>
               <div className="flex items-center">
                 <AiFillPhone className=" text-SubTextColor" />
-                <p className="text-SubTextColor mr-1 lg:mr-0">
+                <p className="text-SubTextColor lg:mr-0">
                   {t("header.number")}
                 </p>
                 {/* <Link to="/login">
@@ -88,10 +88,10 @@ const Header = () => {
         </div>
         {/* search logo section  */}
         <div className="bg-CardColor border-b-BorderColor border-b-[1px]">
-          <div className="container mx-auto">
-            <div className="flex items-center justify-between p-1">
-              <div className="flex h-16 w-24 items-center justify-center rounded-full lg:h-20 lg:w-20 xl:h-24 xl:w-24">
-                <Link to="/">
+          <div className="container mx-auto p-2">
+            <div className="flex items-center justify-between ">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full lg:h-20 lg:w-20 xl:h-24 xl:w-24">
+                <Link className="bg-[#000]" to="/">
                   <img
                     className="h-16 w-16 lg:h-20 lg:w-20 xl:h-24 xl:w-24 "
                     src="https://i.ibb.co/9t1wQGK/banglamart-prev-ui.png"
@@ -166,9 +166,9 @@ const Header = () => {
                 ) : (
                   <Link
                     to="/login"
-                    className="hover:border-BorderColor border-CardColor w-[83px] rounded-md border p-1 hover:border"
+                    className="hover:border-BorderColor border-CardColor w-[75px] rounded-md border  hover:border "
                   >
-                    <div className="flex items-center">
+                    <div className="flex items-center justify-between">
                       <AiOutlineUser className="text-SubTextColor text-[30px]" />
                       <p className=" text-SubTextColor">Sign Up</p>
                     </div>
@@ -179,45 +179,45 @@ const Header = () => {
           </div>
         </div>
         {/* navigation section  */}
-        <div className="bg-CardColor p-1 px-5">
-          <div className="container mx-auto">
+        <div className="bg-CardColor ">
+          <div className="container mx-auto p-2">
             {/* Big screen  */}
             <div className=" hidden md:block">
               <div className="flex justify-between">
                 <NavLink
-                  className="text-SubTextColor hover:text-TextColor"
+                  className="text-SubTextColor hover:underline hover:text-TextColor"
                   to="/"
                 >
                   Home
                 </NavLink>
                 <NavLink
-                  className="text-SubTextColor hover:text-TextColor"
+                  className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/flash-sell"
                 >
                   Flash Sale
                 </NavLink>
                 <NavLink
-                  className="text-SubTextColor hover:text-TextColor"
+                  className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/all-seller"
                 >
                   All Seller
                 </NavLink>
-                {/* <Link className="text-SubTextColor hover:text-TextColor" to="/">
+                {/* <Link className="hover:underline text-SubTextColor hover:text-TextColor" to="/">
                   Affiliating
                 </Link> */}
                 <NavLink
-                  className="text-SubTextColor hover:text-TextColor"
+                  className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/category"
                 >
                   Categories
                 </NavLink>
                 <NavLink
-                  className="text-SubTextColor hover:text-TextColor"
+                  className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/brands"
                 >
                   Brands
                 </NavLink>
-                <Link className="text-SubTextColor hover:text-TextColor" to="/">
+                <Link className="hover:underline text-SubTextColor hover:text-TextColor" to="/">
                   Track Order
                 </Link>
               </div>
