@@ -16,13 +16,13 @@ const BrandCart = ({ data }) => {
         </div>
         <div
           className={`absolute bottom-0 w-full ${
-            hover ? "bg-MainColor" : "bg-[#ffffffd7]"
+            hover ? "bg-MainColor" : "bg-[#fffffff8]"
           }`}
         >
           <div className="">
             <p
               className={`p-1 text-center ${
-                hover ? "text-CardColor" : "text-TextColor"
+                hover ? "text-CardColor" : "text-SubTextColor"
               } `}
             >
               {data.name}
