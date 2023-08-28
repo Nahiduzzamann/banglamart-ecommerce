@@ -185,39 +185,39 @@ const Header = () => {
             <div className=" hidden md:block">
               <div className="flex justify-between">
                 <NavLink
-                  className="text-SubTextColor hover:text-TextColor"
+                  className="text-SubTextColor hover:underline hover:text-TextColor"
                   to="/"
                 >
                   Home
                 </NavLink>
                 <NavLink
-                  className="text-SubTextColor hover:text-TextColor"
+                  className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/flash-sell"
                 >
                   Flash Sale
                 </NavLink>
                 <NavLink
-                  className="text-SubTextColor hover:text-TextColor"
+                  className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/all-seller"
                 >
                   All Seller
                 </NavLink>
-                {/* <Link className="text-SubTextColor hover:text-TextColor" to="/">
+                {/* <Link className="hover:underline text-SubTextColor hover:text-TextColor" to="/">
                   Affiliating
                 </Link> */}
                 <NavLink
-                  className="text-SubTextColor hover:text-TextColor"
+                  className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/category"
                 >
                   Categories
                 </NavLink>
                 <NavLink
-                  className="text-SubTextColor hover:text-TextColor"
+                  className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/brands"
                 >
                   Brands
                 </NavLink>
-                <Link className="text-SubTextColor hover:text-TextColor" to="/">
+                <Link className="hover:underline text-SubTextColor hover:text-TextColor" to="/">
                   Track Order
                 </Link>
               </div>
