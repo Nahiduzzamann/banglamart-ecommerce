@@ -58,9 +58,7 @@ const FlashSale = () => {
       clearInterval(interval);
     };
   }, []);
-  if(!flashSellData){
-    return <div>Loading...</div>
-  }
+  
   return (
     <div
       className={`${  
@@ -72,8 +70,9 @@ const FlashSale = () => {
           <h1 className="">Flash Sale</h1>
         </div>
         <div className={`${flashSellData?.length > 10 || "mr-4"}`}>
-          <TimerFlashSell flashSaleData={flashSaleData}></TimerFlashSell>
+          {flashSaleData&&flashSaleData.endAt&&(<TimerFlashSell flashSaleData={flashSaleData}></TimerFlashSell>)}
         </div>
+      
        
         {flashSellData?.length > 10 && (
           <Link
@@ -85,7 +84,7 @@ const FlashSale = () => {
         )}
       </div>
       <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
-        {flashSellInformation.length <= 0 ? (
+        {flashSellInformation?.length <= 0 ? (
           <EmptyContent text="No Offer available"></EmptyContent>
         ) : (
           <FlashSellProductShowSlider flashSellData={flashSellData}></FlashSellProductShowSlider>
