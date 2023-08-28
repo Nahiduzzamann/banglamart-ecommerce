@@ -58,9 +58,12 @@ const FlashSale = () => {
       clearInterval(interval);
     };
   }, []);
+  if(!flashSellData){
+    return <div>Loading...</div>
+  }
   return (
     <div
-      className={`${
+      className={`${  
         remainingTime <= 0 && "hidden"
       } mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg`}
     >
@@ -71,6 +74,7 @@ const FlashSale = () => {
         <div className={`${flashSellData?.length > 10 || "mr-4"}`}>
           <TimerFlashSell flashSaleData={flashSaleData}></TimerFlashSell>
         </div>
+       
         {flashSellData?.length > 10 && (
           <Link
             to="flash-sell"

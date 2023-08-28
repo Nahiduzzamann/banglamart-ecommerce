@@ -17,7 +17,7 @@ const Header = () => {
   const user = false;
   const { t } = useTranslation();
   const [hide, setHide] = useState(false);
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const [position, setPosition] = useState(0);
   const handleCloseAdd = () => {
     setHide(true);
@@ -50,11 +50,15 @@ const Header = () => {
       </div>
       <motion.div
         transition={{ duration: .5}}
+        initial={{
+          opacity: 1,
+        }}
         animate={{
           //height:140
           opacity: show? 1 : 0,
         }}
-        className={`${position>20&&show? "fixed top-0 z-50 w-full shadow-md":""}`}
+        
+        className={`${position>30&& "fixed top-0 z-50 w-full shadow-md"}`}
       >
         {/* number Section  */}
         <div className="bg-CardColor border-b-BorderColor hidden border-b-[1px] p-1 md:block">
@@ -175,7 +179,7 @@ const Header = () => {
           </div>
         </div>
         {/* navigation section  */}
-        <div className="bg-CardColor p-1">
+        <div className="bg-CardColor p-1 px-5">
           <div className="container mx-auto">
             {/* Big screen  */}
             <div className=" hidden md:block">
