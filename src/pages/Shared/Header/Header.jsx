@@ -90,7 +90,7 @@ const Header = () => {
         <div className="bg-CardColor border-b-BorderColor border-b-[1px]">
           <div className="container mx-auto p-2">
             <div className="flex items-center justify-between ">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full lg:h-20 lg:w-20 xl:h-24 xl:w-24">
+              <div style={{width:64, height:64}} className="flex h-16 w-16 items-center justify-center rounded-full lg:h-20 lg:w-20 xl:h-24 xl:w-24">
                 <Link className="bg-[#000]" to="/">
                   <img
                     className="h-16 w-16 lg:h-20 lg:w-20 xl:h-24 xl:w-24 "
