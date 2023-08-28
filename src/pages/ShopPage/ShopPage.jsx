@@ -113,7 +113,7 @@ const ShopPage = () => {
   };
 
   return (
-    <div className="container mx-auto bg-CardColor lg:mt-4">
+    <div className="container mx-auto bg-CardColor lg:mt-4 mt-2">
       <div className="flex justify-center border-b-[1px] border-b-BorderColor p-4">
         <SellerShopCart data={data}></SellerShopCart>
       </div>
