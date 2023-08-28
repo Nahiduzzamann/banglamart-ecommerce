@@ -35,11 +35,17 @@ import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import FlashSalePage from "./pages/FlashSale/FlashSale";
 import BrandPage from "./pages/BrandPage/BrandPage";
 import ShopPage from "./pages/ShopPage/ShopPage";
+import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main></Main>,
+    element: (
+      <>
+        <ScrollToTopOnRouteChange />
+        <Main />
+      </>
+    ),
     errorElement: <ErrorPage />,
     children: [
       {

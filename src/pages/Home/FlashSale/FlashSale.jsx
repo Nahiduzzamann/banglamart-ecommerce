@@ -58,7 +58,6 @@ const FlashSale = () => {
       clearInterval(interval);
     };
   }, []);
-
   return (
     <div
       className={`${

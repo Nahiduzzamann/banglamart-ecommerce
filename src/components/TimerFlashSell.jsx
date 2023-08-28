@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 
 const TimerFlashSell = ({ flashSaleData }) => {
+
   const endTimestamp = new Date(flashSaleData?.endAt).getTime(); // Convert endAt to Unix timestamp
+  
   const [remainingTime, setRemainingTime] = useState(
     Math.max(0, Math.floor((endTimestamp - new Date().getTime()) / 1000))
   );

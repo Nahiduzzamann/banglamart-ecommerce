@@ -6,8 +6,8 @@ const SellerShopCart = ({ data }) => {
   const location = useLocation();
   return (
     <div className="mt-4 shadow-md shadow-BorderColor">
-      <div className=" flex rounded-md bg-CardColor">
-        <div className="p-4 border-r border-r-BorderColor">
+      <div className=" flex items-center rounded-md bg-CardColor">
+        <div className="ml-4 rounded-full h-20 w-20 border-r border-r-BorderColor">
           <img className="rounded-full h-20 w-20" src={data.thumbnail} alt="" />
         </div>
         <div className="flex flex-col p-2 w-[220px] sm:w-[270px] md:w-[280px] lg:w-[300px]">
