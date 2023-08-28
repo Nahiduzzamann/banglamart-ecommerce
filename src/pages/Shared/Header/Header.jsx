@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   AiOutlineClose,
   AiFillPhone,
@@ -11,24 +11,36 @@ import LanguageToggle from "../../../components/LanguageToggle";
 import { useTranslation } from "react-i18next";
 import { Link, NavLink } from "react-router-dom";
 import Burger from "./Nav/Burger";
+import { motion } from "framer-motion";
 
 const Header = () => {
   const user = false;
   const { t } = useTranslation();
   const [hide, setHide] = useState(false);
+  const [show, setShow] = useState(false);
+  const [position, setPosition] = useState(0);
   const handleCloseAdd = () => {
     setHide(true);
   };
+  useEffect(() => {
+    window.onscroll = function (e) {
+      // print "false" if direction is down and "true" if up
+      setShow(this.oldScroll > this.scrollY );
+      this.oldScroll = this.scrollY;
+      setPosition(this.scrollY)
+      //console.log(this.scrollY);
+    };
+  }, []);
 
   return (
     <div className="shadow-lg ">
       {/* Add Section  */}
       <div
-        className={`relative h-[35px] flex justify-end items-center ${
+        className={`relative flex h-[35px] items-center justify-end ${
           hide && "hidden"
         }`}
       >
-        <button className="absolute text-2xl mr-4" onClick={handleCloseAdd}>
+        <button className="absolute mr-4 text-2xl" onClick={handleCloseAdd}>
           <AiOutlineClose />
         </button>
         <img
@@ -36,9 +48,16 @@ const Header = () => {
           src="https://www.pngkit.com/png/full/282-2825717_special-offer-banner-blue-special-offer-banner.png"
         ></img>
       </div>
-      <div className="">
+      <motion.div
+        transition={{ duration: .5}}
+        animate={{
+          //height:140
+          opacity: show? 1 : 0,
+        }}
+        className={`${position>20&&show? "fixed top-0 z-50 w-full shadow-md":""}`}
+      >
         {/* number Section  */}
-        <div className="bg-CardColor border-b-[1px] border-b-BorderColor p-1 hidden md:block">
+        <div className="bg-CardColor border-b-BorderColor hidden border-b-[1px] p-1 md:block">
           <div className="container mx-auto">
             <div className="flex justify-between">
               <div className="">
@@ -46,7 +65,7 @@ const Header = () => {
               </div>
               <div className="flex items-center">
                 <AiFillPhone className=" text-SubTextColor" />
-                <p className="mr-1 lg:mr-0 text-SubTextColor">
+                <p className="text-SubTextColor mr-1 lg:mr-0">
                   {t("header.number")}
                 </p>
                 {/* <Link to="/login">
@@ -64,10 +83,10 @@ const Header = () => {
           </div>
         </div>
         {/* search logo section  */}
-        <div className="bg-CardColor border-b-[1px] border-b-BorderColor">
+        <div className="bg-CardColor border-b-BorderColor border-b-[1px]">
           <div className="container mx-auto">
-            <div className="flex justify-between items-center p-1">
-              <div className="rounded-full flex items-center justify-center h-16 w-24 lg:h-20 lg:w-20 xl:h-24 xl:w-24">
+            <div className="flex items-center justify-between p-1">
+              <div className="flex h-16 w-24 items-center justify-center rounded-full lg:h-20 lg:w-20 xl:h-24 xl:w-24">
                 <Link to="/">
                   <img
                     className="h-16 w-16 lg:h-20 lg:w-20 xl:h-24 xl:w-24 "
@@ -77,14 +96,16 @@ const Header = () => {
                 </Link>
               </div>
               {/* search  */}
-              <div className="relative xl:w-[600px] lg:w-[500px] md:w-[400px] w-full mr-2 md:mr-0 ml-2 md:ml-0 rounded-full shadow-sm shadow-[#b6b6b6]">
+              <div className="relative mr-2 ml-2 w-full rounded-full shadow-sm shadow-[#b6b6b6] md:mr-0 md:ml-0 md:w-[400px] lg:w-[500px] xl:w-[600px]">
                 <input
-                  className="w-full pl-4 pr-4 py-2 rounded-full focus:outline-none focus:border-MainColor"
+                  className="focus:border-MainColor w-full rounded-full py-2 pl-4 pr-4 focus:outline-none"
                   type="text"
                   placeholder="Search..."
                 />
-                <div className="absolute inset-y-0 right-0 pl-3 pr-3 flex items-center justify-center bg-MainColor rounded-e-lg hover:bg-MainColor rounded-r-full">
-                  <button className=""><AiOutlineSearch className="text-CardColor text-[25px]  hover:text-[27px]" /></button>
+                <div className="bg-MainColor hover:bg-MainColor absolute inset-y-0 right-0 flex items-center justify-center rounded-r-full pl-3 pr-3 rounded-e-lg">
+                  <button className="">
+                    <AiOutlineSearch className="text-CardColor text-[25px]  hover:text-[27px]" />
+                  </button>
                 </div>
               </div>
               {/* <button className="flex items-center ml-5 relative hover:border hover:border-BorderColor p-1 border border-CardColor rounded-md">
@@ -99,11 +120,11 @@ const Header = () => {
               <div className="flex items-center">
                 <Link
                   to="/cart"
-                  className="flex items-center ml-2 relative hover:border hover:border-BorderColor p-1 border border-CardColor rounded-md"
+                  className="hover:border-BorderColor border-CardColor relative ml-2 flex items-center rounded-md border p-1 hover:border"
                 >
-                  <AiOutlineShoppingCart className="text-[30px] text-SubTextColor" />
+                  <AiOutlineShoppingCart className="text-SubTextColor text-[30px]" />
                   <div>
-                    <div className="absolute flex justify-center right-[45px] -top-2 text-[10px] bg-MainColor text-CardColor rounded-full h-5 w-5 items-center">
+                    <div className="bg-MainColor text-CardColor absolute right-[45px] -top-2 flex h-5 w-5 items-center justify-center rounded-full text-[10px]">
                       10
                     </div>
                     <p className=" text-SubTextColor">Cart</p>
@@ -125,7 +146,7 @@ const Header = () => {
                     </label>
                     <ul
                       tabIndex={0}
-                      className="mt-3 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 "
+                      className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow "
                     >
                       <li>
                         <Link>Profile</Link>
@@ -141,10 +162,10 @@ const Header = () => {
                 ) : (
                   <Link
                     to="/login"
-                    className="hover:border hover:border-BorderColor p-1 border border-CardColor rounded-md w-[83px]"
+                    className="hover:border-BorderColor border-CardColor w-[83px] rounded-md border p-1 hover:border"
                   >
                     <div className="flex items-center">
-                      <AiOutlineUser className="text-[30px] text-SubTextColor" />
+                      <AiOutlineUser className="text-SubTextColor text-[30px]" />
                       <p className=" text-SubTextColor">Sign Up</p>
                     </div>
                   </Link>
@@ -159,13 +180,22 @@ const Header = () => {
             {/* Big screen  */}
             <div className=" hidden md:block">
               <div className="flex justify-between">
-                <NavLink className="text-SubTextColor hover:text-TextColor" to="/">
+                <NavLink
+                  className="text-SubTextColor hover:text-TextColor"
+                  to="/"
+                >
                   Home
                 </NavLink>
-                <NavLink className="text-SubTextColor hover:text-TextColor" to="/flash-sell">
+                <NavLink
+                  className="text-SubTextColor hover:text-TextColor"
+                  to="/flash-sell"
+                >
                   Flash Sale
                 </NavLink>
-                <NavLink className="text-SubTextColor hover:text-TextColor" to="/all-seller">
+                <NavLink
+                  className="text-SubTextColor hover:text-TextColor"
+                  to="/all-seller"
+                >
                   All Seller
                 </NavLink>
                 {/* <Link className="text-SubTextColor hover:text-TextColor" to="/">
@@ -177,23 +207,25 @@ const Header = () => {
                 >
                   Categories
                 </NavLink>
-                <NavLink className="text-SubTextColor hover:text-TextColor" to="/brands">
+                <NavLink
+                  className="text-SubTextColor hover:text-TextColor"
+                  to="/brands"
+                >
                   Brands
                 </NavLink>
                 <Link className="text-SubTextColor hover:text-TextColor" to="/">
                   Track Order
                 </Link>
-               
               </div>
             </div>
             {/* Small screen  */}
-            <div className="relative md:hidden p-1 flex justify-between items-center">
+            <div className="relative flex items-center justify-between p-1 md:hidden">
               <Burger></Burger>
               <LanguageToggle></LanguageToggle>
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

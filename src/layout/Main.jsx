@@ -49,6 +49,7 @@ const Main = () => {
   useEffect(() => {
     dispatch(fetchFlashSell());
   }, []);
+  
 
   return (
     <div>
