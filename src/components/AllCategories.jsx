@@ -28,7 +28,7 @@ const AllCategory = () => {
       <div className="bg-MainColor p-3 rounded-lg">
         <h2 className="text-CardColor">All Categories</h2>
       </div>
-      <div className="bg-CardColor p-3 lg:max-h-[365px] xl:max-h-[390px] 2xl:max-h-[415px] overflow-y-auto">
+      <div className="bg-CardColor p-3 lg:min-h-[364px] xl:min-h-[390px] 2xl:min-h-[414px] overflow-y-auto">
         {allCategoriesData ? (
           allCategoriesData?.map((category) => {
             // console.log(category);
