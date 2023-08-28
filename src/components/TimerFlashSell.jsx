@@ -26,25 +26,25 @@ const TimerFlashSell = ({ flashSaleData }) => {
 
         <h1 className="text-CardColor" style={{ "--value": remainingTime / (24 * 60 * 60) }}></h1>
         </span>
-        <p>days</p>
+        <p className="text-CardColor">days</p>
       </div>
       <div className="flex flex-col justify-center items-center p-1 lg:p-3 bg-MainColor rounded-box text-neutral-content">
         <span className="countdown font-mono text-sm lg:text-2xl">
           <h1  className="text-CardColor"  style={{ "--value": (remainingTime / 3600) % 24 }}></h1>
         </span>
-        <p>hours</p>
+        <p className="text-CardColor">hours</p>
       </div>
       <div className="flex flex-col justify-center items-center p-1 lg:p-3 bg-MainColor rounded-box text-neutral-content">
         <span className="countdown font-mono text-sm lg:text-2xl">
           <h1 className="text-CardColor"  style={{ "--value": (remainingTime / 60) % 60 }}></h1>
         </span>
-        <p>min</p>
+        <p className="text-CardColor">min</p>
       </div>
       <div className="flex flex-col justify-center items-center p-1 lg:p-3 bg-MainColor rounded-box text-neutral-content">
         <span className="countdown font-mono text-sm lg:text-2xl">
           <h1  className="text-CardColor"  style={{ "--value": remainingTime % 60 }}></h1>
         </span>
-        <p>sec</p>
+        <p className="text-CardColor">sec</p>
       </div>
     </div>
   );
