@@ -1,7 +1,11 @@
+import { Helmet } from "react-helmet";
 
 const Faq = () => {
     return (
         <div className="bg-gray-100 min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+            <Helmet>
+        <title>FAQ | Banglamart E-commerce</title>
+      </Helmet>
             <div className="max-w-3xl mx-auto">
                 <h1 className="text-3xl font-bold mb-8">Frequently Asked Questions</h1>
 
