@@ -400,6 +400,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import {
   AiOutlineGoogle,
 } from "react-icons/ai";
+import { Helmet } from "react-helmet";
 
 const SignUp = () => {
   const { signInWithGoogle } = useContext(AuthContext);
@@ -482,6 +483,9 @@ const SignUp = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen">
+      <Helmet>
+        <title>Sign Up | Banglamart E-commerce</title>
+      </Helmet>
       <div className="w-full max-w-md p-6 bg-BackgroundColor rounded-md shadow-lg m-4 ld:m-0">
         <h2 className="text-2xl font-semibold text-center mb-6">SignUp</h2>
         {errorMessage && (

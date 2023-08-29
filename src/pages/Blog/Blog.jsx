@@ -1,7 +1,11 @@
+import { Helmet } from "react-helmet";
 
 const Blog = () => {
     return (
         <div className="container mx-auto px-4">
+            <Helmet>
+        <title>Blog | Banglamart E-commerce</title>
+      </Helmet>
             <h1 className="text-4xl pt-8 font-bold text-center">Blog</h1>
 
             <section className="my-4">

@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useSelector } from "react-redux";
+import { Helmet } from "react-helmet";
 
 const SellerForm = () => {
   const { createUser } = useContext(AuthContext);
@@ -164,6 +165,9 @@ const SellerForm = () => {
   };
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <Helmet>
+        <title>Seller Form | Banglamart E-commerce</title>
+      </Helmet>
       <div className="w-full max-w-xl p-6 bg-white rounded-md shadow-md">
         <h2 className="text-2xl font-semibold text-center mb-6">
           Be A Seller

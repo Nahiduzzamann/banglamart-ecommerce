@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineGoogle } from "react-icons/ai";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const { signIn, signInWithGoogle } = useContext(AuthContext);
@@ -50,6 +51,9 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen">
+      <Helmet>
+        <title>Login | Banglamart E-commerce</title>
+      </Helmet>
       <div className="w-full max-w-md p-6 bg-BackgroundColor rounded-md shadow-lg m-4 ld:m-0">
         <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
         {errorMessage && (

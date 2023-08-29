@@ -6,6 +6,7 @@ import { fetchFlashSellData } from "../../services/actions/flashSellDataAction";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import ProductCartFlashSell from "../../components/ProductCartFlashSell";
 import TimerFlashSell from "../../components/TimerFlashSell";
+import { Helmet } from "react-helmet";
 
 const FlashSalePage = () => {
   const dispatch = useDispatch();
@@ -60,6 +61,9 @@ const FlashSalePage = () => {
 
   return (
     <div className="container mx-auto">
+      <Helmet>
+        <title>Flash Sale | Banglamart E-commerce</title>
+      </Helmet>
       <div>
         <FlashSaleBanner bannerURL={bannerURL}></FlashSaleBanner>
       </div>

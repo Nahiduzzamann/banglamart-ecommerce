@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 
 const SupportPolicy = () => {
@@ -5,6 +6,9 @@ const SupportPolicy = () => {
 
     return (
         <div className="container mx-auto bg-CardColor p-4 m-4">
+            <Helmet>
+        <title>Support Policy | Banglamart E-commerce</title>
+      </Helmet>
             <div>
                 <h1 className="mt-4 mb-1 mr-4 text-TextColor">{t("SupportPolicy.CashOn")}</h1>
                 <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.CashOnDescription(1)")}</p>

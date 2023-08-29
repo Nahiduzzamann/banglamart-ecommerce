@@ -12,6 +12,7 @@ import { fetchUpazilas } from "../services/actions/upazilaAction";
 import { fetchUnions } from "../services/actions/unionAction";
 import { fetchAllCategories } from "../services/actions/allCategoriesAction";
 import { fetchFlashSell } from "../services/actions/flashSellCheckAction";
+import { Helmet } from "react-helmet";
 
 const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -53,6 +54,9 @@ const Main = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Home | Banglamart E-commerce</title>
+      </Helmet>
       {isLoading ? (
         <Loading />
       ) : (

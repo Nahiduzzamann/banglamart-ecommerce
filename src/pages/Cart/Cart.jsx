@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { AiOutlineLine, AiOutlinePlus } from "react-icons/ai";
+import { Helmet } from "react-helmet";
 const Cart = () => {
   const dummyProductData = [
     {
@@ -60,6 +61,9 @@ const Cart = () => {
   ];
   return (
     <div className="container mx-auto m-4">
+      <Helmet>
+        <title>Cart | Banglamart E-commerce</title>
+      </Helmet>
       <div className="grid grid-cols-4 gap-4">
         <div className="p-3 bg-CardColor md:col-span-3 col-span-4">
           {dummyProductData.map((product, i) => (

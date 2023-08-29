@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import ProductCart from "../../components/ProductCart";
 import SellerShopCart from "../../components/SellerShopCart";
 
@@ -114,6 +115,9 @@ const ShopPage = () => {
 
   return (
     <div className="container mx-auto bg-CardColor lg:mt-4 mt-2">
+      <Helmet>
+        <title>Shop | Banglamart E-commerce</title>
+      </Helmet>
       <div className="flex justify-center border-b-[1px] border-b-BorderColor p-4">
         <SellerShopCart data={data}></SellerShopCart>
       </div>

@@ -2,6 +2,7 @@
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import SubCategory from "../../components/SubCategories";
 import { useSelector } from "react-redux";
+import { Helmet } from "react-helmet";
 
 const Categories = () => {
   // const [Categories, setCategories] = useState(null);
@@ -20,6 +21,9 @@ const Categories = () => {
 
   return (
     <div className="p-1 lg:p-0">
+      <Helmet>
+        <title>Categories | Banglamart E-commerce</title>
+      </Helmet>
       <div className="container mx-auto">
         <h1 className="pt-4 pb-4 text-SubTextColor">All Categories</h1>
         <div className="flex flex-wrap">

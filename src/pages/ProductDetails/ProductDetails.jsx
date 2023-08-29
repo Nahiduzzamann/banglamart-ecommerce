@@ -15,6 +15,7 @@ import {
   WhatsappShareButton,
 } from "react-share";
 import ReactImageMagnify from "react-image-magnify";
+import { Helmet } from "react-helmet";
 const ProductDetails = () => {
   const products = [
     {
@@ -28,6 +29,9 @@ const ProductDetails = () => {
   ];
   return (
     <div className="container mx-auto mt-4">
+      <Helmet>
+        <title>Product Details | Banglamart E-commerce</title>
+      </Helmet>
       {/* product details  */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 bg-CardColor p-4">
         <div className="">

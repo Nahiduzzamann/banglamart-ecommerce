@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 const AddDeliveryAddressForm = () => {
   const [divisions, setDivisions] = useState([]);
   const [districts, setDistricts] = useState([]);
@@ -165,6 +166,9 @@ const AddDeliveryAddressForm = () => {
 
   return (
     <div className="container mx-auto p-4 lg:w-[800px]">
+      <Helmet>
+        <title>Add address | Banglamart E-commerce</title>
+      </Helmet>
       <div className="">
         <h1 className="font-semibold mb-4">Add Delivery Address</h1>
         <form

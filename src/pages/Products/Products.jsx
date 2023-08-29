@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import ProductCart from "../../components/ProductCart";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import EmptyContent from "../../components/EmptyContent";
+import { Helmet } from "react-helmet";
 const Products = () => {
   const [products, setProducts] = useState(null);
 
@@ -43,6 +44,9 @@ const Products = () => {
 
   return (
     <div className="">
+      <Helmet>
+        <title>Products | Banglamart E-commerce</title>
+      </Helmet>
       <div className="container mx-auto">
         <FlashSaleBanner></FlashSaleBanner>
       </div>

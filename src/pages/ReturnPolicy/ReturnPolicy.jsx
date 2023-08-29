@@ -1,7 +1,12 @@
+import { Helmet } from "react-helmet";
+
 // TODO 
 const ReturnPolicy = () => {
   return (
     <div className="container mx-auto m-4">
+      <Helmet>
+        <title>Return Policy | Banglamart E-commerce</title>
+      </Helmet>
       <div className="p-4 bg-CardColor">
         <p className="text-TextColor">
           Conditions for Returns: <br /> The product must be unused, unworn,
