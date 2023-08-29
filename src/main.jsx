@@ -36,6 +36,7 @@ import FlashSalePage from "./pages/FlashSale/FlashSale";
 import BrandPage from "./pages/BrandPage/BrandPage";
 import ShopPage from "./pages/ShopPage/ShopPage";
 import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange";
+import TrackOrder from "./pages/TrackOrder/TrackOrder";
 
 const router = createBrowserRouter([
   {
@@ -135,6 +136,10 @@ const router = createBrowserRouter([
       {
         path: "/shop-page",
         element: <ShopPage></ShopPage>,
+      },
+      {
+        path: "/track-order",
+        element: <TrackOrder></TrackOrder>,
       },
     ],
   },
