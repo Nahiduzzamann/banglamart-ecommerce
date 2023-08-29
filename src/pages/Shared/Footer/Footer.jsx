@@ -62,48 +62,48 @@ const Footer = () => {
             <div className="flex flex-col">
               <Link
                 to="/termsConditions"
-                className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor"
+                className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
               >
                 Terms & Conditions
               </Link>
               <Link
-                className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor"
+                className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
                 to="/privacyPolicy"
               >
                 Privacy Policy
               </Link>
               <Link
-                className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor"
+                className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
                 to="/sellerPolicy"
               >
                 Seller Policy
               </Link>
               <Link
-                className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor"
+                className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
                 to="/returnPolicy"
               >
                 Return Policy
               </Link>
               <Link
-                className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor"
+                className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
                 to="/supportPolicy"
               >
                 Support Policy
               </Link>
               <Link
-                className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor"
+                className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
                 to="/cancellationPolicy"
               >
                 Cancellation policy
               </Link>
               <Link
-                className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor"
+                className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
                 to="/faq"
               >
                 FAQ
               </Link>
               <Link
-                className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor"
+                className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
                 to="/blog"
               >
                 Blog
@@ -116,20 +116,20 @@ const Footer = () => {
             </div>
             <div className="flex flex-col">
               <Link
-                className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor"
+                className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
                 to="/login"
               >
                 Login
               </Link>
-              {/* <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Wishlist</Link> */}
+              {/* <Link  className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor" to="/">Wishlist</Link> */}
               <Link
-                className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor"
+                className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
                 to="/"
               >
                 Track Order
               </Link>
               <Link
-                className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor"
+                className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
                 to="/"
               >
                 Order History
