@@ -75,13 +75,13 @@ const BestSellers = () => {
         {data.length > 6 && (
           <Link
             to="all-seller"
-            className=" md:mr-10 pb-1 pt-1 pl-2 pr-2 md:pl-3 md:pr-3 bg-MainColor rounded-full text-CardColor shadow-lg hover:bg-MainColorHover text-sm"
+            className="mr-5 md:mr-6 pb-1 pt-1 pl-2 pr-2 md:pl-3 md:pr-3 bg-MainColor rounded-full text-CardColor shadow-lg hover:bg-MainColorHover text-sm"
           >
             View All Sellers
           </Link>
         )}
       </div>
-      <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4  pl-5 md:pl-10 pb-2 pt-2">
+      <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 pl-5 md:pl-10 pb-2 pt-2">
         {
           seller.map((data,i)=>(<SellerShopCart key={i} data={data} />))
         }
