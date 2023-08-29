@@ -298,7 +298,7 @@ const ProductCart = ({ data }) => {
           </div>
         </div>
         {product.percentage && (
-          <div className="absolute flex items-center justify-center bg-CardColor shadow-md shadow-SubTextColor rounded-r-full top-2 p-1">
+          <div className="absolute flex items-center justify-center bg-CardColor shadow-md shadow-[#f59090] rounded-r-full top-2 p-1">
             <p className="text-xs text-[#fc3e3e] mr-1">OFF</p>
             <p className="text-sm text-CardColor p-1 bg-[#fc3e3e] rounded-full">
               {product.offer}%
