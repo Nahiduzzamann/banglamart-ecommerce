@@ -144,7 +144,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <p className="text-TextColor text-right">
+        <p className="text-TextColor text-center md:text-right mt-4 ">
           &copy; {new Date().getFullYear()} Banglamart E-commerce Ltd. All rights reserved.
         </p>
       </div>
