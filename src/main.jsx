@@ -146,7 +146,6 @@ const router = createBrowserRouter([
 ]);
 
 
-
 i18n.init({
   interpolation: { escapeValue: false },
   lng: "en",
