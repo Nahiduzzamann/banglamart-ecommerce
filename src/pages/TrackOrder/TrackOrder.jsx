@@ -6,7 +6,7 @@ const TrackOrder = () => {
     {
       id: 1,
       name: "Camera",
-      price: 20,
+      price: 22220,
       image:
         "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
       confirmationStatus: "ordered",
@@ -14,7 +14,7 @@ const TrackOrder = () => {
     {
       id: 2,
       name: "Smart Watch",
-      price: 30,
+      price: 3330,
       image:
         "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1099&q=80",
       confirmationStatus: "confirmed",
@@ -22,7 +22,7 @@ const TrackOrder = () => {
     {
       id: 3,
       name: "Headphone",
-      price: 15,
+      price: 1115,
       image:
         "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
       confirmationStatus: "sentToCourier",
@@ -30,7 +30,7 @@ const TrackOrder = () => {
     {
       id: 4,
       name: "NIKE swoosh",
-      price: 20,
+      price: 4120,
       image:
         "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
       confirmationStatus: "ordered",
@@ -38,7 +38,7 @@ const TrackOrder = () => {
     {
       id: 5,
       name: "Bag",
-      price: 20,
+      price: 920,
       image:
         "https://images.unsplash.com/photo-1491637639811-60e2756cc1c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1028&q=80",
       confirmationStatus: "delivered",
@@ -71,7 +71,7 @@ const TrackOrder = () => {
           {getOrdersByState(deliveryState).map((order) => (
             <div
               key={order.id}
-              className="border p-4 flex items-center space-x-4"
+              className="border p-4 flex items-center space-x-4 mb-4"
             >
               <img
                 src={order.image}
