@@ -47,14 +47,14 @@ const Categories = () => {
             </SkeletonTheme>
           )}
         </div>
-        <div className="mt-4 grid grid-cols-2 2xl:grid-cols-5 xl:grid-cols-4 md:grid-cols-3 gap-2">
+        <div className="mt-4 grid grid-cols-2 2xl:grid-cols-5 xl:grid-cols-4 md:grid-cols-3 gap-2 ">
           {Categories ? (
             Categories?.map((category, i) => {
               return (
                 <div
                   id={`${category.name}`}
                   key={i}
-                  className=" bg-CardColor rounded-md border-[1px] border-BorderColor"
+                  className="h-min bg-CardColor rounded-md border-[1px] border-BorderColor"
                 >
                   <div className="p-2 ">
                     <h1 className="text-center text-SubTextColor p-1 border-b-[3px] border-b-BorderColor">
