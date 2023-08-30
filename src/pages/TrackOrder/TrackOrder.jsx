@@ -121,7 +121,7 @@ const TrackOrder = () => {
                 />
               </figure>
               <div className="card-body">
-                <div className="flex justify-between flex-wrap">
+                <div className="flex items-center justify-between flex-wrap">
                   <div>
                     <h1 className=" text-SubTextColor mb-1">{order.name}</h1>
                     <h1 className="text-SubTextColor">
@@ -136,14 +136,37 @@ const TrackOrder = () => {
                       description description{" "}
                     </p>
                   </div>
-                  <div
-                    className={` ${deliveryState === "delivered" && "hidden"}`}
-                  >
+                  <div>
                     <ul className="steps steps-vertical">
-                      <li className="step step-primary">Ordered</li>
-                      <li className="step">Confirmed</li>
-                      <li className="step">Sent to Courier</li>
-                      <li className="step">Delivered</li>
+                      <li
+                      
+                        className={`step ${
+                          deliveryState === "ordered" && "step-primary"
+                        } ${deliveryState === "confirmed" && "step-primary"} ${
+                          deliveryState === "sentToCourier" && "step-primary"
+                        } ${deliveryState === "delivered" && "step-primary"} `}
+                      >
+                        Ordered
+                      </li>
+                      <li
+                        className={`step ${deliveryState === "confirmed" && "step-primary"} ${
+                          deliveryState === "sentToCourier" && "step-primary"
+                        } ${deliveryState === "delivered" && "step-primary"}`}
+                      >
+                        Confirmed
+                      </li>
+                      <li
+                        className={`step ${
+                          deliveryState === "sentToCourier" && "step-primary"
+                        } ${deliveryState === "delivered" && "step-primary"} `}
+                      >
+                        Sent to Courier
+                      </li>
+                      <li
+                        className={`step ${deliveryState === "delivered" && "step-primary"} `}
+                      >
+                        Delivered
+                      </li>
                     </ul>
                   </div>
                 </div>
