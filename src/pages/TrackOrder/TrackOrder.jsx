@@ -87,13 +87,13 @@ const TrackOrder = () => {
   return (
     <div className="container mx-auto mt-4">
       <div className=" p-6 bg-CardColor rounded-md shadow-md">
-        <h2 className="text-2xl font-semibold text-center mb-6">Track Order</h2>
-        <div className="mb-4 flex space-x-2">
+        <h2 className="text-2xl font-semibold text-center mb-6 text-SubTextColor">Track Order</h2>
+        <div className="mb-4 flex flex-wrap justify-center">
           {deliveryStates.map((state) => (
             <button
               key={state.key}
               onClick={() => handleDeliveryStateChange(state.key)}
-              className={`px-4 rounded ${
+              className={`px-4 m-2 rounded ${
                 deliveryState === state.key
                   ? "bg-MainColor text-CardColor "
                   : "border border-BorderColor text-SubTextColor hover:underline"
@@ -119,11 +119,11 @@ const TrackOrder = () => {
                 />
               </figure>
               <div className="card-body">
-                <div className="flex justify-between">
+                <div className="flex justify-between flex-wrap">
                   <div>
-                    <h2 className="card-title">{order.name}</h2>
-                    <h1 className="text-gray-600">{order.price}TK</h1>
-                    <p>description</p>
+                    <h1 className=" text-SubTextColor mb-1">{order.name}</h1>
+                    <h1 className="text-SubTextColor">Price: {order.price}TK</h1>
+                    <p className="w-72 text-SubTextColor">description description description description description description description description description description description description description description  description description  description description  description description  description description </p>
                   </div>
                   <div
                     className={` ${deliveryState === "delivered" && "hidden"}`}
