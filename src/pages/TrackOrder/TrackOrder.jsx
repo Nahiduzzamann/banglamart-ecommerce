@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 import { AiOutlineCheck, AiOutlineUnorderedList } from "react-icons/ai";
 import { BsFillSendCheckFill } from "react-icons/bs";
 import { MdOutlineDeliveryDining } from "react-icons/md";
@@ -86,6 +87,9 @@ const TrackOrder = () => {
 
   return (
     <div className="container mx-auto mt-4">
+      <Helmet>
+        <title>Track Your Order | Banglamart E-commerce</title>
+      </Helmet>
       <div className=" p-6 bg-CardColor rounded-md shadow-md">
         <h2 className="text-2xl font-semibold text-center mb-6 text-SubTextColor">
           Track Order
@@ -137,33 +141,33 @@ const TrackOrder = () => {
                     </p>
                   </div>
                   <div>
-                    <ul className="steps steps-vertical">
+                    <ul className="steps steps-vertical text-SubTextColor">
                       <li
                       
                         className={`step ${
-                          deliveryState === "ordered" && "step-primary"
-                        } ${deliveryState === "confirmed" && "step-primary"} ${
-                          deliveryState === "sentToCourier" && "step-primary"
-                        } ${deliveryState === "delivered" && "step-primary"} `}
+                          deliveryState === "ordered" && "step-info"
+                        } ${deliveryState === "confirmed" && "step-info"} ${
+                          deliveryState === "sentToCourier" && "step-info"
+                        } ${deliveryState === "delivered" && "step-info"} `}
                       >
                         Ordered
                       </li>
                       <li
-                        className={`step ${deliveryState === "confirmed" && "step-primary"} ${
-                          deliveryState === "sentToCourier" && "step-primary"
-                        } ${deliveryState === "delivered" && "step-primary"}`}
+                        className={`step ${deliveryState === "confirmed" && "step-info"} ${
+                          deliveryState === "sentToCourier" && "step-info"
+                        } ${deliveryState === "delivered" && "step-info"}`}
                       >
                         Confirmed
                       </li>
                       <li
                         className={`step ${
-                          deliveryState === "sentToCourier" && "step-primary"
-                        } ${deliveryState === "delivered" && "step-primary"} `}
+                          deliveryState === "sentToCourier" && "step-info"
+                        } ${deliveryState === "delivered" && "step-info"} `}
                       >
                         Sent to Courier
                       </li>
                       <li
-                        className={`step ${deliveryState === "delivered" && "step-primary"} `}
+                        className={`step ${deliveryState === "delivered" && "step-info"} `}
                       >
                         Delivered
                       </li>
@@ -172,7 +176,7 @@ const TrackOrder = () => {
                 </div>
                 {deliveryState === "ordered" && (
                   <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Cancel Order</button>
+                    <button className="btn btn-info text-CardColor">Cancel Order</button>
                   </div>
                 )}
               </div>
