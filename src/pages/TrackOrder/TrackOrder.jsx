@@ -87,7 +87,9 @@ const TrackOrder = () => {
   return (
     <div className="container mx-auto mt-4">
       <div className=" p-6 bg-CardColor rounded-md shadow-md">
-        <h2 className="text-2xl font-semibold text-center mb-6 text-SubTextColor">Track Order</h2>
+        <h2 className="text-2xl font-semibold text-center mb-6 text-SubTextColor">
+          Track Order
+        </h2>
         <div className="mb-4 flex flex-wrap justify-center">
           {deliveryStates.map((state) => (
             <button
@@ -122,8 +124,17 @@ const TrackOrder = () => {
                 <div className="flex justify-between flex-wrap">
                   <div>
                     <h1 className=" text-SubTextColor mb-1">{order.name}</h1>
-                    <h1 className="text-SubTextColor">Price: {order.price}TK</h1>
-                    <p className="w-72 text-SubTextColor">description description description description description description description description description description description description description description  description description  description description  description description  description description </p>
+                    <h1 className="text-SubTextColor">
+                      Price: {order.price}TK
+                    </h1>
+                    <p className="w-72 text-SubTextColor">
+                      description description description description
+                      description description description description
+                      description description description description
+                      description description description description
+                      description description description description
+                      description description{" "}
+                    </p>
                   </div>
                   <div
                     className={` ${deliveryState === "delivered" && "hidden"}`}
@@ -136,9 +147,11 @@ const TrackOrder = () => {
                     </ul>
                   </div>
                 </div>
-                <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Cancel Order</button>
-                </div>
+                {deliveryState === "ordered" && (
+                  <div className="card-actions justify-end">
+                    <button className="btn btn-primary">Cancel Order</button>
+                  </div>
+                )}
               </div>
             </div>
           ))}
