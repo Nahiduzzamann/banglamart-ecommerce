@@ -60,15 +60,33 @@ const TrackOrder = () => {
   };
 
   const deliveryStates = [
-    { key: "ordered", label: "Ordered", icon:<AiOutlineUnorderedList className="mr-1"></AiOutlineUnorderedList> },
-    { key: "confirmed", label: "Confirmed", icon:<AiOutlineCheck className="mr-1"></AiOutlineCheck> },
-    { key: "sentToCourier", label: "Sent to Courier", icon:<BsFillSendCheckFill className="mr-1"></BsFillSendCheckFill> },
-    { key: "delivered", label: "Delivered", icon:<MdOutlineDeliveryDining className="mr-1"></MdOutlineDeliveryDining> },
+    {
+      key: "ordered",
+      label: "Ordered",
+      icon: <AiOutlineUnorderedList className="mr-1"></AiOutlineUnorderedList>,
+    },
+    {
+      key: "confirmed",
+      label: "Confirmed",
+      icon: <AiOutlineCheck className="mr-1"></AiOutlineCheck>,
+    },
+    {
+      key: "sentToCourier",
+      label: "Sent to Courier",
+      icon: <BsFillSendCheckFill className="mr-1"></BsFillSendCheckFill>,
+    },
+    {
+      key: "delivered",
+      label: "Delivered",
+      icon: (
+        <MdOutlineDeliveryDining className="mr-1"></MdOutlineDeliveryDining>
+      ),
+    },
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center mt-4">
-      <div className="max-w-xl p-6 bg-CardColor rounded-md shadow-md">
+    <div className="container mx-auto mt-4">
+      <div className=" p-6 bg-CardColor rounded-md shadow-md">
         <h2 className="text-2xl font-semibold text-center mb-6">Track Order</h2>
         <div className="mb-4 flex space-x-2">
           {deliveryStates.map((state) => (
@@ -81,7 +99,9 @@ const TrackOrder = () => {
                   : "border border-BorderColor text-SubTextColor hover:underline"
               }`}
             >
-              <h3 className="flex items-center">{state.icon} {state.label}</h3>
+              <h3 className="flex items-center">
+                {state.icon} {state.label}
+              </h3>
             </button>
           ))}
         </div>
@@ -89,23 +109,40 @@ const TrackOrder = () => {
           {getOrdersByState(deliveryState).map((order) => (
             <div
               key={order.id}
-              className="border p-4 flex items-center space-x-4 mb-4"
+              className="card lg:card-side bg-CardColor mb-5 shadow-xl"
             >
-              <img
-                src={order.image}
-                alt={order.name}
-                className="w-16 h-16 object-cover rounded"
-              />
-              <div>
-                <div className="text-lg font-semibold">{order.name}</div>
-                <div className="text-gray-600">{order.price}TK</div>
+              <figure>
+                <img
+                  className="h-60 ml-4 rounded-md"
+                  src={order.image}
+                  alt={order.name}
+                />
+              </figure>
+              <div className="card-body">
+                <div className="flex justify-between">
+                  <div>
+                    <h2 className="card-title">{order.name}</h2>
+                    <h1 className="text-gray-600">{order.price}TK</h1>
+                    <p>description</p>
+                  </div>
+                  <div
+                    className={` ${deliveryState === "delivered" && "hidden"}`}
+                  >
+                    <ul className="steps steps-vertical">
+                      <li className="step step-primary">Ordered</li>
+                      <li className="step">Confirmed</li>
+                      <li className="step">Sent to Courier</li>
+                      <li className="step">Delivered</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="card-actions justify-end">
+                  <button className="btn btn-primary">Cancel Order</button>
+                </div>
               </div>
-              <div className={` ${
-                deliveryState === 'delivered' && 'hidden'}`}>Please wait for next step!</div>
             </div>
           ))}
         </div>
-        
       </div>
     </div>
   );
