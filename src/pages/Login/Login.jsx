@@ -1,8 +1,13 @@
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
-import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineGoogle } from "react-icons/ai";
+import {
+  AiOutlineEye,
+  AiOutlineEyeInvisible,
+  AiOutlineGoogle,
+} from "react-icons/ai";
 import { Helmet } from "react-helmet";
+import { motion } from "framer-motion";
 
 const Login = () => {
   const { signIn, signInWithGoogle } = useContext(AuthContext);
@@ -67,9 +72,7 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <div className="flex flex-col ">
-              <label className="block font-medium mb-2 ">
-                Login Using
-              </label>
+              <label className="block font-medium mb-2 ">Login Using</label>
               <label className=" cursor-pointer text-[14px] text-SubTextColor">
                 <input
                   type="radio"
@@ -77,8 +80,8 @@ const Login = () => {
                   value="email"
                   checked={!isPhoneSelected}
                   onChange={() => setIsPhoneSelected(false)}
-                />
-                {' '}Email
+                />{" "}
+                Email
               </label>
               <label className="cursor-pointer  text-[14px] text-SubTextColor">
                 <input
@@ -87,8 +90,8 @@ const Login = () => {
                   value="phone"
                   checked={isPhoneSelected}
                   onChange={() => setIsPhoneSelected(true)}
-                />
-                {' '}Phone Number
+                />{" "}
+                Phone Number
               </label>
             </div>
             {isPhoneSelected ? (
@@ -120,17 +123,15 @@ const Login = () => {
               placeholder="Enter your password"
               required
             />
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
               type="button"
               className="absolute right-3 top-14 transform -translate-y-1/2 focus:outline-none"
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? (
-                <AiOutlineEye/>
-              ) : (
-                <AiOutlineEyeInvisible/>
-              )}
-            </button>
+              {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+            </motion.button>
           </div>
           <div className="mb-2 text-right">
             <Link
@@ -140,7 +141,9 @@ const Login = () => {
               Forgot Password?
             </Link>
           </div>
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.8 }}
             type="submit"
             className="bg-MainColor text-CardColor shadow-lg shadow-MainColorHover rounded-md p-2 w-full hover:bg-MainColorHover"
             disabled={isLoading}
@@ -150,11 +153,13 @@ const Login = () => {
             ) : (
               "Log in"
             )}
-          </button>
+          </motion.button>
         </form>
         <div className="text-center">
           <div className="divider text-SubTextColor">OR</div>
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.8 }}
             onClick={handleGoogleLogin}
             className="bg-MainColor text-CardColor shadow-lg shadow-MainColorHover rounded-md p-2 w-full hover:bg-MainColorHover"
             disabled={isLoading}
@@ -163,11 +168,11 @@ const Login = () => {
               <span className="loading loading-bars loading-md"></span>
             ) : (
               <div className="flex justify-center items-center">
-                <AiOutlineGoogle className="text-2xl mr-1"/>
+                <AiOutlineGoogle className="text-2xl mr-1" />
                 <h2>Sign in with Google</h2>
               </div>
             )}
-          </button>
+          </motion.button>
           <p className="mt-4 text-SubTextColor">
             Don't have an account?{" "}
             <Link

@@ -16,6 +16,8 @@ import {
 } from "react-share";
 import ReactImageMagnify from "react-image-magnify";
 import { Helmet } from "react-helmet";
+import { motion } from "framer-motion";
+
 const ProductDetails = () => {
   const products = [
     {
@@ -23,7 +25,6 @@ const ProductDetails = () => {
         "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-math-90946.jpg&fm=jpg",
         "https://thumbs.dreamstime.com/b/minsk-belarus-october-fujifilm-t-kit-xf-mm-silver-camera-body-brown-wooden-background-vintage-globe-232384370.jpg",
         "https://st3.depositphotos.com/1005891/36027/i/450/depositphotos_360277418-stock-photo-fuji-x-t3-with-three.jpg",
-        
       ],
     },
   ];
@@ -49,15 +50,18 @@ const ProductDetails = () => {
               <p className="text-SubTextColor">Sold by:</p>
               <h3 className="text-TextColor">InHouse Product</h3>
             </div>
-            <button className="ml-4 mr-4 pl-3 pr-3 pt-2 pb-2 bg-[#d2eefd] rounded-full shadow-md">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className="ml-4 mr-4 pl-3 pr-3 pt-2 pb-2 bg-[#d2eefd] rounded-full shadow-md"
+            >
               <p className="text-MainColor">Message Seller</p>
-            </button>
+            </motion.button>
             <div className="hidden">logo</div>
           </div>
 
           <div className="border-b border-b-BorderColor flex items-center p-4">
-              <p className="text-TextColor">Variant:</p>
-
+            <p className="text-TextColor">Variant:</p>
           </div>
           <div className="border-b border-b-BorderColor p-4">
             <p className="text-SubTextColor">
@@ -74,13 +78,21 @@ const ProductDetails = () => {
           </div>
           <div className="border-b border-b-BorderColor p-4 flex items-center">
             <p className="mr-4 text-SubTextColor">Quantity:</p>
-            <button className="mr-4 rounded-full bg-[#d2eefd] p-2 shadow-sm hover:shadow-md">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className="mr-4 rounded-full bg-[#d2eefd] p-2 shadow-sm hover:shadow-md"
+            >
               <AiOutlineLine className=" text-SubTextColor" />
-            </button>
+            </motion.button>
             <p className="mr-4 text-TextColor">2</p>
-            <button className="mr-4 rounded-full bg-[#d2eefd] p-2 shadow-sm hover:shadow-md">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className="mr-4 rounded-full bg-[#d2eefd] p-2 shadow-sm hover:shadow-md"
+            >
               <AiOutlinePlus className=" text-TextColor" />
-            </button>
+            </motion.button>
             <p className="mr-4 text-SubTextColor">
               (<span>5</span>) available
             </p>
@@ -91,24 +103,36 @@ const ProductDetails = () => {
               <span className="text-[18px] text-MainColor ml-2">16000 ৳</span>
             </p>
             <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-2">
-              <button className="pl-3 pr-3 pt-2 pb-2 bg-[#d2eefd] rounded-full shadow-sm hover:shadow-md flex items-center justify-center">
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.8 }}
+                className="pl-3 pr-3 pt-2 pb-2 bg-[#d2eefd] rounded-full shadow-sm hover:shadow-md flex items-center justify-center"
+              >
                 <p>
                   <AiOutlineShopping className="text-MainColor  mr-1" />
                 </p>
                 <p className="text-MainColor">Add to cart</p>
-              </button>
-              <button className="pl-3 pr-3 pt-2 pb-2 bg-MainColor rounded-full shadow-sm hover:shadow-md flex items-center justify-center">
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.8 }}
+                className="pl-3 pr-3 pt-2 pb-2 bg-MainColor rounded-full shadow-sm hover:shadow-md flex items-center justify-center"
+              >
                 <p>
                   <AiOutlineShoppingCart className="text-CardColor  mr-1" />
                 </p>
                 <p className="text-CardColor">Buy Now</p>
-              </button>
-              <button className="pl-3 pr-3 pt-2 pb-2 bg-[#d2eefd] rounded-full shadow-sm hover:shadow-md flex items-center justify-center">
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.8 }}
+                className="pl-3 pr-3 pt-2 pb-2 bg-[#d2eefd] rounded-full shadow-sm hover:shadow-md flex items-center justify-center"
+              >
                 <p>
                   <AiOutlineShopping className="text-MainColor  mr-1" />
                 </p>
                 <p className="text-MainColor">Add to wishlist</p>
-              </button>
+              </motion.button>
             </div>
             <p className="text-SubTextColor">
               Refund:{" "}
@@ -189,29 +213,30 @@ const ImageShow = ({ product }) => {
   return (
     <div className="flex flex-col items-center">
       <div className="mb-4">
-      <ReactImageMagnify
+        <ReactImageMagnify
           {...{
             smallImage: {
               alt: `Product ${currentImageIndex + 1}`,
               isFluidWidth: true,
               src: product.images[currentImageIndex],
-              sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px',
+              sizes:
+                "(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px",
             },
             largeImage: {
               src: product.images[currentImageIndex],
               width: 1200,
               height: 1800,
             },
-            enlargedImagePosition: 'over',
+            enlargedImagePosition: "over",
             enlargedImageContainerDimensions: {
-              width: '200%',
-              height: '200%',
+              width: "200%",
+              height: "200%",
             },
             shouldUsePositiveSpaceLens: true,
-            lensStyle: { background: 'rgba(255,255,255,.5)' },
+            lensStyle: { background: "rgba(255,255,255,.5)" },
             isHintEnabled: true,
             hintBgOpacity: 1,
-            hintTextColor: '#000',
+            hintTextColor: "#000",
           }}
         />
       </div>

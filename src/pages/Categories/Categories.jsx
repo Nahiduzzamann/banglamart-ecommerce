@@ -3,6 +3,7 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import SubCategory from "../../components/SubCategories";
 import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
+import { motion } from "framer-motion";
 
 const Categories = () => {
   // const [Categories, setCategories] = useState(null);
@@ -30,13 +31,15 @@ const Categories = () => {
           {Categories ? (
             Categories.map((category, i) => {
               return (
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.8 }}
                   onClick={() => handleCategorySearch(category.name)}
                   key={i}
                   className="rounded-md bg-MainColor hover:bg-MainColorHover text-CardColor p-2 border-[1px] border-BorderColor mr-2 mb-2"
                 >
                   {category.name}
-                </button>
+                </motion.button>
               );
             })
           ) : (

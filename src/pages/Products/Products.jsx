@@ -7,6 +7,8 @@ import ProductCart from "../../components/ProductCart";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import EmptyContent from "../../components/EmptyContent";
 import { Helmet } from "react-helmet";
+import { motion } from "framer-motion";
+
 const Products = () => {
   const [products, setProducts] = useState(null);
 
@@ -67,12 +69,15 @@ const Products = () => {
           </div>
           <div className="col-span-5 lg:col-span-4">
             <div className="flex justify-between items-center mb-4">
-              <button className=" lg:hidden flex justify-center items-center border border-MainColor p-1">
+              <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className=" lg:hidden flex justify-center items-center border border-MainColor p-1">
                 <h1>
                   <AiFillFilter className="text-MainColor mr-1 " />
                 </h1>
                 <h1 className="text-MainColor">Filters</h1>
-              </button>
+              </motion.button>
               <h2 className="text-TextColor">
                 Total Products: {products?.length}
               </h2>
@@ -102,7 +107,9 @@ const Products = () => {
               <div className="flex justify-center m-4">
                 <div className="join">
                   {Array.from({ length: totalPages }, (_, index) => (
-                    <button
+                    <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.8 }}
                       key={index}
                       className={`join-item btn btn-md border border-BorderColor ${
                         index + 1 === currentPage
@@ -112,7 +119,7 @@ const Products = () => {
                       onClick={() => handlePageChange(index + 1)}
                     >
                       {index + 1}
-                    </button>
+                    </motion.button>
                   ))}
                 </div>
               </div>
