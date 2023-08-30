@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import { motion } from "framer-motion";
+
 const AddDeliveryAddressForm = () => {
   const [divisions, setDivisions] = useState([]);
   const [districts, setDistricts] = useState([]);
@@ -320,12 +322,14 @@ const AddDeliveryAddressForm = () => {
             />
           </div>
           <div className="flex justify-center">
-            <button
+            <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.8 }}
               type="submit"
               className="bg-MainColor shadow-sm text-CardColor py-2 px-4 rounded hover:bg-MainColorHover"
             >
               Add Address
-            </button>
+            </motion.button>
           </div>
         </form>
       </div>
