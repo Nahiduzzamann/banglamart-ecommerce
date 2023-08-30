@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { AiOutlineCheck, AiOutlineUnorderedList } from "react-icons/ai";
 import { BsFillSendCheckFill } from "react-icons/bs";
 import { MdOutlineDeliveryDining } from "react-icons/md";
-
+import { motion } from "framer-motion";
 const TrackOrder = () => {
   // Simulated order data with confirmation status
   const [orders, setOrders] = useState([
@@ -96,7 +96,9 @@ const TrackOrder = () => {
         </h2>
         <div className="mb-4 flex flex-wrap justify-center">
           {deliveryStates.map((state) => (
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
               key={state.key}
               onClick={() => handleDeliveryStateChange(state.key)}
               className={`px-4 m-2 rounded ${
@@ -108,7 +110,7 @@ const TrackOrder = () => {
               <h3 className="flex items-center">
                 {state.icon} {state.label}
               </h3>
-            </button>
+            </motion.button>
           ))}
         </div>
         <div className="mb-4">
@@ -143,7 +145,6 @@ const TrackOrder = () => {
                   <div>
                     <ul className="steps steps-vertical text-SubTextColor">
                       <li
-                      
                         className={`step ${
                           deliveryState === "ordered" && "step-info"
                         } ${deliveryState === "confirmed" && "step-info"} ${
@@ -153,9 +154,11 @@ const TrackOrder = () => {
                         Ordered
                       </li>
                       <li
-                        className={`step ${deliveryState === "confirmed" && "step-info"} ${
-                          deliveryState === "sentToCourier" && "step-info"
-                        } ${deliveryState === "delivered" && "step-info"}`}
+                        className={`step ${
+                          deliveryState === "confirmed" && "step-info"
+                        } ${deliveryState === "sentToCourier" && "step-info"} ${
+                          deliveryState === "delivered" && "step-info"
+                        }`}
                       >
                         Confirmed
                       </li>
@@ -167,7 +170,9 @@ const TrackOrder = () => {
                         Sent to Courier
                       </li>
                       <li
-                        className={`step ${deliveryState === "delivered" && "step-info"} `}
+                        className={`step ${
+                          deliveryState === "delivered" && "step-info"
+                        } `}
                       >
                         Delivered
                       </li>
@@ -176,7 +181,13 @@ const TrackOrder = () => {
                 </div>
                 {deliveryState === "ordered" && (
                   <div className="card-actions justify-end">
-                    <button className="btn btn-info text-CardColor">Cancel Order</button>
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.8 }}
+                      className="btn btn-info text-CardColor"
+                    >
+                      Cancel Order
+                    </motion.button>
                   </div>
                 )}
               </div>
