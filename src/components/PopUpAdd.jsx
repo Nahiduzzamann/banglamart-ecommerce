@@ -1,12 +1,11 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const PopUpAdd = ({ setAdds }) => {
-
   const images = [
-    'https://png.pngtree.com/png-clipart/20190516/original/pngtree-super-sale-and-special-offer-banner-design-png-image_3688401.jpg',
-    'https://previews.123rf.com/images/arcady31/arcady311606/arcady31160600002/59113161-special-offer-red-star-icon.jpg',
-    'https://static.vecteezy.com/system/resources/previews/005/020/297/original/limited-time-offer-design-in-red-and-black-with-stop-watch-free-vector.jpg',
-    
+    "https://png.pngtree.com/png-clipart/20190516/original/pngtree-super-sale-and-special-offer-banner-design-png-image_3688401.jpg",
+    "https://previews.123rf.com/images/arcady31/arcady311606/arcady31160600002/59113161-special-offer-red-star-icon.jpg",
+    "https://static.vecteezy.com/system/resources/previews/005/020/297/original/limited-time-offer-design-in-red-and-black-with-stop-watch-free-vector.jpg",
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -18,7 +17,6 @@ const PopUpAdd = ({ setAdds }) => {
       setAdds(false);
     }
   };
-
 
   const handleClearAdds = () => {
     setAdds(false);
@@ -34,18 +32,29 @@ const PopUpAdd = ({ setAdds }) => {
       >
         <img
           className="h-[30vw] w-[60vw]"
-          src={images[currentIndex]} alt={`Image ${currentIndex}`} 
+          src={images[currentIndex]}
+          alt={`Image ${currentIndex}`}
         />
       </div>
       <div className="flex flex-col h-[30vw] justify-between items-center">
-        
-          <button 
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.8 }}
           onClick={showNextImage}
           disabled={buttonDisabled}
-          className="btn btn-info rounded-full text-2xl text-CardColor">X</button>
-       
-          <button className="text-CardColor btn btn-info rounded-full" onClick={handleClearAdds}>Clear All</button>
-        
+          className="btn btn-info rounded-full text-2xl text-CardColor"
+        >
+          X
+        </motion.button>
+
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.8 }}
+          className="text-CardColor btn btn-info rounded-full"
+          onClick={handleClearAdds}
+        >
+          Clear All
+        </motion.button>
       </div>
     </div>
   );
