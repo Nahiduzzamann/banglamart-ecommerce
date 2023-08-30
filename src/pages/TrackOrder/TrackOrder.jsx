@@ -145,6 +145,7 @@ const TrackOrder = () => {
                   <div>
                     <ul className="steps steps-vertical text-SubTextColor">
                       <li
+                        data-content="✓"
                         className={`step ${
                           deliveryState === "ordered" && "step-info"
                         } ${deliveryState === "confirmed" && "step-info"} ${
@@ -154,6 +155,7 @@ const TrackOrder = () => {
                         Ordered
                       </li>
                       <li
+                        data-content="✓"
                         className={`step ${
                           deliveryState === "confirmed" && "step-info"
                         } ${deliveryState === "sentToCourier" && "step-info"} ${
@@ -163,6 +165,7 @@ const TrackOrder = () => {
                         Confirmed
                       </li>
                       <li
+                        data-content="✓"
                         className={`step ${
                           deliveryState === "sentToCourier" && "step-info"
                         } ${deliveryState === "delivered" && "step-info"} `}
@@ -170,6 +173,7 @@ const TrackOrder = () => {
                         Sent to Courier
                       </li>
                       <li
+                        data-content="✓"
                         className={`step ${
                           deliveryState === "delivered" && "step-info"
                         } `}
