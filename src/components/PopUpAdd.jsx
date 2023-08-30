@@ -38,15 +38,14 @@ const PopUpAdd = ({ setAdds }) => {
         />
       </div>
       <div className="flex flex-col h-[30vw] justify-between items-center">
-        <div className="bg-SubTextColor flex items-center shadow-lg justify-center rounded-full h-10 w-10">
+        
           <button 
           onClick={showNextImage}
           disabled={buttonDisabled}
-          className="text-2xl text-CardColor">X</button>
-        </div>
-        <div className="bg-SubTextColor flex items-center shadow-lg justify-center rounded-full pl-2 pr-2 pt-1 pb-1">
-          <button className="text-CardColor" onClick={handleClearAdds}>Clear All</button>
-        </div>
+          className="btn btn-info rounded-full text-2xl text-CardColor">X</button>
+       
+          <button className="text-CardColor btn btn-info rounded-full" onClick={handleClearAdds}>Clear All</button>
+        
       </div>
     </div>
   );
