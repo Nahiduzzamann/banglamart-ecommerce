@@ -1,9 +1,11 @@
-import {  useState } from "react";
+import { useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { AiFillCaretRight } from "react-icons/ai";
 import SubCategory from "./SubCategories";
 import "./Style/ScrollbarStyles.css";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
+
 const AllCategory = () => {
   const url = "http://62.72.31.204:1300";
 
@@ -14,7 +16,6 @@ const AllCategory = () => {
     isHover: false,
     category: {},
   });
-
 
   const allCategoriesData = useSelector(
     (state) => state.allCategories.AllCategories.data
@@ -33,7 +34,8 @@ const AllCategory = () => {
           allCategoriesData?.map((category) => {
             // console.log(category);
             return (
-              <button
+              <motion.button
+                whileHover={{ scale: 1.1 }}
                 onMouseEnter={() => {
                   setCategoryHover({ isHover: true, category: category });
                   setSubCategories(category.subCategory);
@@ -65,7 +67,7 @@ const AllCategory = () => {
                     </div>
                   ) : null}
                 </div>
-              </button>
+              </motion.button>
             );
           })
         ) : (
