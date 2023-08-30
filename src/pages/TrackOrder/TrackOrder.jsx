@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { AiOutlineCheck, AiOutlineUnorderedList } from "react-icons/ai";
+import { BsFillSendCheckFill } from "react-icons/bs";
+import { MdOutlineDeliveryDining } from "react-icons/md";
 
 const TrackOrder = () => {
   // Simulated order data with confirmation status
@@ -57,16 +60,31 @@ const TrackOrder = () => {
   };
 
   const deliveryStates = [
-    { key: "ordered", label: "Ordered" },
-    { key: "confirmed", label: "Confirmed" },
-    { key: "sentToCourier", label: "Sent to Courier" },
-    { key: "delivered", label: "Delivered" },
+    { key: "ordered", label: "Ordered", icon:<AiOutlineUnorderedList className="mr-1"></AiOutlineUnorderedList> },
+    { key: "confirmed", label: "Confirmed", icon:<AiOutlineCheck className="mr-1"></AiOutlineCheck> },
+    { key: "sentToCourier", label: "Sent to Courier", icon:<BsFillSendCheckFill className="mr-1"></BsFillSendCheckFill> },
+    { key: "delivered", label: "Delivered", icon:<MdOutlineDeliveryDining className="mr-1"></MdOutlineDeliveryDining> },
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="max-w-md p-6 bg-white rounded-md shadow-md">
+    <div className="flex flex-col items-center justify-center mt-4">
+      <div className="max-w-xl p-6 bg-CardColor rounded-md shadow-md">
         <h2 className="text-2xl font-semibold text-center mb-6">Track Order</h2>
+        <div className="mb-4 flex space-x-2">
+          {deliveryStates.map((state) => (
+            <button
+              key={state.key}
+              onClick={() => handleDeliveryStateChange(state.key)}
+              className={`px-4 rounded ${
+                deliveryState === state.key
+                  ? "bg-MainColor text-CardColor "
+                  : "border border-BorderColor text-SubTextColor hover:underline"
+              }`}
+            >
+              <h3 className="flex items-center">{state.icon} {state.label}</h3>
+            </button>
+          ))}
+        </div>
         <div className="mb-4">
           {getOrdersByState(deliveryState).map((order) => (
             <div
@@ -87,21 +105,7 @@ const TrackOrder = () => {
             </div>
           ))}
         </div>
-        <div className="mb-4 flex space-x-2">
-          {deliveryStates.map((state) => (
-            <button
-              key={state.key}
-              onClick={() => handleDeliveryStateChange(state.key)}
-              className={`px-4 rounded ${
-                deliveryState === state.key
-                  ? "bg-MainColor text-CardColor "
-                  : "bg-gray-200 text-gray-600 hover:underline"
-              }`}
-            >
-              {state.label}
-            </button>
-          ))}
-        </div>
+        
       </div>
     </div>
   );
