@@ -107,9 +107,12 @@ const Header = () => {
                   placeholder="Search..."
                 />
                 <div className="bg-MainColor hover:bg-MainColor absolute inset-y-0 right-0 flex items-center justify-center rounded-r-full pl-3 pr-3 rounded-e-lg">
-                  <button className="">
-                    <AiOutlineSearch className="text-CardColor text-[25px]  hover:text-[27px]" />
-                  </button>
+                  <motion.button 
+                  whileHover={{ scale: 1.4 }}
+                  whileTap={{ scale: 0.8 }}
+                  className="">
+                    <AiOutlineSearch className="text-CardColor text-[25px]  " />
+                  </motion.button>
                 </div>
               </div>
               {/* <button className="flex items-center ml-5 relative hover:border hover:border-BorderColor p-1 border border-CardColor rounded-md">

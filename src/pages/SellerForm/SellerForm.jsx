@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
+import { motion } from "framer-motion";
 
 const SellerForm = () => {
   const { createUser } = useContext(AuthContext);
@@ -373,7 +374,9 @@ const SellerForm = () => {
             <p>{errorMessage}</p>
           </div>
         )}
-          <button
+          <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.8 }}
             type="submit"
             className="bg-MainColor text-CardColor shadow-lg shadow-MainColorHover rounded-md p-2 w-full hover:bg-MainColorHover"
             disabled={isLoading}
@@ -383,7 +386,7 @@ const SellerForm = () => {
             ) : (
               "Register"
             )}
-          </button>
+          </motion.button>
           <p className="mt-4 text-center">
             Already have an account?{" "}
             {/* <Link to="/login" className="text-MainColor hover:text-MainColorHover hover:underline">

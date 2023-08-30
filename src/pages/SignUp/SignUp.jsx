@@ -369,7 +369,9 @@
 //             <p>{errorMessage}</p>
 //           </div>
 //         )}
-//           <button
+//           <motion.button
+// whileHover={{ scale: 1.1 }}
+//               whileTap={{ scale: 0.8 }}
 //             type="submit"
 //             className="bg-MainColor text-CardColor shadow-lg shadow-MainColorHover rounded-md p-2 w-full hover:bg-MainColorHover"
 //             disabled={isLoading}
@@ -379,7 +381,7 @@
 //             ) : (
 //               "Register"
 //             )}
-//           </button>
+//           </motion.button>
 //           <p className="mt-4 text-center">
 //             Already have an account?{" "}
 //             <Link to="/login" className="text-MainColor hover:text-MainColorHover hover:underline">
@@ -401,6 +403,7 @@ import {
   AiOutlineGoogle,
 } from "react-icons/ai";
 import { Helmet } from "react-helmet";
+import { motion } from "framer-motion";
 
 const SignUp = () => {
   const { signInWithGoogle } = useContext(AuthContext);
@@ -585,7 +588,9 @@ const SignUp = () => {
               Forgot Password?
             </Link>
           </div>
-          <button
+          <motion.button
+          whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
             type="submit"
             className="bg-MainColor text-CardColor shadow-lg shadow-MainColorHover rounded-md p-2 w-full hover:bg-MainColorHover"
             disabled={isLoading}
@@ -595,11 +600,13 @@ const SignUp = () => {
             ) : (
               "Register"
             )}
-          </button>
+          </motion.button>
         </form>
         <div className="text-center">
           <div className="divider text-SubTextColor">OR</div>
-          <button
+          <motion.button
+          whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
             onClick={handleGoogleLogin}
             className="bg-MainColor text-CardColor shadow-lg shadow-MainColorHover rounded-md p-2 w-full hover:bg-MainColorHover"
             disabled={isLoading}
@@ -612,7 +619,7 @@ const SignUp = () => {
                 <h2>Sign in with Google</h2>
               </div>
             )}
-          </button>
+          </motion.button>
           <p className="mt-4 text-center">
             Already have an account?{" "}
             <Link
