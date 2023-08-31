@@ -3,6 +3,7 @@ import "./buttonstyle.css";
 import EmptyContent from "../../components/EmptyContent";
 import SellerShopCart from "../../components/SellerShopCart";
 import { Helmet } from "react-helmet";
+import { motion } from "framer-motion";
 const AllSeller = () => {
   const AllSellers = [
     {
@@ -84,7 +85,15 @@ const AllSeller = () => {
       </Helmet>
       <div className="container mx-auto">
         <div id="main" className="mt-4 mb-4">
-          <Link to="/seller-form" id="animatedButton"></Link>
+          <motion.div
+            animate={{
+              scale: [1, 2, 2, 1, 1],
+              rotate: [0, 0, 270, 270, 0],
+              borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+            }}
+          >
+            <Link to="/seller-form" id="animatedButton"></Link>
+          </motion.div>
         </div>
         <div className="shadow-xl shadow-BackgroundColor rounded">
           <h1 className=" lg:mt-10 text-SubTextColor">All Sellers</h1>

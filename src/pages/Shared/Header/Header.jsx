@@ -14,7 +14,7 @@ import Burger from "./Nav/Burger";
 import { motion } from "framer-motion";
 
 const Header = () => {
-  const user = false;
+  const user = true;
   const { t } = useTranslation();
   const [hide, setHide] = useState(false);
   const [show, setShow] = useState(true);
@@ -153,13 +153,13 @@ const Header = () => {
                     </label>
                     <ul
                       tabIndex={0}
-                      className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow "
+                      className="menu menu-sm dropdown-content bg-BackgroundColor rounded-box mt-3 w-52 p-2 shadow z-10"
                     >
                       <li>
-                        <Link>Profile</Link>
+                        <Link to='/'>Profile</Link>
                       </li>
                       <li>
-                        <Link>My Orders</Link>
+                        <NavLink to='/track-order'>My Orders</NavLink>
                       </li>
                       <li>
                         <Link>Logout</Link>

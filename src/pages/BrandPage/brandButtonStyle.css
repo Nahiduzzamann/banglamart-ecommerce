@@ -7,7 +7,7 @@
     padding: 10px;
 }
 
-#animatedButton {
+#animatedButtonBrand {
     width: 200px;
     height: 200px;
     border-radius: 10px;
@@ -20,7 +20,7 @@
     align-items: center;
 }
 
-#animatedButton::before {
+#animatedButtonBrand::before {
     content: "";
     background-image: conic-gradient(#fbe711 20deg, transparent 120deg);
     width: 150%;
@@ -29,7 +29,7 @@
     animation: rotate 2s linear infinite;
 }
 
-#animatedButton::after {
+#animatedButtonBrand::after {
     content: "Be A Brand Seller";
     font-size: larger;
     width: 190px;
