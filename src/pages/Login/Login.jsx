@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import {
+  AiFillPhone,
   AiOutlineEye,
   AiOutlineEyeInvisible,
   AiOutlineGoogle,
@@ -16,18 +17,20 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isPhoneSelected, setIsPhoneSelected] = useState(false);
+  // const [isPhoneSelected, setIsPhoneSelected] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
-    const identifier = isPhoneSelected
-      ? form.phoneNumber.value
-      : form.email.value;
+    // const identifier = isPhoneSelected
+    //   ? form.phoneNumber.value
+    //   : form.email.value;
+    const email=form.email.value
     const password = form.password.value;
-    setIsLoading(true);
 
+    setIsLoading(true);
+console.log(email,password);
     // signIn(identifier, password)
     //   .then((result) => {
     //     const user = result.user;
@@ -53,6 +56,7 @@ const Login = () => {
         setErrorMessage(error.message);
       });
   };
+  const handlePhoneLogin =() => {}
 
   return (
     <div className="flex items-center justify-center min-h-screen">
@@ -70,48 +74,16 @@ const Login = () => {
           </div>
         )}
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <div className="flex flex-col ">
-              <label className="block font-medium mb-2 ">Login Using</label>
-              <label className=" cursor-pointer text-[14px] text-SubTextColor">
-                <input
-                  type="radio"
-                  name="loginType"
-                  value="email"
-                  checked={!isPhoneSelected}
-                  onChange={() => setIsPhoneSelected(false)}
-                />{" "}
-                Email
-              </label>
-              <label className="cursor-pointer  text-[14px] text-SubTextColor">
-                <input
-                  type="radio"
-                  name="loginType"
-                  value="phone"
-                  checked={isPhoneSelected}
-                  onChange={() => setIsPhoneSelected(true)}
-                />{" "}
-                Phone Number
-              </label>
-            </div>
-            {isPhoneSelected ? (
-              <input
-                type="text"
-                name="phoneNumber"
-                className="input input-bordered w-full"
-                placeholder="Enter your phone number"
-                required
-              />
-            ) : (
-              <input
-                type="email"
-                name="email"
-                className="input input-bordered w-full"
-                placeholder="Enter your email"
-                required
-              />
-            )}
-          </div>
+        <label className="block font-medium mb-2 text-TextColor">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              className="input input-bordered w-full pr-10 mb-4"
+              placeholder="Enter your Email Address"
+              required
+            />
           <div className="mb-2 relative">
             <label className="block font-medium mb-2 text-TextColor">
               Password
@@ -159,7 +131,7 @@ const Login = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.8 }}
             onClick={handleGoogleLogin}
-            className="bg-MainColor text-CardColor shadow-lg shadow-MainColorHover rounded-md p-2 w-full hover:bg-MainColorHover"
+            className="bg-MainColor text-CardColor shadow-lg shadow-MainColorHover rounded-md p-2 w-full hover:bg-MainColorHover mb-6"
             disabled={isLoading}
           >
             {isLoading ? (
@@ -168,6 +140,22 @@ const Login = () => {
               <div className="flex justify-center items-center">
                 <AiOutlineGoogle className="text-2xl mr-1" />
                 <h2>Sign in with Google</h2>
+              </div>
+            )}
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.8 }}
+            onClick={handlePhoneLogin}
+            className="bg-MainColor text-CardColor shadow-lg shadow-MainColorHover rounded-md p-2 w-full hover:bg-MainColorHover"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <span className="loading loading-bars loading-md"></span>
+            ) : (
+              <div className="flex justify-center items-center">
+                <AiFillPhone className="text-2xl mr-1" />
+                <h2>Sign in with Phone</h2>
               </div>
             )}
           </motion.button>
