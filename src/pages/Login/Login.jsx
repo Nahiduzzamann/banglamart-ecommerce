@@ -115,7 +115,7 @@ console.log(email,password);
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.8 }}
             type="submit"
-            className="bg-MainColor text-CardColor shadow-lg shadow-MainColorHover rounded-md p-2 w-full hover:bg-MainColorHover"
+            className="bg-MainColor mt-4 text-CardColor shadow-lg shadow-MainColorHover rounded-md p-2 w-full hover:bg-MainColorHover"
             disabled={isLoading}
           >
             {isLoading ? (

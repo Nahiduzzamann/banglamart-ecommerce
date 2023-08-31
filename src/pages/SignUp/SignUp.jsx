@@ -544,19 +544,19 @@ const SignUp = () => {
               required
             />
           </div>
-          <div className="mb-2 text-right">
+          {/* <div className="mb-2 text-right">
             <Link
               to="/forgot-password"
               className="text-MainColor hover:text-MainColorHover hover:underline"
             >
               Forgot Password?
             </Link>
-          </div>
+          </div> */}
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.8 }}
             type="submit"
-            className="bg-MainColor text-CardColor shadow-lg shadow-MainColorHover rounded-md p-2 w-full hover:bg-MainColorHover"
+            className="bg-MainColor text-CardColor shadow-lg shadow-MainColorHover rounded-md p-2 w-full hover:bg-MainColorHover mt-4"
             disabled={isLoading}
           >
             {isLoading ? (
@@ -580,7 +580,7 @@ const SignUp = () => {
             ) : (
               <div className="flex justify-center items-center">
                 <AiOutlineGoogle className="text-2xl mr-1" />
-                <h2>Sign in with Google</h2>
+                <h2>Sign Up with Google</h2>
               </div>
             )}
           </motion.button>
@@ -596,7 +596,7 @@ const SignUp = () => {
             ) : (
               <div className="flex justify-center items-center">
                 <AiFillPhone className="text-2xl mr-1" />
-                <h2>Sign in with Phone</h2>
+                <h2>Sign Up with Phone</h2>
               </div>
             )}
           </motion.button>
