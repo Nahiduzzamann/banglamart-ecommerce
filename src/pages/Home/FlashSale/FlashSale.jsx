@@ -62,8 +62,7 @@ const FlashSale = () => {
   return (
     <div
       className={`${  
-        remainingTime <= 0 && "hidden"
-      } mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg`}
+        remainingTime || "hidden" } mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg`}
     >
       <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
         <div className="border-b-[3px] border-b-MainColor ">
