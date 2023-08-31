@@ -52,9 +52,9 @@ const Support = () => {
   };
 
   return (
-    <div className="bg-gray-100">
-      <div className="container mx-auto p-4 pt-12 pb-12">
-        <h4 className="text-3xl text-center font-bold mb-8 text-orange-500">
+    <div className="">
+      <div className="container mx-auto p-4 mt-4 lg:mt-12 pb-12 bg-CardColor">
+        <h4 className="text-2xl text-center font-bold mb-8 text-SubTextColor">
           Contact Us
         </h4>
 
