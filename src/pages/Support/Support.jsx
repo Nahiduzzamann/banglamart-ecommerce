@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 const Support = () => {
   const [formData, setFormData] = useState({
     name: "",
+    phone: "",
     email: "",
     message: "",
   });
@@ -126,6 +127,15 @@ const Support = () => {
                   className="bg-BackgroundColor rounded-md w-full p-2 mb-4"
                 />
                 <input
+                  type="number"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="Phone Number"
+                  required
+                  className="bg-BackgroundColor rounded-md w-full p-2 mb-4"
+                />
+                <input
                   type="email"
                   name="email"
                   required
@@ -146,7 +156,7 @@ const Support = () => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.8 }}
                   type="submit"
-                  className="text-CardColor btn btn-info py-2 px-4 rounded"
+                  className="text-CardColor btn btn-info rounded"
                 >
                   {send ? "Sending.." : "Send"}
                 </motion.button>
