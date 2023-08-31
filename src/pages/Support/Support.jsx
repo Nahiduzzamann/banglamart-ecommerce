@@ -1,9 +1,8 @@
-
-
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
 import { BiCurrentLocation } from "react-icons/bi";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const Support = () => {
   const [formData, setFormData] = useState({
@@ -60,25 +59,25 @@ const Support = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <h4 className="text-2xl font-bold mb-4 text-[#1A2753]">
-              Branch Office
-            </h4>
+            <h1 className=" mb-4 text-SubTextColor">Branch Office</h1>
             <div className="flex items-center mb-2 text-blue-900">
-              <AiOutlinePhone className="h-6 w-6 mr-2 " />
-              <span>+8801713-337752</span>
+              <AiOutlinePhone className="h-6 w-6 mr-2 text-SubTextColor" />
+              <span className="text-SubTextColor">+8801713-337752</span>
             </div>
             <div className="flex items-center mb-2 text-blue-900">
-              <AiOutlineMail className="h-6 w-6 mr-2" />
-              <span>prestigefeed.bd@gmail.com</span>
+              <AiOutlineMail className="h-6 w-6 mr-2 text-SubTextColor" />
+              <span className="text-SubTextColor">
+                banglamartecommerce@gmail.com
+              </span>
             </div>
             <div className="flex items-center mb-2 text-blue-900">
-              <BiCurrentLocation className="h-6 w-6 mr-2" />
-              <span>
+              <BiCurrentLocation className="h-6 w-6 mr-2 text-SubTextColor" />
+              <span className="text-SubTextColor">
                 Khandakar Lodge, House-65, Road-2, RK Road,Islambag, Rangpur
               </span>
             </div>
             <div className="mt-6">
-              <h2 className="text-2xl font-bold text-[#1A2753]">Location</h2>
+              <h1 className=" text-SubTextColor">Location</h1>
               <div className="mt-2">
                 <iframe
                   title="Google Maps"
@@ -96,64 +95,63 @@ const Support = () => {
           </div>
 
           <div>
-            <h4 className="text-2xl font-bold mb-4 text-[#1A2753]">
-              Head Office
-            </h4>
+            <h1 className=" mb-4 text-SubTextColor">Head Office</h1>
             <div className="flex items-center mb-2 text-blue-900">
-              <AiOutlinePhone className="h-6 w-6 mr-2 " />
-              <span>+8801713-337951</span>
+              <AiOutlinePhone className="h-6 w-6 mr-2 text-SubTextColor" />
+              <span className="text-SubTextColor">+8809611677639</span>
             </div>
             <div className="flex items-center mb-2 text-blue-900">
-              <AiOutlineMail className="h-6 w-6 mr-2" />
-              <span>prestigefeed.bd@gmail.com</span>
+              <AiOutlineMail className="h-6 w-6 mr-2 text-SubTextColor" />
+              <span className="text-SubTextColor">
+                banglamartecommerce@gmail.com
+              </span>
             </div>
             <div className="flex items-center mb-2 text-blue-900">
-              <BiCurrentLocation className="h-6 w-6 mr-2" />
-              <span>
+              <BiCurrentLocation className="h-6 w-6 mr-2 text-SubTextColor" />
+              <span className="text-SubTextColor">
                 House 381, Level-5, Road- 28, New DOSH, Mohakhali, Dhaka- 1206
               </span>
             </div>
-          </div>
-
-          <div>
-            {/* Send us a message section */}
-            <h4 className="text-2xl font-bold mb-4 text-[#1A2753]">
-              Send us a message
-            </h4>
-            <form onSubmit={sendEmail}>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Name"
-                required
-                className="border border-gray-300 rounded-md w-full p-2 mb-4"
-              />
-              <input
-                type="email"
-                name="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Email"
-                className="border border-gray-300 rounded-md w-full p-2 mb-4"
-              />
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Message"
-                className="border border-gray-300 rounded-md w-full p-2 mb-4 resize-none"
-                rows="4"
-              ></textarea>
-              <button
-                type="submit"
-                className="bg-[#493120] hover:bg-[#9E683E] text-white font-bold py-2 px-4 rounded"
-              >
-                {send ? "Sending.." : "Send"}
-              </button>
-            </form>
+            <div className="mt-6">
+              {/* Send us a message section */}
+              <h1 className=" mb-4 text-SubTextColor">Send us message</h1>
+              <form onSubmit={sendEmail}>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Name"
+                  required
+                  className="bg-BackgroundColor rounded-md w-full p-2 mb-4"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Email"
+                  className="bg-BackgroundColor rounded-md w-full p-2 mb-4"
+                />
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Message"
+                  className="bg-BackgroundColor rounded-md w-full p-2 mb-4 "
+                  rows="4"
+                ></textarea>
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.8 }}
+                  type="submit"
+                  className="text-CardColor btn btn-info py-2 px-4 rounded"
+                >
+                  {send ? "Sending.." : "Send"}
+                </motion.button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
