@@ -37,6 +37,7 @@ import BrandPage from "./pages/BrandPage/BrandPage";
 import ShopPage from "./pages/ShopPage/ShopPage";
 import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange";
 import TrackOrder from "./pages/TrackOrder/TrackOrder";
+import Support from "./pages/Support/Support";
 
 const router = createBrowserRouter([
   {
@@ -140,6 +141,10 @@ const router = createBrowserRouter([
       {
         path: "/track-order",
         element: <TrackOrder></TrackOrder>,
+      },
+      {
+        path: "/support",
+        element: <Support></Support>,
       },
     ],
   },

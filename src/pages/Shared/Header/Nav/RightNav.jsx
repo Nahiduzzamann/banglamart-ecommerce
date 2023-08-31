@@ -46,6 +46,9 @@ const RightNav = ({ open }) => {
       <NavLink className="text-CardColor hover:text-TextColor" to="/track-order">
         <h3 className="p-2">Track Order</h3>
       </NavLink>
+      <NavLink className="text-CardColor hover:text-TextColor" to="/support">
+        <h3 className="p-2">Support</h3>
+      </NavLink>
       
       </div>
     </Ul>

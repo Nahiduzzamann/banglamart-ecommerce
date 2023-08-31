@@ -223,6 +223,9 @@ const Header = () => {
                 <NavLink className="hover:underline text-SubTextColor hover:text-TextColor" to="/track-order">
                   Track Order
                 </NavLink>
+                <NavLink className="hover:underline text-SubTextColor hover:text-TextColor" to="/support">
+                  Support
+                </NavLink>
               </div>
             </div>
             {/* Small screen  */}
