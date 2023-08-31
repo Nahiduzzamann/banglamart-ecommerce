@@ -123,15 +123,13 @@ const Login = () => {
               placeholder="Enter your password"
               required
             />
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
+            <button
               type="button"
               className="absolute right-3 top-14 transform -translate-y-1/2 focus:outline-none"
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-            </motion.button>
+            </button>
           </div>
           <div className="mb-2 text-right">
             <Link
