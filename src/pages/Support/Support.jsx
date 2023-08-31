@@ -62,22 +62,22 @@ const Support = () => {
           <div>
             <h1 className=" mb-4 text-SubTextColor">Branch Office</h1>
             <div className="flex items-center mb-2 text-blue-900">
-              <AiOutlinePhone className="h-6 w-6 mr-2 text-SubTextColor" />
-              <span className="text-SubTextColor">+8801713-337752</span>
+              <AiOutlinePhone className=" mr-2 text-SubTextColor" />
+              <p className="text-SubTextColor">+8801713-337752</p>
             </div>
             <div className="flex items-center mb-2 text-blue-900">
-              <AiOutlineMail className="h-6 w-6 mr-2 text-SubTextColor" />
-              <span className="text-SubTextColor">
+              <AiOutlineMail className=" mr-2 text-SubTextColor" />
+              <p className="text-SubTextColor">
                 banglamartecommerce@gmail.com
-              </span>
+              </p>
             </div>
             <div className="flex items-center mb-2 text-blue-900">
-              <BiCurrentLocation className="h-6 w-6 mr-2 text-SubTextColor" />
-              <span className="text-SubTextColor">
+              <BiCurrentLocation className=" mr-2 text-SubTextColor" />
+              <p className="text-SubTextColor">
                 Khandakar Lodge, House-65, Road-2, RK Road,Islambag, Rangpur
-              </span>
+              </p>
             </div>
-            <div className="mt-6">
+            <div className="mt-6 lg:mt-10">
               <h1 className=" text-SubTextColor">Location</h1>
               <div className="mt-2">
                 <iframe
@@ -98,22 +98,22 @@ const Support = () => {
           <div>
             <h1 className=" mb-4 text-SubTextColor">Head Office</h1>
             <div className="flex items-center mb-2 text-blue-900">
-              <AiOutlinePhone className="h-6 w-6 mr-2 text-SubTextColor" />
-              <span className="text-SubTextColor">+8809611677639</span>
+              <AiOutlinePhone className=" mr-2 text-SubTextColor" />
+              <p className="text-SubTextColor">+8809611677639</p>
             </div>
             <div className="flex items-center mb-2 text-blue-900">
-              <AiOutlineMail className="h-6 w-6 mr-2 text-SubTextColor" />
-              <span className="text-SubTextColor">
+              <AiOutlineMail className=" mr-2 text-SubTextColor" />
+              <p className="text-SubTextColor">
                 banglamartecommerce@gmail.com
-              </span>
+              </p>
             </div>
             <div className="flex items-center mb-2 text-blue-900">
-              <BiCurrentLocation className="h-6 w-6 mr-2 text-SubTextColor" />
-              <span className="text-SubTextColor">
+              <BiCurrentLocation className=" mr-2 text-SubTextColor" />
+              <p className="text-SubTextColor">
                 House 381, Level-5, Road- 28, New DOSH, Mohakhali, Dhaka- 1206
-              </span>
+              </p>
             </div>
-            <div className="mt-6">
+            <div className="mt-6 lg:mt-10">
               {/* Send us a message section */}
               <h1 className=" mb-4 text-SubTextColor">Send us message</h1>
               <form onSubmit={sendEmail}>
