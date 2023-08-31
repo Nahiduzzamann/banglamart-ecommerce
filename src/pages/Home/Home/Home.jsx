@@ -1,4 +1,5 @@
 import FlashSaleBanner from "../../../components/FlashSaleBanner";
+import BargainingProducts from "../BargainingProducts/BargainingProducts";
 import BestSellers from "../BestSellers/BestSellers";
 import BestSelling from "../BestSelling/BestSelling";
 import FlashSale from "../FlashSale/FlashSale";
@@ -19,6 +20,7 @@ const Home = () => {
       <FlashSaleBanner></FlashSaleBanner>
       <div className="container mx-auto">
         <TopProducts></TopProducts>
+        <BargainingProducts></BargainingProducts>
         <BestSellers />
       </div>
     </div>
