@@ -159,7 +159,7 @@ console.log(email,password);
               </div>
             )}
           </motion.button>
-          <p className="mt-4 text-SubTextColor">
+          <p className="mt-10 text-SubTextColor">
             Don't have an account?{" "}
             <Link
               to="/registration"
