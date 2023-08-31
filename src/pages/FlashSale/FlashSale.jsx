@@ -26,23 +26,23 @@ const FlashSalePage = () => {
     (state) => state.flashSellData?.flashSellData?.data
   );
 
-  const bannerURL = `${url}${flashSell.banner}`;
+  const bannerURL = `${url}${flashSell?.banner}`;
 
   //calculate time
 
   const flashSaleData = {
-    startAt: new Date(flashSell.startAt).getTime(),
-    endAt: new Date(flashSell.endAt).getTime(),
+    startAt: new Date(flashSell?.startAt).getTime(),
+    endAt: new Date(flashSell?.endAt).getTime(),
   };
 
 
   const [remainingTime, setRemainingTime] = useState(
-    flashSaleData.endAt - new Date().getTime()
+    flashSaleData?.endAt - new Date().getTime()
   );
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const newRemainingTime = flashSaleData.endAt - new Date().getTime();
+      const newRemainingTime = flashSaleData?.endAt - new Date().getTime();
       setRemainingTime(newRemainingTime);  //
     }, 1000);
 
@@ -50,8 +50,8 @@ const FlashSalePage = () => {
       clearInterval(interval);
     };
   }, []);
-
-  if (remainingTime <= 0) {
+console.log(remainingTime);
+  if (!remainingTime) {
     return (<div>
       <div>
       <EmptyContent text="Currently No Offer available!!!"></EmptyContent>
