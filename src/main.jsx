@@ -38,6 +38,7 @@ import ShopPage from "./pages/ShopPage/ShopPage";
 import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange";
 import TrackOrder from "./pages/TrackOrder/TrackOrder";
 import Support from "./pages/Support/Support";
+import BargainingProducts from "./pages/BargainingProducts/BargainingProducts";
 
 const router = createBrowserRouter([
   {
@@ -145,6 +146,10 @@ const router = createBrowserRouter([
       {
         path: "/support",
         element: <Support></Support>,
+      },
+      {
+        path: "/bargaining-products",
+        element: <BargainingProducts></BargainingProducts>,
       },
     ],
   },

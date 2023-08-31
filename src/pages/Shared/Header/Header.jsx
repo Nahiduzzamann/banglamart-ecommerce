@@ -201,6 +201,12 @@ const Header = () => {
                 </NavLink>
                 <NavLink
                   className="hover:underline text-SubTextColor hover:text-TextColor"
+                  to="/bargaining-products"
+                >
+                  Bargaining Products
+                </NavLink>
+                <NavLink
+                  className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/all-seller"
                 >
                   All Seller
