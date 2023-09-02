@@ -12,9 +12,10 @@ import { useTranslation } from "react-i18next";
 import { Link, NavLink } from "react-router-dom";
 import Burger from "./Nav/Burger";
 import { motion } from "framer-motion";
+import { CgProfile } from "react-icons/cg";
+import { TbListDetails, TbLogout2, TbTruckDelivery } from "react-icons/tb";
 import {
   Avatar,
-  Button,
   Menu,
   MenuButton,
   MenuItem,
@@ -158,14 +159,17 @@ const Header = () => {
                       />
                     </MenuButton>
                     <MenuList>
-                      <MenuItem>
-                        <NavLink to="/profile">Profile</NavLink>
+                      <MenuItem icon={<CgProfile className="text-[18px] text-SubTextColor"/>}>
+                        <Link className="text-SubTextColor" to="/profile">Profile</Link>
                       </MenuItem>
-                      <MenuItem>
-                        <NavLink to="/track-order">My Orders</NavLink>
+                      <MenuItem icon={<TbListDetails className="text-[18px] text-SubTextColor"/>}>
+                        <Link  className="text-SubTextColor" to="/track-order">My Orders</Link>
                       </MenuItem>
-                      <MenuItem>
-                        <NavLink>Logout</NavLink>
+                      <MenuItem icon={<TbTruckDelivery className="text-[18px] text-SubTextColor"/>}>
+                        <Link  className="text-SubTextColor" to="/addDeliveryAddress">Delivery Address</Link>
+                      </MenuItem>
+                      <MenuItem icon={<TbLogout2 className="text-[18px] text-SubTextColor"/>}>
+                        <Link className="text-SubTextColor">Logout</Link>
                       </MenuItem>
                     </MenuList>
                   </Menu>
