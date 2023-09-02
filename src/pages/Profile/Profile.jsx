@@ -63,7 +63,7 @@ const Profile = () => {
           />
           <label
             htmlFor="profile-picture-input"
-            className="absolute bottom-0 right-[10px] bg-TextColor text-CardColor rounded-full p-1 cursor-pointer hover:border hover:border-BorderColor"
+            className="absolute bottom-1 right-2 bg-TextColor text-CardColor rounded-full p-1 cursor-pointer hover:border hover:border-BorderColor"
           >
             <p>
               <FaUserEdit />
@@ -97,17 +97,22 @@ const Profile = () => {
             className="bg-BackgroundColor outline-BorderColor lg:w-96 p-2 rounded-md text-SubTextColor"
           />
         </div>
-        {editedName === userData.name && editedEmail === userData.email ? (
-          <button disabled className="bg-BackgroundColor text-SubTextColor py-2 px-4 rounded-md mt-4 shadow-md shadow-SubTextColor"> Update</button>
+        {editedName === userData.name &&
+        editedEmail === userData.email &&
+        editedPhone === userData.phone ? (
+          <button
+            disabled
+            className="bg-BackgroundColor text-SubTextColor py-2 px-4 rounded-md mt-4 shadow-md shadow-SubTextColor"
+          >
+            {" "}
+            Update
+          </button>
         ) : (
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.8 }}
             className="bg-MainColor text-CardColor py-2 px-4 rounded-md mt-4 hover:bg-MainColorHover shadow-md shadow-MainColor "
             onClick={handleUpdate}
-            disabled={
-              editedName === userData.name && editedEmail === userData.email
-            }
           >
             Update
           </motion.button>
