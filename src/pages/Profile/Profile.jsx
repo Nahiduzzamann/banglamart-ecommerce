@@ -2,7 +2,6 @@ import { Avatar } from "@chakra-ui/react";
 import { useState } from "react";
 import { FaUserEdit } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { Button } from "react-scroll";
 
 const Profile = () => {
   // Sample user data
@@ -17,7 +16,7 @@ const Profile = () => {
   const [editedName, setEditedName] = useState(userData.name);
   const [editedEmail, setEditedEmail] = useState(userData.email);
   const [editedPhone, setEditedPhone] = useState(userData.phone);
-  const [editedImage, setEditedImage] = useState(userData.image);
+  const [editedImage, setEditedImage] = useState(null);
   // Add more states for other user data fields as needed
 
   const handleUpdate = () => {
@@ -28,7 +27,7 @@ const Profile = () => {
       name: editedName,
       email: editedEmail,
       phone: editedPhone,
-      image: editedImage,
+      image: editedImage || userData.image,
       // Update other user data fields here
     });
   };
@@ -36,7 +35,14 @@ const Profile = () => {
   // Profile picture upload handler
   const handleProfilePictureUpload = (e) => {
     const file = e.target.files[0];
-    setEditedImage(file);
+    // Handle file upload here and set the editedImage state
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setEditedImage(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
     // Handle file upload here, e.g., using FormData and API request
     // For now, just update the local state
   };
@@ -48,7 +54,7 @@ const Profile = () => {
           <Avatar
             size="xl"
             name={editedName}
-            src={editedImage}
+            src={editedImage || userData.image}
             onClick={() => {
               // Trigger the file input click
               document.getElementById("profile-picture-input").click();
@@ -63,7 +69,7 @@ const Profile = () => {
           />
           <label
             htmlFor="profile-picture-input"
-            className="absolute bottom-1 right-2 bg-TextColor text-CardColor rounded-full p-1 cursor-pointer hover:border hover:border-BorderColor"
+            className="absolute bottom-1 right-2 bg-TextColor text-CardColor rounded-full p-1 cursor-pointer hover:border hover:border-BorderColor border-2 border-CardColor"
           >
             <p>
               <FaUserEdit />
@@ -99,7 +105,8 @@ const Profile = () => {
         </div>
         {editedName === userData.name &&
         editedEmail === userData.email &&
-        editedPhone === userData.phone ? (
+        editedPhone === userData.phone &&
+        editedImage === null ? (
           <button
             disabled
             className="bg-BackgroundColor text-SubTextColor py-2 px-4 rounded-md mt-4 shadow-md shadow-SubTextColor"
