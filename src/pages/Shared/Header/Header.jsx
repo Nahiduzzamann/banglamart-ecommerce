@@ -18,6 +18,7 @@ import {
   Avatar,
   Menu,
   MenuButton,
+  MenuGroup,
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
@@ -159,18 +160,54 @@ const Header = () => {
                       />
                     </MenuButton>
                     <MenuList>
-                      <MenuItem icon={<CgProfile className="text-[18px] text-SubTextColor"/>}>
-                        <Link className="text-SubTextColor" to="/profile">Profile</Link>
-                      </MenuItem>
-                      <MenuItem icon={<TbListDetails className="text-[18px] text-SubTextColor"/>}>
-                        <Link  className="text-SubTextColor" to="/track-order">My Orders</Link>
-                      </MenuItem>
-                      <MenuItem icon={<TbTruckDelivery className="text-[18px] text-SubTextColor"/>}>
-                        <Link  className="text-SubTextColor" to="/addDeliveryAddress">Delivery Address</Link>
-                      </MenuItem>
-                      <MenuItem icon={<TbLogout2 className="text-[18px] text-SubTextColor"/>}>
-                        <Link className="text-SubTextColor">Logout</Link>
-                      </MenuItem>
+                      <MenuGroup title="Profile">
+                        <MenuItem>
+                          <Link
+                            className="text-SubTextColor flex items-center"
+                            to="/profile"
+                          >
+                            <CgProfile className="text-[18px] text-SubTextColor mr-2" />
+                            <h3>Profile</h3>
+                          </Link>
+                        </MenuItem>
+                        <MenuItem>
+                          <Link
+                            className="text-SubTextColor flex items-center"
+                            to="/track-order"
+                          >
+                            <TbListDetails className="text-[18px] text-SubTextColor mr-2" />
+
+                            <h3>My Orders</h3>
+                          </Link>
+                        </MenuItem>
+                        <MenuItem>
+                          <Link
+                            className="text-SubTextColor flex items-center"
+                            to="/addDeliveryAddress"
+                          >
+                            <TbTruckDelivery className="text-[18px] text-SubTextColor mr-2" />
+                            <h3>Delivery Address</h3>
+                          </Link>
+                        </MenuItem>
+                        <MenuItem>
+                          <Link className="text-SubTextColor flex items-center">
+                            <TbLogout2 className="text-[18px] text-SubTextColor mr-2" />
+                            <h3>Log out</h3>
+                          </Link>
+                        </MenuItem>
+                      </MenuGroup>
+                      <MenuGroup title="Help">
+                        <MenuItem>
+                          <Link to="/support">
+                            <h3>Support</h3>
+                          </Link>
+                        </MenuItem>
+                        <MenuItem>
+                          <Link to="/faq">
+                            <h3>FAQ</h3>
+                          </Link>
+                        </MenuItem>
+                      </MenuGroup>
                     </MenuList>
                   </Menu>
                 ) : (
