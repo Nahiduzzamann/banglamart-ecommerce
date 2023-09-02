@@ -12,7 +12,14 @@ import { useTranslation } from "react-i18next";
 import { Link, NavLink } from "react-router-dom";
 import Burger from "./Nav/Burger";
 import { motion } from "framer-motion";
-import { Avatar } from "@chakra-ui/react";
+import {
+  Avatar,
+  Button,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+} from "@chakra-ui/react";
 
 const Header = () => {
   const user = true;
@@ -26,9 +33,9 @@ const Header = () => {
   useEffect(() => {
     window.onscroll = function (e) {
       // print "false" if direction is down and "true" if up
-      setShow(this.oldScroll > this.scrollY );
+      setShow(this.oldScroll > this.scrollY);
       this.oldScroll = this.scrollY;
-      setPosition(this.scrollY)
+      setPosition(this.scrollY);
       //console.log(this.scrollY);
     };
   }, []);
@@ -50,16 +57,15 @@ const Header = () => {
         ></img>
       </div>
       <motion.div
-        transition={{ duration: .5}}
+        transition={{ duration: 0.5 }}
         initial={{
           opacity: 1,
         }}
         animate={{
           //height:140
-          opacity: show? 1 : 0,
+          opacity: show ? 1 : 0,
         }}
-        
-        className={`${position>30&& "fixed top-0 z-50 w-full shadow-md"}`}
+        className={`${position > 30 && "fixed top-0 z-50 w-full shadow-md"}`}
       >
         {/* number Section  */}
         <div className=" bg-CardColor border-b-BorderColor hidden border-b-[1px]  md:block">
@@ -108,10 +114,11 @@ const Header = () => {
                   placeholder="Search..."
                 />
                 <div className="bg-MainColor hover:bg-MainColor absolute inset-y-0 right-0 flex items-center justify-center rounded-r-full pl-3 pr-3 rounded-e-lg">
-                  <motion.button 
-                  whileHover={{ scale: 1.4 }}
-                  whileTap={{ scale: 0.8 }}
-                  className="">
+                  <motion.button
+                    whileHover={{ scale: 1.4 }}
+                    whileTap={{ scale: 0.8 }}
+                    className=""
+                  >
                     <AiOutlineSearch className="text-CardColor text-[25px]  " />
                   </motion.button>
                 </div>
@@ -128,7 +135,7 @@ const Header = () => {
               <div className="flex items-center">
                 <Link
                   to="/cart"
-                  className="hover:border-BorderColor border-CardColor relative ml-2 flex items-center rounded-md border p-1 hover:border"
+                  className="hover:border-BorderColor border-CardColor relative ml-2 flex items-center rounded-md border p-1 hover:border mr-2"
                 >
                   <AiOutlineShoppingCart className="text-SubTextColor text-[30px]" />
                   <div>
@@ -140,28 +147,28 @@ const Header = () => {
                 </Link>
 
                 {user ? (
-                  <div className="dropdown dropdown-end ml-2">
-                    <label
-                      tabIndex={0}
-                      className="btn btn-ghost btn-circle avatar"
-                    >
-                      <Avatar bg='teal.500' icon={<AiOutlineUser fontSize='1.5rem' />} size='md' name={user?.name} src={user?.image}/>
-                    </label>
-                    <ul
-                      tabIndex={0}
-                      className="menu menu-sm dropdown-content bg-BackgroundColor rounded-box mt-3 w-52 p-2 shadow z-10"
-                    >
-                      <li>
-                        <NavLink to='/profile'>Profile</NavLink>
-                      </li>
-                      <li>
-                        <NavLink to='/track-order'>My Orders</NavLink>
-                      </li>
-                      <li>
-                        <Link>Logout</Link>
-                      </li>
-                    </ul>
-                  </div>
+                  <Menu>
+                    <MenuButton>
+                      <Avatar
+                        bg="teal.500"
+                        icon={<AiOutlineUser fontSize="1.5rem" />}
+                        size="md"
+                        name={user?.name}
+                        src={user?.image}
+                      />
+                    </MenuButton>
+                    <MenuList>
+                      <MenuItem>
+                        <NavLink to="/profile">Profile</NavLink>
+                      </MenuItem>
+                      <MenuItem>
+                        <NavLink to="/track-order">My Orders</NavLink>
+                      </MenuItem>
+                      <MenuItem>
+                        <NavLink>Logout</NavLink>
+                      </MenuItem>
+                    </MenuList>
+                  </Menu>
                 ) : (
                   <Link
                     to="/login"
@@ -222,10 +229,16 @@ const Header = () => {
                 >
                   Brands
                 </NavLink>
-                <NavLink className="hover:underline text-SubTextColor hover:text-TextColor" to="/track-order">
+                <NavLink
+                  className="hover:underline text-SubTextColor hover:text-TextColor"
+                  to="/track-order"
+                >
                   Track Order
                 </NavLink>
-                <NavLink className="hover:underline text-SubTextColor hover:text-TextColor" to="/support">
+                <NavLink
+                  className="hover:underline text-SubTextColor hover:text-TextColor"
+                  to="/support"
+                >
                   Support
                 </NavLink>
               </div>

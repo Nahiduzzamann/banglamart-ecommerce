@@ -42,7 +42,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="container mx-auto bg-CardColor mt-4 lg:mt-10">
+    <div className="container mx-auto bg-CardColor mt-4 lg:mt-10 lg:p-10">
       <div className="flex flex-col items-center p-4">
         <div className="relative">
           <Avatar
