@@ -27,7 +27,7 @@ import Faq from "./pages/Faq/Faq";
 import Blog from "./pages/Blog/Blog";
 import Cart from "./pages/Cart/Cart";
 import AddDeliveryAddressForm from "./pages/AddAddress/AddAddress";
-import { Provider} from "react-redux";
+import { Provider } from "react-redux";
 import store from "./services/store/store";
 import SellerForm from "./pages/SellerForm/SellerForm";
 import AllSeller from "./pages/AllSeller/AllSeller";
@@ -39,7 +39,8 @@ import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange";
 import TrackOrder from "./pages/TrackOrder/TrackOrder";
 import Support from "./pages/Support/Support";
 import BargainingProductsPage from "./pages/BargainingProductsPage/BargainingProductsPage";
-
+import Profile from "./pages/Profile/Profile";
+import { ChakraProvider } from "@chakra-ui/react";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -151,10 +152,13 @@ const router = createBrowserRouter([
         path: "/bargaining-products",
         element: <BargainingProductsPage></BargainingProductsPage>,
       },
+      {
+        path: "/profile",
+        element: <Profile></Profile>,
+      },
     ],
   },
 ]);
-
 
 i18n.init({
   interpolation: { escapeValue: false },
@@ -170,14 +174,16 @@ i18n.init({
 });
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <AuthProvider>
-        <div className="bg-BackgroundColor">
-          <I18nextProvider i18n={i18n}>
-            <RouterProvider router={router} />
-          </I18nextProvider>
-        </div>
-      </AuthProvider>
-    </Provider>
+    <ChakraProvider>
+      <Provider store={store}>
+        <AuthProvider>
+          <div className="bg-BackgroundColor">
+            <I18nextProvider i18n={i18n}>
+              <RouterProvider router={router} />
+            </I18nextProvider>
+          </div>
+        </AuthProvider>
+      </Provider>
+    </ChakraProvider>
   </React.StrictMode>
 );

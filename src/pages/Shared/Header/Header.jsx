@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import { Link, NavLink } from "react-router-dom";
 import Burger from "./Nav/Burger";
 import { motion } from "framer-motion";
+import { Avatar } from "@chakra-ui/react";
 
 const Header = () => {
   const user = true;
@@ -139,24 +140,19 @@ const Header = () => {
                 </Link>
 
                 {user ? (
-                  <div className="dropdown dropdown-end">
+                  <div className="dropdown dropdown-end ml-2">
                     <label
                       tabIndex={0}
                       className="btn btn-ghost btn-circle avatar"
                     >
-                      <div className="h-8 w-8 rounded-full">
-                        <img
-                          className="h-8 w-8"
-                          src="https://static.vecteezy.com/system/resources/previews/021/548/095/original/default-profile-picture-avatar-user-avatar-icon-person-icon-head-icon-profile-picture-icons-default-anonymous-user-male-and-female-businessman-photo-placeholder-social-network-avatar-portrait-free-vector.jpg"
-                        />
-                      </div>
+                      <Avatar bg='teal.500' icon={<AiOutlineUser fontSize='1.5rem' />} size='md' name={user?.name} src={user?.image}/>
                     </label>
                     <ul
                       tabIndex={0}
                       className="menu menu-sm dropdown-content bg-BackgroundColor rounded-box mt-3 w-52 p-2 shadow z-10"
                     >
                       <li>
-                        <Link to='/'>Profile</Link>
+                        <NavLink to='/profile'>Profile</NavLink>
                       </li>
                       <li>
                         <NavLink to='/track-order'>My Orders</NavLink>
