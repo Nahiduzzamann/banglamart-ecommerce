@@ -1,39 +1,100 @@
+import { Avatar } from "@chakra-ui/react";
+import { useState } from "react";
+import { FaUserEdit } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const Profile = () => {
-  // Replace with user data from your backend or context
-  const userData = {
+  // Sample user data
+  const [userData, setUserData] = useState({
     name: "John Doe",
     email: "johndoe@example.com",
-    address: "123 Main St, City, Country",
-    phoneNumber: "+1234567890",
-    ordersCount: 10, // Replace with actual order count
+    image: "",
+  });
+
+  // State for editable fields
+  const [editedName, setEditedName] = useState(userData.name);
+  const [editedEmail, setEditedEmail] = useState(userData.email);
+  const [editedImage, setEditedImage] = useState(userData.image);
+  // Add more states for other user data fields as needed
+
+  const handleUpdate = () => {
+    // Perform API request to update user data
+    // For now, just update the local state
+    setUserData({
+      ...userData,
+      name: editedName,
+      email: editedEmail,
+      image: editedImage,
+      // Update other user data fields here
+    });
+  };
+
+  // Profile picture upload handler
+  const handleProfilePictureUpload = (e) => {
+    const file = e.target.files[0];
+    setEditedImage(file);
+    // Handle file upload here, e.g., using FormData and API request
+    // For now, just update the local state
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen py-10">
-      <div className="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-2xl font-semibold mb-4">My Profile</h2>
-        <div className="mb-4">
-          <div className="font-semibold mb-1">Name:</div>
-          <p>{userData.name}</p>
+    <div className="container mx-auto bg-CardColor mt-4 lg:mt-10">
+      <div className="flex flex-col items-center p-4">
+        <div className="relative">
+          <Avatar
+            size="xl"
+            name={editedName}
+            src={editedImage}
+            onClick={() => {
+              // Trigger the file input click
+              document.getElementById("profile-picture-input").click();
+            }}
+          />
+          <input
+            type="file"
+            id="profile-picture-input"
+            accept="image/*"
+            className="hidden"
+            onChange={handleProfilePictureUpload}
+          />
+          <label
+            htmlFor="profile-picture-input"
+            className="absolute bottom-0 right-[10px] bg-TextColor text-CardColor rounded-full p-1 cursor-pointer hover:border hover:border-BorderColor"
+          >
+            <p>
+              <FaUserEdit />
+            </p>
+          </label>
         </div>
-        <div className="mb-4">
-          <div className="font-semibold mb-1">Email:</div>
-          <p>{userData.email}</p>
+        <div className="mt-4">
+          <label className="text-SubTextColor mr-2">Name:</label>
+          <input
+            type="text"
+            value={editedName}
+            onChange={(e) => setEditedName(e.target.value)}
+            className="bg-BackgroundColor outline-BorderColor lg:w-96 p-2 rounded-md text-SubTextColor "
+          />
         </div>
-        <div className="mb-4">
-          <div className="font-semibold mb-1">Address:</div>
-          <p>{userData.address}</p>
+        <div className="mt-4">
+          <label className="text-SubTextColor mr-2">Email:</label>
+          <input
+            type="email"
+            value={editedEmail}
+            onChange={(e) => setEditedEmail(e.target.value)}
+            className="bg-BackgroundColor outline-BorderColor lg:w-96 p-2 rounded-md text-SubTextColor"
+          />
         </div>
-        <div className="mb-4">
-          <div className="font-semibold mb-1">Phone Number:</div>
-          <p>{userData.phoneNumber}</p>
-        </div>
-        <div className="mb-4">
-          <div className="font-semibold mb-1">Total Orders:</div>
-          <p>{userData.ordersCount}</p>
-        </div>
-        {/* Add more user information as needed */}
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.8 }}
+          className="bg-MainColor text-CardColor py-2 px-4 rounded-md mt-4 hover:bg-MainColorHover shadow-md shadow-MainColor"
+          onClick={handleUpdate}
+          disabled={
+            editedName === userData.name && editedEmail === userData.email
+          }
+        >
+          Update
+        </motion.button>
       </div>
     </div>
   );
