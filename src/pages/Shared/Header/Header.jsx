@@ -167,7 +167,7 @@ const Header = () => {
                             to="/profile"
                           >
                             <CgProfile className="text-[18px] text-SubTextColor mr-2" />
-                            <h3>Profile</h3>
+                            <h3 className="hover:underline">Profile</h3>
                           </Link>
                         </MenuItem>
                         <MenuItem>
@@ -177,7 +177,7 @@ const Header = () => {
                           >
                             <TbListDetails className="text-[18px] text-SubTextColor mr-2" />
 
-                            <h3>My Orders</h3>
+                            <h3 className="hover:underline">My Orders</h3>
                           </Link>
                         </MenuItem>
                         <MenuItem>
@@ -186,25 +186,25 @@ const Header = () => {
                             to="/addDeliveryAddress"
                           >
                             <TbTruckDelivery className="text-[18px] text-SubTextColor mr-2" />
-                            <h3>Delivery Address</h3>
+                            <h3 className="hover:underline">Delivery Address</h3>
                           </Link>
                         </MenuItem>
                         <MenuItem>
                           <Link className="text-SubTextColor flex items-center">
                             <TbLogout2 className="text-[18px] text-SubTextColor mr-2" />
-                            <h3>Log out</h3>
+                            <h3 className="hover:underline">Log out</h3>
                           </Link>
                         </MenuItem>
                       </MenuGroup>
                       <MenuGroup title="Help">
                         <MenuItem>
                           <Link to="/support">
-                            <h3>Support</h3>
+                            <h3 className="hover:underline">Support</h3>
                           </Link>
                         </MenuItem>
                         <MenuItem>
                           <Link to="/faq">
-                            <h3>FAQ</h3>
+                            <h3 className="hover:underline">FAQ</h3>
                           </Link>
                         </MenuItem>
                       </MenuGroup>
