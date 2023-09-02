@@ -41,6 +41,7 @@ import Support from "./pages/Support/Support";
 import BargainingProductsPage from "./pages/BargainingProductsPage/BargainingProductsPage";
 import Profile from "./pages/Profile/Profile";
 import { ChakraProvider } from "@chakra-ui/react";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -172,6 +173,7 @@ i18n.init({
     },
   },
 });
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ChakraProvider>

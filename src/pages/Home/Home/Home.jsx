@@ -6,8 +6,17 @@ import FlashSale from "../FlashSale/FlashSale";
 import NewProducts from "../NewProducts/NewProducts";
 import TopBannerSection from "../TopBannerSection/TopBannerSection";
 import TopProducts from "../TopProducts/TopProducts";
+import init from "../../../visitor"
+import { useEffect } from "react";
 
 const Home = () => {
+  useEffect(()=>{
+    fetch()
+  },[])
+  const fetch=async()=>{
+    const data = await init()
+    console.log(data);
+  }
   return (
     <div>
       <TopBannerSection></TopBannerSection>
