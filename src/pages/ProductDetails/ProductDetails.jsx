@@ -17,7 +17,7 @@ import {
 import ReactImageMagnify from "react-image-magnify";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
-import { Avatar } from "@chakra-ui/react";
+import { Avatar, CloseButton } from "@chakra-ui/react";
 
 const ProductDetails = () => {
   const [messageShow, setMessageShow] = useState(false);
@@ -65,7 +65,19 @@ const ProductDetails = () => {
               <p className="text-MainColor">Message Seller</p>
             </motion.button>
             {/* message section  */}
-            <div className={`bg-BackgroundColor bottom-0 w-[280px] lg:right-32 fixed ${messageShow ?'transition-all transform translate-y-0': 'transition-all transform translate-y-full'} ease-in-out duration-700`}>
+            <div
+              className={`bg-BackgroundColor p-2 rounded-t-xl bottom-0 w-[280px] lg:right-32 fixed ${
+                messageShow
+                  ? "transition-all transform translate-y-0"
+                  : "transition-all transform translate-y-full"
+              } ease-in-out duration-700 shadow-md`}
+            >
+              <div className="flex justify-end text-SubTextColor">
+                <CloseButton 
+                onClick={handleMessageShow}
+                size="md" />
+              </div>
+              {/* chat start  */}
               <div className="chat chat-start">
                 <div className="chat-image avatar">
                   <Avatar
@@ -74,13 +86,16 @@ const ProductDetails = () => {
                     src="https://bit.ly/dan-abramov"
                   />
                 </div>
-                <div className="text-xs chat-header flex items-center">
+                <div className="text-xs chat-header flex items-center text-SubTextColor">
                   <p>Sazzad Hossain</p>
-                  <time className="opacity-50 ml-2">12:45</time>
+                  <time className=" ml-2">12:45</time>
                 </div>
                 <div className="chat-bubble">UI complete hoiche?</div>
-                <div className="chat-footer opacity-50"><p>Delivered</p></div>
+                <div className="chat-footer text-SubTextColor">
+                  <p>Delivered</p>
+                </div>
               </div>
+              {/* chat end  */}
               <div className="chat chat-end">
                 <div className="chat-image avatar">
                   <Avatar
@@ -89,12 +104,12 @@ const ProductDetails = () => {
                     src="https://bit.ly/sage-adebayo"
                   />
                 </div>
-                <div className="chat-header flex items-center text-xs">
+                <div className="chat-header flex items-center text-xs text-SubTextColor">
                   <p>Md. Nahiduzzaman</p>
-                  <time className=" opacity-50 ml-2">12:46</time>
+                  <time className=" ml-2">12:46</time>
                 </div>
-                <div className="chat-bubble">Almost done!</div>
-                <div className="chat-footer opacity-50">Seen at 12:46</div>
+                <div className="chat-bubble ">Almost done!</div>
+                <div className="chat-footer text-SubTextColor">Seen at 12:46</div>
               </div>
             </div>
             {/* message section end  */}
