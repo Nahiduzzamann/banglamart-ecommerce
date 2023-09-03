@@ -65,7 +65,7 @@ const ProductDetails = () => {
               <p className="text-MainColor">Message Seller</p>
             </motion.button>
             {/* message section  */}
-            <div className={`bg-BackgroundColor bottom-0 w-[280px] lg:right-32 fixed ${messageShow || 'hidden'}`}>
+            <div className={`bg-BackgroundColor bottom-0 w-[280px] lg:right-32 fixed ${messageShow ?'transition-all transform translate-y-0': 'transition-all transform translate-y-full'} ease-in-out duration-700`}>
               <div className="chat chat-start">
                 <div className="chat-image avatar">
                   <Avatar
