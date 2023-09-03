@@ -17,8 +17,10 @@ import {
 import ReactImageMagnify from "react-image-magnify";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
+import { Avatar } from "@chakra-ui/react";
 
 const ProductDetails = () => {
+  const [messageShow, setMessageShow] = useState(false);
   const products = [
     {
       images: [
@@ -28,6 +30,10 @@ const ProductDetails = () => {
       ],
     },
   ];
+
+  const handleMessageShow = () => {
+    setMessageShow(!messageShow);
+  };
   return (
     <div className="container mx-auto mt-4">
       <Helmet>
@@ -51,12 +57,47 @@ const ProductDetails = () => {
               <h3 className="text-TextColor">InHouse Product</h3>
             </div>
             <motion.button
+              onClick={handleMessageShow}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.8 }}
               className="ml-4 mr-4 pl-3 pr-3 pt-2 pb-2 bg-[#d2eefd] rounded-full shadow-md"
             >
               <p className="text-MainColor">Message Seller</p>
             </motion.button>
+            {/* message section  */}
+            <div className={`bg-BackgroundColor bottom-0 w-[280px] lg:right-32 fixed ${messageShow || 'hidden'}`}>
+              <div className="chat chat-start">
+                <div className="chat-image avatar">
+                  <Avatar
+                    size="sm"
+                    name="Dan Abrahmov"
+                    src="https://bit.ly/dan-abramov"
+                  />
+                </div>
+                <div className="text-xs chat-header flex items-center">
+                  <p>Sazzad Hossain</p>
+                  <time className="opacity-50 ml-2">12:45</time>
+                </div>
+                <div className="chat-bubble">UI complete hoiche?</div>
+                <div className="chat-footer opacity-50"><p>Delivered</p></div>
+              </div>
+              <div className="chat chat-end">
+                <div className="chat-image avatar">
+                  <Avatar
+                    size="sm"
+                    name="Dan Abrahmov"
+                    src="https://bit.ly/sage-adebayo"
+                  />
+                </div>
+                <div className="chat-header flex items-center text-xs">
+                  <p>Md. Nahiduzzaman</p>
+                  <time className=" opacity-50 ml-2">12:46</time>
+                </div>
+                <div className="chat-bubble">Almost done!</div>
+                <div className="chat-footer opacity-50">Seen at 12:46</div>
+              </div>
+            </div>
+            {/* message section end  */}
             <div className="hidden">logo</div>
           </div>
 
