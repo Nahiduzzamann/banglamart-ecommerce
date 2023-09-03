@@ -30,7 +30,18 @@ const ProductDetails = () => {
       ],
     },
   ];
-
+  const [formData, setFormData] = useState({
+    message: "",
+  });
+  const handleChange = (e) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  const sendMessage = (e) => {
+    e.preventDefault();
+  };
   const handleMessageShow = () => {
     setMessageShow(!messageShow);
   };
@@ -73,9 +84,7 @@ const ProductDetails = () => {
               } ease-in-out duration-700 shadow-md`}
             >
               <div className="flex justify-end text-SubTextColor">
-                <CloseButton 
-                onClick={handleMessageShow}
-                size="md" />
+                <CloseButton onClick={handleMessageShow} size="md" />
               </div>
               {/* chat start  */}
               <div className="chat chat-start">
@@ -109,8 +118,30 @@ const ProductDetails = () => {
                   <time className=" ml-2">12:46</time>
                 </div>
                 <div className="chat-bubble ">Almost done!</div>
-                <div className="chat-footer text-SubTextColor">Seen at 12:46</div>
+                <div className="chat-footer text-SubTextColor">
+                  Seen at 12:46
+                </div>
               </div>
+              {/* <div>
+              <form onSubmit={sendMessage}>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Message"
+                  className="bg-BackgroundColor rounded-md w-full p-2 mb-4 "
+                  rows="4"
+                ></textarea>
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.8 }}
+                  type="submit"
+                  className="text-CardColor btn btn-info rounded"
+                >
+                  send
+                </motion.button>
+              </form>
+              </div> */}
             </div>
             {/* message section end  */}
             <div className="hidden">logo</div>
