@@ -33,11 +33,13 @@ const ProductDetails = () => {
   const [formData, setFormData] = useState({
     message: "",
   });
+  // const minRows = 2;
   const handleChange = (e) => {
     setFormData((prevData) => ({
       ...prevData,
       [e.target.name]: e.target.value,
     }));
+   
   };
   const sendMessage = (e) => {
     e.preventDefault();
@@ -122,26 +124,26 @@ const ProductDetails = () => {
                   Seen at 12:46
                 </div>
               </div>
-              {/* <div>
-              <form onSubmit={sendMessage}>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Message"
-                  className="bg-BackgroundColor rounded-md w-full p-2 mb-4 "
-                  rows="4"
-                ></textarea>
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.8 }}
-                  type="submit"
-                  className="text-CardColor btn btn-info rounded"
-                >
-                  send
-                </motion.button>
-              </form>
-              </div> */}
+              <div>
+                <form onSubmit={sendMessage} className="flex items-center">
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Type Message..."
+                    className="border p-2 rounded-md focus:outline-none focus:ring focus:border-blue-500 resize-none"
+                  ></textarea>
+
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.8 }}
+                    type="submit"
+                    className="text-CardColor btn btn-info rounded"
+                  >
+                    send
+                  </motion.button>
+                </form>
+              </div>
             </div>
             {/* message section end  */}
             <div className="hidden">logo</div>
