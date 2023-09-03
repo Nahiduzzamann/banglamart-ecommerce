@@ -124,7 +124,7 @@ const ProductDetails = () => {
                   Seen at 12:46
                 </div>
               </div>
-              <div>
+              {/* <div>
                 <form onSubmit={sendMessage} className="flex items-center">
                   <textarea
                     name="message"
@@ -143,7 +143,7 @@ const ProductDetails = () => {
                     send
                   </motion.button>
                 </form>
-              </div>
+              </div> */}
             </div>
             {/* message section end  */}
             <div className="hidden">logo</div>
