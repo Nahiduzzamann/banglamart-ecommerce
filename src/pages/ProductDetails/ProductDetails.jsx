@@ -83,7 +83,7 @@ const ProductDetails = () => {
                 messageShow
                   ? "transition-all transform translate-y-0"
                   : "transition-all transform translate-y-full"
-              } ease-in-out duration-700 shadow-md`}
+              } ease-in-out duration-700 shadow-2xl shadow-SubTextColor`}
             >
               <div className="flex justify-end text-SubTextColor">
                 <CloseButton onClick={handleMessageShow} size="md" />
