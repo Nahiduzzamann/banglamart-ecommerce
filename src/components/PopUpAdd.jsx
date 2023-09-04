@@ -23,7 +23,11 @@ const PopUpAdd = ({ setAdds }) => {
   };
   return (
     <div className="flex items-center justify-center h-screen fixed bg-SubTextColor w-screen z-40 bg-opacity-80">
-      <div
+      <motion.div
+      animate={{
+        scale: [1, 1.5, 1.5, 1, 1],
+        rotate: [0, 0, 270, 270, 0],
+      }}
         style={{
           clipPath:
             "polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%)",
@@ -35,7 +39,7 @@ const PopUpAdd = ({ setAdds }) => {
           src={images[currentIndex]}
           alt={`Image ${currentIndex}`}
         />
-      </div>
+      </motion.div>
       <div className="flex flex-col h-[30vw] justify-between items-center">
         <motion.button
           whileHover={{ scale: 1.1 }}
