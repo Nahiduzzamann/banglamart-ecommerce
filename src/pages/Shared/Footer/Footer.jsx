@@ -24,13 +24,13 @@ const Footer = () => {
                 target="blank"
               >
                 <img
-                  className="h-14 w-36"
+                  className="h-10 w-36"
                   src="https://texttofloss.com/wp-content/uploads/2021/01/Google-Play-Store-Button.png"
                 ></img>
               </a>
               <a className=" hover:shadow-md" href="/" target="blank">
                 <img
-                  className="h-14 w-36"
+                  className="h-10 w-36"
                   src="https://www.pngkit.com/png/full/322-3225520_download-the-app-available-on-the-app-store.png"
                 ></img>
               </a>
