@@ -140,9 +140,9 @@ const ProductDetails = () => {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.8 }}
                     type="submit"
-                    className="ml-4 text-[18px] "
+                    className="ml-4 text-[18px] bg-CardColor rounded-full border border-MainColor h-8 w-8 flex justify-center items-center"
                   >
-                   <AiOutlineSend></AiOutlineSend>
+                   <AiOutlineSend className="text-MainColor "></AiOutlineSend>
                   </motion.button>
                 </form>
               </div>
