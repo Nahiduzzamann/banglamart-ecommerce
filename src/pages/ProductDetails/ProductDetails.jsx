@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   AiOutlineLine,
   AiOutlinePlus,
+  AiOutlineSend,
   AiOutlineShopping,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
@@ -124,26 +125,27 @@ const ProductDetails = () => {
                   Seen at 12:46
                 </div>
               </div>
-              {/* <div>
+              <div>
                 <form onSubmit={sendMessage} className="flex items-center">
-                  <textarea
+                  <input
+                  type="text"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Type Message..."
-                    className="border p-2 rounded-md focus:outline-none focus:ring focus:border-blue-500 resize-none"
-                  ></textarea>
+                    className="border p-2 rounded-full focus:outline-none focus:ring focus:border-blue-500 resize-none"
+                  ></input>
 
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.8 }}
                     type="submit"
-                    className="text-CardColor btn btn-info rounded"
+                    className="ml-4 text-[18px] "
                   >
-                    send
+                   <AiOutlineSend></AiOutlineSend>
                   </motion.button>
                 </form>
-              </div> */}
+              </div>
             </div>
             {/* message section end  */}
             <div className="hidden">logo</div>

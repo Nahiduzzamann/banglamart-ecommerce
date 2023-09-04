@@ -12,7 +12,7 @@ const Footer = () => {
             <p>
               <span className="font-bold">Banglamart</span> is the operator of
               the eCommerce platform intended to provide food, grocery,
-              classifieds, accounting, and inventory solutions. The company's
+              classifieds, accounting, and inventory solutions. The company
               platform provides a wide range of food, grocery, electronics,
               clothing, and other similar products, enabling customers to access
               all products on one platform.
