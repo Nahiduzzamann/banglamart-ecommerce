@@ -19,7 +19,7 @@ import ReactImageMagnify from "react-image-magnify";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { Avatar, CloseButton } from "@chakra-ui/react";
-
+import Scrollbars from "react-custom-scrollbars";
 const ProductDetails = () => {
   const [messageShow, setMessageShow] = useState(false);
   const products = [
@@ -40,7 +40,6 @@ const ProductDetails = () => {
       ...prevData,
       [e.target.name]: e.target.value,
     }));
-   
   };
   const sendMessage = (e) => {
     e.preventDefault();
@@ -80,7 +79,7 @@ const ProductDetails = () => {
             </motion.button>
             {/* message section  */}
             <div
-              className={`bg-BackgroundColor p-2 rounded-t-xl bottom-0 w-[280px] lg:right-32 fixed ${
+              className={`bg-CardColor pb-4 rounded-t-xl bottom-0 w-[280px] lg:right-32 fixed ${
                 messageShow
                   ? "transition-all transform translate-y-0"
                   : "transition-all transform translate-y-full"
@@ -89,60 +88,129 @@ const ProductDetails = () => {
               <div className="flex justify-end text-SubTextColor">
                 <CloseButton onClick={handleMessageShow} size="md" />
               </div>
-              {/* chat start  */}
-              <div className="chat chat-start">
-                <div className="chat-image avatar">
-                  <Avatar
-                    size="sm"
-                    name="Dan Abrahmov"
-                    src="https://bit.ly/dan-abramov"
+
+              <Scrollbars
+                style={{ height: 350 }}
+                renderThumbVertical={({ style }) => (
+                  <div
+                    style={{
+                      ...style,
+                      width:3,
+                      backgroundColor: "#5dade2",
+                      borderRadius: 4,
+                    }}
                   />
+                )}
+              >
+                <div className="p-3 ">
+                  {/* chat start  */}
+                  <div className="chat chat-start">
+                    <div className="chat-image avatar">
+                      <Avatar
+                        size="sm"
+                        name="Dan Abrahmov"
+                        src="https://bit.ly/dan-abramov"
+                      />
+                    </div>
+                    <div className="text-xs chat-header flex items-center text-SubTextColor">
+                      <p>Sazzad Hossain</p>
+                      <time className=" ml-2">12:45</time>
+                    </div>
+                    <div className="chat-bubble">UI complete hoiche?</div>
+                    <div className="chat-footer text-SubTextColor">
+                      <p>Delivered</p>
+                    </div>
+                  </div>
+                  <div className="chat chat-start">
+                    <div className="chat-image avatar">
+                      <Avatar
+                        size="sm"
+                        name="Dan Abrahmov"
+                        src="https://bit.ly/dan-abramov"
+                      />
+                    </div>
+                    <div className="text-xs chat-header flex items-center text-SubTextColor">
+                      <p>Sazzad Hossain</p>
+                      <time className=" ml-2">12:45</time>
+                    </div>
+                    <div className="chat-bubble">kaj koto dur??</div>
+                    <div className="chat-footer text-SubTextColor">
+                      <p>Delivered</p>
+                    </div>
+                  </div>
+                  {/* chat end  */}
+                  <div className="chat chat-end">
+                    <div className="chat-image avatar">
+                      <Avatar
+                        size="sm"
+                        name="Dan Abrahmov"
+                        src="https://bit.ly/sage-adebayo"
+                      />
+                    </div>
+                    <div className="chat-header flex items-center text-xs text-SubTextColor">
+                      <p>Md. Nahiduzzaman</p>
+                      <time className=" ml-2">12:46</time>
+                    </div>
+                    <div className="chat-bubble ">Almost done!</div>
+                    <div className="chat-footer text-SubTextColor">
+                      Seen at 12:46
+                    </div>
+                  </div>
+                  <div className="chat chat-end">
+                    <div className="chat-image avatar">
+                      <Avatar
+                        size="sm"
+                        name="Dan Abrahmov"
+                        src="https://bit.ly/sage-adebayo"
+                      />
+                    </div>
+                    <div className="chat-header flex items-center text-xs text-SubTextColor">
+                      <p>Md. Nahiduzzaman</p>
+                      <time className=" ml-2">12:46</time>
+                    </div>
+                    <div className="chat-bubble ">Shorir er ki obostha?!</div>
+                    <div className="chat-footer text-SubTextColor">
+                      Seen at 12:46
+                    </div>
+                  </div>
+                  <div className="chat chat-start">
+                    <div className="chat-image avatar">
+                      <Avatar
+                        size="sm"
+                        name="Dan Abrahmov"
+                        src="https://bit.ly/dan-abramov"
+                      />
+                    </div>
+                    <div className="text-xs chat-header flex items-center text-SubTextColor">
+                      <p>Sazzad Hossain</p>
+                      <time className=" ml-2">12:45</time>
+                    </div>
+                    <div className="chat-bubble">Time lagbe shere uthte</div>
+                    <div className="chat-footer text-SubTextColor">
+                      <p>Delivered</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-xs chat-header flex items-center text-SubTextColor">
-                  <p>Sazzad Hossain</p>
-                  <time className=" ml-2">12:45</time>
-                </div>
-                <div className="chat-bubble">UI complete hoiche?</div>
-                <div className="chat-footer text-SubTextColor">
-                  <p>Delivered</p>
-                </div>
-              </div>
-              {/* chat end  */}
-              <div className="chat chat-end">
-                <div className="chat-image avatar">
-                  <Avatar
-                    size="sm"
-                    name="Dan Abrahmov"
-                    src="https://bit.ly/sage-adebayo"
-                  />
-                </div>
-                <div className="chat-header flex items-center text-xs text-SubTextColor">
-                  <p>Md. Nahiduzzaman</p>
-                  <time className=" ml-2">12:46</time>
-                </div>
-                <div className="chat-bubble ">Almost done!</div>
-                <div className="chat-footer text-SubTextColor">
-                  Seen at 12:46
-                </div>
-              </div>
-              <div>
+              </Scrollbars>
+
+              <div className="pt-2 pl-3">
                 <form onSubmit={sendMessage} className="flex items-center">
                   <input
-                  type="text"
+                    type="text"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Type Message..."
-                    className="border p-2 rounded-full focus:outline-none focus:ring focus:border-blue-500 resize-none"
+                    className="border p-2 pl-4 rounded-full focus:outline-none focus:ring focus:border-blue-500 resize-none"
                   ></input>
 
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.8 }}
                     type="submit"
-                    className="ml-4 text-[18px] bg-CardColor rounded-full border border-MainColor h-8 w-8 flex justify-center items-center"
+                    className="ml-2 text-[18px] bg-CardColor rounded-full border border-MainColor h-8 w-8 flex justify-center items-center"
                   >
-                   <AiOutlineSend className="text-MainColor "></AiOutlineSend>
+                    <AiOutlineSend className="text-MainColor "></AiOutlineSend>
                   </motion.button>
                 </form>
               </div>
