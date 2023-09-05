@@ -37,9 +37,6 @@ const SignUp = () => {
     setErrorMessage("");
     event.preventDefault();
     const form = event.target;
-    // const identifier = isPhoneSelected
-    //   ? form.phoneNumber.value
-    //   : form.email.value;
     const email = form.email.value;
     const name = form.name.value;
     const password = form.password.value;
