@@ -46,7 +46,7 @@ const PopUpAdd = ({ setAdds }) => {
           whileTap={{ scale: 0.8 }}
           onClick={showNextImage}
           disabled={buttonDisabled}
-          className="btn btn-info rounded-full text-2xl text-CardColor"
+          className="btn-sm lg:btn btn-info rounded-full text-2xl text-CardColor"
         >
           X
         </motion.button>
@@ -54,7 +54,7 @@ const PopUpAdd = ({ setAdds }) => {
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.8 }}
-          className="text-CardColor btn btn-info rounded-full"
+          className="text-CardColor btn-sm lg:btn btn-info rounded-full"
           onClick={handleClearAdds}
         >
           Clear All

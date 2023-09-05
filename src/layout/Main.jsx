@@ -15,7 +15,7 @@ import { fetchFlashSell } from "../services/actions/flashSellCheckAction";
 import { Helmet } from "react-helmet";
 
 const Main = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [adds, setAdds] = useState(true);
 // loading animation 
   useEffect(() => {

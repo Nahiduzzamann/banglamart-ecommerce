@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
   AiOutlineClose,
   AiFillPhone,
@@ -22,9 +22,29 @@ import {
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const Header = () => {
-  const user = true;
+  const { currentUser } = useContext(AuthContext);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    currentUser("/auth/getUser", token)
+      .then((res) => {
+        // setLoading(false);
+        setUser(res.data.user);
+      })
+      .catch((error) => {
+        // setLoading(false);
+        
+      });
+  }, []);
+  
+  console.log(user);
+  const handleLogOut = () => {
+    localStorage.removeItem("token");
+  };
   const { t } = useTranslation();
   const [hide, setHide] = useState(false);
   const [show, setShow] = useState(true);
@@ -186,13 +206,20 @@ const Header = () => {
                             to="/addDeliveryAddress"
                           >
                             <TbTruckDelivery className="text-[18px] text-SubTextColor mr-2" />
-                            <h3 className="hover:underline">Delivery Address</h3>
+                            <h3 className="hover:underline">
+                              Delivery Address
+                            </h3>
                           </Link>
                         </MenuItem>
                         <MenuItem>
                           <Link className="text-SubTextColor flex items-center">
                             <TbLogout2 className="text-[18px] text-SubTextColor mr-2" />
-                            <h3 className="hover:underline">Log out</h3>
+                            <h3
+                              className="hover:underline"
+                              onClick={handleLogOut}
+                            >
+                              Log out
+                            </h3>
                           </Link>
                         </MenuItem>
                       </MenuGroup>
