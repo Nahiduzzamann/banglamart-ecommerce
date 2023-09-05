@@ -40,7 +40,7 @@ const Header = () => {
         
       });
   }, []);
-  
+
   console.log(user);
   const handleLogOut = () => {
     localStorage.removeItem("token");
@@ -101,16 +101,6 @@ const Header = () => {
                 <p className="text-SubTextColor lg:mr-0">
                   {t("header.number")}
                 </p>
-                {/* <Link to="/login">
-                  <p className="mr-4 text-SubTextColor hover:text-TextColor">
-                    {t("header.login")}
-                  </p>
-                </Link>
-                <Link to="registration">
-                  <p className="text-SubTextColor hover:text-TextColor">
-                    {t("header.registration")}
-                  </p>
-                </Link> */}
               </div>
             </div>
           </div>
