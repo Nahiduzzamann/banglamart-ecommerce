@@ -1,14 +1,4 @@
-// import axios from 'axios';
 
-// const axiosInstance = axios.create({
-//   baseURL: 'http://62.72.31.204:1300/auth/signUp',
-//   headers: {
-//     'Content-Type': 'application/json',
-//     Authorization: `Bearer YOUR_BEARER_TOKEN`,
-//   },
-// });
-
-// export default axiosInstance;
 
 
 import axios from "axios";
