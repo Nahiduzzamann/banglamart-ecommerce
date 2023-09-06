@@ -5,7 +5,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { Link } from "react-router-dom";
 
 const Profile = () => {
-  const { user, setUserState } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   console.log(user);
  
   const [editedImage, setEditedImage] = useState(null);
