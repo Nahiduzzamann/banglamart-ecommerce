@@ -7,12 +7,11 @@ import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 
 const SignUp = () => {
-  const { signInWithGoogle, createUser } = useContext(AuthContext);
+  const { signInWithGoogle, createUser,setUserState } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
   const [isLoading, setIsLoading] = useState(false);
-  // const [isPhoneSelected, setIsPhoneSelected] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -54,12 +53,12 @@ const SignUp = () => {
     } else if (password.length < 6) {
       // Password length error
       setErrorMessage("Password must be at least 6 characters long");
-      // } else if (!passwordRegex.test(password)) {
-      //   // Password requirements error
-      //   setErrorMessage(
-      //     "Password must contain at least one capital letter, one special character, and one digit"
-      //   );
-      // } else if (password !== confirmPassword) {
+      } else if (!passwordRegex.test(password)) {
+        // Password requirements error
+        setErrorMessage(
+          "Password must contain at least one capital letter, one special character, and one digit"
+        );
+      } else if (password !== confirmPassword) {
       // Password mismatch error
       setErrorMessage("Passwords do not match");
     } else {
@@ -68,6 +67,7 @@ const SignUp = () => {
         .then((res) => {
           saveToken(res.data.token);
           setIsLoading(false);
+          setUserState(true)
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -75,11 +75,11 @@ const SignUp = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+          navigate(from, { replace: true });
         })
         .catch((error) => {
           setIsLoading(false);
-          // setErrorMessage(error);
-          console.log(error);
+          setErrorMessage(error);
         });
     }
   };
@@ -89,8 +89,16 @@ const SignUp = () => {
 
     signInWithGoogle()
       .then(() => {
-        // navigate(from, { replace: true });
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "LogIn Successful.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         setIsLoading(false);
+        navigate(from, { replace: true });
+
       })
       .catch((error) => {
         setIsLoading(false);

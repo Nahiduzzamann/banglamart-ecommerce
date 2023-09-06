@@ -9,7 +9,7 @@ import {
 } from "react-icons/ai";
 import LanguageToggle from "../../../components/LanguageToggle";
 import { useTranslation } from "react-i18next";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, Navigate } from "react-router-dom";
 import Burger from "./Nav/Burger";
 import { motion } from "framer-motion";
 import { CgProfile } from "react-icons/cg";
@@ -23,28 +23,13 @@ import {
   MenuList,
 } from "@chakra-ui/react";
 import { AuthContext } from "../../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Header = () => {
-  const { currentUser } = useContext(AuthContext);
-  const [user, setUser] = useState(null);
+  const { user, logOut } = useContext(AuthContext);
+  // console.log(user);
+  const from = location.state?.from?.pathname || "/";
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    currentUser("/auth/getUser", token)
-      .then((res) => {
-        // setLoading(false);
-        setUser(res.data.user);
-      })
-      .catch((error) => {
-        // setLoading(false);
-        
-      });
-  }, []);
-
-  console.log(user);
-  const handleLogOut = () => {
-    localStorage.removeItem("token");
-  };
   const { t } = useTranslation();
   const [hide, setHide] = useState(false);
   const [show, setShow] = useState(true);
@@ -61,6 +46,18 @@ const Header = () => {
       //console.log(this.scrollY);
     };
   }, []);
+
+  const handleLogOut = () => {
+    logOut()
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Log Out successfully.",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    Navigate(from, { replace: true });
+  };
 
   return (
     <div className="shadow-lg ">
@@ -165,8 +162,8 @@ const Header = () => {
                         bg="teal.500"
                         icon={<AiOutlineUser fontSize="1.5rem" />}
                         size="md"
-                        name={user?.name}
-                        src={user?.image}
+                        name={user?.displayName || user?.name}
+                        src={user?.photoURL || user?.image}
                       />
                     </MenuButton>
                     <MenuList>

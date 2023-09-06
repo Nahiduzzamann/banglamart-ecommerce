@@ -9,38 +9,56 @@ import {
 } from "react-icons/ai";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  const { signIn, signInWithGoogle } = useContext(AuthContext);
+  const { signIn, signInWithGoogle,setUserState } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  // const [isPhoneSelected, setIsPhoneSelected] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+  const saveToken = (t) => {
+    localStorage.removeItem("token");
+    localStorage.setItem("token", t);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const form = event.target;
-    // const identifier = isPhoneSelected
-    //   ? form.phoneNumber.value
-    //   : form.email.value;
-    const email=form.email.value
-    const password = form.password.value;
 
     setIsLoading(true);
-console.log(email,password);
-    // signIn(identifier, password)
-    //   .then((result) => {
-    //     const user = result.user;
-    //     navigate(from, { replace: true });
-    //     setIsLoading(false);
-    //   })
-    //   .catch((error) => {
-    //     setErrorMessage(error.message);
-    //     setIsLoading(false);
-    //   });
+    signIn("/auth/signIn", formData, null)
+        .then((res) => {
+          saveToken(res.data.token);
+          setIsLoading(false);
+          setUserState(true)
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "LogIn Successful.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate(from, { replace: true });
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          setErrorMessage(error);
+        });
   };
 
   const handleGoogleLogin = () => {
@@ -48,8 +66,16 @@ console.log(email,password);
 
     signInWithGoogle()
       .then((result) => {
-        navigate(from, { replace: true });
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "LogIn Successful.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         setIsLoading(false);
+        navigate(from, { replace: true });
+
       })
       .catch((error) => {
         setIsLoading(false);
@@ -82,6 +108,8 @@ console.log(email,password);
               name="email"
               className="input input-bordered w-full pr-10 mb-4"
               placeholder="Enter your Email Address"
+              value={formData.email}
+              onChange={handleChange}
               required
             />
           <div className="mb-2 relative">
@@ -93,15 +121,19 @@ console.log(email,password);
               name="password"
               className="input input-bordered w-full pr-10"
               placeholder="Enter your password"
+              value={formData.password}
+              onChange={handleChange}
               required
             />
-            <button
+            <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.8 }}
               type="button"
-              className="absolute right-3 top-14 transform -translate-y-1/2 focus:outline-none"
+              className="absolute right-3 top-12 transform -translate-y-1/2 focus:outline-none"
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-            </button>
+            </motion.button>
           </div>
           <div className="mb-2 text-right">
             <Link

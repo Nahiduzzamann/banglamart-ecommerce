@@ -1,9 +1,12 @@
 import { Avatar } from "@chakra-ui/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaUserEdit } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Profile = () => {
+  const { user, setUserState } = useContext(AuthContext);
+  console.log(user);
   // Sample user data
   const [userData, setUserData] = useState({
     name: "John Doe",
@@ -53,8 +56,8 @@ const Profile = () => {
         <div className="relative">
           <Avatar
             size="xl"
-            name={editedName}
-            src={editedImage || userData.image}
+            name={user?.displayName || user?.name}
+            src={user?.photoURL || user?.image}
             onClick={() => {
               // Trigger the file input click
               document.getElementById("profile-picture-input").click();
@@ -80,7 +83,7 @@ const Profile = () => {
           <label className="text-SubTextColor mr-2">Name:</label>
           <input
             type="text"
-            value={editedName}
+            value={user?.displayName || user?.name}
             onChange={(e) => setEditedName(e.target.value)}
             className="bg-BackgroundColor outline-BorderColor lg:w-96 p-2 rounded-md text-SubTextColor "
           />
@@ -89,20 +92,20 @@ const Profile = () => {
           <label className="text-SubTextColor mr-2">Email:</label>
           <input
             type="email"
-            value={editedEmail}
+            value={user?.email || user?.email}
             onChange={(e) => setEditedEmail(e.target.value)}
             className="bg-BackgroundColor outline-BorderColor lg:w-96 p-2 rounded-md text-SubTextColor"
           />
         </div>
-        <div className="mt-4">
+        {/* <div className="mt-4">
           <label className="text-SubTextColor mr-2">Phone:</label>
           <input
             type="number"
-            value={editedPhone}
+            value={user?.phoneNumber || user?.phone}
             onChange={(e) => setEditedPhone(e.target.value)}
             className="bg-BackgroundColor outline-BorderColor lg:w-96 p-2 rounded-md text-SubTextColor"
           />
-        </div>
+        </div> */}
         {editedName === userData.name &&
         editedEmail === userData.email &&
         editedPhone === userData.phone &&

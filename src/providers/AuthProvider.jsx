@@ -3,7 +3,6 @@ import {
   GoogleAuthProvider,
   getAuth,
   onAuthStateChanged,
-  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
   updateProfile,
@@ -20,6 +19,7 @@ const url = "http://62.72.31.204:1300";
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [userState, setUserState] = useState(user);
 
   const createUser = async (route, data, token) =>
     axios.post(`${url}${route}`, data, {
@@ -30,10 +30,10 @@ const AuthProvider = ({ children }) => {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-  const signIn = (email, password) => {
-    setLoading(true);
-    return signInWithEmailAndPassword(auth, email, password);
-  };
+  const signIn = async (route, data, token) =>
+    axios.post(`${url}${route}`, data, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
   const signInWithGoogle = () => {
     setLoading(true);
     return signInWithPopup(auth, provider);
@@ -41,6 +41,8 @@ const AuthProvider = ({ children }) => {
 
   const logOut = () => {
     setLoading(true);
+    localStorage.removeItem("token");
+    setUserState(null);
     return signOut(auth);
   };
   const updateUser = (info) => {
@@ -57,10 +59,27 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
- 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      currentUser("/auth/getUser", token)
+        .then((res) => {
+          // setLoading(false);
+          setUser(res.data.user);
+        })
+        .catch((error) => {
+          setUser(null);
+        });
+    } else {
+      // User is not authenticated
+      setUser(null);
+    }
+  }, [userState]);
+
   const authInfo = {
     user,
-    currentUser,
+    setUserState,
     loading,
     createUser,
     signIn,
