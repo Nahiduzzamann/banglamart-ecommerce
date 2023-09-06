@@ -1,39 +1,17 @@
 import { Avatar } from "@chakra-ui/react";
 import { useContext, useState } from "react";
 import { FaUserEdit } from "react-icons/fa";
-import { motion } from "framer-motion";
 import { AuthContext } from "../../providers/AuthProvider";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const { user, setUserState } = useContext(AuthContext);
   console.log(user);
-  // Sample user data
-  const [userData, setUserData] = useState({
-    name: "John Doe",
-    email: "johndoe@example.com",
-    phone: "01750666272",
-    image: "",
-  });
-
-  // State for editable fields
-  const [editedName, setEditedName] = useState(userData.name);
-  const [editedEmail, setEditedEmail] = useState(userData.email);
-  const [editedPhone, setEditedPhone] = useState(userData.phone);
+ 
   const [editedImage, setEditedImage] = useState(null);
   // Add more states for other user data fields as needed
 
-  const handleUpdate = () => {
-    // Perform API request to update user data
-    // For now, just update the local state
-    setUserData({
-      ...userData,
-      name: editedName,
-      email: editedEmail,
-      phone: editedPhone,
-      image: editedImage || userData.image,
-      // Update other user data fields here
-    });
-  };
+  
 
   // Profile picture upload handler
   const handleProfilePictureUpload = (e) => {
@@ -84,7 +62,6 @@ const Profile = () => {
           <input
             type="text"
             value={user?.displayName || user?.name}
-            onChange={(e) => setEditedName(e.target.value)}
             className="bg-BackgroundColor outline-BorderColor lg:w-96 p-2 rounded-md text-SubTextColor "
           />
         </div>
@@ -93,7 +70,6 @@ const Profile = () => {
           <input
             type="email"
             value={user?.email || user?.email}
-            onChange={(e) => setEditedEmail(e.target.value)}
             className="bg-BackgroundColor outline-BorderColor lg:w-96 p-2 rounded-md text-SubTextColor"
           />
         </div>
@@ -106,27 +82,14 @@ const Profile = () => {
             className="bg-BackgroundColor outline-BorderColor lg:w-96 p-2 rounded-md text-SubTextColor"
           />
         </div> */}
-        {editedName === userData.name &&
-        editedEmail === userData.email &&
-        editedPhone === userData.phone &&
-        editedImage === null ? (
-          <button
-            disabled
-            className="bg-BackgroundColor text-SubTextColor py-2 px-4 rounded-md mt-4 shadow-md shadow-SubTextColor"
-          >
-            {" "}
-            Update
-          </button>
-        ) : (
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.8 }}
+       
+          <Link
             className="bg-MainColor text-CardColor py-2 px-4 rounded-md mt-4 hover:bg-MainColorHover shadow-md shadow-MainColor "
-            onClick={handleUpdate}
+            to='/addDeliveryAddress'
           >
-            Update
-          </motion.button>
-        )}
+            Update Profile
+          </Link>
+        
       </div>
     </div>
   );

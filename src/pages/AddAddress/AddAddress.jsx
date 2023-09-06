@@ -172,7 +172,7 @@ const AddDeliveryAddressForm = () => {
         <title>Add address | Banglamart E-commerce</title>
       </Helmet>
       <div className="">
-        <h1 className="font-semibold mb-4">Add Delivery Address</h1>
+        <h1 className="font-semibold mb-4">Update Your Profile</h1>
         <form
           className="bg-white p-6 rounded shadow-xl"
           onSubmit={handleSubmit}
