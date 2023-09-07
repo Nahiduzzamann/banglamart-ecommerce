@@ -15,7 +15,7 @@ const Profile = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <div className="mt-4 bg-BackgroundColor flex items-center justify-center">
+    <div className="pt-4 bg-BackgroundColor flex items-center justify-center m-1 lg:m-0">
       {user ? (
         <div className="bg-CardColor shadow-md rounded-lg w-full md:w-1/2 lg:w-1/3 p-4 text-SubTextColor">
           <div className="text-center">
