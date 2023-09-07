@@ -50,7 +50,6 @@ const FlashSalePage = () => {
       clearInterval(interval);
     };
   }, []);
-console.log(remainingTime);
   if (!remainingTime) {
     return (<div>
       <div>

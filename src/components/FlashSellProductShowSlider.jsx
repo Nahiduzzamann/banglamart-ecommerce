@@ -9,6 +9,7 @@ import { BsFillCartCheckFill, BsFillHeartFill } from "react-icons/bs";
 import ProductCart from "./ProductCart";
 import { Link } from "react-router-dom";
 import ProductCartFlashSell from "./ProductCartFlashSell";
+import { TbTruckDelivery } from "react-icons/tb";
 
 const FlashSellProductShowSlider = ({flashSellData}) => {
   const Categories = flashSellData
