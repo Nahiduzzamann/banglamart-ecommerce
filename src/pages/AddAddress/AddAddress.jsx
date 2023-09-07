@@ -75,7 +75,7 @@ const AddDeliveryAddressForm = () => {
 
   const [selectedDivision, setSelectedDivision] = useState();
   const [selectedDistrict, setSelectedDistrict] = useState();
-  const [selectedSubDistrict, setSelectedSubDistrict] = useState();
+  const [selectedSubDistrict, setSelectedSubDistrict] = useState("1");
   const [selectedUnion, setSelectedUnion] = useState();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -92,9 +92,8 @@ const AddDeliveryAddressForm = () => {
   useEffect(() => {
     setSelectedDivision(sortedAddressName(divisions, user.address.division));
     setSelectedDistrict(sortedAddressName(districts, user.address.district));
-    setSelectedDistrict(sortedAddressName(subDistricts, user.address.subDistrict));
-    setSelectedDistrict(sortedAddressName(unions, user.address.union));
-
+    setSelectedSubDistrict(sortedAddressName(subDistricts, user.address.subDistrict));
+    setSelectedUnion(sortedAddressName(unions, user.address.union));
   }, [user, user?.address, divisions,districts,subDistricts,unions]);
 
   const handleSubmit = (event) => {
@@ -134,9 +133,7 @@ const AddDeliveryAddressForm = () => {
         setErrorMessage(error);
       });
   };
-  if (!user) {
-    return null;
-  }
+  
   return (
     <div className="container mx-auto p-4 lg:w-[800px]">
       <Helmet>
