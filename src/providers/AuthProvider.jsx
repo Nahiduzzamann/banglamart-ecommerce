@@ -47,6 +47,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     setUserState(true)
+    setUserState(false)
   }, []);
 
   useEffect(() => {
