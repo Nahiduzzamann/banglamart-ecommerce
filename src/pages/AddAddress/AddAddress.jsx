@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { AuthContext } from "../../providers/AuthProvider";
+import { Avatar } from "@chakra-ui/react";
+import { FaUserEdit } from "react-icons/fa";
 
 const AddDeliveryAddressForm = () => {
   const { user, setUserState } = useContext(AuthContext);
@@ -156,21 +158,6 @@ const AddDeliveryAddressForm = () => {
     (union) => union.subDistrictId == selectedSubDistrict
   );
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-  
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    setFormData((prevData) => ({
-      ...prevData,
-      image: file,
-    }));
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -188,6 +175,34 @@ const AddDeliveryAddressForm = () => {
           className="bg-white p-6 rounded shadow-xl"
           onSubmit={handleSubmit}
         >
+          <div className="flex flex-col items-center">
+          <div className="relative">
+          <Avatar
+            size="xl"
+            name={user?.displayName || user?.name}
+            src={user?.photoURL || user?.image}
+            onClick={() => {
+              // Trigger the file input click
+              document.getElementById("profile-picture-input").click();
+            }}
+          />
+          <input
+            type="file"
+            id="profile-picture-input"
+            accept="image/*"
+            className="hidden"
+          />
+          <label
+            htmlFor="profile-picture-input"
+            className="absolute bottom-1 right-2 bg-TextColor text-CardColor rounded-full p-1 cursor-pointer hover:border hover:border-BorderColor border-2 border-CardColor"
+          >
+            <p>
+              <FaUserEdit />
+            </p>
+          </label>
+        </div>
+          </div>
+          
           {/* Full Name */}
           <div className="mb-4">
             <label className="block mb-1">Full Name</label>
@@ -195,7 +210,6 @@ const AddDeliveryAddressForm = () => {
               type="text"
               name="name"
               value={formData?.name}
-              onChange={handleInputChange}
               className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md"
               placeholder="Enter your full name"
               required
@@ -276,7 +290,6 @@ const AddDeliveryAddressForm = () => {
                   name="gender"
                   value="male"
                   checked={formData?.gender === "male"}
-                  onChange={handleInputChange}
                   className="mr-1"
                 />
                 Male
@@ -287,7 +300,6 @@ const AddDeliveryAddressForm = () => {
                   name="gender"
                   value="female"
                   checked={formData?.gender === "female"}
-                  onChange={handleInputChange}
                   className="mr-1"
                 />
                 Female
@@ -300,7 +312,6 @@ const AddDeliveryAddressForm = () => {
               type="date"
               name="date"
               value={formData?.birthday}
-              onChange={handleInputChange}
               className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md"
               placeholder="Enter postal code"
               
