@@ -2,10 +2,8 @@ import { createContext, useEffect, useState } from "react";
 import {
   GoogleAuthProvider,
   getAuth,
-  onAuthStateChanged,
   signInWithPopup,
   signOut,
-  updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 import axios from "axios";
@@ -45,18 +43,10 @@ const AuthProvider = ({ children }) => {
     setUserState(null);
     return signOut(auth);
   };
-  const updateUser = (info) => {
-    return updateProfile(auth.currentUser, info);
-  };
+  const updateUser = async (route, data, token) => axios.put(`${url}${route}`, data, { headers: { Authorization: `Bearer ${token}` }, });
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
-    });
-    return () => {
-      return unsubscribe();
-    };
+    setUserState(true)
   }, []);
 
   useEffect(() => {
