@@ -21,37 +21,37 @@ const Profile = () => {
           <div className="text-center">
             <Avatar size="xl" name={user?.name} src={user?.image} />
             <h1 className="text-2xl font-semibold">
-              {user.name || "Please Update Your Profile"}
+              {user?.name || "Please Update Your Profile"}
             </h1>
           </div>
           <div className="mt-4">
             <div className="flex items-center mb-2">
               <FaUserAstronaut className="mr-2" />
-              <span>{user.name || "Please Update Your Profile"}</span>
+              <span>{user?.name || "Please Update Your Profile"}</span>
             </div>
             <div className="flex items-center mb-2">
               <FaEnvelopeOpenText className="mr-2" />
-              <span>{user.email || "Please Update Your Profile"}</span>
+              <span>{user?.email || "Please Update Your Profile"}</span>
             </div>
             <div className="flex items-center mb-2">
               <FaPhoneAlt className="mr-2" />
-              <span>{user.phone || "Please add your number"}</span>
+              <span>{user?.phone || "Please add your number"}</span>
             </div>
             <div className="flex items-center mb-2">
               <FaBirthdayCake className="mr-2" />
-              <span>{user.birthday || "Please Update Your Profile"}</span>
+              <span>{user?.birthday || "Please Update Your Profile"}</span>
             </div>
 
             <div className="flex items-center mb-2">
               <FaGenderless className="mr-2" />
-              <span>{user.gender || "Please Update Your Profile"}</span>
+              <span>{user?.gender || "Please Update Your Profile"}</span>
             </div>
             <div className="flex items-center mb-2">
               <FaMapMarkerAlt className="mr-2" />
-              <span>{`${
-                user.address.subDistrict || "Please Update Your Profile"
-              }, ${user.address.district || "Please Update Your Profile"}, ${
-                user.address.division || "Please Update Your Profile"
+              <span>{`${user.address.union || "Please Update Your Profile"}, ${
+                user?.address?.subDistrict || "Empty"
+              }, ${user?.address?.district || "Empty"}, ${
+                user?.address?.division || "Empty"
               }`}</span>
             </div>
           </div>

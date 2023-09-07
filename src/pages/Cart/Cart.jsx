@@ -2,8 +2,12 @@ import { Link } from "react-router-dom";
 import { AiOutlineLine, AiOutlinePlus } from "react-icons/ai";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Cart = () => {
+  const { user } = useContext(AuthContext);
+
   const dummyProductData = [
     {
       id: 1,
@@ -66,8 +70,9 @@ const Cart = () => {
       <Helmet>
         <title>Cart | Banglamart E-commerce</title>
       </Helmet>
-      <div className="grid grid-cols-4 gap-4">
-        <div className="p-3 bg-CardColor md:col-span-3 col-span-4">
+      <div className="grid grid-cols-3 gap-4">
+
+        <div className="p-3 bg-CardColor md:col-span-2 col-span-3">
           {dummyProductData.map((product, i) => (
             <div
               key={i}
@@ -136,15 +141,24 @@ const Cart = () => {
           ))}
         </div>
 
-        <div className="rounded-md p-3 bg-CardColor md:col-span-1 col-span-4 h-min">
-          <div className="flex flex-col justify-center items-center p-2 bg-BackgroundColor rounded">
-            <p className="text-TextColor">Please add your address</p>
-            <Link
-              to="/addDeliveryAddress"
-              className="bg-TextColor pl-4 pr-4 p-1 rounded mt-1 shadow-sm shadow-BackgroundColor hover:shadow-TextColor"
-            >
-              <p className="text-CardColor ">Add Address</p>
-            </Link>
+        <div className="rounded-md p-3 bg-CardColor md:col-span-1 col-span-3 h-min">
+          <div className="">
+            {user?.address?.division ? (
+              <div className="text-SubTextColor bg-BackgroundColor rounded p-2">
+                <h1 className="text-MainColor">Your Delivery Address:</h1>
+                <h2>{`${user.address.union}, ${user.address.subDistrict}, ${user.address.district}, ${user.address.division}`}</h2>
+              </div>
+            ) : (
+              <div className="flex flex-col justify-center items-center p-2 bg-BackgroundColor rounded">
+                <p className="text-TextColor">Please add your address</p>
+                <Link
+                  to="/addDeliveryAddress"
+                  className="bg-TextColor pl-4 pr-4 p-1 rounded mt-1 shadow-sm shadow-BackgroundColor hover:shadow-TextColor"
+                >
+                  <p className="text-CardColor ">Add Address</p>
+                </Link>
+              </div>
+            )}
           </div>
           <div className="flex justify-between mt-2">
             <h3 className="text-SubTextColor">Subtotal</h3>
@@ -164,6 +178,7 @@ const Cart = () => {
             </div>
           </motion.button>
         </div>
+
       </div>
     </div>
   );

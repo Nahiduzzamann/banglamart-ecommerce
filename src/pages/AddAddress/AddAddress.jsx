@@ -90,10 +90,10 @@ const AddDeliveryAddressForm = () => {
     return array?.filter((d) => d.id.match(selected))[0].name;
   };
   useEffect(() => {
-    setSelectedDivision(sortedAddressName(divisions, user.address.division));
-    setSelectedDistrict(sortedAddressName(districts, user.address.district));
-    setSelectedSubDistrict(sortedAddressName(subDistricts, user.address.subDistrict));
-    setSelectedUnion(sortedAddressName(unions, user.address.union));
+    setSelectedDivision(sortedAddressName(divisions, user?.address?.division));
+    setSelectedDistrict(sortedAddressName(districts, user?.address?.district));
+    setSelectedSubDistrict(sortedAddressName(subDistricts, user?.address?.subDistrict));
+    setSelectedUnion(sortedAddressName(unions, user?.address?.union));
   }, [user, user?.address, divisions,districts,subDistricts,unions]);
 
   const handleSubmit = (event) => {
