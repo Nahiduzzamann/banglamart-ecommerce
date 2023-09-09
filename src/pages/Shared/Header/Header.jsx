@@ -14,6 +14,7 @@ import Burger from "./Nav/Burger";
 import { motion } from "framer-motion";
 import { CgProfile } from "react-icons/cg";
 import { TbListDetails, TbLogout2, TbTruckDelivery } from "react-icons/tb";
+import { MdOutlineNotificationsActive } from "react-icons/md";
 import {
   Avatar,
   Menu,
@@ -48,7 +49,7 @@ const Header = () => {
   }, []);
 
   const handleLogOut = () => {
-    logOut()
+    logOut();
     Swal.fire({
       position: "top-end",
       icon: "success",
@@ -142,6 +143,17 @@ const Header = () => {
                   </div>
                 </button> */}
               <div className="flex items-center">
+                <Link
+                  to="/"
+                  className="hover:border-BorderColor border-CardColor relative ml-2 md:flex hidden items-center rounded-md border p-1 hover:border mr-2 "
+                >
+                  <MdOutlineNotificationsActive className="text-SubTextColor text-[30px]" />
+                  <div>
+                    <div className="bg-MainColor text-CardColor absolute right-[20px] -top-2 flex h-5 w-5 items-center justify-center rounded-full text-[10px]">
+                      10
+                    </div>
+                  </div>
+                </Link>
                 <Link
                   to="/cart"
                   className="hover:border-BorderColor border-CardColor relative ml-2 flex items-center rounded-md border p-1 hover:border mr-2"
@@ -301,7 +313,20 @@ const Header = () => {
             {/* Small screen  */}
             <div className="relative flex items-center justify-between p-1 md:hidden">
               <Burger></Burger>
-              <LanguageToggle></LanguageToggle>
+              <div className="flex items-center">
+                <Link
+                  to="/"
+                  className="hover:border-BorderColor border-CardColor relative ml-2 flex md:hidden items-center rounded-md border p-1 hover:border "
+                >
+                  <MdOutlineNotificationsActive className="text-SubTextColor text-[20px]" />
+                  <div>
+                    <div className="bg-MainColor text-CardColor absolute right-[15px] -top-[6px] flex h-4 w-4 items-center justify-center rounded-full text-[10px]">
+                      <p className="text-[10px]">10</p>
+                    </div>
+                  </div>
+                </Link>
+                <LanguageToggle></LanguageToggle>
+              </div>
             </div>
           </div>
         </div>
