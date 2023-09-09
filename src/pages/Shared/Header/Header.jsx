@@ -145,7 +145,7 @@ const Header = () => {
               <div className="flex items-center">
                 <Link
                   to="/"
-                  className="hover:border-BorderColor border-CardColor relative ml-2 md:flex hidden items-center rounded-md border p-1 hover:border mr-2 "
+                  className="hover:border-BorderColor border-CardColor relative ml-2 md:flex hidden items-center rounded-md border p-1 hover:border "
                 >
                   <MdOutlineNotificationsActive className="text-SubTextColor text-[30px]" />
                   <div>
@@ -156,7 +156,7 @@ const Header = () => {
                 </Link>
                 <Link
                   to="/cart"
-                  className="hover:border-BorderColor border-CardColor relative ml-2 flex items-center rounded-md border p-1 hover:border mr-2"
+                  className="hover:border-BorderColor border-CardColor relative ml-2 md:flex hidden items-center rounded-md border p-1 hover:border mr-2"
                 >
                   <AiOutlineShoppingCart className="text-SubTextColor text-[30px]" />
                   <div>
@@ -323,6 +323,18 @@ const Header = () => {
                     <div className="bg-MainColor text-CardColor absolute right-[15px] -top-[6px] flex h-4 w-4 items-center justify-center rounded-full text-[10px]">
                       <p className="text-[10px]">10</p>
                     </div>
+                  </div>
+                </Link>
+                <Link
+                  to="/cart"
+                  className="hover:border-BorderColor border-CardColor relative ml-2 flex md:hidden items-center rounded-md border p-1 hover:border mr-2"
+                >
+                  <AiOutlineShoppingCart className="text-SubTextColor text-[20px]" />
+                  <div>
+                    <div className="bg-MainColor text-CardColor absolute right-[40px] -top-[6px] flex h-4 w-4 items-center justify-center rounded-full text-[10px]">
+                    <p className="text-[10px]">10</p>
+                    </div>
+                    <p className=" text-SubTextColor">Cart</p>
                   </div>
                 </Link>
                 <LanguageToggle></LanguageToggle>
