@@ -62,14 +62,6 @@ const Login = () => {
       });
   };
 
-  // Swal.fire({
-  //   position: "top-end",
-  //   icon: "success",
-  //   title: "LogIn Successful.",
-  //   showConfirmButton: false,
-  //   timer: 1500,
-  // });
-
   const handleGoogleLogin = async () => {
     setIsLoading(true);
 
@@ -106,7 +98,7 @@ const Login = () => {
   const handlePhoneLogin = () => {};
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex items-center justify-center ">
       <Helmet>
         <title>Login | Banglamart E-commerce</title>
       </Helmet>

@@ -5,9 +5,11 @@ import { AiFillPhone, AiOutlineGoogle } from "react-icons/ai";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
+import { postApi } from "../../apis";
 
 const SignUp = () => {
-  const { signInWithGoogle, createUser,setUserState } = useContext(AuthContext);
+  const { signInWithGoogle, createUser, setUserState } =
+    useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -53,12 +55,12 @@ const SignUp = () => {
     } else if (password.length < 6) {
       // Password length error
       setErrorMessage("Password must be at least 6 characters long");
-      } else if (!passwordRegex.test(password)) {
-        // Password requirements error
-        setErrorMessage(
-          "Password must contain at least one capital letter, one special character, and one digit"
-        );
-      } else if (password !== confirmPassword) {
+    } else if (!passwordRegex.test(password)) {
+      // Password requirements error
+      setErrorMessage(
+        "Password must contain at least one capital letter, one special character, and one digit"
+      );
+    } else if (password !== confirmPassword) {
       // Password mismatch error
       setErrorMessage("Passwords do not match");
     } else {
@@ -67,7 +69,7 @@ const SignUp = () => {
         .then((res) => {
           saveToken(res.data.token);
           setIsLoading(false);
-          setUserState(true)
+          setUserState(true);
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -84,27 +86,44 @@ const SignUp = () => {
     }
   };
 
-  const handleGoogleLogin = () => {
+  const handleGoogleLogin = async () => {
     setIsLoading(true);
 
-    signInWithGoogle()
-      .then(() => {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "LogIn Successful.",
-          showConfirmButton: false,
-          timer: 1500,
+    try {
+      const res = await signInWithGoogle();
+      console.log(res.user);
+      postApi(
+        "/auth/thirdPartySignIn",
+        {
+          uid: res.user.uid,
+          name: res.user.displayName,
+          phone: res.user.phoneNumber,
+          email: res.user.email,
+        },
+        null
+      )
+        .then((res) => {
+          saveToken(res.data.token);
+          setIsLoading(false);
+          setUserState(true);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "LogIn Successful.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate(from, { replace: true });
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          setErrorMessage(error.response.data.message);
         });
-        setIsLoading(false);
-        navigate(from, { replace: true });
-
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        setErrorMessage(error.message);
-      });
+    } catch (error) {
+      console.error(error.message);
+    }
   };
+
   const handlePhoneLogin = () => {};
   return (
     <div className="flex items-center justify-center min-h-screen">
