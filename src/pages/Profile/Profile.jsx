@@ -21,38 +21,48 @@ const Profile = () => {
           <div className="text-center">
             <Avatar size="xl" name={user?.name} src={user?.image} />
             <h1 className="text-2xl font-semibold">
-              {user?.name || "Please Update Your Profile"}
+              {user?.name || "N/A"}
             </h1>
+            {user?.address?.union ? (
+                <span></span>
+              ) : (
+                <p className="text-[#f35454]">*Please Update Your Profile</p>
+              )}
+            
           </div>
           <div className="mt-4">
             <div className="flex items-center mb-2">
               <FaUserAstronaut className="mr-2" />
-              <span>{user?.name || "Please Update Your Profile"}</span>
+              <span>{user?.name || "N/A"}</span>
             </div>
             <div className="flex items-center mb-2">
               <FaEnvelopeOpenText className="mr-2" />
-              <span>{user?.email || "Please Update Your Profile"}</span>
+              <span>{user?.email || "N/A"}</span>
             </div>
             <div className="flex items-center mb-2">
               <FaPhoneAlt className="mr-2" />
-              <span>{user?.phone || "Please add your number"}</span>
+              <span>{user?.phone || "N/A"}</span>
             </div>
             <div className="flex items-center mb-2">
               <FaBirthdayCake className="mr-2" />
-              <span>{user?.birthday || "Please Update Your Profile"}</span>
+              <span>{user?.birthday || "N/A"}</span>
             </div>
 
             <div className="flex items-center mb-2">
               <FaGenderless className="mr-2" />
-              <span>{user?.gender || "Please Update Your Profile"}</span>
+              <span>{user?.gender || "N/A"}</span>
             </div>
             <div className="flex items-center mb-2">
               <FaMapMarkerAlt className="mr-2" />
-              <span>{`${user.address.union || "Please Update Your Profile"}, ${
-                user?.address?.subDistrict || "Empty"
-              }, ${user?.address?.district || "Empty"}, ${
-                user?.address?.division || "Empty"
-              }`}</span>
+              {user?.address?.division ? (
+                <span>{`${user?.address?.union || "N/A"}, ${
+                  user?.address?.subDistrict || "N/A"
+                }, ${user?.address?.district || "N/A"}, ${
+                  user?.address?.division || "N/A"
+                }`}</span>
+              ) : (
+                <span>N/A</span>
+              )}
             </div>
           </div>
 
@@ -68,9 +78,9 @@ const Profile = () => {
       ) : (
         <div className="w-full md:w-1/2 lg:w-1/3">
           <Box padding="6" boxShadow="lg" bg="white">
-          <SkeletonCircle size="10" />
-          <SkeletonText mt="4" noOfLines={4} spacing="4" skeletonHeight="2" />
-        </Box>
+            <SkeletonCircle size="10" />
+            <SkeletonText mt="4" noOfLines={4} spacing="4" skeletonHeight="2" />
+          </Box>
         </div>
       )}
     </div>

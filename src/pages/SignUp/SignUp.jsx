@@ -79,7 +79,7 @@ const SignUp = () => {
         })
         .catch((error) => {
           setIsLoading(false);
-          setErrorMessage(error);
+          setErrorMessage(error.response.data.message);
         });
     }
   };

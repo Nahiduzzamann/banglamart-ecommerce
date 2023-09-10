@@ -41,6 +41,7 @@ import Support from "./pages/Support/Support";
 import BargainingProductsPage from "./pages/BargainingProductsPage/BargainingProductsPage";
 import Profile from "./pages/Profile/Profile";
 import { ChakraProvider } from "@chakra-ui/react";
+import NotificationPage from "./pages/NotificationPage/NotificationPage";
 
 const router = createBrowserRouter([
   {
@@ -156,6 +157,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile></Profile>,
+      },
+      {
+        path: "/notifications",
+        element: <NotificationPage></NotificationPage>,
       },
     ],
   },

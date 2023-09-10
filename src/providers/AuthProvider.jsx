@@ -3,7 +3,7 @@ import {
   GoogleAuthProvider,
   getAuth,
   signInWithPopup,
-  signOut,
+  // signOut,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 import axios from "axios";
@@ -23,6 +23,7 @@ const AuthProvider = ({ children }) => {
     axios.post(`${url}${route}`, data, {
       headers: { Authorization: `Bearer ${token}` },
     });
+
   const currentUser = async (route, token) =>
     axios.get(`${url}${route}`, {
       headers: { Authorization: `Bearer ${token}` },
@@ -32,6 +33,7 @@ const AuthProvider = ({ children }) => {
     axios.post(`${url}${route}`, data, {
       headers: { Authorization: `Bearer ${token}` },
     });
+
   const signInWithGoogle = () => {
     setLoading(true);
     return signInWithPopup(auth, provider);
@@ -41,13 +43,17 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     localStorage.removeItem("token");
     setUserState(null);
-    return signOut(auth);
+    setLoading(false);
+    // return signOut(auth);
   };
-  const updateUser = async (route, data, token) => axios.put(`${url}${route}`, data, { headers: { Authorization: `Bearer ${token}` }, });
+  const updateUser = async (route, data, token) =>
+    axios.put(`${url}${route}`, data, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
 
   useEffect(() => {
-    setUserState(true)
-    setUserState(false)
+    setUserState(true);
+    setUserState(false);
   }, []);
 
   useEffect(() => {
@@ -59,7 +65,7 @@ const AuthProvider = ({ children }) => {
           // setLoading(false);
           setUser(res.data.user);
         })
-        .catch((error) => {
+        .catch(() => {
           setUser(null);
         });
     } else {

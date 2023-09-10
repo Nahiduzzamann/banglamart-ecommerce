@@ -10,9 +10,10 @@ import {
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
+import { postApi } from "../../apis";
 
 const Login = () => {
-  const { signIn, signInWithGoogle,setUserState } = useContext(AuthContext);
+  const { signIn, signInWithGoogle, setUserState } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -42,30 +43,10 @@ const Login = () => {
 
     setIsLoading(true);
     signIn("/auth/signIn", formData, null)
-        .then((res) => {
-          saveToken(res.data.token);
-          setIsLoading(false);
-          setUserState(true)
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "LogIn Successful.",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          navigate(from, { replace: true });
-        })
-        .catch((error) => {
-          setIsLoading(false);
-          setErrorMessage(error);
-        });
-  };
-
-  const handleGoogleLogin = () => {
-    setIsLoading(true);
-
-    signInWithGoogle()
-      .then((result) => {
+      .then((res) => {
+        saveToken(res.data.token);
+        setIsLoading(false);
+        setUserState(true);
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -73,16 +54,56 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        setIsLoading(false);
         navigate(from, { replace: true });
-
       })
       .catch((error) => {
         setIsLoading(false);
-        setErrorMessage(error.message);
+        setErrorMessage(error.response.data.message);
       });
   };
-  const handlePhoneLogin =() => {}
+
+  // Swal.fire({
+  //   position: "top-end",
+  //   icon: "success",
+  //   title: "LogIn Successful.",
+  //   showConfirmButton: false,
+  //   timer: 1500,
+  // });
+
+  const handleGoogleLogin = async () => {
+    setIsLoading(true);
+
+    try {
+      const res = await signInWithGoogle();
+      console.log(res.user);
+      postApi("/auth/thirdPartySignIn", {
+        uid:res.user.uid,
+        name: res.user.displayName,
+        phone:res.user.phoneNumber,
+        email:res.user.email,
+      },null)
+      .then((res) => {
+        saveToken(res.data.token);
+        setIsLoading(false);
+        setUserState(true);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "LogIn Successful.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        setErrorMessage(error.response.data.message);
+      });
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+  const handlePhoneLogin = () => {};
 
   return (
     <div className="flex items-center justify-center min-h-screen">
@@ -100,18 +121,16 @@ const Login = () => {
           </div>
         )}
         <form onSubmit={handleSubmit}>
-        <label className="block font-medium mb-2 text-TextColor">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              className="input input-bordered w-full pr-10 mb-4"
-              placeholder="Enter your Email Address"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
+          <label className="block font-medium mb-2 text-TextColor">Email</label>
+          <input
+            type="email"
+            name="email"
+            className="input input-bordered w-full pr-10 mb-4"
+            placeholder="Enter your Email Address"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
           <div className="mb-2 relative">
             <label className="block font-medium mb-2 text-TextColor">
               Password
@@ -126,8 +145,8 @@ const Login = () => {
               required
             />
             <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.8 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
               type="button"
               className="absolute right-3 top-12 transform -translate-y-1/2 focus:outline-none"
               onClick={() => setShowPassword(!showPassword)}
@@ -192,7 +211,7 @@ const Login = () => {
             )}
           </motion.button>
           <p className="mt-10 text-SubTextColor">
-            Don't have an account?{" "}
+            Do not have an account?{" "}
             <Link
               to="/registration"
               className="text-MainColor hover:text-MainColorHover hover:underline"

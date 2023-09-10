@@ -39,7 +39,7 @@ const Header = () => {
     setHide(true);
   };
   useEffect(() => {
-    window.onscroll = function (e) {
+    window.onscroll = function () {
       // print "false" if direction is down and "true" if up
       setShow(this.oldScroll > this.scrollY);
       this.oldScroll = this.scrollY;
@@ -144,7 +144,7 @@ const Header = () => {
                 </button> */}
               <div className="flex items-center">
                 <Link
-                  to="/"
+                  to="/notifications"
                   className="hover:border-BorderColor border-CardColor relative ml-2 md:flex hidden items-center rounded-md border p-1 hover:border "
                 >
                   <MdOutlineNotificationsActive className="text-SubTextColor text-[30px]" />
@@ -315,7 +315,7 @@ const Header = () => {
               <Burger></Burger>
               <div className="flex items-center">
                 <Link
-                  to="/"
+                  to="/notifications"
                   className="hover:border-BorderColor border-CardColor relative ml-2 flex md:hidden items-center rounded-md border p-1 hover:border "
                 >
                   <MdOutlineNotificationsActive className="text-SubTextColor text-[20px]" />
