@@ -24,12 +24,13 @@ const Home = () => {
       <div className="container mx-auto ">
         <FlashSale></FlashSale>
         <NewProducts></NewProducts>
+        <BargainingProducts></BargainingProducts>
         <BestSelling></BestSelling>
       </div>
       <FlashSaleBanner></FlashSaleBanner>
       <div className="container mx-auto">
         <TopProducts></TopProducts>
-        <BargainingProducts></BargainingProducts>
+        
         <BestSellers />
       </div>
     </div>
