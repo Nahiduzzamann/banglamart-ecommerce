@@ -3,14 +3,20 @@ import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
 import { BiCurrentLocation } from "react-icons/bi";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { postApi } from "../../apis";
+import Swal from "sweetalert2";
+
+const initialFormState = {
+  title: "",
+  description: "",
+  name: "",
+  phone: "",
+  email: "",
+ 
+};
 
 const Support = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState(initialFormState);
   const [send, setSent] = useState(false);
   const handleChange = (e) => {
     setFormData((prevData) => ({
@@ -22,33 +28,51 @@ const Support = () => {
   const sendEmail = (e) => {
     e.preventDefault();
     setSent(true);
-    const templateParams = {
-      from_name: formData.name,
-      user_email: formData.email,
-      message: formData.message,
-    };
-
-    emailjs
-      .send(
-        "service_qeov5k3",
-        "template_7gm40zm",
-        templateParams,
-        "1tcM1ckhC1nBgyawA"
-      )
-      .then((result) => {
-        console.log(result.text);
-        setFormData({
-          name: "",
-          email: "",
-          message: "",
-        });
-        alert("Message Sent. Thanks For Your Feedback!");
+    postApi("/support/create", formData, null)
+      .then(() => {
         setSent(false);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Message Sent. Thanks For Your Feedback!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .catch((error) => {
         setSent(false);
-        console.error(error.text);
+        console.error(error.response.data.message);
       });
+
+    // const templateParams = {
+    //   from_name: formData.name,
+    //   user_email: formData.email,
+    //   message: formData.description,
+    // };
+
+    // emailjs
+    //   .send(
+    //     "service_qeov5k3",
+    //     "template_7gm40zm",
+    //     templateParams,
+    //     "1tcM1ckhC1nBgyawA"
+    //   )
+    //   .then((result) => {
+    //     console.log(result.text);
+    //     setFormData({
+    //       name: "",
+    //       email: "",
+    //       message: "",
+    //     });
+    //     alert("Message Sent. Thanks For Your Feedback!");
+    //     setSent(false);
+    //   })
+    //   .catch((error) => {
+    //     setSent(false);
+    //     console.error(error.text);
+    //   });
+
+    setFormData(initialFormState);
   };
 
   return (
@@ -67,9 +91,7 @@ const Support = () => {
             </div>
             <div className="flex items-center mb-2 text-blue-900">
               <AiOutlineMail className=" mr-2 text-SubTextColor" />
-              <p className="text-SubTextColor">
-                banglamartecommerce@gmail.com
-              </p>
+              <p className="text-SubTextColor">banglamartecommerce@gmail.com</p>
             </div>
             <div className="flex items-center mb-2 text-blue-900">
               <BiCurrentLocation className=" mr-2 text-SubTextColor" />
@@ -103,9 +125,7 @@ const Support = () => {
             </div>
             <div className="flex items-center mb-2 text-blue-900">
               <AiOutlineMail className=" mr-2 text-SubTextColor" />
-              <p className="text-SubTextColor">
-                banglamartecommerce@gmail.com
-              </p>
+              <p className="text-SubTextColor">banglamartecommerce@gmail.com</p>
             </div>
             <div className="flex items-center mb-2 text-blue-900">
               <BiCurrentLocation className=" mr-2 text-SubTextColor" />
@@ -122,7 +142,7 @@ const Support = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="Name"
+                  placeholder="Enter Your Name"
                   required
                   className="bg-BackgroundColor rounded-md w-full p-2 mb-4"
                 />
@@ -131,7 +151,7 @@ const Support = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="Phone Number"
+                  placeholder="Your Phone Number"
                   required
                   className="bg-BackgroundColor rounded-md w-full p-2 mb-4"
                 />
@@ -141,14 +161,23 @@ const Support = () => {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="Email"
+                  placeholder="Your Email"
+                  className="bg-BackgroundColor rounded-md w-full p-2 mb-4"
+                />
+                <input
+                  type="text"
+                  name="title"
+                  value={formData.title}
+                  onChange={handleChange}
+                  placeholder="Title"
+                  required
                   className="bg-BackgroundColor rounded-md w-full p-2 mb-4"
                 />
                 <textarea
-                  name="message"
-                  value={formData.message}
+                  name="description"
+                  value={formData.description}
                   onChange={handleChange}
-                  placeholder="Message"
+                  placeholder="Description"
                   className="bg-BackgroundColor rounded-md w-full p-2 mb-4 "
                   rows="4"
                 ></textarea>

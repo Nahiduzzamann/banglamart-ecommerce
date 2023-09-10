@@ -62,7 +62,7 @@ const AuthProvider = ({ children }) => {
     if (token) {
       currentUser("/auth/getUser", token)
         .then((res) => {
-          // setLoading(false);
+          setLoading(false);
           setUser(res.data.user);
         })
         .catch(() => {
