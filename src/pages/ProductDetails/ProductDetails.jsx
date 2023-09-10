@@ -282,7 +282,7 @@ const ProductDetails = () => {
                 </p>
                 <p className="text-CardColor">Buy Now</p>
               </motion.button>
-              <motion.button
+              {/* <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.8 }}
                 className="pl-3 pr-3 pt-2 pb-2 bg-[#d2eefd] rounded-full shadow-sm hover:shadow-md flex items-center justify-center"
@@ -291,7 +291,7 @@ const ProductDetails = () => {
                   <AiOutlineShopping className="text-MainColor  mr-1" />
                 </p>
                 <p className="text-MainColor">Add to wishlist</p>
-              </motion.button>
+              </motion.button> */}
             </div>
             <p className="text-SubTextColor">
               Refund:{" "}
