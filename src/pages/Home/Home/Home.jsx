@@ -6,17 +6,19 @@ import FlashSale from "../FlashSale/FlashSale";
 import NewProducts from "../NewProducts/NewProducts";
 import TopBannerSection from "../TopBannerSection/TopBannerSection";
 import TopProducts from "../TopProducts/TopProducts";
-import init from "../../../visitor"
-import { useEffect } from "react";
+import init from "../../../visitor";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const Home = () => {
-  useEffect(()=>{
-    fetch()
-  },[])
-  const fetch=async()=>{
-    const data = await init()
-    console.log(data);
-  }
+  const { user } = useContext(AuthContext);
+  useEffect(() => {
+    fetch();
+  }, []);
+  const fetch = async () => {
+    const data = await init(user.uid || null);
+    // console.log(data);
+  };
   return (
     <div>
       <TopBannerSection></TopBannerSection>
@@ -30,7 +32,7 @@ const Home = () => {
       <FlashSaleBanner></FlashSaleBanner>
       <div className="container mx-auto">
         <TopProducts></TopProducts>
-        
+
         <BestSellers />
       </div>
     </div>
