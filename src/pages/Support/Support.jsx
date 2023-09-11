@@ -12,17 +12,26 @@ const initialFormState = {
   name: "",
   phone: "",
   email: "",
- 
 };
 
 const Support = () => {
   const [formData, setFormData] = useState(initialFormState);
   const [send, setSent] = useState(false);
+  const [phoneError, setPhoneError] = useState("");
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
+
+    const phoneNumberPattern = /^01[3-9][0-9]{8}$/;
+
+    if (name === "phone" && !phoneNumberPattern.test(value)) {
+      setPhoneError("Invalid phone number");
+    } else {
+      setPhoneError("");
+    }
   };
 
   const sendEmail = (e) => {
@@ -44,33 +53,33 @@ const Support = () => {
         console.error(error.response.data.message);
       });
 
-    // const templateParams = {
-    //   from_name: formData.name,
-    //   user_email: formData.email,
-    //   message: formData.description,
-    // };
+    const templateParams = {
+      from_name: formData.name,
+      user_email: formData.email,
+      message: formData.description,
+    };
 
-    // emailjs
-    //   .send(
-    //     "service_qeov5k3",
-    //     "template_7gm40zm",
-    //     templateParams,
-    //     "1tcM1ckhC1nBgyawA"
-    //   )
-    //   .then((result) => {
-    //     console.log(result.text);
-    //     setFormData({
-    //       name: "",
-    //       email: "",
-    //       message: "",
-    //     });
-    //     alert("Message Sent. Thanks For Your Feedback!");
-    //     setSent(false);
-    //   })
-    //   .catch((error) => {
-    //     setSent(false);
-    //     console.error(error.text);
-    //   });
+    emailjs
+      .send(
+        "service_qeov5k3",
+        "template_7gm40zm",
+        templateParams,
+        "1tcM1ckhC1nBgyawA"
+      )
+      .then((result) => {
+        console.log(result.text);
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+        });
+        alert("Message Sent. Thanks For Your Feedback!");
+        setSent(false);
+      })
+      .catch((error) => {
+        setSent(false);
+        console.error(error.text);
+      });
 
     setFormData(initialFormState);
   };
@@ -146,15 +155,18 @@ const Support = () => {
                   required
                   className="bg-BackgroundColor rounded-md w-full p-2 mb-4"
                 />
-                <input
-                  type="number"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="Your Phone Number"
-                  required
-                  className="bg-BackgroundColor rounded-md w-full p-2 mb-4"
-                />
+                <div>
+                  <input
+                    type="number"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="Your Phone Number"
+                    required
+                    className="bg-BackgroundColor rounded-md w-full p-2 "
+                  />
+                  {phoneError && <p className="text-[#df4040]">{phoneError}</p>}
+                </div>
                 <input
                   type="email"
                   name="email"
@@ -162,7 +174,7 @@ const Support = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Your Email"
-                  className="bg-BackgroundColor rounded-md w-full p-2 mb-4"
+                  className="bg-BackgroundColor rounded-md w-full p-2 mb-4 mt-4"
                 />
                 <input
                   type="text"
@@ -181,14 +193,23 @@ const Support = () => {
                   className="bg-BackgroundColor rounded-md w-full p-2 mb-4 "
                   rows="4"
                 ></textarea>
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.8 }}
-                  type="submit"
-                  className="text-CardColor btn btn-info rounded"
-                >
-                  {send ? "Sending.." : "Send"}
-                </motion.button>
+                {phoneError == "Invalid phone number" ? (
+                  <button
+                    disabled
+                    className="text-CardColor btn btn-info rounded"
+                  >
+                    Send
+                  </button>
+                ) : (
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.8 }}
+                    type="submit"
+                    className="text-CardColor btn btn-info rounded"
+                  >
+                    {send ? "Sending.." : "Send"}
+                  </motion.button>
+                )}
               </form>
             </div>
           </div>
