@@ -92,47 +92,56 @@ const AddDeliveryAddressForm = () => {
   useEffect(() => {
     setSelectedDivision(sortedAddressName(divisions, user?.address?.division));
     setSelectedDistrict(sortedAddressName(districts, user?.address?.district));
-    setSelectedSubDistrict(sortedAddressName(subDistricts, user?.address?.subDistrict));
+    setSelectedSubDistrict(
+      sortedAddressName(subDistricts, user?.address?.subDistrict)
+    );
     setSelectedUnion(sortedAddressName(unions, user?.address?.union));
-  }, [user, user?.address, divisions,districts,subDistricts,unions]);
+  }, [user, user?.address, divisions, districts, subDistricts, unions]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData();
-    image && data.append("image", image);
-    data.append("name", fullName);
-    data.append(
-      "address",
-      JSON.stringify({
-        division: sortedAddress(divisions, selectedDivision),
-        district: sortedAddress(districts, selectedDistrict),
-        subDistrict: sortedAddress(subDistricts, selectedSubDistrict),
-        union: sortedAddress(unions, selectedUnion),
-      })
-    );
-    data.append("gender", gender);
-    data.append("birthday", birthDate);
 
-    const token = localStorage.getItem("token");
-    setIsLoading(true);
-    updateUser("/auth/update", data, token)
-      .then(() => {
-        setIsLoading(false);
-        setUserState(5464);
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "User Updated successfully.",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        setErrorMessage(error);
-      });
+    Swal.fire({
+      title: "Do you want to update the changes?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Update",
+      denyButtonText: `Don't update`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const data = new FormData();
+        image && data.append("image", image);
+        data.append("name", fullName);
+        data.append(
+          "address",
+          JSON.stringify({
+            division: sortedAddress(divisions, selectedDivision),
+            district: sortedAddress(districts, selectedDistrict),
+            subDistrict: sortedAddress(subDistricts, selectedSubDistrict),
+            union: sortedAddress(unions, selectedUnion),
+          })
+        );
+        data.append("gender", gender);
+        data.append("birthday", birthDate);
+
+        const token = localStorage.getItem("token");
+        setIsLoading(true);
+        updateUser("/auth/update", data, token)
+          .then(() => {
+            setIsLoading(false);
+            setUserState(5464);
+            Swal.fire("Updated!", "", "success");
+          })
+          .catch((error) => {
+            setIsLoading(false);
+            setErrorMessage(error);
+          });
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
   };
-  
+
   return (
     <div className="container mx-auto p-4 lg:w-[800px]">
       <Helmet>
@@ -148,11 +157,8 @@ const AddDeliveryAddressForm = () => {
             <div className="relative">
               <Avatar
                 size="xl"
-                name={user?.displayName || user?.name}
-                src={
-                  `${url}${user?.image}` ||
-                  (image && URL.createObjectURL(image))
-                }
+                name={user?.name}
+                src={image && URL.createObjectURL(image)}
                 onClick={() => {
                   document.getElementById("profile-picture-input").click();
                 }}

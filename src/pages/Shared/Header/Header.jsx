@@ -14,7 +14,7 @@ import Burger from "./Nav/Burger";
 import { motion } from "framer-motion";
 import { CgProfile } from "react-icons/cg";
 import { TbListDetails, TbLogout2, TbTruckDelivery } from "react-icons/tb";
-import { MdOutlineNotificationsActive } from "react-icons/md";
+import { MdOutlineAdminPanelSettings, MdOutlineNotificationsActive } from "react-icons/md";
 import {
   Avatar,
   Menu,
@@ -174,11 +174,12 @@ const Header = () => {
                         bg="teal.500"
                         icon={<AiOutlineUser fontSize="1.5rem" />}
                         size="md"
-                        name={user?.displayName || user?.name}
-                        src={user?.photoURL || user?.image}
+                        name={user?.name}
+                        src={user?.image}
                       />
                     </MenuButton>
                     <MenuList>
+                      <p className="text-center text-SubTextColor">Welcome {user?.name}</p>
                       <MenuGroup title="Profile">
                         <MenuItem>
                           <Link
@@ -195,7 +196,7 @@ const Header = () => {
                               className="text-SubTextColor flex items-center"
                               to=""
                             >
-                              <CgProfile className="text-[18px] text-SubTextColor mr-2" />
+                              <MdOutlineAdminPanelSettings className="text-[18px] text-SubTextColor mr-2" />
                               <h3 className="hover:underline">Admin Panel</h3>
                             </Link>
                           </MenuItem>
