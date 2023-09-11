@@ -1,8 +1,13 @@
 import { Helmet } from "react-helmet";
 import ProductCart from "../../components/ProductCart";
 import SellerShopCart from "../../components/SellerShopCart";
+import { useLocation } from "react-router-dom";
 
 const ShopPage = () => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const encodedData = queryParams.get('data');
+  const data = JSON.parse(decodeURIComponent(encodedData));
   const productData = [
     {
       thumbnail:
@@ -105,13 +110,7 @@ const ShopPage = () => {
       deliveryFree: false,
     },
   ];
-  const data = {
-    thumbnail:
-      "https://images.unsplash.com/photo-1590874315261-788881621f7a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2hvcCUyMGxvZ298ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
-    ratings: 4.8,
-    shopName: "Fashion Paradise",
-    address: "1234 Main Street, City",
-  };
+
 
   return (
     <div className="container mx-auto bg-CardColor lg:mt-4 mt-2">

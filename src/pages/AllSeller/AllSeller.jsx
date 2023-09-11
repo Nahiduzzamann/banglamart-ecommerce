@@ -4,79 +4,15 @@ import EmptyContent from "../../components/EmptyContent";
 import SellerShopCart from "../../components/SellerShopCart";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import { useSelector } from "react-redux";
 const AllSeller = () => {
-  const AllSellers = [
-    {
-      thumbnail:
-        "https://images.unsplash.com/photo-1590874315261-788881621f7a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2hvcCUyMGxvZ298ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
-      ratings: 4.8,
-      shopName: "Fashion Paradise",
-      address: "1234 Main Street, City",
-    },
-    {
-      thumbnail:
-        "https://images.unsplash.com/photo-1602934445884-da0fa1c9d3b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvcCUyMGxvZ298ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
-      ratings: 4.6,
-      shopName: "Electro Mart",
-      address: "5678 Avenue Road, Town",
-    },
-    {
-      thumbnail:
-        "https://images.unsplash.com/photo-1605486066632-74ee8fc55b5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c2hvcCUyMGxvZ298ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
-      ratings: 4.9,
-      shopName: "Home Essentials",
-      address: "9876 Street Lane, Village",
-    },
-    {
-      thumbnail:
-        "https://images.unsplash.com/photo-1534004760608-6f319a7410ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHNob3AlMjBsb2dvfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
-      ratings: 4.5,
-      shopName: "Beauty Haven",
-      address: "5432 Garden Street, Suburb",
-    },
-    {
-      thumbnail:
-        "https://images.unsplash.com/photo-1517492973030-a02d282206f7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHNob3AlMjBsb2dvfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
-      ratings: 4.7,
-      shopName: "Gourmet Delights",
-      address: "2468 Culinary Court, Metro",
-    },
-    {
-      thumbnail:
-        "https://images.unsplash.com/photo-1567525884234-85d64bb065fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHNob3AlMjBsb2dvfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
-      ratings: 4.8,
-      shopName: "Sports Emporium",
-      address: "1357 Stadium Avenue, Urban",
-    },
-    {
-      thumbnail:
-        "https://images.unsplash.com/photo-1584209766712-e38802bf7f4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fHNob3AlMjBsb2dvfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
-      ratings: 2.6,
-      shopName: "Electro Shop",
-      address: "369 Electronics Boulevard, City",
-    },
-    {
-      thumbnail:
-        "https://images.unsplash.com/photo-1621465558398-d3f87bfaec26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fHNob3AlMjBsb2dvfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
-      ratings: 3.9,
-      shopName: "Book Nook",
-      address: "9876 Library Lane, Town",
-    },
-    {
-      thumbnail:
-        "https://images.unsplash.com/photo-1589381855733-01bb5380dedf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTd8fHNob3AlMjBsb2dvfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
-      ratings: 3.5,
-      shopName: "Pets' Paradise",
-      address: "5432 Pet Street, Village",
-    },
-    {
-      thumbnail:
-        "https://images.unsplash.com/photo-1518597222911-9c4a76e71615?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1032&q=80",
-      ratings: 2.7,
-      shopName: "Artistic Creations",
-      address: "2468 Art Avenue, Suburb",
-    },
-  ];
+  const { user } = useContext(AuthContext);
+  const AllSellers =useSelector(
+    (state) => state.allSellerData.allSeller?.data
+  )
+  
 
   return (
     <div className="m-1 lg:m-0">
@@ -92,7 +28,17 @@ const AllSeller = () => {
               borderRadius: ["20%", "20%", "50%", "50%", "20%"],
             }}
           >
-            <Link to="/seller-form" id="animatedButton"></Link>
+            {user.role === 2 ? (
+              <Link to="/" id="animatedButton">
+                <h1 className="z-10 text-CardColor text-center p-2">
+                  Go Your Panel and Add Your Product!
+                </h1>
+              </Link>
+            ) : (
+              <Link to="/seller-form" id="animatedButton">
+                <h1 className="z-10 text-CardColor">Be A Seller</h1>
+              </Link>
+            )}
           </motion.div>
         </div>
         <div className="shadow-xl shadow-BackgroundColor rounded">

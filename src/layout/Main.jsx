@@ -13,6 +13,7 @@ import { fetchUnions } from "../services/actions/unionAction";
 import { fetchAllCategories } from "../services/actions/allCategoriesAction";
 import { fetchFlashSell } from "../services/actions/flashSellCheckAction";
 import { Helmet } from "react-helmet";
+import { fetchAllSellerData } from "../services/actions/allSellerAction";
 
 const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -44,6 +45,9 @@ const Main = () => {
   }, [dispatch]);
   useEffect(() => {
     dispatch(fetchAllCategories());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchAllSellerData());
   }, [dispatch]);
 
   // isFlash sell available or not 

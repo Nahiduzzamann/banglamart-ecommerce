@@ -9,6 +9,7 @@ import unionReducer from './../reducers/unionReducer';
 import allCategoriesReducer from '../reducers/allCategoriesReducer';
 import flashSellReducer from '../reducers/flashSellReducer';
 import flashSellDataReducer from '../reducers/flashSellDataReducer';
+import allSellerReducer from '../reducers/allSellerReducer';
 // ...
 
 const rootReducer = combineReducers({
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   allCategories: allCategoriesReducer,
   flashSell: flashSellReducer,
   flashSellData: flashSellDataReducer,
+  allSellerData: allSellerReducer,
   
   // Add other reducers here
 });
