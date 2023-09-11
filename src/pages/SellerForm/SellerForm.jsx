@@ -19,30 +19,37 @@ const SellerForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData();
-    image && data.append("logo", image);
-    data.append("shopName", shopName);
-    data.append("shopAddress", shopAddress);
 
-    const token = localStorage.getItem("token");
-    setIsLoading(true);
-    postApi("/store/request-seller", data, token)
-      .then((r) => {
-        console.log(r);
-        setIsLoading(false);
-        setUserState(546);
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Sent Seller Request",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        setErrorMessage(error);
-      });
+    Swal.fire({
+      title: "Are you sure? Or Check Informations",
+      text: "You won't change this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, request it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const data = new FormData();
+        image && data.append("logo", image);
+        data.append("shopName", shopName);
+        data.append("shopAddress", shopAddress);
+
+        const token = localStorage.getItem("token");
+        setIsLoading(true);
+        postApi("/store/request-seller", data, token)
+          .then((r) => {
+            console.log(r);
+            setIsLoading(false);
+            setUserState(546);
+            Swal.fire("Congrats!", "Your request has been sent.", "success");
+          })
+          .catch((error) => {
+            setIsLoading(false);
+            setErrorMessage(error);
+          });
+      }
+    });
   };
 
   return (
@@ -117,7 +124,12 @@ const SellerForm = () => {
               <p>{errorMessage}</p>
             </div>
           )}
-          <div className="flex justify-center mt-10">
+          <div className="flex flex-col justify-center mt-10">
+            {user?.role === 2 ? (
+              <h1 className="text-[#ee5757]">Be A Seller Requested!</h1>
+            ) : (
+              ""
+            )}
             {user?.role === 2 ? (
               <button
                 disabled
