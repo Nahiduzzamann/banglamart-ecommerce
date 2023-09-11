@@ -58,7 +58,7 @@ const Login = () => {
       })
       .catch((error) => {
         setIsLoading(false);
-        setErrorMessage(error.response.data.message);
+        setErrorMessage(error?.response?.data?.message);
       });
   };
 
@@ -162,7 +162,7 @@ const Login = () => {
             disabled={isLoading}
           >
             {isLoading ? (
-              <span className="loading loading-bars loading-md"></span>
+              <span className="loading loading-bars loading-md "></span>
             ) : (
               "Log in"
             )}
