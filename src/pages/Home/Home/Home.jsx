@@ -9,6 +9,8 @@ import TopProducts from "../TopProducts/TopProducts";
 import init from "../../../visitor";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
@@ -32,7 +34,17 @@ const Home = () => {
       <FlashSaleBanner></FlashSaleBanner>
       <div className="container mx-auto">
         <TopProducts></TopProducts>
-
+        <div id="main" className="mt-4 rounded-md">
+          <motion.div
+            animate={{
+              scale: [1, 2, 2, 1, 1],
+              rotate: [0, 0, 270, 270, 0],
+              borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+            }}
+          >
+            <Link to="/seller-form" id="animatedButton"></Link>
+          </motion.div>
+        </div>
         <BestSellers />
       </div>
     </div>
