@@ -18,7 +18,7 @@ const Home = () => {
     fetch();
   }, []);
   const fetch = async () => {
-    const data = await init(user.uid || null);
+    const data = await init(user?.uid || null);
     // console.log(data);
   };
   return (
@@ -34,7 +34,7 @@ const Home = () => {
       <FlashSaleBanner></FlashSaleBanner>
       <div className="container mx-auto">
         <TopProducts></TopProducts>
-        {user.role === 2 ? (
+        {user?.role === 2 ? (
           ""
         ) : (
           <div id="main" className="mt-4 rounded-md">
@@ -45,7 +45,7 @@ const Home = () => {
                 borderRadius: ["20%", "20%", "50%", "50%", "20%"],
               }}
             >
-              <Link to="/seller-form" id="animatedButton"></Link>
+              <Link to="/seller-form" id="animatedButton"><h1 className="z-10 text-CardColor">Be A Seller</h1></Link>
             </motion.div>
           </div>
         )}

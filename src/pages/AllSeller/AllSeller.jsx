@@ -28,7 +28,7 @@ const AllSeller = () => {
               borderRadius: ["20%", "20%", "50%", "50%", "20%"],
             }}
           >
-            {user.role === 2 ? (
+            {user?.role === 2 ? (
               <Link to="/" id="animatedButton">
                 <h1 className="z-10 text-CardColor text-center p-2">
                   Go Your Panel and Add Your Product!
