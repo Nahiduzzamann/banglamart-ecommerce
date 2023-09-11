@@ -17,7 +17,7 @@ const url = "http://62.72.31.204:1300";
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [userState, setUserState] = useState(user);
+  const [userState, setUserState] = useState(134);
 
   const createUser = async (route, data, token) =>
     axios.post(`${url}${route}`, data, {
@@ -42,7 +42,7 @@ const AuthProvider = ({ children }) => {
   const logOut = () => {
     setLoading(true);
     localStorage.removeItem("token");
-    setUserState(null);
+    setUserState(345);
     setLoading(false);
     // return signOut(auth);
   };
@@ -52,8 +52,8 @@ const AuthProvider = ({ children }) => {
     });
 
   useEffect(() => {
-    setUserState(true);
-    setUserState(false);
+    setUserState(435);
+    setUserState(45);
   }, []);
 
   useEffect(() => {

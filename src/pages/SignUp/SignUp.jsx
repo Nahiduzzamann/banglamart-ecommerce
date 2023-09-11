@@ -69,7 +69,7 @@ const SignUp = () => {
         .then((res) => {
           saveToken(res.data.token);
           setIsLoading(false);
-          setUserState(true);
+          setUserState(67);
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -105,7 +105,7 @@ const SignUp = () => {
         .then((res) => {
           saveToken(res.data.token);
           setIsLoading(false);
-          setUserState(true);
+          setUserState(887);
           Swal.fire({
             position: "top-end",
             icon: "success",

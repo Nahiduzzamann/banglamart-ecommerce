@@ -118,7 +118,7 @@ const AddDeliveryAddressForm = () => {
     updateUser("/auth/update", data, token)
       .then(() => {
         setIsLoading(false);
-        setUserState(true);
+        setUserState(5464);
         Swal.fire({
           position: "top-end",
           icon: "success",
