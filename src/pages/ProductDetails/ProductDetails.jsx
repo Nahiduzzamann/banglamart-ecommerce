@@ -517,6 +517,8 @@ const ProductDetails = () => {
 export default ProductDetails;
 
 const ImageShow = ({ product }) => {
+  const url = "http://62.72.31.204:1300";
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handleImageClick = (index) => {
@@ -525,19 +527,21 @@ const ImageShow = ({ product }) => {
   return (
     <div className="flex flex-col items-center">
       <div className="mb-4">
-        <ReactImageMagnify
+        {/* <ReactImageMagnify
           {...{
             smallImage: {
               alt: `Product ${currentImageIndex + 1}`,
               isFluidWidth: true,
-              src: product?.images[currentImageIndex],
+              src: `${url}${product?.images[currentImageIndex]}`,
               sizes:
                 "(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px",
+              
             },
             largeImage: {
-              src: product?.images[currentImageIndex],
+              src: `${url}${product?.images[currentImageIndex]}`,
               width: 1200,
               height: 1800,
+            
             },
             enlargedImagePosition: "over",
             enlargedImageContainerDimensions: {
@@ -550,13 +554,20 @@ const ImageShow = ({ product }) => {
             hintBgOpacity: 1,
             hintTextColor: "#000",
           }}
+        /> */}
+        <img
+          src={`${url}${product?.thumbnail}`}
+          crossOrigin="anonymous"
+          className="object-cover h-96 w-full"
+          onClick={() => handleImageClick(index)}
         />
       </div>
       <div className="flex space-x-4">
         {product?.images.map((image, index) => (
           <img
             key={index}
-            src={image}
+            src={`${url}${image}`}
+            crossOrigin="anonymous"
             alt={`Product ${index + 1}`}
             className={`cursor-pointer h-16 w-16 border-[3px] ${
               currentImageIndex === index
