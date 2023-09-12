@@ -113,7 +113,7 @@ const router = createBrowserRouter([
         element: <SupportPolicy></SupportPolicy>,
       },
       {
-        path: "/productDetails:id",
+        path: "/productDetails/:id",
         element: <ProductDetails></ProductDetails>,
       },
       {
