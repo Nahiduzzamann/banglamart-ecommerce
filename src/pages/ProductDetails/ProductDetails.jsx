@@ -23,6 +23,7 @@ import { motion } from "framer-motion";
 import { Avatar, CloseButton, Spinner } from "@chakra-ui/react";
 import Scrollbars from "react-custom-scrollbars";
 import Rating from "react-rating";
+import { MdOutlineDisabledByDefault } from "react-icons/md";
 const ProductDetails = () => {
   const [messageShow, setMessageShow] = useState(false);
   const { id } = useParams();
@@ -69,6 +70,9 @@ const ProductDetails = () => {
     return (value * percentage) / 100;
   }
 
+  const [minOrder, setQuantity] = useState(null);
+  const [price, setPrice] = useState();
+
   useEffect(() => {
     if (product?.percentage) {
       const percentageValue = calculatePercentage(
@@ -79,7 +83,27 @@ const ProductDetails = () => {
     } else {
       setNewPrice(product?.price - product?.offer);
     }
+    setQuantity(product?.minOrder);
+    setPrice(product?.minOrder * product?.price);
   }, [product]);
+
+  // calculation portion
+
+  const handleIncrease = () => {
+    const newQuantity = minOrder + 1;
+    const newPrice = newQuantity * product?.price;
+    setQuantity(newQuantity);
+    setPrice(newPrice);
+  };
+
+  const handleDecrease = () => {
+    if (minOrder > product?.minOrder) {
+      const newQuantity = minOrder - 1;
+      const newPrice = newQuantity * product?.price;
+      setQuantity(newQuantity);
+      setPrice(newPrice);
+    }
+  };
 
   if (product == null) {
     return (
@@ -314,18 +338,27 @@ const ProductDetails = () => {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.8 }}
+              onClick={handleDecrease}
               className="mr-4 rounded-full bg-[#d2eefd] p-2 shadow-sm hover:shadow-md"
             >
               <AiOutlineLine className=" text-SubTextColor" />
             </motion.button>
-            <h1 className="mr-4 text-TextColor">{product?.minOrder}</h1>
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
-              className="mr-4 rounded-full bg-[#d2eefd] p-2 shadow-sm hover:shadow-md"
-            >
-              <AiOutlinePlus className=" text-TextColor" />
-            </motion.button>
+            <h1 className="mr-4 text-TextColor">{minOrder}</h1>
+            {minOrder == product?.quantity ? (
+              <button disabled className="mr-4 rounded-full bg-[#e9a093] p-2 shadow-sm hover:shadow-md">
+                <MdOutlineDisabledByDefault className=" text-CardColor" />
+              </button>
+            ) : (
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.8 }}
+                onClick={handleIncrease}
+                className="mr-4 rounded-full bg-[#d2eefd] p-2 shadow-sm hover:shadow-md"
+              >
+                <AiOutlinePlus className=" text-TextColor" />
+              </motion.button>
+            )}
+
             <p className="mr-4 text-SubTextColor">
               (<span>{product?.quantity}</span>) available
             </p>
@@ -333,7 +366,9 @@ const ProductDetails = () => {
           <div className="p-4">
             <p className="text-TextColor">
               Total Price:
-              <span className="text-[18px] text-MainColor ml-2">16000 ৳</span>
+              <span className="text-[18px] text-MainColor ml-2">
+                ${price} ৳
+              </span>
             </p>
             <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-2">
               <motion.button
