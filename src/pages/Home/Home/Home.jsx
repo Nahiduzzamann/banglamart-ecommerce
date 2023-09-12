@@ -6,7 +6,6 @@ import FlashSale from "../FlashSale/FlashSale";
 import NewProducts from "../NewProducts/NewProducts";
 import TopBannerSection from "../TopBannerSection/TopBannerSection";
 import TopProducts from "../TopProducts/TopProducts";
-import init from "../../../visitor";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { motion } from "framer-motion";
@@ -14,13 +13,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
-  useEffect(() => {
-    fetch();
-  }, []);
-  const fetch = async () => {
-    const data = await init(user?.uid || null);
-    // console.log(data);
-  };
+  
   return (
     <div>
       <TopBannerSection></TopBannerSection>

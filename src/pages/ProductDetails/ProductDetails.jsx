@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AiOutlineLine,
   AiOutlinePlus,
@@ -6,7 +6,7 @@ import {
   AiOutlineShopping,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   FacebookIcon,
   FacebookMessengerIcon,
@@ -22,6 +22,29 @@ import { Avatar, CloseButton } from "@chakra-ui/react";
 import Scrollbars from "react-custom-scrollbars";
 const ProductDetails = () => {
   const [messageShow, setMessageShow] = useState(false);
+  const { id } = useParams();
+  const [productDetails, setProductDetails] = useState(null);
+
+  console.log(productDetails);
+
+  const url = "http://62.72.31.204:1300";
+  useEffect(() => {
+    const visitorId = localStorage.getItem("visitorId");
+    const fetchProductDetails = async () => {
+      try {
+        const response = await fetch(
+          `${url}/product/details?visitorId=${visitorId}productId=${id}`
+        );
+        const data = await response.json();
+        setProductDetails(data.data);
+      } catch (error) {
+        console.error("Error fetching instructor classes:", error);
+      }
+    };
+
+    fetchProductDetails();
+  }, [id]);
+
   const products = [
     {
       images: [
@@ -31,6 +54,7 @@ const ProductDetails = () => {
       ],
     },
   ];
+
   const [formData, setFormData] = useState({
     message: "",
   });
@@ -95,7 +119,7 @@ const ProductDetails = () => {
                   <div
                     style={{
                       ...style,
-                      width:3,
+                      width: 3,
                       backgroundColor: "#5dade2",
                       borderRadius: 4,
                     }}

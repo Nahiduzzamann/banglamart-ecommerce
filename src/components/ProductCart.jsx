@@ -138,11 +138,7 @@
 // };
 // export default ProductCart;
 
-
-
-
-// dummy cart 
-
+// dummy cart
 
 import { useEffect, useState } from "react";
 import {
@@ -156,9 +152,7 @@ import { TbTruckDelivery } from "react-icons/tb";
 import Rating from "react-rating";
 import { Link } from "react-router-dom";
 
-const ProductCart = ({ data }) => {
-  const product = data;
-  const oldPrice = product?.oldPrice;
+const ProductCart = ({ product }) => {
   // console.log(product);
   //const router = useRouter();
   // TODO
@@ -167,22 +161,23 @@ const ProductCart = ({ data }) => {
   const [hover, setHover] = useState(false);
   const [heartIconHover, setHeartIconHover] = useState(false);
   const [cartIconHover, setCartIconHover] = useState(false);
-  const [newPrice, setNewPrice] = useState(oldPrice);
+  const [newPrice, setNewPrice] = useState(product?.price);
 
   function calculatePercentage(value, percentage) {
     return (value * percentage) / 100;
   }
 
   useEffect(() => {
-    if (product.percentage) {
-      const percentageValue= calculatePercentage(oldPrice, product.offer);
-      setNewPrice(oldPrice-percentageValue)
+    if (product?.percentage) {
+      const percentageValue = calculatePercentage(product?.price, product?.offer);
+      setNewPrice(product?.price - percentageValue);
     } else {
-      setNewPrice(oldPrice - product.offer);
+      setNewPrice(product?.price - product?.offer);
     }
-  }, [data]);
+  }, [product]);
+
   return (
-    <Link to="/productDetails">
+    <Link to={`/productDetails/${product?.id}`}>
       <div
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
@@ -194,7 +189,7 @@ const ProductCart = ({ data }) => {
         <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
           {/* TODO  */}
           <img
-            src={product.thumbnail}
+            src={`${url}${product?.thumbnail}`}
             crossOrigin="anonymous"
             className="object-fill w-full h-full"
           />
@@ -209,7 +204,7 @@ const ProductCart = ({ data }) => {
             <div>
               <div className="flex">
                 <p className={`relative mr-1 line-through text-SubTextColor`}>
-                {oldPrice} ৳
+                  {product?.price} ৳
                 </p>
                 <p
                   className={`relative ${
@@ -242,7 +237,7 @@ const ProductCart = ({ data }) => {
                   hover ? "text-CardColor line-clamp-none" : "text-TextColor"
                 } `}
               >
-                {product.title}
+                {product?.title}
               </p>
             </div>
             <div className="flex flex-col">
@@ -297,15 +292,15 @@ const ProductCart = ({ data }) => {
             </div>
           </div>
         </div>
-        {product.percentage && (
+        {product?.percentage && (
           <div className="absolute flex items-center justify-center bg-CardColor shadow-md shadow-[#f59090] rounded-r-full top-2 p-1">
             <p className="text-xs text-[#fc3e3e] mr-1">OFF</p>
             <p className="text-sm text-CardColor p-1 bg-[#fc3e3e] rounded-full">
-              {product.offer}%
+              {product?.offer}%
             </p>
           </div>
         )}
-        {product.deliveryFree && (
+        {product?.freeDelivery && (
           <div className="absolute flex items-center justify-center bg-CardColor shadow-md shadow-MainColorHover  rounded-l-full top-2 p-1 right-0">
             <TbTruckDelivery className="text-MainColor text-[25px] ml-1 mr-1"></TbTruckDelivery>
             {/* <p className="text-xs text-[#fc3e3e] mr-1">OFF</p> */}

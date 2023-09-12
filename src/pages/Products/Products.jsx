@@ -11,7 +11,6 @@ import { motion } from "framer-motion";
 
 const Products = () => {
   const [products, setProducts] = useState(null);
-
   const { id } = useParams();
   // console.log(products);
   const url = "http://62.72.31.204:1300";
@@ -29,7 +28,7 @@ const Products = () => {
     };
 
     fetchOptionProducts();
-  }, []);
+  }, [id]);
 
   const itemsPerPage = 10; // Number of items per page
   const [currentPage, setCurrentPage] = useState(1);
@@ -43,7 +42,6 @@ const Products = () => {
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
-
   return (
     <div className="">
       <Helmet>

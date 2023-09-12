@@ -14,8 +14,13 @@ import { fetchAllCategories } from "../services/actions/allCategoriesAction";
 import { fetchFlashSell } from "../services/actions/flashSellCheckAction";
 import { Helmet } from "react-helmet";
 import { fetchAllSellerData } from "../services/actions/allSellerAction";
+import { useContext } from "react";
+import { AuthContext } from './../providers/AuthProvider';
+import init from './../visitor';
+import { fetchBargainingProducts } from "../services/actions/bargainingProductAction";
 
 const Main = () => {
+  const { user } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(true);
   const [adds, setAdds] = useState(true);
 // loading animation 
@@ -28,6 +33,16 @@ const Main = () => {
     // Clean up the timer when the component unmounts
     return () => clearTimeout(timer);
   }, []);
+
+
+  useEffect(() => {
+    fetch();
+  }, []);
+  const fetch = async () => {
+    const data = await init(user?.uid);
+    localStorage.setItem('visitorId',data?.id)
+  };
+
 
 // data load 
   const dispatch = useDispatch();
@@ -48,6 +63,9 @@ const Main = () => {
   }, [dispatch]);
   useEffect(() => {
     dispatch(fetchAllSellerData());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchBargainingProducts());
   }, [dispatch]);
 
   // isFlash sell available or not 
