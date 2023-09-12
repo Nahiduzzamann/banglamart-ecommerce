@@ -20,10 +20,10 @@ import {
 import ReactImageMagnify from "react-image-magnify";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
-import { Avatar, CloseButton, Spinner } from "@chakra-ui/react";
+import { Accordion, AccordionButton, AccordionItem, AccordionPanel, Avatar, Box, CloseButton, Spinner } from "@chakra-ui/react";
 import Scrollbars from "react-custom-scrollbars";
 import Rating from "react-rating";
-import { MdOutlineDisabledByDefault } from "react-icons/md";
+import { MdAdd, MdOutlineDisabledByDefault, MdRemove } from "react-icons/md";
 const ProductDetails = () => {
   const [messageShow, setMessageShow] = useState(false);
   const { id } = useParams();
@@ -104,6 +104,16 @@ const ProductDetails = () => {
       setPrice(newPrice);
     }
   };
+
+
+  const htmlContent = 
+  `<figure>
+      <table>
+        <tbody>
+          ${product?.description}
+        </tbody>
+      </table>
+    </figure>`;
 
   if (product == null) {
     return (
@@ -405,10 +415,10 @@ const ProductDetails = () => {
             <p className="text-SubTextColor">
               Refund:{" "}
               <span className="ml-2 text-MainColor hover:text-MainColorHover">
-                <Link to="/">Cash Back</Link>
+                <Link to="/cancellationPolicy">Cash Back</Link>
               </span>{" "}
               <span className="ml-2 text-MainColor hover:text-MainColorHover">
-                <Link to="/">View Policy</Link>
+                <Link to="/termsConditions">View Policy</Link>
               </span>
             </p>
             <div className="mt-4 flex justify-center items-center">
@@ -437,7 +447,31 @@ const ProductDetails = () => {
             </div>
           </div>
           <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
-            Description
+          <Accordion allowMultiple>
+  <AccordionItem>
+    {({ isExpanded }) => (
+      <>
+        <h2>
+          <AccordionButton>
+            <Box as="span" flex='1' textAlign='left'>
+              {
+                product?.title
+              }
+            </Box>
+            {isExpanded ? (
+              <MdRemove fontSize='18px' />
+            ) : (
+              <MdAdd fontSize='18px' />
+            )}
+          </AccordionButton>
+        </h2>
+        <AccordionPanel pb={4}>
+        <p dangerouslySetInnerHTML={{ __html: htmlContent }}></p>
+        </AccordionPanel>
+      </>
+    )}
+  </AccordionItem>
+</Accordion>
           </div>
         </div>
       </div>

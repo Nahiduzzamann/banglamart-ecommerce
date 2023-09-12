@@ -124,7 +124,7 @@ const Footer = () => {
               {/* <Link  className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor" to="/">Wishlist</Link> */}
               <Link
                 className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
-                to="/"
+                to="/track-order"
               >
                 Track Order
               </Link>
