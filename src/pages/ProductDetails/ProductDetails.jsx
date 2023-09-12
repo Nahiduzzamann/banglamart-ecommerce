@@ -20,7 +20,16 @@ import {
 import ReactImageMagnify from "react-image-magnify";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
-import { Accordion, AccordionButton, AccordionItem, AccordionPanel, Avatar, Box, CloseButton, Spinner } from "@chakra-ui/react";
+import {
+  Accordion,
+  AccordionButton,
+  AccordionItem,
+  AccordionPanel,
+  Avatar,
+  Box,
+  CloseButton,
+  Spinner,
+} from "@chakra-ui/react";
 import Scrollbars from "react-custom-scrollbars";
 import Rating from "react-rating";
 import { MdAdd, MdOutlineDisabledByDefault, MdRemove } from "react-icons/md";
@@ -105,9 +114,7 @@ const ProductDetails = () => {
     }
   };
 
-
-  const htmlContent = 
-  `<figure>
+  const htmlContent = `<figure>
       <table>
         <tbody>
           ${product?.description}
@@ -355,7 +362,10 @@ const ProductDetails = () => {
             </motion.button>
             <h1 className="mr-4 text-TextColor">{minOrder}</h1>
             {minOrder == product?.quantity ? (
-              <button disabled className="mr-4 rounded-full bg-[#e9a093] p-2 shadow-sm hover:shadow-md">
+              <button
+                disabled
+                className="mr-4 rounded-full bg-[#e9a093] p-2 shadow-sm hover:shadow-md"
+              >
                 <MdOutlineDisabledByDefault className=" text-CardColor" />
               </button>
             ) : (
@@ -447,31 +457,31 @@ const ProductDetails = () => {
             </div>
           </div>
           <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
-          <Accordion allowMultiple>
-  <AccordionItem>
-    {({ isExpanded }) => (
-      <>
-        <h2>
-          <AccordionButton>
-            <Box as="span" flex='1' textAlign='left'>
-              {
-                product?.title
-              }
-            </Box>
-            {isExpanded ? (
-              <MdRemove fontSize='18px' />
-            ) : (
-              <MdAdd fontSize='18px' />
-            )}
-          </AccordionButton>
-        </h2>
-        <AccordionPanel pb={4}>
-        <p dangerouslySetInnerHTML={{ __html: htmlContent }}></p>
-        </AccordionPanel>
-      </>
-    )}
-  </AccordionItem>
-</Accordion>
+            <Accordion allowMultiple>
+              <AccordionItem>
+                {({ isExpanded }) => (
+                  <>
+                    <h2>
+                      <AccordionButton
+                        _expanded={{ bg: "#5dade2", color: "white" }}
+                      >
+                        <Box as="span" flex="1" textAlign="left">
+                          {product?.title}
+                        </Box>
+                        {isExpanded ? (
+                          <MdRemove fontSize="18px" />
+                        ) : (
+                          <MdAdd fontSize="18px" />
+                        )}
+                      </AccordionButton>
+                    </h2>
+                    <AccordionPanel pb={4}>
+                      <p dangerouslySetInnerHTML={{ __html: htmlContent }}></p>
+                    </AccordionPanel>
+                  </>
+                )}
+              </AccordionItem>
+            </Accordion>
           </div>
         </div>
       </div>
