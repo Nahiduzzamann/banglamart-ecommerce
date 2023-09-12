@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import {
+  AiFillStar,
   AiOutlineLine,
   AiOutlinePlus,
   AiOutlineSend,
   AiOutlineShopping,
   AiOutlineShoppingCart,
+  AiOutlineStar,
 } from "react-icons/ai";
 import { Link, useParams } from "react-router-dom";
 import {
@@ -18,22 +20,21 @@ import {
 import ReactImageMagnify from "react-image-magnify";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
-import { Avatar, CloseButton } from "@chakra-ui/react";
+import { Avatar, CloseButton, Spinner } from "@chakra-ui/react";
 import Scrollbars from "react-custom-scrollbars";
+import Rating from "react-rating";
 const ProductDetails = () => {
   const [messageShow, setMessageShow] = useState(false);
   const { id } = useParams();
-  const [productDetails, setProductDetails] = useState(null);
-
-  console.log(id);
-
+  const [product, setProductDetails] = useState(null);
+  console.log(product);
   const url = "http://62.72.31.204:1300";
   useEffect(() => {
     const visitorId = localStorage.getItem("visitorId");
     const fetchProductDetails = async () => {
       try {
         const response = await fetch(
-          `${url}/product/details?visitorId=${visitorId}productId=${id}`
+          `${url}/product/details?visitorId=${visitorId}&productId=${id}`
         );
         const data = await response.json();
         setProductDetails(data.data);
@@ -44,16 +45,6 @@ const ProductDetails = () => {
 
     fetchProductDetails();
   }, [id]);
-
-  const products = [
-    {
-      images: [
-        "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-math-90946.jpg&fm=jpg",
-        "https://thumbs.dreamstime.com/b/minsk-belarus-october-fujifilm-t-kit-xf-mm-silver-camera-body-brown-wooden-background-vintage-globe-232384370.jpg",
-        "https://st3.depositphotos.com/1005891/36027/i/450/depositphotos_360277418-stock-photo-fuji-x-t3-with-three.jpg",
-      ],
-    },
-  ];
 
   const [formData, setFormData] = useState({
     message: "",
@@ -71,6 +62,39 @@ const ProductDetails = () => {
   const handleMessageShow = () => {
     setMessageShow(!messageShow);
   };
+
+  const [newPrice, setNewPrice] = useState(product?.price);
+
+  function calculatePercentage(value, percentage) {
+    return (value * percentage) / 100;
+  }
+
+  useEffect(() => {
+    if (product?.percentage) {
+      const percentageValue = calculatePercentage(
+        product?.price,
+        product?.offer
+      );
+      setNewPrice(product?.price - percentageValue);
+    } else {
+      setNewPrice(product?.price - product?.offer);
+    }
+  }, [product]);
+
+  if (product == null) {
+    return (
+      <div className="w-full min-h-screen flex justify-center items-center">
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size="xl"
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto mt-4">
       <Helmet>
@@ -79,19 +103,31 @@ const ProductDetails = () => {
       {/* product details  */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 bg-CardColor p-4">
         <div className="">
-          {products.map((product, index) => (
-            <ImageShow product={product} key={index}></ImageShow>
-          ))}
+          <ImageShow product={product}></ImageShow>
         </div>
         <div>
           <div className="border-b border-b-BorderColor p-4">
-            <h1 className="">Walton</h1>
-            <div>Rating</div>
+            <h1 className="">{product?.title}</h1>
+            <div>
+              {" "}
+              <Rating
+                initialRating={3.5}
+                readonly
+                emptySymbol={
+                  <AiOutlineStar className="text-[14px] text-BorderColor" />
+                }
+                fullSymbol={
+                  <AiFillStar className="text-[14px] text-MainColor" />
+                }
+              />
+            </div>
           </div>
           <div className="border-b border-b-BorderColor flex items-center p-4">
             <div>
               <p className="text-SubTextColor">Sold by:</p>
-              <h3 className="text-TextColor">InHouse Product</h3>
+              <h3 className="text-TextColor">
+                {product?.seller?.shopName || "In house product"}
+              </h3>
             </div>
             <motion.button
               onClick={handleMessageShow}
@@ -240,23 +276,37 @@ const ProductDetails = () => {
               </div>
             </div>
             {/* message section end  */}
-            <div className="hidden">logo</div>
+            <div className="">
+              <img
+                src={
+                  product?.seller?.thumbnail ||
+                  "https://i.ibb.co/9t1wQGK/banglamart-prev-ui.png"
+                }
+                crossOrigin="anonymous"
+                className="h-16 w-16 rounded-full"
+              />
+            </div>
           </div>
 
           <div className="border-b border-b-BorderColor flex items-center p-4">
             <p className="text-TextColor">Variant:</p>
           </div>
           <div className="border-b border-b-BorderColor p-4">
-            <p className="text-SubTextColor">
-              Old Price:
-              <span className="line-through text-[18px] text-SubTextColor ml-2">
-                9000 ৳
-              </span>
-              /pc
-            </p>
+            {product?.percentage && (
+              <p className="text-SubTextColor">
+                Old Price:
+                <span className="line-through text-[18px] text-SubTextColor ml-2">
+                  {product?.price} ৳
+                </span>
+                /pc
+              </p>
+            )}
             <p className="text-SubTextColor">
               Current Price:
-              <span className="text-[18px] text-MainColor ml-2">8000 ৳</span>/pc
+              <span className="text-[18px] text-MainColor ml-2">
+                {newPrice} ৳
+              </span>
+              /pc
             </p>
           </div>
           <div className="border-b border-b-BorderColor p-4 flex items-center">
@@ -268,7 +318,7 @@ const ProductDetails = () => {
             >
               <AiOutlineLine className=" text-SubTextColor" />
             </motion.button>
-            <p className="mr-4 text-TextColor">2</p>
+            <h1 className="mr-4 text-TextColor">{product?.minOrder}</h1>
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.8 }}
@@ -277,7 +327,7 @@ const ProductDetails = () => {
               <AiOutlinePlus className=" text-TextColor" />
             </motion.button>
             <p className="mr-4 text-SubTextColor">
-              (<span>5</span>) available
+              (<span>{product?.quantity}</span>) available
             </p>
           </div>
           <div className="p-4">
@@ -401,12 +451,12 @@ const ImageShow = ({ product }) => {
             smallImage: {
               alt: `Product ${currentImageIndex + 1}`,
               isFluidWidth: true,
-              src: product.images[currentImageIndex],
+              src: product?.images[currentImageIndex],
               sizes:
                 "(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px",
             },
             largeImage: {
-              src: product.images[currentImageIndex],
+              src: product?.images[currentImageIndex],
               width: 1200,
               height: 1800,
             },
@@ -424,7 +474,7 @@ const ImageShow = ({ product }) => {
         />
       </div>
       <div className="flex space-x-4">
-        {product.images.map((image, index) => (
+        {product?.images.map((image, index) => (
           <img
             key={index}
             src={image}
