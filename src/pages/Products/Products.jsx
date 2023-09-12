@@ -13,7 +13,7 @@ const Products = () => {
   const [products, setProducts] = useState(null);
 
   const { id } = useParams();
-  // console.log(id);
+  // console.log(products);
   const url = "http://62.72.31.204:1300";
   useEffect(() => {
     const fetchOptionProducts = async () => {
