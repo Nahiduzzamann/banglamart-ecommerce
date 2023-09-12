@@ -25,7 +25,7 @@ const ProductDetails = () => {
   const { id } = useParams();
   const [productDetails, setProductDetails] = useState(null);
 
-  console.log(productDetails);
+  console.log(id);
 
   const url = "http://62.72.31.204:1300";
   useEffect(() => {
