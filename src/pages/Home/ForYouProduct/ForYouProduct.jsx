@@ -188,9 +188,9 @@ const ProductCart = ({ product }) => {
           <div className="pl-2 pt-1 pb-1 flex justify-between items-center pr-2">
             <div>
               <div className="flex">
-                {product?.offer && (
+                {oldPrice>newPrice && (
                   <p className={`relative mr-1 line-through text-SubTextColor`}>
-                    {oldPrice} ৳
+                    {Math.ceil(oldPrice)} ৳
                   </p>
                 )}
                 <p
@@ -198,7 +198,7 @@ const ProductCart = ({ product }) => {
                     hover ? "text-CardColor" : "text-[#f84545]"
                   } `}
                 >
-                  {newPrice} ৳
+                  {Math.ceil(newPrice)} ৳
                 </p>
               </div>
               <Rating

@@ -61,16 +61,18 @@ const ProductCartFlashSell = ({ data }) => {
         >
           <div className="pl-2 pt-1 pb-1 flex justify-between items-center pr-2">
             <div>
-              <div className="flex">
-                <h3 className={`relative mr-1 line-through text-SubTextColor`}>
-                  {oldPrice} ৳
-                </h3>
+              <div className="flex flex-wrap">
+              {oldPrice>newPrice && (
+                  <h3 className={`relative mr-1 line-through text-SubTextColor`}>
+                    {Math.ceil(oldPrice)} ৳
+                  </h3>
+                )}
                 <h3
                   className={`relative ${
                     hover ? "text-CardColor" : "text-[#f84545]"
                   } `}
                 >
-                  {newPrice} ৳
+                  {Math.ceil(newPrice)} ৳
                 </h3>
               </div>
               <Rating

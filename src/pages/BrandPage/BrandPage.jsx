@@ -1,10 +1,6 @@
 import { Helmet } from "react-helmet";
 import BrandCart from "../../components/BrandCart";
 import EmptyContent from "../../components/EmptyContent";
-import "./brandButtonStyle.css";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-
 const BrandPage = () => {
   const Categories = [
     {
@@ -102,17 +98,7 @@ const BrandPage = () => {
       <Helmet>
         <title>Brand | Banglamart E-commerce</title>
       </Helmet>
-      <div id="main" className="mt-4 mb-4">
-        <motion.div
-          animate={{
-            scale: [1, 2, 2, 1, 1],
-            rotate: [0, 0, 270, 270, 0],
-            borderRadius: ["20%", "20%", "50%", "50%", "20%"],
-          }}
-        >
-          <Link to="/seller-form" id="animatedButtonBrand"></Link>
-        </motion.div>
-      </div>
+      
       <div className="bg-CardColor p-4 lg:p-10 mt-4">
         <h1 className=" mb-4 text-SubTextColor">Chose Your Favorite Brand</h1>
         <div className="grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2">

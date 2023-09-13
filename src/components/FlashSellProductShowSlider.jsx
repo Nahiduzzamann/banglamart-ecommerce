@@ -146,9 +146,11 @@ const Cart2 = ({ data }) => {
         <div className="pl-2 pt-1 pb-1 flex justify-between items-center pr-2">
           <div>
             <div className="flex">
-              <Link to={`/productDetails/${product?.id}`} className={`relative mr-1 hover:underline line-through text-SubTextColor`}>
+              
+              <div className="flex flex-wrap">
+              <p className={`relative mr-1 line-through text-SubTextColor`}>
               {oldPrice} ৳
-              </Link>
+              </p>
               <p
                 className={`relative ${
                   hover ? "text-CardColor" : "text-[#f84545]"
@@ -156,6 +158,7 @@ const Cart2 = ({ data }) => {
               >
                {newPrice} ৳
               </p>
+              </div>
             </div>
             <Rating
               initialRating={3.5}
