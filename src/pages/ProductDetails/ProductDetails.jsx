@@ -564,7 +564,7 @@ const ImageShow = ({ product }) => {
         />
       </div>
       <div className="flex space-x-4">
-        {product?.images.map((image, index) => (
+        {product?.images?.map((image, index) => (
           <img
             key={index}
             src={`${url}${image}`}
