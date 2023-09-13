@@ -100,7 +100,7 @@ const ProductCartFlashSell = ({ data }) => {
               </Link>
             </div>
             <div className="flex flex-col">
-              {/* <button
+              <button
                 onMouseEnter={() => setHeartIconHover(true)}
                 onMouseLeave={() => setHeartIconHover(false)}
                 className=" mb-1"
@@ -123,7 +123,7 @@ const ProductCartFlashSell = ({ data }) => {
                     } `}
                   />
                 )}
-              </button> */}
+              </button>
               <button
                 onMouseEnter={() => setCartIconHover(true)}
                 onMouseLeave={() => setCartIconHover(false)}

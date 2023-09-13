@@ -29,13 +29,13 @@ const AllCategory = () => {
       <div className="bg-MainColor p-3 rounded-lg">
         <h2 className="text-CardColor">All Categories</h2>
       </div>
-      <div className="bg-CardColor p-3 lg:min-h-[364px] xl:min-h-[390px] 2xl:min-h-[414px] overflow-y-auto">
+      <div className="bg-CardColor p-3 lg:h-[364px] xl:h-[390px] 2xl:h-[414px] overflow-y-auto">
         {allCategoriesData ? (
           allCategoriesData?.map((category) => {
             // console.log(category);
             return (
               <motion.button
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.05 }}
                 onMouseEnter={() => {
                   setCategoryHover({ isHover: true, category: category });
                   setSubCategories(category.subCategory);
@@ -44,7 +44,7 @@ const AllCategory = () => {
                   setCategoryHover({ isHover: false, category: category })
                 }
                 key={category.id}
-                className="flex pl-2 pt-2 pb-2 items-center w-full shadow-sm shadow-BackgroundColor hover:shadow-md"
+                className="flex pl-2 pt-2 pb-2 items-center w-full shadow-sm shadow-BackgroundColor hover:shadow-md mt-1 mb-1"
               >
                 {/* TODO  */}
                 <img

@@ -4,9 +4,9 @@ import { Spinner } from "@chakra-ui/react";
 import Slider from "react-slick/lib/slider";
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
 import Rating from "react-rating";
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineHeart, AiOutlineStar } from "react-icons/ai";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { BsFillCartCheckFill } from "react-icons/bs";
+import { BsFillCartCheckFill, BsFillHeartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { TbTruckDelivery } from "react-icons/tb";
 import useMediaQuery from "../../../hooks/useMediaQuery";
@@ -229,7 +229,7 @@ const ProductCart = ({ product }) => {
               </Link>
             </div>
             <div className="flex flex-col">
-              {/* <button
+              <button
                 onMouseEnter={() => setHeartIconHover(true)}
                 onMouseLeave={() => setHeartIconHover(false)}
                 className=" mb-1"
@@ -252,7 +252,7 @@ const ProductCart = ({ product }) => {
                     } `}
                   />
                 )}
-              </button> */}
+              </button>
               <button
                 onMouseEnter={() => setCartIconHover(true)}
                 onMouseLeave={() => setCartIconHover(false)}
