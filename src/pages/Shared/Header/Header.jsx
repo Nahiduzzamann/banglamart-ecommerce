@@ -192,13 +192,14 @@ const Header = () => {
                         </MenuItem>
                         {user?.role === 2 ? (
                           <MenuItem>
-                            <Link
+                            <a
                               className="text-SubTextColor flex items-center"
-                              to=""
+                              href="http://62.72.31.204:3000"
+                              target="blank"
                             >
                               <MdOutlineAdminPanelSettings className="text-[18px] text-SubTextColor mr-2" />
                               <h3 className="hover:underline">Admin Panel</h3>
-                            </Link>
+                            </a>
                           </MenuItem>
                         ) : (
                           ""
