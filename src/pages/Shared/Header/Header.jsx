@@ -179,7 +179,7 @@ const Header = () => {
                       />
                     </MenuButton>
                     <MenuList>
-                      <p className="text-center text-SubTextColor">Welcome {user?.name}</p>
+                      <h2 className="text-center text-SubTextColor">Welcome {user?.name}</h2>
                       <MenuGroup title="Profile">
                         <MenuItem>
                           <Link

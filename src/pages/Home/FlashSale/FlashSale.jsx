@@ -12,7 +12,6 @@ const FlashSale = () => {
   const flashSellId =useSelector(
     (state) => state.flashSell.flashSell?.data[0]?.id
   )
-  const flashSell = useSelector((state) => state.flashSell.flashSell?.data[0]);
 
   useEffect(() => {
     dispatch(fetchFlashSellData(flashSellId));
@@ -23,6 +22,7 @@ const FlashSale = () => {
   );
 
   //calculate time
+  const flashSell = useSelector((state) => state.flashSell.flashSell?.data[0]);
 
   const flashSaleData = {
     startAt: new Date(flashSell?.startAt).getTime(),
