@@ -7,35 +7,22 @@ import EmptyContent from "../../../components/EmptyContent";
 import FlashSellProductShowSlider from "../../../components/FlashSellProductShowSlider";
 
 const FlashSale = () => {
-  const [flashSellInformation, setFlashSellInformation] = useState([]);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const fetchFlashSellInformation = async () => {
-      try {
-        const response = await fetch(
-          "http://62.72.31.204:1300/product/get/flash"
-        );
-        const data = await response.json();
-        setFlashSellInformation(data.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchFlashSellInformation();
-  }, []);
-  // data.data
-
-  const flashSell = flashSellInformation[0];
+  const flashSellId =useSelector(
+    (state) => state.flashSell.flashSell?.data[0]?.id
+  )
+  const flashSell = useSelector((state) => state.flashSell.flashSell?.data[0]);
 
   useEffect(() => {
-    dispatch(fetchFlashSellData(flashSellInformation[0]?.id));
-  }, [flashSell]);
+    dispatch(fetchFlashSellData(flashSellId));
+  }, [flashSellId]);
 
   const flashSellData = useSelector(
     (state) => state.flashSellData?.flashSellData?.data
   );
+
+ console.log(flashSellData);
 
   //calculate time
 
@@ -83,7 +70,7 @@ const FlashSale = () => {
         )}
       </div>
       <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
-        {flashSellInformation?.length <= 0 ? (
+        {flashSellData?.length <= 0 ? (
           <EmptyContent text="No Offer available"></EmptyContent>
         ) : (
           <FlashSellProductShowSlider flashSellData={flashSellData}></FlashSellProductShowSlider>
