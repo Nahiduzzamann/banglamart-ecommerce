@@ -6,10 +6,9 @@ import { Avatar } from "@chakra-ui/react";
 import { FcAddImage } from "react-icons/fc";
 import Swal from "sweetalert2";
 import { postApi } from "../../apis";
-const url = "http://62.72.31.204:1300";
 const SellerForm = () => {
   const { user, setUserState } = useContext(AuthContext);
-  console.log(user);
+  // console.log(user);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -38,8 +37,8 @@ const SellerForm = () => {
         const token = localStorage.getItem("token");
         setIsLoading(true);
         postApi("/store/request-seller", data, token)
-          .then((r) => {
-            console.log(r);
+          .then(() => {
+            // console.log(r);
             setIsLoading(false);
             setUserState(546);
             Swal.fire("Congrats!", "Your request has been sent.", "success");
@@ -64,57 +63,109 @@ const SellerForm = () => {
           onSubmit={handleSubmit}
         >
           <div className="flex flex-col items-center">
-            <div className="relative">
-              <Avatar
-                size="xl"
-                name="Logo"
-                src={image && URL.createObjectURL(image)}
-                onClick={() => {
-                  document.getElementById("profile-picture-input").click();
-                }}
-              />
-              <input
-                type="file"
-                id="profile-picture-input"
-                accept="image/*"
-                className="hidden"
-                onChange={(e) => setImage(e.target.files[0])}
-              />
-              <label
-                htmlFor="profile-picture-input"
-                className="absolute bottom-[2px] right-2 bg-CardColor rounded-full p-[2px] cursor-pointer hover:border hover:border-MainColor border-2 border-CardColor"
-              >
-                <p>
-                  <FcAddImage className="text-[18px]" />
-                </p>
-              </label>
+            {user?.role === 2 ? (
+              <div className="relative">
+                <Avatar
+                  size="xl"
+                  name="Logo"
+                  src={image && URL.createObjectURL(image)}
+                />
+                <input
+                  readOnly
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                />
+                <label className="absolute bottom-[2px] right-2 bg-CardColor rounded-full p-[2px] cursor-pointer border-2 border-CardColor">
+                  <p>
+                    <FcAddImage className="text-[18px]" />
+                  </p>
+                </label>
+              </div>
+            ) : (
+              <div className="relative">
+                <Avatar
+                  size="xl"
+                  name="Logo"
+                  src={image && URL.createObjectURL(image)}
+                  onClick={() => {
+                    document.getElementById("profile-picture-input").click();
+                  }}
+                />
+                <input
+                  required
+                  type="file"
+                  id="profile-picture-input"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => setImage(e.target.files[0])}
+                />
+                <label
+                  htmlFor="profile-picture-input"
+                  className="absolute bottom-[2px] right-2 bg-CardColor rounded-full p-[2px] cursor-pointer hover:border hover:border-MainColor border-2 border-CardColor"
+                >
+                  <p>
+                    <FcAddImage className="text-[18px]" />
+                  </p>
+                </label>
+              </div>
+            )}
+          </div>
+          {user?.role === 2 ? (
+            <div>
+              <div className="mb-4">
+                <label className="block mb-1">Shop Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={shopName}
+                  className="w-full p-2 rounded shadow-md"
+                  placeholder="Enter your shop name"
+                  readOnly
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block mb-1">Address</label>
+                <input
+                readOnly
+                  type="text"
+                  name="house"
+                  value={shopAddress}
+                  className="w-full p-2 rounded shadow-md"
+                  placeholder="Enter your full shop address here"
+                />
+              </div>
             </div>
-          </div>
+          ) : (
+            <div>
+              <div className="mb-4">
+                <label className="block mb-1">Shop Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={shopName}
+                  onChange={(e) => setShopName(e.target.value)}
+                  className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md"
+                  placeholder="Enter your shop name"
+                  required
+                />
+              </div>
 
-          <div className="mb-4">
-            <label className="block mb-1">Shop Name</label>
-            <input
-              type="text"
-              name="name"
-              value={shopName}
-              onChange={(e) => setShopName(e.target.value)}
-              className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md"
-              placeholder="Enter your shop name"
-              required
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block mb-1">Address</label>
-            <input
-              type="text"
-              name="house"
-              value={shopAddress}
-              onChange={(e) => setShopAddress(e.target.value)}
-              className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md"
-              placeholder="Enter your full shop address here"
-            />
-          </div>
+              <div className="mb-4">
+                <label className="block mb-1">Address</label>
+                <input
+                required
+                  type="text"
+                  name="house"
+                  value={shopAddress}
+                  onChange={(e) => setShopAddress(e.target.value)}
+                  className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md"
+                  placeholder="Enter your full shop address here"
+                />
+              </div>
+            </div>
+          )}
 
           {errorMessage && (
             <div

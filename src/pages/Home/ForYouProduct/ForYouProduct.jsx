@@ -302,7 +302,7 @@ const ProductCart = ({ product }) => {
 };
 
 const Cart2 = ({ product }) => {
-  console.log(product);
+//   console.log(product);
   const oldPrice = product?.oldPrice;
   const url = "http://62.72.31.204:1300";
 
