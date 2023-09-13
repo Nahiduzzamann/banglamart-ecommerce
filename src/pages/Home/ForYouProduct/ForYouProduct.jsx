@@ -19,7 +19,7 @@ const ForYouProducts = () => {
   useEffect(() => {
     setProducts(data);
   }, [data]);
-  return null
+  
   return (
     <div className=" mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg">
       <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
