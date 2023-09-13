@@ -33,6 +33,7 @@ import {
 import Scrollbars from "react-custom-scrollbars";
 import Rating from "react-rating";
 import { MdAdd, MdOutlineDisabledByDefault, MdRemove } from "react-icons/md";
+
 const ProductDetails = () => {
   const [messageShow, setMessageShow] = useState(false);
   const { id } = useParams();

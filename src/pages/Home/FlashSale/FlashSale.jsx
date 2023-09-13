@@ -5,42 +5,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchFlashSellData } from "../../../services/actions/flashSellDataAction";
 import EmptyContent from "../../../components/EmptyContent";
 import FlashSellProductShowSlider from "../../../components/FlashSellProductShowSlider";
-import { Spinner } from "@chakra-ui/react";
 
 const FlashSale = () => {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true);
-  const [flashSellId, setFlashSellId] = useState(null);
-  const [flashSell, setFlashSell] = useState(null);
-  const [flashSellData, setFlashSellData] = useState(null);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  }, []);
-
-  const Id = useSelector((state) => state.flashSell?.flashSell?.data[0]?.id);
-  useEffect(() => {
-    setFlashSellId(Id);
-  }, [Id]);
-
-  const flashS = useSelector((state) => state.flashSell?.flashSell?.data[0]);
-  useEffect(() => {
-    setFlashSell(flashS);
-  }, [flashS]);
+  const flashSellId =useSelector(
+    (state) => state.flashSell.flashSell?.data[0]?.id
+  )
+  const flashSell = useSelector((state) => state.flashSell.flashSell?.data[0]);
 
   useEffect(() => {
     dispatch(fetchFlashSellData(flashSellId));
   }, [flashSellId]);
 
-  const flashData = useSelector(
+  const flashSellData = useSelector(
     (state) => state.flashSellData?.flashSellData?.data
   );
 
-  useEffect(() => {
-    setFlashSellData(flashData);
-  }, [flashData]);
   //calculate time
 
   const flashSaleData = {
@@ -62,35 +43,21 @@ const FlashSale = () => {
       clearInterval(interval);
     };
   }, []);
-
+  
   return (
     <div
-      className={`${
-        remainingTime || "hidden"
-      } mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg`}
+      className={`${  
+        remainingTime || "hidden" } mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg`}
     >
       <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
         <div className="border-b-[3px] border-b-MainColor ">
           <h1 className="">Flash Sale</h1>
         </div>
-        {loading ? (
-          <div className="flex justify-center items-center p-2">
-            <Spinner
-              thickness="4px"
-              speed="0.65s"
-              emptyColor="gray.200"
-              color="blue.500"
-              size="xl"
-            />
-          </div>
-        ) : (
-          <div className={`${flashSellData?.length > 10 || "mr-4"}`}>
-            {flashSaleData && flashSaleData.endAt && (
-              <TimerFlashSell flashSaleData={flashSaleData}></TimerFlashSell>
-            )}
-          </div>
-        )}
-
+        <div className={`${flashSellData?.length > 10 || "mr-4"}`}>
+          {flashSaleData&&flashSaleData.endAt&&(<TimerFlashSell flashSaleData={flashSaleData}></TimerFlashSell>)}
+        </div>
+      
+       
         {flashSellData?.length > 10 && (
           <Link
             to="flash-sell"
@@ -100,27 +67,13 @@ const FlashSale = () => {
           </Link>
         )}
       </div>
-      {loading ? (
-        <div className="flex justify-center items-center p-2">
-          <Spinner
-            thickness="4px"
-            speed="0.65s"
-            emptyColor="gray.200"
-            color="blue.500"
-            size="xl"
-          />
-        </div>
-      ) : (
-        <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
-          {flashSellData?.length <= 0 ? (
-            <EmptyContent text="No Offer available"></EmptyContent>
-          ) : (
-            <FlashSellProductShowSlider
-              flashSellData={flashSellData}
-            ></FlashSellProductShowSlider>
-          )}
-        </div>
-      )}
+      <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
+        {flashSellData?.length <= 0 ? (
+          <EmptyContent text="No Offer available"></EmptyContent>
+        ) : (
+          <FlashSellProductShowSlider flashSellData={flashSellData}></FlashSellProductShowSlider>
+        )}
+      </div>
     </div>
   );
 };
