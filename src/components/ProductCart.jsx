@@ -38,7 +38,7 @@ const ProductCart = ({ product }) => {
   }, [product]);
 
   return (
-    <Link to={`/productDetails/${product?.id}`}>
+    <div>
       <div
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
@@ -55,7 +55,6 @@ const ProductCart = ({ product }) => {
             className="object-fill w-full h-full"
           />
         </div>
-        {/* <span className="absolute inset-0 w-full h-full bg-primary/30" /> */}
         <div
           className={`absolute bottom-0 w-full ${
             hover ? "bg-MainColor" : "bg-[#ffffffd7]"
@@ -63,16 +62,18 @@ const ProductCart = ({ product }) => {
         >
           <div className="pl-2 pt-1 pb-1 flex justify-between items-center pr-2">
             <div>
-              <div className="flex">
-                <p className={`relative mr-1 line-through text-SubTextColor`}>
-                  {product?.price} ৳
-                </p>
+            <div className="flex flex-wrap">
+                {product?.price>newPrice && (
+                  <p className={`relative mr-1 line-through text-SubTextColor`}>
+                    {Math.ceil(product?.price)} ৳
+                  </p>
+                )}
                 <p
                   className={`relative ${
                     hover ? "text-CardColor" : "text-[#f84545]"
                   } `}
                 >
-                  {newPrice} ৳
+                  {Math.ceil(newPrice)} ৳
                 </p>
               </div>
               <Rating
@@ -93,16 +94,17 @@ const ProductCart = ({ product }) => {
                   />
                 }
               />
-              <p
-                className={`relative line-clamp-1 ${
+              <Link
+              to={`/productDetails/${product?.id}`}
+                className={`relative hover:underline line-clamp-1 ${
                   hover ? "text-CardColor line-clamp-none" : "text-TextColor"
                 } `}
               >
                 {product?.title}
-              </p>
+              </Link>
             </div>
             <div className="flex flex-col">
-              {/* <button
+              <button
                 onMouseEnter={() => setHeartIconHover(true)}
                 onMouseLeave={() => setHeartIconHover(false)}
                 className=" mb-1"
@@ -125,7 +127,7 @@ const ProductCart = ({ product }) => {
                     } `}
                   />
                 )}
-              </button> */}
+              </button>
               <button
                 onMouseEnter={() => setCartIconHover(true)}
                 onMouseLeave={() => setCartIconHover(false)}
@@ -171,7 +173,7 @@ const ProductCart = ({ product }) => {
           </div>
         )}
       </div>
-    </Link>
+    </div>
   );
 };
 export default ProductCart;

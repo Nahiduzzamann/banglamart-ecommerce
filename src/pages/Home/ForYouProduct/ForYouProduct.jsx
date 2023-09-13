@@ -187,7 +187,7 @@ const ProductCart = ({ product }) => {
         >
           <div className="pl-2 pt-1 pb-1 flex justify-between items-center pr-2">
             <div>
-              <div className="flex">
+              <div className="flex flex-wrap">
                 {oldPrice>newPrice && (
                   <p className={`relative mr-1 line-through text-SubTextColor`}>
                     {Math.ceil(oldPrice)} ৳
