@@ -34,7 +34,7 @@ console.log(bargainingProducts);
       <FlashSaleBanner></FlashSaleBanner>
       <div className="">
         <div className="flex overflow-x-auto scrollbar-hide gap-4 snap-x pt-5">
-          {bargainingProducts.length < 0 ? (
+          {bargainingProducts?.length < 0 ? (
             bargainingProducts?.map((data, i) => <Cart2 data={data} key={i} />)
           ) : (
             <div className="mx-auto"><EmptyContent text='No Bargaining Product Available!'></EmptyContent></div>

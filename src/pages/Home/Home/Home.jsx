@@ -10,6 +10,7 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import ForYouProducts from "../ForYouProduct/ForYouProduct";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
@@ -21,6 +22,7 @@ const Home = () => {
       <div className="container mx-auto ">
         <FlashSale></FlashSale>
         <BargainingProducts></BargainingProducts>
+        <ForYouProducts></ForYouProducts>
         <NewProducts></NewProducts>
         <BestSelling></BestSelling>
       </div>

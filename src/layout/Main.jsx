@@ -18,6 +18,7 @@ import { useContext } from "react";
 import { AuthContext } from './../providers/AuthProvider';
 import init from './../visitor';
 import { fetchBargainingProducts } from "../services/actions/bargainingProductAction";
+import { fetchForYouProducts } from "../services/actions/forYouProductAction";
 
 const Main = () => {
   const { user } = useContext(AuthContext);
@@ -66,6 +67,9 @@ const Main = () => {
   }, [dispatch]);
   useEffect(() => {
     dispatch(fetchBargainingProducts());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchForYouProducts());
   }, [dispatch]);
 
   // isFlash sell available or not 
