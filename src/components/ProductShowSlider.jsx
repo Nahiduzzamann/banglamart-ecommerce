@@ -121,8 +121,7 @@ const Cart2 = ({ product }) => {
     }
   }, [data]);
   return (
-    <Link
-      to="/productDetails"
+    <div
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       className="flex-shrink-0 w-[45%] snap-start cursor-pointer group aspect-[228/347]  rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor"
@@ -242,6 +241,6 @@ const Cart2 = ({ product }) => {
           </p>
         </div>
       )}
-    </Link>
+    </div>
   );
 };

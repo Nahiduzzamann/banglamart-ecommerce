@@ -163,7 +163,7 @@ const ProductCart = ({ product }) => {
     }
   }, [product]);
   return (
-    <Link to="/productDetails">
+    <div>
       <div
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
@@ -219,13 +219,14 @@ const ProductCart = ({ product }) => {
                   />
                 }
               />
-              <p
-                className={`relative line-clamp-1 ${
+              <Link
+              to={`/productDetails/${product?.id}`}
+                className={`relative hover:underline line-clamp-1 ${
                   hover ? "text-CardColor line-clamp-none" : "text-TextColor"
                 } `}
               >
                 {product?.title}
-              </p>
+              </Link>
             </div>
             <div className="flex flex-col">
               {/* <button
@@ -297,12 +298,12 @@ const ProductCart = ({ product }) => {
           </p>
         </div>
       )}
-    </Link>
+    </div>
   );
 };
 
 const Cart2 = ({ product }) => {
-//   console.log(product);
+  //   console.log(product);
   const oldPrice = product?.oldPrice;
   const url = "http://62.72.31.204:1300";
 
@@ -324,8 +325,8 @@ const Cart2 = ({ product }) => {
     }
   }, [product]);
   return (
-    <Link
-      to="/productDetails"
+    <div
+      
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       className="flex-shrink-0 w-[45%] snap-start cursor-pointer group aspect-[228/347]  rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor"
@@ -374,13 +375,13 @@ const Cart2 = ({ product }) => {
                 />
               }
             />
-            <p
-              className={`relative line-clamp-1 ${
+            <Link to={`/productDetails/${product?.id}`}
+              className={`relative line-clamp-1 hover:underline ${
                 hover ? "text-CardColor line-clamp-none" : "text-TextColor"
               } `}
             >
               {product?.title}
-            </p>
+            </Link>
           </div>
           <div className="flex flex-col">
             {/* <button
@@ -444,6 +445,6 @@ const Cart2 = ({ product }) => {
           </p>
         </div>
       )}
-    </Link>
+    </div>
   );
 };

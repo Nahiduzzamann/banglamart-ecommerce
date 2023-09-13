@@ -6,7 +6,7 @@ import FlashSale from "../FlashSale/FlashSale";
 import NewProducts from "../NewProducts/NewProducts";
 import TopBannerSection from "../TopBannerSection/TopBannerSection";
 import TopProducts from "../TopProducts/TopProducts";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -21,8 +21,8 @@ const Home = () => {
       <FlashSaleBanner></FlashSaleBanner>
       <div className="container mx-auto ">
         <FlashSale></FlashSale>
-        <BargainingProducts></BargainingProducts>
         <ForYouProducts></ForYouProducts>
+        <BargainingProducts></BargainingProducts>
         <NewProducts></NewProducts>
         <BestSelling></BestSelling>
       </div>
