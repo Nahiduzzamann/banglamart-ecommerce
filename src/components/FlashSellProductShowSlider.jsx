@@ -6,7 +6,6 @@ import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import { BsFillCartCheckFill, BsFillHeartFill } from "react-icons/bs";
-import ProductCart from "./ProductCart";
 import { Link } from "react-router-dom";
 import ProductCartFlashSell from "./ProductCartFlashSell";
 import { TbTruckDelivery } from "react-icons/tb";
@@ -129,7 +128,7 @@ const Cart2 = ({ data }) => {
     }
   }, [data]);
   return (
-    <Link to='/productDetails'
+    <div
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       className="flex-shrink-0 w-[45%] snap-start cursor-pointer group aspect-[228/347]  rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor"
@@ -147,9 +146,9 @@ const Cart2 = ({ data }) => {
         <div className="pl-2 pt-1 pb-1 flex justify-between items-center pr-2">
           <div>
             <div className="flex">
-              <p className={`relative mr-1 line-through text-SubTextColor`}>
+              <Link to={`/productDetails/${product?.id}`} className={`relative mr-1 hover:underline line-through text-SubTextColor`}>
               {oldPrice} ৳
-              </p>
+              </Link>
               <p
                 className={`relative ${
                   hover ? "text-CardColor" : "text-[#f84545]"
@@ -176,13 +175,13 @@ const Cart2 = ({ data }) => {
                   />
                 }
               />
-              <p
-                className={`relative line-clamp-1 ${
+              <Link to={`/productDetails/${product?.id}`}
+                className={`relative hover:underline line-clamp-1 ${
                   hover ? "text-CardColor line-clamp-none" : "text-TextColor"
                 } `}
               >
                 {product.title}
-              </p>
+              </Link>
           </div>
           <div className="flex flex-col">
             {/* <button
@@ -239,6 +238,6 @@ const Cart2 = ({ data }) => {
             </p>
           </div>
         )}
-    </Link>
+    </div>
   );
 };

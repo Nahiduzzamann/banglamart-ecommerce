@@ -36,7 +36,7 @@ const ProductCartFlashSell = ({ data }) => {
   }, [data]);
 
   return (
-    <Link to="/productDetails">
+    <div>
       <div
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
@@ -91,13 +91,13 @@ const ProductCartFlashSell = ({ data }) => {
                   />
                 }
               />
-              <p
-                className={`relative line-clamp-1 ${
+              <Link to={`/productDetails/${product?.id}`}
+                className={`relative hover:underline line-clamp-1 ${
                   hover ? "text-CardColor line-clamp-none" : "text-TextColor"
                 } `}
               >
                 {product?.title}
-              </p>
+              </Link>
             </div>
             <div className="flex flex-col">
               {/* <button
@@ -169,7 +169,7 @@ const ProductCartFlashSell = ({ data }) => {
           </div>
         )}
       </div>
-    </Link>
+    </div>
   );
 };
 export default ProductCartFlashSell;
