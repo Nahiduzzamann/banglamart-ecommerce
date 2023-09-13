@@ -63,7 +63,7 @@ const Header = () => {
   return (
     <div className="shadow-lg ">
       {/* Add Section  */}
-      {/* <div
+      <div
         className={`relative flex h-[35px] items-center justify-end ${
           hide && "hidden"
         }`}
@@ -75,7 +75,7 @@ const Header = () => {
           className="h-[35px] w-full object-cover"
           src="https://www.pngkit.com/png/full/282-2825717_special-offer-banner-blue-special-offer-banner.png"
         ></img>
-      </div> */}
+      </div>
       <motion.div
         transition={{ duration: 0.5 }}
         initial={{
@@ -85,7 +85,7 @@ const Header = () => {
           //height:140
           opacity: show ? 1 : 0,
         }}
-        className={`${position > 300 && "fixed top-0 z-50 w-full shadow-md"}`}
+        className={`${position > 30 && "fixed top-0 z-50 w-full shadow-md"}`}
       >
         {/* number Section  */}
         <div className=" bg-CardColor border-b-BorderColor hidden border-b-[1px]  md:block">
