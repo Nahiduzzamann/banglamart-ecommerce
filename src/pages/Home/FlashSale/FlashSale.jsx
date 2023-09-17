@@ -10,7 +10,7 @@ const FlashSale = () => {
   const dispatch = useDispatch();
 
   const flashSellId =useSelector(
-    (state) => state.flashSell.flashSell?.data[0]?.id
+    (state) => state.flashSell?.flashSell?.data[0]?.id
   )
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const FlashSale = () => {
   );
 
   //calculate time
-  const flashSell = useSelector((state) => state.flashSell.flashSell?.data[0]);
+  const flashSell = useSelector((state) => state.flashSell?.flashSell?.data[0]);
 
   const flashSaleData = {
     startAt: new Date(flashSell?.startAt).getTime(),

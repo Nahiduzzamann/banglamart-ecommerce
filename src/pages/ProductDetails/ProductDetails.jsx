@@ -38,7 +38,7 @@ const ProductDetails = () => {
   const [messageShow, setMessageShow] = useState(false);
   const { id } = useParams();
   const [product, setProductDetails] = useState(null);
-  console.log(product);
+  // console.log(product);
   const url = "http://62.72.31.204:1300";
   useEffect(() => {
     const visitorId = localStorage.getItem("visitorId");
@@ -388,7 +388,7 @@ const ProductDetails = () => {
             <p className="text-TextColor">
               Total Price:
               <span className="text-[18px] text-MainColor ml-2">
-                ${price} ৳
+                {price} ৳
               </span>
             </p>
             <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-2">
