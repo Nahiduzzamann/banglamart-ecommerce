@@ -20,6 +20,8 @@ import init from './../visitor';
 import { fetchBargainingProducts } from "../services/actions/bargainingProductAction";
 import { fetchForYouProducts } from "../services/actions/forYouProductAction";
 import { fetchBestSellingProducts } from "../services/actions/bestSellingAction";
+import { fetchNewProducts } from './../services/actions/newProductsAction';
+import { fetchTopProducts } from './../services/actions/topProductsAction';
 
 const Main = () => {
   const { user } = useContext(AuthContext);
@@ -74,6 +76,12 @@ const Main = () => {
   }, [dispatch]);
   useEffect(() => {
     dispatch(fetchBestSellingProducts());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchNewProducts());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchTopProducts());
   }, [dispatch]);
 
   // isFlash sell available or not 

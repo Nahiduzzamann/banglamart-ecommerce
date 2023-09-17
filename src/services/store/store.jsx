@@ -13,6 +13,8 @@ import allSellerReducer from '../reducers/allSellerReducer';
 import bargainingProductsReducer from '../reducers/bargainingProductsReducer';
 import forYouProductsReducer from '../reducers/forYouProductsReducer';
 import bestSellingProductsReducer from '../reducers/bestSellingReducer';
+import newProductsReducer from '../reducers/newProductsReducer';
+import topProductsReducer from './../reducers/topProductsReducer';
 // ...
 
 const rootReducer = combineReducers({
@@ -27,6 +29,8 @@ const rootReducer = combineReducers({
   bargainingProducts: bargainingProductsReducer,
   forYouProducts: forYouProductsReducer,
   bestSellingProduct: bestSellingProductsReducer,
+  newProduct: newProductsReducer,
+  topProduct: topProductsReducer,
   
   // Add other reducers here
 });
