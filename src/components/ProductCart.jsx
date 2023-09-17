@@ -96,7 +96,7 @@ const ProductCart = ({ product }) => {
               />
               <Link
               to={`/productDetails/${product?.id}`}
-                className={`relative hover:underline line-clamp-1 ${
+                className={`relative hover:underline break-all line-clamp-1 ${
                   hover ? "text-CardColor line-clamp-none" : "text-TextColor"
                 } `}
               >
