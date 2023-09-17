@@ -578,12 +578,19 @@ const ImageShow = ({ product }) => {
             hintTextColor: "#000",
           }}
         /> */}
-        <img
-          src={`${url}${product?.thumbnail}`}
-          crossOrigin="anonymous"
-          className="object-cover h-96 w-full"
-          onClick={() => handleImageClick(index)}
-        />
+        {product?.images ? (
+          <img
+            src={`${url}${product?.images[currentImageIndex]}`}
+            crossOrigin="anonymous"
+            className="object-cover h-96 w-full"
+          />
+        ) : (
+          <img
+            src={`${url}${product?.thumbnail}`}
+            crossOrigin="anonymous"
+            className="object-cover h-96 w-full"
+          />
+        )}
       </div>
       <div className="flex space-x-4">
         {product?.images?.map((image, index) => (
