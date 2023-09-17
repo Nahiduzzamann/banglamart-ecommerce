@@ -100,13 +100,12 @@ const ProductShowSlider = ({ products }) => {
 export default ProductShowSlider;
 
 const Cart2 = ({ product }) => {
-  const oldPrice = product?.oldPrice;
   const url = "http://62.72.31.204:1300";
 
   const [hover, setHover] = useState(false);
   const [heartIconHover, setHeartIconHover] = useState(false);
   const [cartIconHover, setCartIconHover] = useState(false);
-  const [newPrice, setNewPrice] = useState(oldPrice);
+  const [newPrice, setNewPrice] = useState(product?.price);
 
   function calculatePercentage(value, percentage) {
     return (value * percentage) / 100;
@@ -114,12 +113,12 @@ const Cart2 = ({ product }) => {
 
   useEffect(() => {
     if (product.percentage) {
-      const percentageValue = calculatePercentage(oldPrice, product.offer);
-      setNewPrice(oldPrice - percentageValue);
+      const percentageValue = calculatePercentage(product?.price, product.offer);
+      setNewPrice(product?.price - percentageValue);
     } else {
-      setNewPrice(oldPrice - product.offer);
+      setNewPrice(product?.price - product.offer);
     }
-  }, [data]);
+  }, [product]);
   return (
     <div
       onMouseEnter={() => setHover(true)}
@@ -128,12 +127,11 @@ const Cart2 = ({ product }) => {
     >
       <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
         <img
-          src={product.thumbnail}
+          src={`${url}${product?.thumbnail}`}
           crossOrigin="anonymous"
           className="object-cover w-full h-full"
         />
       </div>
-      {/* <span className="absolute inset-0 w-full h-full bg-primary/30" /> */}
       <div
         className={`absolute bottom-0 w-full ${
           hover ? "bg-MainColor " : "bg-[#ffffffd7]"
@@ -142,9 +140,12 @@ const Cart2 = ({ product }) => {
         <div className="pl-2 pt-1 pb-1 flex justify-between items-center pr-2">
           <div>
             <div className="flex">
-              <p className={`relative mr-1 line-through text-SubTextColor`}>
-                {oldPrice} ৳
-              </p>
+              {product?.price > newPrice && (
+                <p className={`relative mr-1 line-through text-SubTextColor`}>
+                  {Math.ceil(product?.price)} ৳
+                </p>
+              )}
+
               <p
                 className={`relative ${
                   hover ? "text-CardColor" : "text-[#f84545]"
@@ -171,24 +172,32 @@ const Cart2 = ({ product }) => {
                 />
               }
             />
-            <p
-              className={`relative line-clamp-1 ${
+            <Link
+              to={`/productDetails/${product?.id}`}
+              className={`relative line-clamp-1 w-28 hover:underline ${
                 hover ? "text-CardColor line-clamp-none" : "text-TextColor"
               } `}
             >
-              {product.title}
-            </p>
+              {product?.title}
+            </Link>
           </div>
           <div className="flex flex-col">
-            {/* <button
+            <button
               onMouseEnter={() => setHeartIconHover(true)}
               onMouseLeave={() => setHeartIconHover(false)}
               className=" mb-1"
             >
               {heartIconHover ? (
-                <div className="tooltip tooltip-info tooltip-left" data-tip="Add Wishlist">
-                <BsFillHeartFill className={` text-[20px] ${heartIconHover && 'text-CardColor'}`} />
-              </div>
+                <div
+                  className="tooltip tooltip-info tooltip-left"
+                  data-tip="Add Wishlist"
+                >
+                  <BsFillHeartFill
+                    className={` text-[20px] ${
+                      heartIconHover && "text-CardColor"
+                    }`}
+                  />
+                </div>
               ) : (
                 <AiOutlineHeart
                   className={`text-[20px] ${
@@ -196,7 +205,7 @@ const Cart2 = ({ product }) => {
                   } `}
                 />
               )}
-            </button> */}
+            </button>
             <button
               onMouseEnter={() => setCartIconHover(true)}
               onMouseLeave={() => setCartIconHover(false)}
@@ -232,12 +241,20 @@ const Cart2 = ({ product }) => {
           </p>
         </div>
       )}
-      {product.deliveryFree && (
+      {product?.freeDelivery ? (
         <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-l-full top-2 p-1 right-0">
           <TbTruckDelivery className="text-MainColor text-[25px] ml-1 mr-1"></TbTruckDelivery>
-          {/* <p className="text-xs text-[#fc3e3e] mr-1">OFF</p> */}
+
           <p className="text-sm text-CardColor p-1 bg-MainColor rounded-full">
             off
+          </p>
+        </div>
+      ) : (
+        <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-l-full top-2 p-1 right-0">
+          <TbTruckDelivery className="text-MainColor text-[25px] ml-1 mr-1"></TbTruckDelivery>
+
+          <p className="text-sm text-CardColor p-1 bg-MainColor rounded-full">
+            {product?.deliveryCharge} ৳
           </p>
         </div>
       )}

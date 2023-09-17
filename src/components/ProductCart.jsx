@@ -163,15 +163,23 @@ const ProductCart = ({ product }) => {
             </p>
           </div>
         )}
-        {product?.freeDelivery && (
-          <div className="absolute flex items-center justify-center bg-CardColor shadow-md shadow-MainColorHover  rounded-l-full top-2 p-1 right-0">
-            <TbTruckDelivery className="text-MainColor text-[25px] ml-1 mr-1"></TbTruckDelivery>
-            {/* <p className="text-xs text-[#fc3e3e] mr-1">OFF</p> */}
-            <p className="text-sm text-CardColor p-1 bg-MainColor rounded-full">
-              off
-            </p>
-          </div>
-        )}
+        {product?.freeDelivery ? (
+        <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-l-full top-2 p-1 right-0">
+          <TbTruckDelivery className="text-MainColor text-[25px] ml-1 mr-1"></TbTruckDelivery>
+
+          <p className="text-sm text-CardColor p-1 bg-MainColor rounded-full">
+            off
+          </p>
+        </div>
+      ) : (
+        <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-l-full top-2 p-1 right-0">
+          <TbTruckDelivery className="text-MainColor text-[25px] ml-1 mr-1"></TbTruckDelivery>
+
+          <p className="text-sm text-CardColor p-1 bg-MainColor rounded-full">
+            {product?.deliveryCharge} ৳
+          </p>
+        </div>
+      )}
       </div>
     </div>
   );

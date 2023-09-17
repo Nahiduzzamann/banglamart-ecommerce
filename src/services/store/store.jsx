@@ -12,6 +12,7 @@ import flashSellDataReducer from '../reducers/flashSellDataReducer';
 import allSellerReducer from '../reducers/allSellerReducer';
 import bargainingProductsReducer from '../reducers/bargainingProductsReducer';
 import forYouProductsReducer from '../reducers/forYouProductsReducer';
+import bestSellingProductsReducer from '../reducers/bestSellingReducer';
 // ...
 
 const rootReducer = combineReducers({
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   allSellerData: allSellerReducer,
   bargainingProducts: bargainingProductsReducer,
   forYouProducts: forYouProductsReducer,
+  bestSellingProduct: bestSellingProductsReducer,
   
   // Add other reducers here
 });
