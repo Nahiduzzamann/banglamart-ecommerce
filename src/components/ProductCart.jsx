@@ -15,7 +15,7 @@ import Rating from "react-rating";
 import { Link } from "react-router-dom";
 
 const ProductCart = ({ product }) => {
-  console.log(product);
+  // console.log(product);
   
   const url = "http://62.72.31.204:1300";
 

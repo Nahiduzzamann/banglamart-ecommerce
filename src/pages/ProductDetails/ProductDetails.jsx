@@ -38,7 +38,7 @@ const ProductDetails = () => {
   const [messageShow, setMessageShow] = useState(false);
   const { id } = useParams();
   const [product, setProductDetails] = useState(null);
-  // console.log(product);
+  console.log(product);
   const url = "http://62.72.31.204:1300";
   useEffect(() => {
     const visitorId = localStorage.getItem("visitorId");
@@ -74,14 +74,14 @@ const ProductDetails = () => {
     setMessageShow(!messageShow);
   };
 
-  const [newPrice, setNewPrice] = useState(product?.price);
-
   function calculatePercentage(value, percentage) {
     return (value * percentage) / 100;
   }
 
   const [minOrder, setQuantity] = useState(null);
-  const [price, setPrice] = useState();
+  const [newPrice, setNewPrice] = useState(product?.price);
+  const [totalPrice, setTotalPrice] = useState();
+  const [finalPrice, setFinalPrice] = useState();
 
   useEffect(() => {
     if (product?.percentage) {
@@ -90,28 +90,42 @@ const ProductDetails = () => {
         product?.offer
       );
       setNewPrice(product?.price - percentageValue);
-    } else {
+      setFinalPrice(totalPrice);
+    } else if (product?.offer > 0) {
       setNewPrice(product?.price - product?.offer);
+      setFinalPrice(totalPrice);
     }
     setQuantity(product?.minOrder);
-    setPrice(product?.minOrder * product?.price);
+    setTotalPrice(product?.minOrder * newPrice);
+    setFinalPrice(totalPrice);
+
+    if (!product?.freeDelivery) {
+      setTotalPrice(totalPrice + product?.deliveryCharge);
+      setFinalPrice(totalPrice);
+    }
+    if (product?.vat > 0) {
+      const newPrice = (totalPrice * product?.vat) / 100;
+      setTotalPrice(newPrice);
+      setFinalPrice(totalPrice);
+    }
+    setFinalPrice(totalPrice);
   }, [product]);
 
   // calculation portion
 
   const handleIncrease = () => {
     const newQuantity = minOrder + 1;
-    const newPrice = newQuantity * product?.price;
+    const newPrice = newQuantity * totalPrice;
     setQuantity(newQuantity);
-    setPrice(newPrice);
+    setFinalPrice(newPrice);
   };
 
   const handleDecrease = () => {
     if (minOrder > product?.minOrder) {
       const newQuantity = minOrder - 1;
-      const newPrice = newQuantity * product?.price;
+      const newPrice = newQuantity * totalPrice;
       setQuantity(newQuantity);
-      setPrice(newPrice);
+      setFinalPrice(newPrice);
     }
   };
 
@@ -334,7 +348,7 @@ const ProductDetails = () => {
             <p className="text-TextColor">Variant:</p>
           </div>
           <div className="border-b border-b-BorderColor p-4">
-            {product?.percentage && (
+            {product?.price > newPrice && (
               <p className="text-SubTextColor">
                 Old Price:
                 <span className="line-through text-[18px] text-SubTextColor ml-2">
@@ -387,10 +401,17 @@ const ProductDetails = () => {
           <div className="p-4">
             <div className="flex items-center">
               <p className="text-TextColor">Total Price:</p>
-              <h1 className="text-MainColor ml-2">{price} ৳</h1>
-              {
-                product?.vat >0 && <p className="ml-2 text-SubTextColor">{product?.vat}% vat included</p>
-              }
+              <h1 className="text-MainColor ml-2">{finalPrice} ৳</h1>
+              {product?.percentage > 0 && (
+                <p className="ml-2 text-SubTextColor">
+                  {product?.offer}% discount added
+                </p>
+              )}
+              {product?.vat > 0 && (
+                <p className="ml-2 text-SubTextColor">
+                  {product?.vat}% vat included
+                </p>
+              )}
             </div>
             <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-2">
               <motion.button
