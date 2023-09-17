@@ -54,7 +54,7 @@ export default BargainingProducts;
 
 const Cart2 = ({ product }) => {
   const isSm = useMediaQuery("(min-width: 740px)");
-  console.log(product);
+  // console.log(product);
   // TODO
   const url = "http://62.72.31.204:1300";
 
