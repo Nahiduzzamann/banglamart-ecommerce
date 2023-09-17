@@ -32,7 +32,7 @@ const BargainingProducts = () => {
           View More
         </Link>
       </div>
-      <FlashSaleBanner></FlashSaleBanner>
+      <FlashSaleBanner bannerURL={'https://i.ibb.co/HPzrRX1/Building-a-Discount-Strategy-From-Scratch-Beware-of-Bargain-Hunters-linkedin.png'}></FlashSaleBanner>
       <div className="">
         <div className="flex overflow-x-auto scrollbar-hide gap-4 snap-x pt-5">
           {bargainingProducts?.length > 0 ? (
