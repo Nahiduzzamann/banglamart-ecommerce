@@ -385,12 +385,13 @@ const ProductDetails = () => {
             </p>
           </div>
           <div className="p-4">
-            <p className="text-TextColor">
-              Total Price:
-              <span className="text-[18px] text-MainColor ml-2">
-                {price} ৳
-              </span>
-            </p>
+            <div className="flex items-center">
+              <p className="text-TextColor">Total Price:</p>
+              <h1 className="text-MainColor ml-2">{price} ৳</h1>
+              {
+                product?.vat >0 && <p className="ml-2 text-SubTextColor">{product?.vat}% vat included</p>
+              }
+            </div>
             <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-2">
               <motion.button
                 whileHover={{ scale: 1.1 }}
