@@ -143,7 +143,6 @@ const ProductShowSlider = ({ products }) => {
 
 const ProductCart = ({ product }) => {
   const url = "http://62.72.31.204:1300";
-
   const [hover, setHover] = useState(false);
   const [heartIconHover, setHeartIconHover] = useState(false);
   const [cartIconHover, setCartIconHover] = useState(false);
@@ -162,7 +161,6 @@ const ProductCart = ({ product }) => {
       setNewPrice(product?.price - product?.offer);
     }
   }, [product]);
-  console.log(newPrice);
 
   return (
     <div>
@@ -177,7 +175,7 @@ const ProductCart = ({ product }) => {
         <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
           {/* TODO  */}
           <img
-            src={`${url}${product.thumbnail}`}
+            src={`${url}${product?.thumbnail}`}
             crossOrigin="anonymous"
             className="object-fill w-full h-full"
           />
