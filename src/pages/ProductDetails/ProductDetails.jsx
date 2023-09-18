@@ -87,7 +87,7 @@ const ProductDetails = () => {
     if (product?.freeDelivery) {
       actualAmount -= product?.deliveryCharge;
     } else if (product?.deliveryCharge > 0) {
-      actualAmount -= product?.deliveryCharge;
+      actualAmount += product?.deliveryCharge;
     }
 
     if (product?.percentage) {
@@ -410,13 +410,13 @@ const ProductDetails = () => {
               {product?.vat > 0 && (
                 <div className="flex justify-between">
                   <p className="text-SubTextColor">Vat ({product?.vat}%)</p>
-                  <p className="text-SubTextColor">-{vat} ৳</p>
+                  <p className="text-SubTextColor">+{vat} ৳</p>
                 </div>
               )}
               {!product?.freeDelivery && (
                 <div className="flex justify-between">
                   <p className="text-SubTextColor">Delivery Charge</p>
-                  <p className="text-SubTextColor">-{product?.deliveryCharge} ৳</p>
+                  <p className="text-SubTextColor">+{product?.deliveryCharge} ৳</p>
                 </div>
               )}
               {!product?.percentage && product?.offer > 0 && (
