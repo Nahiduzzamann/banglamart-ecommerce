@@ -99,7 +99,7 @@ const ProductDetails = () => {
     }
     if (product?.vat > 0) {
       const vat = (product?.vat / 100) * actualAmount;
-      setVat(vat)
+      setVat(vat);
       actualAmount += (product?.vat / 100) * actualAmount;
     }
     setQuantity(product?.minOrder);
@@ -398,30 +398,36 @@ const ProductDetails = () => {
           <div className="p-4">
             <div className=" w-40">
               <div className="flex justify-between">
-                <p>Product Price:</p>
-                <p>{newPrice} ৳</p>
+                <p className="text-SubTextColor">Product Price:</p>
+                <p className="text-SubTextColor">{newPrice} ৳</p>
               </div>
               {product?.percentage > 0 && (
                 <div className="flex justify-between">
-                  <p className="">Discount ({product?.offer}%)</p>
-                  <p>-{discount} ৳</p>
+                  <p className="text-SubTextColor">Discount ({product?.offer}%)</p>
+                  <p className="text-SubTextColor">-{discount} ৳</p>
                 </div>
               )}
               {product?.vat > 0 && (
                 <div className="flex justify-between">
-                  <p className="">Vat ({product?.vat}%)</p>
-                  <p>-{vat} ৳</p>
+                  <p className="text-SubTextColor">Vat ({product?.vat}%)</p>
+                  <p className="text-SubTextColor">-{vat} ৳</p>
                 </div>
               )}
               {!product?.freeDelivery && (
                 <div className="flex justify-between">
-                  <p className="">Delivery Charge</p>
-                  <p>{product?.deliveryCharge} ৳</p>
+                  <p className="text-SubTextColor">Delivery Charge</p>
+                  <p className="text-SubTextColor">-{product?.deliveryCharge} ৳</p>
+                </div>
+              )}
+              {!product?.percentage && product?.offer > 0 && (
+                <div className="flex justify-between">
+                  <p className="text-SubTextColor">Discount</p>
+                  <p className="text-SubTextColor">-{product?.offer} ৳</p>
                 </div>
               )}
               <div className="flex items-center justify-between border-t-SubTextColor border-t-[1px]">
-              <p className="text-TextColor">Total Price:</p>
-              <h1 className="text-MainColor">{finalPrice} ৳</h1>
+                <p className="text-TextColor">Total Price:</p>
+                <h1 className="text-MainColor">{finalPrice} ৳</h1>
               </div>
             </div>
             <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-2">
