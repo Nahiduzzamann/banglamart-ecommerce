@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Spinner } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { putApi } from "../apis";
 
 const PopUpAdd = ({ setAdds }) => {
   const url = "http://62.72.31.204:1300";
@@ -28,6 +29,16 @@ const PopUpAdd = ({ setAdds }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const showNextImage = () => {
+    const visitorId = localStorage.getItem("visitorId");
+    console.log(image);
+    putApi(
+      "/adds/close",
+      {
+        addId: image.id,
+        visitorId: visitorId,
+      },
+      null
+    );
     if (currentIndex < addImages?.length - 1) {
       setCurrentIndex(currentIndex + 1);
       setImage(addImages[currentIndex + 1]);
