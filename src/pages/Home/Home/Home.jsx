@@ -2,7 +2,7 @@ import FlashSaleBanner from "../../../components/FlashSaleBanner";
 import BargainingProducts from "../BargainingProducts/BargainingProducts";
 import BestSellers from "../BestSellers/BestSellers";
 import BestSelling from "../BestSelling/BestSelling";
-import FlashSale from "../FlashSale/FlashSale";
+// import FlashSale from "../FlashSale/FlashSale";
 import NewProducts from "../NewProducts/NewProducts";
 import TopBannerSection from "../TopBannerSection/TopBannerSection";
 import TopProducts from "../TopProducts/TopProducts";
@@ -20,7 +20,7 @@ const Home = () => {
       <TopBannerSection></TopBannerSection>
       <FlashSaleBanner></FlashSaleBanner>
       <div className="container mx-auto ">
-        <FlashSale></FlashSale>
+        {/* <FlashSale></FlashSale> */}
         <ForYouProducts></ForYouProducts>
         <BargainingProducts></BargainingProducts>
         <NewProducts></NewProducts>

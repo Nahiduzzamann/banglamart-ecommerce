@@ -74,41 +74,31 @@ const ProductDetails = () => {
     setMessageShow(!messageShow);
   };
 
-  function calculatePercentage(value, percentage) {
-    return (value * percentage) / 100;
-  }
-
   const [minOrder, setQuantity] = useState(null);
   const [newPrice, setNewPrice] = useState(product?.price);
   const [totalPrice, setTotalPrice] = useState();
   const [finalPrice, setFinalPrice] = useState();
 
   useEffect(() => {
-    if (product?.percentage) {
-      const percentageValue = calculatePercentage(
-        product?.price,
-        product?.offer
-      );
-      setNewPrice(product?.price - percentageValue);
-      setFinalPrice(totalPrice);
-    } else if (product?.offer > 0) {
-      setNewPrice(product?.price - product?.offer);
-      setFinalPrice(totalPrice);
-    }
-    setQuantity(product?.minOrder);
-    setTotalPrice(product?.minOrder * newPrice);
-    setFinalPrice(totalPrice);
+    let actualAmount = product?.price;
 
-    if (!product?.freeDelivery) {
-      setTotalPrice(totalPrice + product?.deliveryCharge);
-      setFinalPrice(totalPrice);
+    if (product?.freeDelivery) {
+      actualAmount -= product?.deliveryCharge;
+    } else if (product?.deliveryCharge > 0) {
+      actualAmount -= product?.deliveryCharge ;
+    }
+
+    if (product?.percentage) {
+      actualAmount -= (product?.offer / 100) * actualAmount;
+    } else if (product?.offer > 0) {
+      actualAmount -= product?.offer;
     }
     if (product?.vat > 0) {
-      const newPrice = (totalPrice * product?.vat) / 100;
-      setTotalPrice(newPrice);
-      setFinalPrice(totalPrice);
+      actualAmount += (product?.vat / 100) * actualAmount;
     }
-    setFinalPrice(totalPrice);
+    setNewPrice(product?.price);
+    setTotalPrice(actualAmount);
+    setFinalPrice(actualAmount);
   }, [product]);
 
   // calculation portion
@@ -348,11 +338,11 @@ const ProductDetails = () => {
             <p className="text-TextColor">Variant:</p>
           </div>
           <div className="border-b border-b-BorderColor p-4">
-            {product?.price > newPrice && (
+            {newPrice > totalPrice && (
               <p className="text-SubTextColor">
                 Old Price:
                 <span className="line-through text-[18px] text-SubTextColor ml-2">
-                  {product?.price} ৳
+                  {newPrice} ৳
                 </span>
                 /pc
               </p>
@@ -360,7 +350,7 @@ const ProductDetails = () => {
             <p className="text-SubTextColor">
               Current Price:
               <span className="text-[18px] text-MainColor ml-2">
-                {newPrice} ৳
+                {totalPrice} ৳
               </span>
               /pc
             </p>
