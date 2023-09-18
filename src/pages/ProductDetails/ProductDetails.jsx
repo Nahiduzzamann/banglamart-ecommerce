@@ -78,6 +78,8 @@ const ProductDetails = () => {
   const [newPrice, setNewPrice] = useState(product?.price);
   const [totalPrice, setTotalPrice] = useState();
   const [finalPrice, setFinalPrice] = useState();
+  const [discount, setDiscount] = useState(null);
+  const [vat, setVat] = useState(null);
 
   useEffect(() => {
     let actualAmount = product?.price;
@@ -85,17 +87,22 @@ const ProductDetails = () => {
     if (product?.freeDelivery) {
       actualAmount -= product?.deliveryCharge;
     } else if (product?.deliveryCharge > 0) {
-      actualAmount -= product?.deliveryCharge ;
+      actualAmount -= product?.deliveryCharge;
     }
 
     if (product?.percentage) {
+      const disc = (product?.offer / 100) * actualAmount;
+      setDiscount(disc);
       actualAmount -= (product?.offer / 100) * actualAmount;
     } else if (product?.offer > 0) {
       actualAmount -= product?.offer;
     }
     if (product?.vat > 0) {
+      const vat = (product?.vat / 100) * actualAmount;
+      setVat(vat)
       actualAmount += (product?.vat / 100) * actualAmount;
     }
+    setQuantity(product?.minOrder);
     setNewPrice(product?.price);
     setTotalPrice(actualAmount);
     setFinalPrice(actualAmount);
@@ -389,19 +396,33 @@ const ProductDetails = () => {
             </p>
           </div>
           <div className="p-4">
-            <div className="flex items-center">
-              <p className="text-TextColor">Total Price:</p>
-              <h1 className="text-MainColor ml-2">{finalPrice} ৳</h1>
+            <div className=" w-40">
+              <div className="flex justify-between">
+                <p>Product Price:</p>
+                <p>{newPrice} ৳</p>
+              </div>
               {product?.percentage > 0 && (
-                <p className="ml-2 text-SubTextColor">
-                  {product?.offer}% discount added
-                </p>
+                <div className="flex justify-between">
+                  <p className="">Discount ({product?.offer}%)</p>
+                  <p>-{discount} ৳</p>
+                </div>
               )}
               {product?.vat > 0 && (
-                <p className="ml-2 text-SubTextColor">
-                  {product?.vat}% vat included
-                </p>
+                <div className="flex justify-between">
+                  <p className="">Vat ({product?.vat}%)</p>
+                  <p>-{vat} ৳</p>
+                </div>
               )}
+              {!product?.freeDelivery && (
+                <div className="flex justify-between">
+                  <p className="">Delivery Charge</p>
+                  <p>{product?.deliveryCharge} ৳</p>
+                </div>
+              )}
+              <div className="flex items-center justify-between border-t-SubTextColor border-t-[1px]">
+              <p className="text-TextColor">Total Price:</p>
+              <h1 className="text-MainColor">{finalPrice} ৳</h1>
+              </div>
             </div>
             <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-2">
               <motion.button
