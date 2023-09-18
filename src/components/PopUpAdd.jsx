@@ -9,8 +9,10 @@ const PopUpAdd = ({ setAdds }) => {
 
   const [addImages, setAddImages] = useState(null);
   const [image, setImage] = useState(null);
+  const [ids, setId] = useState(null);
 
   useEffect(() => {
+    let addId = [];
     const visitorId = localStorage.getItem("visitorId");
     const fetchAdds = async () => {
       try {
@@ -18,6 +20,8 @@ const PopUpAdd = ({ setAdds }) => {
         const data = await response.json();
         setAddImages(data.data);
         setImage(data.data[0]);
+        data.data.map((data) => addId.push(data.id));
+        setId(addId);
       } catch (error) {
         console.error("Error fetching instructor classes:", error);
       }
@@ -25,12 +29,12 @@ const PopUpAdd = ({ setAdds }) => {
 
     fetchAdds();
   }, []);
-
+  // console.log(ids);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const showNextImage = () => {
     const visitorId = localStorage.getItem("visitorId");
-    console.log(image);
+    // console.log(image);
     putApi(
       "/adds/close",
       {
@@ -49,6 +53,15 @@ const PopUpAdd = ({ setAdds }) => {
   };
 
   const handleClearAdds = () => {
+    const visitorId = localStorage.getItem("visitorId");
+    putApi(
+      "/adds/closeAll",
+      {
+        addId: ids,
+        visitorId: visitorId,
+      },
+      null
+    );
     setAdds(false);
   };
   if (addImages?.length == 0) {
