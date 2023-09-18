@@ -1,17 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Spinner } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const PopUpAdd = ({ setAdds }) => {
-  const images = [
-    "https://png.pngtree.com/png-clipart/20190516/original/pngtree-super-sale-and-special-offer-banner-design-png-image_3688401.jpg",
-    "https://previews.123rf.com/images/arcady31/arcady311606/arcady31160600002/59113161-special-offer-red-star-icon.jpg",
-    "https://static.vecteezy.com/system/resources/previews/005/020/297/original/limited-time-offer-design-in-red-and-black-with-stop-watch-free-vector.jpg",
-  ];
+  const url = "http://62.72.31.204:1300";
+
+  const [addImages, setAddImages] = useState(null);
+  const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    const visitorId = localStorage.getItem("visitorId");
+    const fetchAdds = async () => {
+      try {
+        const response = await fetch(`${url}/adds/get?visitorId=${visitorId}`);
+        const data = await response.json();
+        setAddImages(data.data);
+        setImage(data.data[0]);
+      } catch (error) {
+        console.error("Error fetching instructor classes:", error);
+      }
+    };
+
+    fetchAdds();
+  }, []);
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const showNextImage = () => {
-    if (currentIndex < images.length - 1) {
+    if (currentIndex < addImages?.length - 1) {
       setCurrentIndex(currentIndex + 1);
+      setImage(addImages[currentIndex + 1]);
     } else {
       setButtonDisabled(true);
       setAdds(false);
@@ -21,24 +40,42 @@ const PopUpAdd = ({ setAdds }) => {
   const handleClearAdds = () => {
     setAdds(false);
   };
+  if (addImages?.length == 0) {
+    setAdds(false);
+  }
   return (
     <div className="flex items-center justify-center h-screen fixed bg-SubTextColor w-screen z-40 bg-opacity-80">
       <motion.div
-      animate={{
-        scale: [1, 1.5, 1.5, 1, 1],
-        rotate: [0, 0, 270, 270, 0],
-      }}
+        animate={{
+          scale: [1, 1.5, 1.5, 1, 1],
+          rotate: [0, 0, 270, 270, 0],
+        }}
         style={{
           clipPath:
             "polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%)",
         }}
         className=""
       >
-        <img
-          className="h-[30vw] w-[60vw]"
-          src={images[currentIndex]}
-          alt={`Image ${currentIndex}`}
-        />
+        {addImages ? (
+          <Link to={`/productDetails/${image?.productId}`}>
+            <img
+              className="h-[30vw] w-[60vw]"
+              crossOrigin="anonymous"
+              src={`${url}${image?.image}`}
+              alt={`Image ${currentIndex}`}
+            />
+          </Link>
+        ) : (
+          <div className="flex justify-center items-center p-10">
+            <Spinner
+              thickness="4px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="blue.500"
+              size="xl"
+            />
+          </div>
+        )}
       </motion.div>
       <div className="flex flex-col h-[30vw] justify-between items-center">
         <motion.button
