@@ -62,6 +62,7 @@ const PopUpAdd = ({ setAdds }) => {
       },
       null
     );
+    console.log(ids,visitorId);
     setAdds(false);
   };
   if (addImages?.length == 0) {

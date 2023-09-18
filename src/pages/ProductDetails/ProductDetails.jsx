@@ -34,6 +34,7 @@ import Scrollbars from "react-custom-scrollbars";
 import Rating from "react-rating";
 import { MdAdd, MdOutlineDisabledByDefault, MdRemove } from "react-icons/md";
 
+
 const ProductDetails = () => {
   const [messageShow, setMessageShow] = useState(false);
   const { id } = useParams();
@@ -546,7 +547,7 @@ const ProductDetails = () => {
             </div>
           </div>
           <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
-            Comments
+          cmnt
           </div>
         </div>
       </div>

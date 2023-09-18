@@ -87,7 +87,7 @@ const Main = () => {
   // isFlash sell available or not 
   useEffect(() => {
     dispatch(fetchFlashSell());
-  }, []);
+  }, [dispatch]);
   
 
   return (
