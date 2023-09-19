@@ -2,28 +2,13 @@ import { Link } from "react-router-dom";
 import { PiSmileySadLight } from "react-icons/pi";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
-import { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import { getApi } from "../../apis";
 import { Spinner } from "@chakra-ui/react";
 import CartComponent from "../../components/CartComponent";
 
 const Cart = () => {
-  const { user } = useContext(AuthContext);
-  const [product, setProduct] = useState(null);
-  // console.log(product);
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    getApi("/cart/get", token)
-      .then((res) => {
-        setProduct(res.data.data);
-      })
-      .catch((error) => {
-        console.log(error.response.data.message);
-      });
-  }, []);
-
-  
+  const { user,cart } = useContext(AuthContext);
   return (
     <div className="container mx-auto m-4">
       <Helmet>
@@ -31,9 +16,9 @@ const Cart = () => {
       </Helmet>
       <div className="grid grid-cols-3 gap-4">
         <div className="p-3 bg-CardColor md:col-span-2 col-span-3">
-          {product ? (
-            product?.length > 0 ? (
-              product?.map((data, i) => (
+          {cart ? (
+            cart?.length > 0 ? (
+              cart?.map((data, i) => (
                 <CartComponent key={i} data={data}></CartComponent>
               ))
             ) : (

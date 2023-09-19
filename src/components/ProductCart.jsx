@@ -17,7 +17,7 @@ import { AuthContext } from "../providers/AuthProvider";
 
 const ProductCart = ({ product }) => {
   // console.log(product);
-  const { user } = useContext(AuthContext);
+  const { user,setCartUpdate } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const url = "http://62.72.31.204:1300";
@@ -54,7 +54,7 @@ const ProductCart = ({ product }) => {
         },
         token
       )
-        .then(() => {
+        .then((res) => {
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -62,6 +62,7 @@ const ProductCart = ({ product }) => {
             showConfirmButton: false,
             timer: 1500,
           });
+          setCartUpdate(res.data)
         })
         .catch((error) => {
           console.log(error.response.data.message);

@@ -7,6 +7,7 @@ import {
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 import axios from "axios";
+import { getApi } from "../apis";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -18,6 +19,19 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [userState, setUserState] = useState(134);
+
+  const [cart, setCart] = useState(null);
+  const [cartUpdate,setCartUpdate]=useState(null)
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    getApi("/cart/get", token)
+      .then((res) => {
+        setCart(res.data.data);
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+      });
+  }, [userState,cartUpdate]);
 
   const createUser = async (route, data, token) =>
     axios.post(`${url}${route}`, data, {
@@ -80,6 +94,8 @@ const AuthProvider = ({ children }) => {
     loading,
     createUser,
     signIn,
+    cart,
+    setCartUpdate,
     logOut,
     signInWithGoogle,
     updateUser,

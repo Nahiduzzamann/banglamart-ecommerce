@@ -14,7 +14,10 @@ import Burger from "./Nav/Burger";
 import { motion } from "framer-motion";
 import { CgProfile } from "react-icons/cg";
 import { TbListDetails, TbLogout2, TbTruckDelivery } from "react-icons/tb";
-import { MdOutlineAdminPanelSettings, MdOutlineNotificationsActive } from "react-icons/md";
+import {
+  MdOutlineAdminPanelSettings,
+  MdOutlineNotificationsActive,
+} from "react-icons/md";
 import {
   Avatar,
   Menu,
@@ -27,7 +30,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
 
 const Header = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, cart } = useContext(AuthContext);
   // console.log(user);
   const from = location.state?.from?.pathname || "/";
 
@@ -161,7 +164,7 @@ const Header = () => {
                   <AiOutlineShoppingCart className="text-SubTextColor text-[30px]" />
                   <div>
                     <div className="bg-MainColor text-CardColor absolute right-[45px] -top-2 flex h-5 w-5 items-center justify-center rounded-full text-[10px]">
-                      10
+                      {cart?.length > 9 ? "9+" : cart?.length}
                     </div>
                     <p className=" text-SubTextColor">Cart</p>
                   </div>
@@ -179,7 +182,9 @@ const Header = () => {
                       />
                     </MenuButton>
                     <MenuList>
-                      <h2 className="text-center text-SubTextColor">Welcome {user?.name}</h2>
+                      <h2 className="text-center text-SubTextColor">
+                        Welcome {user?.name}
+                      </h2>
                       <MenuGroup title="Profile">
                         <MenuItem>
                           <Link

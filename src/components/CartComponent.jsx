@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AiOutlineLine, AiOutlinePlus } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { MdOutlineDisabledByDefault } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { deleteApi } from "../apis";
 import Swal from "sweetalert2";
+import { AuthContext } from "../providers/AuthProvider";
 
 const CartComponent = ({ data }) => {
+  const { setCartUpdate } = useContext(AuthContext);
     // console.log(data);
   let product = data.product;
   const url = "http://62.72.31.204:1300";
@@ -63,9 +65,10 @@ const CartComponent = ({ data }) => {
     }
   };
   const handleRemoveFromCart = (id) => {
+    console.log(id);
     const token = localStorage.getItem("token");
-    deleteApi(`${url}/cart/delete?cartId=${id}`, token)
-      .then(() => {
+    deleteApi(`/cart/delete?cartId=${id}`, token)
+      .then((res) => {
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -73,16 +76,16 @@ const CartComponent = ({ data }) => {
           showConfirmButton: false,
           timer: 1500,
         });
-        window.location.reload();
+        setCartUpdate(res.data)
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response.data.message);
       });
   };
   return (
     <div className=" mb-2 shadow-md hover:shadow-lg shadow-BorderColor">
-      <div className="flex justify-between mt-2 mb-2 p-2">
-        <div className="flex items-center">
+      <div className="flex justify-between mt-2 mb-2 p-2 flex-wrap">
+        <div className="flex items-center m-1">
           <img
             src={`${url}${product?.thumbnail}`}
             crossOrigin="anonymous"
@@ -129,11 +132,11 @@ const CartComponent = ({ data }) => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-center">
-          <h2 className="line-through text-[18px] text-SubTextColor ">
+        <div className="flex flex-col items-center m-1">
+          <h2 className="line-through text-SubTextColor">
             {newPrice} ৳
           </h2>
-          <h2>{totalPrice} ৳</h2>
+          <h1 className="">{totalPrice} ৳</h1>
           <div className="">
             <motion.button
               onClick={() => handleRemoveFromCart(data?.id)}
@@ -145,7 +148,7 @@ const CartComponent = ({ data }) => {
             </motion.button>
           </div>
         </div>
-        <div>
+        <div className="m-1">
           <div className=" w-40">
             <div className="flex justify-between">
               <p className="text-SubTextColor">Product Price:</p>
