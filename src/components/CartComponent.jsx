@@ -46,6 +46,7 @@ const CartComponent = ({ data }) => {
     setFinalPrice(actualAmount);
   }, [product]);
 
+
   // calculation portion
 
   const handleIncrease = () => {
@@ -64,7 +65,7 @@ const CartComponent = ({ data }) => {
     }
   };
   const handleRemoveFromCart = (id) => {
-    console.log(id);
+    // console.log(id);
     const token = localStorage.getItem("token");
     deleteApi(`/cart/delete?cartId=${id}`, token)
       .then((res) => {

@@ -9,6 +9,7 @@ import CartComponent from "../../components/CartComponent";
 
 const Cart = () => {
   const { user,cart } = useContext(AuthContext);
+
   return (
     <div className="container mx-auto m-4">
       <Helmet>
@@ -61,11 +62,11 @@ const Cart = () => {
           </div>
           <div className="flex justify-between mt-2">
             <h3 className="text-SubTextColor">Subtotal</h3>
-            <h3 className="text-TextColor">1654 ৳</h3>
+            <h3 className="text-TextColor">0 ৳</h3>
           </div>
           <div className="flex justify-between mt-2">
             <h3 className="text-SubTextColor">Total</h3>
-            <h3 className="text-TextColor">1654 ৳</h3>
+            <h3 className="text-TextColor">0 ৳</h3>
           </div>
           <motion.button
             whileHover={{ scale: 1.1 }}
