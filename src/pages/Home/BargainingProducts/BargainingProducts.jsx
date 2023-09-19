@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FlashSaleBanner from "../../../components/FlashSaleBanner";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Rating from "react-rating";
 import {
   AiFillStar,
@@ -13,6 +13,9 @@ import { TbTruckDelivery } from "react-icons/tb";
 import useMediaQuery from "../../../hooks/useMediaQuery";
 import { useSelector } from "react-redux";
 import EmptyContent from "../../../components/EmptyContent";
+import { postApi } from "../../../apis";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const BargainingProducts = () => {
   const bargainingProducts = useSelector(
@@ -54,7 +57,8 @@ export default BargainingProducts;
 
 const Cart2 = ({ product }) => {
   const isSm = useMediaQuery("(min-width: 740px)");
-  // console.log(product);
+  const { user,setCartUpdate } = useContext(AuthContext);
+  const navigate = useNavigate();
   // TODO
   const url = "http://62.72.31.204:1300";
 
@@ -62,6 +66,35 @@ const Cart2 = ({ product }) => {
   const [heartIconHover, setHeartIconHover] = useState(false);
   const [cartIconHover, setCartIconHover] = useState(false);
 
+  const handleAddToCart = (id, minOrder) => {
+    if (user) {
+      const token = localStorage.getItem("token");
+      postApi(
+        "/cart/add",
+        {
+          productId: id,
+          quantity: minOrder,
+        },
+        token
+      )
+        .then((res) => {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Add to Cart successfully.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          setCartUpdate(res.data)
+        })
+        .catch((error) => {
+          console.log(error.response.data.message);
+        });
+    } else {
+      Swal.fire('Please LogIn')
+      navigate('/login')
+    }
+  };
   return (
     <div
       onMouseEnter={() => setHover(true)}
@@ -121,7 +154,7 @@ const Cart2 = ({ product }) => {
             </Link>
           </div>
           <div className="flex flex-col">
-            <button
+            {/* <button
               onMouseEnter={() => setHeartIconHover(true)}
               onMouseLeave={() => setHeartIconHover(false)}
               className=" mb-1"
@@ -144,8 +177,9 @@ const Cart2 = ({ product }) => {
                   } `}
                 />
               )}
-            </button>
+            </button> */}
             <button
+            onClick={() => handleAddToCart(product?.id, product?.minOrder)}
               onMouseEnter={() => setCartIconHover(true)}
               onMouseLeave={() => setCartIconHover(false)}
               className=""
