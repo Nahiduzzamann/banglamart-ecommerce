@@ -1,6 +1,6 @@
 // dummy cart
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   AiFillStar,
   AiOutlineHeart,
@@ -10,12 +10,15 @@ import {
 import { BsFillCartCheckFill, BsFillHeartFill } from "react-icons/bs";
 import { TbTruckDelivery } from "react-icons/tb";
 import Rating from "react-rating";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { postApi } from "../apis";
 import Swal from "sweetalert2";
+import { AuthContext } from "../providers/AuthProvider";
 
 const ProductCart = ({ product }) => {
   // console.log(product);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const url = "http://62.72.31.204:1300";
 
@@ -41,29 +44,32 @@ const ProductCart = ({ product }) => {
   }, [product]);
 
   const handleAddToCart = (id, minOrder) => {
-    // console.log(id);
-    const token = localStorage.getItem("token");
-
-    postApi(
-      "/cart/add",
-      {
-        productId: id,
-        quantity: minOrder,
-      },
-      token
-    )
-      .then(() => {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Add to Cart successfully.",
-          showConfirmButton: false,
-          timer: 1500,
+    if (user) {
+      const token = localStorage.getItem("token");
+      postApi(
+        "/cart/add",
+        {
+          productId: id,
+          quantity: minOrder,
+        },
+        token
+      )
+        .then(() => {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Add to Cart successfully.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        })
+        .catch((error) => {
+          console.log(error.response.data.message);
         });
-      })
-      .catch((error) => {
-        console.log(error.response.data.message);
-      });
+    } else {
+      Swal.fire('Please LogIn')
+      navigate('/login')
+    }
   };
   return (
     <div>

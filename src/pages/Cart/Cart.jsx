@@ -11,7 +11,7 @@ const Cart = () => {
   const url = "http://62.72.31.204:1300";
   const { user } = useContext(AuthContext);
   const [product, setProduct] = useState(null);
-  console.log(product);
+  // console.log(product);
   useEffect(() => {
     const token = localStorage.getItem("token");
     getApi("/cart/get", token)
