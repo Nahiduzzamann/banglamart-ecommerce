@@ -352,7 +352,7 @@ const Header = () => {
                   <AiOutlineShoppingCart className="text-SubTextColor text-[20px]" />
                   <div>
                     <div className="bg-MainColor text-CardColor absolute right-[40px] -top-[6px] flex h-4 w-4 items-center justify-center rounded-full text-[10px]">
-                      <p className="text-[10px]">10</p>
+                    <p className="p-[1px]">{cart?.length > 9 ? "9+" : cart?.length}</p>
                     </div>
                     <p className=" text-SubTextColor">Cart</p>
                   </div>

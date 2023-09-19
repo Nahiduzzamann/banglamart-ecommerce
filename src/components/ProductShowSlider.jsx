@@ -1,5 +1,5 @@
 import Slider from "react-slick/lib/slider";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
 import useMediaQuery from "../hooks/useMediaQuery";
 import Rating from "react-rating";
@@ -7,8 +7,11 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import { BsFillCartCheckFill, BsFillHeartFill } from "react-icons/bs";
 import ProductCart from "./ProductCart";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { TbTruckDelivery } from "react-icons/tb";
+import { AuthContext } from "./../providers/AuthProvider";
+import { postApi } from './../apis';
+import Swal from "sweetalert2";
 
 const ProductShowSlider = ({ products }) => {
   // console.log(products);
@@ -101,7 +104,8 @@ export default ProductShowSlider;
 
 const Cart2 = ({ product }) => {
   const url = "http://62.72.31.204:1300";
-
+  const { user, setCartUpdate } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [hover, setHover] = useState(false);
   const [heartIconHover, setHeartIconHover] = useState(false);
   const [cartIconHover, setCartIconHover] = useState(false);
@@ -113,12 +117,45 @@ const Cart2 = ({ product }) => {
 
   useEffect(() => {
     if (product.percentage) {
-      const percentageValue = calculatePercentage(product?.price, product.offer);
+      const percentageValue = calculatePercentage(
+        product?.price,
+        product.offer
+      );
       setNewPrice(product?.price - percentageValue);
     } else {
       setNewPrice(product?.price - product.offer);
     }
   }, [product]);
+
+  const handleAddToCart = (id, minOrder) => {
+    if (user) {
+      const token = localStorage.getItem("token");
+      postApi(
+        "/cart/add",
+        {
+          productId: id,
+          quantity: minOrder,
+        },
+        token
+      )
+        .then((res) => {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Add to Cart successfully.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          setCartUpdate(res.data);
+        })
+        .catch((error) => {
+          console.log(error.response.data.message);
+        });
+    } else {
+      Swal.fire("Please LogIn");
+      navigate("/login");
+    }
+  };
   return (
     <div
       onMouseEnter={() => setHover(true)}
@@ -182,7 +219,7 @@ const Cart2 = ({ product }) => {
             </Link>
           </div>
           <div className="flex flex-col">
-            <button
+            {/* <button
               onMouseEnter={() => setHeartIconHover(true)}
               onMouseLeave={() => setHeartIconHover(false)}
               className=" mb-1"
@@ -205,8 +242,9 @@ const Cart2 = ({ product }) => {
                   } `}
                 />
               )}
-            </button>
+            </button> */}
             <button
+            onClick={() => handleAddToCart(product?.id, product?.minOrder)}
               onMouseEnter={() => setCartIconHover(true)}
               onMouseLeave={() => setCartIconHover(false)}
               className=""
