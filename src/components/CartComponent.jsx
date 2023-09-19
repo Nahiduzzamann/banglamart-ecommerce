@@ -3,8 +3,11 @@ import { AiOutlineLine, AiOutlinePlus } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { MdOutlineDisabledByDefault } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { deleteApi } from "../apis";
+import Swal from "sweetalert2";
 
 const CartComponent = ({ data }) => {
+    // console.log(data);
   let product = data.product;
   const url = "http://62.72.31.204:1300";
 
@@ -59,7 +62,23 @@ const CartComponent = ({ data }) => {
       setFinalPrice(newPrice);
     }
   };
-
+  const handleRemoveFromCart = (id) => {
+    const token = localStorage.getItem("token");
+    deleteApi(`${url}/cart/delete?cartId=${id}`, token)
+      .then(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Remove successfully.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className=" mb-2 shadow-md hover:shadow-lg shadow-BorderColor">
       <div className="flex justify-between mt-2 mb-2 p-2">
@@ -117,6 +136,7 @@ const CartComponent = ({ data }) => {
           <h2>{totalPrice} ৳</h2>
           <div className="">
             <motion.button
+              onClick={() => handleRemoveFromCart(data?.id)}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.8 }}
               className="text-CardColor flex bg-[#e65b5b] hover:underline pb-1 pl-2 pr-2 rounded-full"
