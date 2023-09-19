@@ -9,7 +9,7 @@ import { AuthContext } from "../providers/AuthProvider";
 
 const CartComponent = ({ data }) => {
   const { setCartUpdate } = useContext(AuthContext);
-    // console.log(data);
+  // console.log(data);
   let product = data.product;
   const url = "http://62.72.31.204:1300";
 
@@ -22,13 +22,11 @@ const CartComponent = ({ data }) => {
 
   useEffect(() => {
     let actualAmount = product?.price;
-
-    if (product?.freeDelivery) {
-      actualAmount -= product?.deliveryCharge;
-    } else if (product?.deliveryCharge > 0) {
-      actualAmount += product?.deliveryCharge;
+    if (product?.vat > 0) {
+      const vat = (product?.vat / 100) * actualAmount;
+      setVat(vat);
+      actualAmount += (product?.vat / 100) * actualAmount;
     }
-
     if (product?.percentage) {
       const disc = (product?.offer / 100) * actualAmount;
       setDiscount(disc);
@@ -36,10 +34,11 @@ const CartComponent = ({ data }) => {
     } else if (product?.offer > 0) {
       actualAmount -= product?.offer;
     }
-    if (product?.vat > 0) {
-      const vat = (product?.vat / 100) * actualAmount;
-      setVat(vat);
-      actualAmount += (product?.vat / 100) * actualAmount;
+
+    if (product?.freeDelivery) {
+      actualAmount -= product?.deliveryCharge;
+    } else if (product?.deliveryCharge > 0) {
+      actualAmount += product?.deliveryCharge;
     }
     setQuantity(product?.minOrder);
     setNewPrice(product?.price);
@@ -76,7 +75,7 @@ const CartComponent = ({ data }) => {
           showConfirmButton: false,
           timer: 1500,
         });
-        setCartUpdate(res.data)
+        setCartUpdate(res.data);
       })
       .catch((error) => {
         console.log(error.response.data.message);
@@ -133,9 +132,7 @@ const CartComponent = ({ data }) => {
           </div>
         </div>
         <div className="flex flex-col items-center m-1">
-          <h2 className="line-through text-SubTextColor">
-            {newPrice} ৳
-          </h2>
+          <h2 className="line-through text-SubTextColor">{newPrice} ৳</h2>
           <h1 className="">{totalPrice} ৳</h1>
           <div className="">
             <motion.button

@@ -37,7 +37,6 @@ import Swal from "sweetalert2";
 import { postApi } from "../../apis";
 import { AuthContext } from "../../providers/AuthProvider";
 
-
 const ProductDetails = () => {
   const { user } = useContext(AuthContext);
 
@@ -89,11 +88,10 @@ const ProductDetails = () => {
 
   useEffect(() => {
     let actualAmount = product?.price;
-
-    if (product?.freeDelivery) {
-      actualAmount -= product?.deliveryCharge;
-    } else if (product?.deliveryCharge > 0) {
-      actualAmount += product?.deliveryCharge;
+    if (product?.vat > 0) {
+      const vat = (product?.vat / 100) * actualAmount;
+      setVat(vat);
+      actualAmount += (product?.vat / 100) * actualAmount;
     }
 
     if (product?.percentage) {
@@ -103,10 +101,10 @@ const ProductDetails = () => {
     } else if (product?.offer > 0) {
       actualAmount -= product?.offer;
     }
-    if (product?.vat > 0) {
-      const vat = (product?.vat / 100) * actualAmount;
-      setVat(vat);
-      actualAmount += (product?.vat / 100) * actualAmount;
+    if (product?.freeDelivery) {
+      actualAmount -= product?.deliveryCharge;
+    } else if (product?.deliveryCharge > 0) {
+      actualAmount += product?.deliveryCharge;
     }
     setQuantity(product?.minOrder);
     setNewPrice(product?.price);
@@ -132,7 +130,6 @@ const ProductDetails = () => {
     }
   };
 
-  
   const handleAddToCart = (id, minOrder) => {
     if (user) {
       const token = localStorage.getItem("token");
@@ -157,8 +154,8 @@ const ProductDetails = () => {
           console.log(error.response.data.message);
         });
     } else {
-      Swal.fire('Please LogIn')
-      Navigate('/login')
+      Swal.fire("Please LogIn");
+      Navigate("/login");
     }
   };
 
@@ -439,7 +436,9 @@ const ProductDetails = () => {
               </div>
               {product?.percentage > 0 && (
                 <div className="flex justify-between">
-                  <p className="text-SubTextColor">Discount ({product?.offer}%)</p>
+                  <p className="text-SubTextColor">
+                    Discount ({product?.offer}%)
+                  </p>
                   <p className="text-SubTextColor">-{discount} ৳</p>
                 </div>
               )}
@@ -452,7 +451,9 @@ const ProductDetails = () => {
               {!product?.freeDelivery && (
                 <div className="flex justify-between">
                   <p className="text-SubTextColor">Delivery Charge</p>
-                  <p className="text-SubTextColor">+{product?.deliveryCharge} ৳</p>
+                  <p className="text-SubTextColor">
+                    +{product?.deliveryCharge} ৳
+                  </p>
                 </div>
               )}
               {!product?.percentage && product?.offer > 0 && (
@@ -468,7 +469,7 @@ const ProductDetails = () => {
             </div>
             <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-2">
               <motion.button
-              onClick={() => handleAddToCart(product?.id, product?.minOrder)}
+                onClick={() => handleAddToCart(product?.id, product?.minOrder)}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.8 }}
                 className="pl-3 pr-3 pt-2 pb-2 bg-[#d2eefd] rounded-full shadow-sm hover:shadow-md flex items-center justify-center"
@@ -583,7 +584,7 @@ const ProductDetails = () => {
             </div>
           </div>
           <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
-          cmnt
+            cmnt
           </div>
         </div>
       </div>
