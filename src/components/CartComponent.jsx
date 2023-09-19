@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineLine, AiOutlinePlus } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { MdOutlineDisabledByDefault } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const CartComponent = ({ data }) => {
   let product = data.product;
@@ -69,9 +70,12 @@ const CartComponent = ({ data }) => {
             className="object-cover h-20 w-20 rounded"
           />
           <div className="ml-2">
-            <div>
-              <h2>{product?.title}</h2>
-            </div>
+            <Link
+              to={`/productDetails/${product?.id}`}
+              className="relative hover:underline break-all line-clamp-1"
+            >
+              {product?.title}
+            </Link>
             <div className="flex items-center">
               <p className="mr-2 text-SubTextColor">Quantity:</p>
               <motion.button
@@ -82,7 +86,7 @@ const CartComponent = ({ data }) => {
               >
                 <AiOutlineLine className=" text-SubTextColor" />
               </motion.button>
-              <p className="mr-2 text-TextColor">{product?.quantity}</p>
+              <p className="mr-2 text-TextColor">{minOrder}</p>
               {minOrder == product?.quantity ? (
                 <button
                   disabled

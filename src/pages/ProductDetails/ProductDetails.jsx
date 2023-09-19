@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   AiFillStar,
   AiOutlineLine,
@@ -8,7 +8,7 @@ import {
   AiOutlineShoppingCart,
   AiOutlineStar,
 } from "react-icons/ai";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import {
   FacebookIcon,
   FacebookMessengerIcon,
@@ -33,9 +33,14 @@ import {
 import Scrollbars from "react-custom-scrollbars";
 import Rating from "react-rating";
 import { MdAdd, MdOutlineDisabledByDefault, MdRemove } from "react-icons/md";
+import Swal from "sweetalert2";
+import { postApi } from "../../apis";
+import { AuthContext } from "../../providers/AuthProvider";
 
 
 const ProductDetails = () => {
+  const { user } = useContext(AuthContext);
+
   const [messageShow, setMessageShow] = useState(false);
   const { id } = useParams();
   const [product, setProductDetails] = useState(null);
@@ -124,6 +129,36 @@ const ProductDetails = () => {
       const newPrice = newQuantity * totalPrice;
       setQuantity(newQuantity);
       setFinalPrice(newPrice);
+    }
+  };
+
+  
+  const handleAddToCart = (id, minOrder) => {
+    if (user) {
+      const token = localStorage.getItem("token");
+      postApi(
+        "/cart/add",
+        {
+          productId: id,
+          quantity: minOrder,
+        },
+        token
+      )
+        .then(() => {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Add to Cart successfully.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        })
+        .catch((error) => {
+          console.log(error.response.data.message);
+        });
+    } else {
+      Swal.fire('Please LogIn')
+      Navigate('/login')
     }
   };
 
@@ -433,6 +468,7 @@ const ProductDetails = () => {
             </div>
             <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-2">
               <motion.button
+              onClick={() => handleAddToCart(product?.id, product?.minOrder)}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.8 }}
                 className="pl-3 pr-3 pt-2 pb-2 bg-[#d2eefd] rounded-full shadow-sm hover:shadow-md flex items-center justify-center"
@@ -452,7 +488,7 @@ const ProductDetails = () => {
                 </p>
                 <p className="text-CardColor">Buy Now</p>
               </motion.button>
-              <motion.button
+              {/* <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.8 }}
                 className="pl-3 pr-3 pt-2 pb-2 bg-[#d2eefd] rounded-full shadow-sm hover:shadow-md flex items-center justify-center"
@@ -461,7 +497,7 @@ const ProductDetails = () => {
                   <AiOutlineShopping className="text-MainColor  mr-1" />
                 </p>
                 <p className="text-MainColor">Add to wishlist</p>
-              </motion.button>
+              </motion.button> */}
             </div>
             <p className="text-SubTextColor">
               Refund:{" "}
