@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
-import { AiOutlineLine, AiOutlinePlus } from "react-icons/ai";
+import { PiSmileySadLight } from "react-icons/pi";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { getApi } from "../../apis";
 import { Spinner } from "@chakra-ui/react";
+import CartComponent from "../../components/CartComponent";
 
 const Cart = () => {
-  const url = "http://62.72.31.204:1300";
   const { user } = useContext(AuthContext);
   const [product, setProduct] = useState(null);
   // console.log(product);
@@ -23,6 +23,7 @@ const Cart = () => {
       });
   }, []);
 
+  
   return (
     <div className="container mx-auto m-4">
       <Helmet>
@@ -32,76 +33,14 @@ const Cart = () => {
         <div className="p-3 bg-CardColor md:col-span-2 col-span-3">
           {product ? (
             product?.length > 0 ? (
-              product?.map((product, i) => (
-                <div
-                  key={i}
-                  className="border-b border-b-BorderColor mb-2 shadow-lg hover:shadow-lg shadow-BorderColor"
-                >
-                  {/* <div className="bg-BackgroundColor rounded-sm p-2 flex">
-                    <img
-                      src={product}
-                      className="h-10 w-10 rounded"
-                      alt=""
-                    />
-                    <p className="text-TextColor ml-2">
-                      {product.sellerShopName}
-                    </p>
-                  </div> */}
-                  <div className="flex mt-2 mb-2">
-                    <div>
-                      <img
-                        src={`${url}${product?.product?.thumbnail}`}
-                        crossOrigin="anonymous"
-                        className="object-cover h-16 w-16"
-                      />
-                    </div>
-                    <div className="w-full ml-2">
-                      <div className="flex justify-between">
-                        <div>
-                          <h2>{product?.product?.title}</h2>
-                        </div>
-                        <div className="mr-2">
-                          <h2>{product?.product?.price}৳</h2>
-                        </div>
-                      </div>
-                      <div className="flex justify-between items-center mt-2">
-                        <div className="flex items-center">
-                          <p className="mr-2 text-SubTextColor">Quantity:</p>
-                          <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.8 }}
-                            className="mr-2 rounded-full bg-[#d2eefd] p-2 shadow-sm hover:shadow-md"
-                          >
-                            <AiOutlineLine className=" text-SubTextColor" />
-                          </motion.button>
-                          <p className="mr-2 text-TextColor">{product?.quantity}</p>
-                          <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.8 }}
-                            className="mr-2 rounded-full bg-[#d2eefd] p-2 shadow-sm hover:shadow-md"
-                          >
-                            <AiOutlinePlus className=" text-TextColor" />
-                          </motion.button>
-                          <p className="mr-2 text-SubTextColor">
-                            available (<span>{product?.product?.quantity}</span>)
-                          </p>
-                        </div>
-                        <div>
-                          <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.8 }}
-                            className="text-SubTextColor mr-2 underline text-[14px] font-bold"
-                          >
-                            remove
-                          </motion.button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              product?.map((data, i) => (
+                <CartComponent key={i} data={data}></CartComponent>
               ))
             ) : (
-              <h1>No Product Added</h1>
+              <div className="flex flex-col items-center justify-center">
+                <PiSmileySadLight className="text-SubTextColor text-8xl"></PiSmileySadLight>
+                <h1 className="text-SubTextColor">No Product Added</h1>
+              </div>
             )
           ) : (
             <div className="flex justify-center items-center p-10">
