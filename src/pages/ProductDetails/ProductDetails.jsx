@@ -39,7 +39,7 @@ const ProductDetails = () => {
   const [messageShow, setMessageShow] = useState(false);
   const { id } = useParams();
   const [product, setProductDetails] = useState(null);
-  console.log(product);
+  // console.log(product);
   const url = "http://62.72.31.204:1300";
   useEffect(() => {
     const visitorId = localStorage.getItem("visitorId");

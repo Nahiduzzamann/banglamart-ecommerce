@@ -2,143 +2,118 @@ import { Link } from "react-router-dom";
 import { AiOutlineLine, AiOutlinePlus } from "react-icons/ai";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import { getApi } from "../../apis";
+import { Spinner } from "@chakra-ui/react";
 
 const Cart = () => {
+  const url = "http://62.72.31.204:1300";
   const { user } = useContext(AuthContext);
+  const [product, setProduct] = useState(null);
+  console.log(product);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    getApi("/cart/get", token)
+      .then((res) => {
+        setProduct(res.data.data);
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+      });
+  }, []);
 
-  const dummyProductData = [
-    {
-      id: 1,
-      sellerShopImage:
-        "https://media-cdn.tripadvisor.com/media/photo-s/05/b2/ae/86/trend-fashion-tailor.jpg",
-      sellerShopName: "Fashion Trends",
-      productImage:
-        "https://static-01.daraz.com.bd/p/67b4c12bd28726e7b8118955b9ac8703.jpg",
-      productName: "Women's Casual Dress",
-      variant: "Blue, Medium",
-      price: "29.99",
-    },
-    {
-      id: 2,
-      sellerShopImage:
-        "https://pbs.twimg.com/profile_images/1087403344446947339/8mGjwDxm_400x400.jpg",
-      sellerShopName: "Electronics Hub",
-      productImage:
-        "https://azse77seaprodsa.blob.core.windows.net/b2b-dr-pickaboocdn/media/catalog/product/cache/90e3b9f4120fc209bf60003e3b0e1323/a/9/a996bl-18.6.23..jpg",
-      productName: "Wireless Bluetooth Headphones",
-      variant: "Black",
-      price: "49.99",
-    },
-    {
-      id: 3,
-      sellerShopImage:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReoaSOuI0wVZBfyb3LKQpUHtegUMdxJJxgRg&usqp=CAU",
-      sellerShopName: "Home Decor Emporium",
-      productImage:
-        "https://secure.img1-cg.wfcdn.com/im/50651305/resize-h210-w210%5Ecompr-r85/1230/123090784/Medrano+Table+Lamp.jpg",
-      productName: "Modern Table Lamp",
-      variant: "White",
-      price: "39.99",
-    },
-    {
-      id: 4,
-      sellerShopImage:
-        "https://images-eu.ssl-images-amazon.com/images/S/influencer-profile-image-prod/logo/influencer-5bb88584_1575132063442_original._CR0,0,1080,1080_._FMjpg_.jpeg",
-      sellerShopName: "Tech Gadgets Store",
-      productImage:
-        "https://digitalshopbd.com/public/uploads/all/NMxAm0PpAKGWepo3ponx4BFOIZshkAjxXX2Jv1b1.jpg",
-      productName: "Smartphone Tripod Stand",
-      variant: "Adjustable Height",
-      price: "19.99",
-    },
-    {
-      id: 5,
-      sellerShopImage:
-        "https://livebuylocal.com.au/wp-content/uploads/2020/11/46502178_2831384587000376_8785281331098550272_n.jpg",
-      sellerShopName: "Beauty Essentials",
-      productImage:
-        "https://www.fresh.com/on/demandware.static/-/Sites-fresh_master_catalog/default/dwd2f3999c/product_images/H00005424_main_pdp.jpg",
-      productName: "Rose-Infused Face Serum",
-      variant: "30ml",
-      price: "34.99",
-    },
-  ];
   return (
     <div className="container mx-auto m-4">
       <Helmet>
         <title>Cart | Banglamart E-commerce</title>
       </Helmet>
       <div className="grid grid-cols-3 gap-4">
-
         <div className="p-3 bg-CardColor md:col-span-2 col-span-3">
-          {dummyProductData.map((product, i) => (
-            <div
-              key={i}
-              className="border-b border-b-BorderColor mb-2 shadow-lg hover:shadow-lg shadow-BorderColor"
-            >
-              <div className="bg-BackgroundColor rounded-sm p-2 flex">
-                <img
-                  src={product.sellerShopImage}
-                  className="h-10 w-10 rounded"
-                  alt=""
-                />
-                <p className="text-TextColor ml-2">{product.sellerShopName}</p>
-              </div>
-              <div className="flex mt-2 mb-2">
-                <div>
-                  <img
-                    src={product.productImage}
-                    className="h-16 w-16"
-                    alt=""
-                  />
-                </div>
-                <div className="w-full ml-2">
-                  <div className="flex justify-between">
+          {product ? (
+            product?.length > 0 ? (
+              product?.map((product, i) => (
+                <div
+                  key={i}
+                  className="border-b border-b-BorderColor mb-2 shadow-lg hover:shadow-lg shadow-BorderColor"
+                >
+                  {/* <div className="bg-BackgroundColor rounded-sm p-2 flex">
+                    <img
+                      src={product}
+                      className="h-10 w-10 rounded"
+                      alt=""
+                    />
+                    <p className="text-TextColor ml-2">
+                      {product.sellerShopName}
+                    </p>
+                  </div> */}
+                  <div className="flex mt-2 mb-2">
                     <div>
-                      <h2>{product.productName}</h2>
+                      <img
+                        src={`${url}${product?.product?.thumbnail}`}
+                        crossOrigin="anonymous"
+                        className="object-cover h-16 w-16"
+                      />
                     </div>
-                    <div className="mr-2">
-                      <h2>{product.price}৳</h2>
+                    <div className="w-full ml-2">
+                      <div className="flex justify-between">
+                        <div>
+                          <h2>{product?.product?.title}</h2>
+                        </div>
+                        <div className="mr-2">
+                          <h2>{product?.product?.price}৳</h2>
+                        </div>
+                      </div>
+                      <div className="flex justify-between items-center mt-2">
+                        <div className="flex items-center">
+                          <p className="mr-2 text-SubTextColor">Quantity:</p>
+                          <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.8 }}
+                            className="mr-2 rounded-full bg-[#d2eefd] p-2 shadow-sm hover:shadow-md"
+                          >
+                            <AiOutlineLine className=" text-SubTextColor" />
+                          </motion.button>
+                          <p className="mr-2 text-TextColor">{product?.quantity}</p>
+                          <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.8 }}
+                            className="mr-2 rounded-full bg-[#d2eefd] p-2 shadow-sm hover:shadow-md"
+                          >
+                            <AiOutlinePlus className=" text-TextColor" />
+                          </motion.button>
+                          <p className="mr-2 text-SubTextColor">
+                            available (<span>{product?.product?.quantity}</span>)
+                          </p>
+                        </div>
+                        <div>
+                          <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.8 }}
+                            className="text-SubTextColor mr-2 underline text-[14px] font-bold"
+                          >
+                            remove
+                          </motion.button>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex justify-between items-center mt-2">
-                    <div className="flex items-center">
-                      <p className="mr-2 text-SubTextColor">Quantity:</p>
-                      <motion.button
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.8 }}
-                        className="mr-2 rounded-full bg-[#d2eefd] p-2 shadow-sm hover:shadow-md"
-                      >
-                        <AiOutlineLine className=" text-SubTextColor" />
-                      </motion.button>
-                      <p className="mr-2 text-TextColor">2</p>
-                      <motion.button
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.8 }}
-                        className="mr-2 rounded-full bg-[#d2eefd] p-2 shadow-sm hover:shadow-md"
-                      >
-                        <AiOutlinePlus className=" text-TextColor" />
-                      </motion.button>
-                      <p className="mr-2 text-SubTextColor">
-                        available (<span>5</span>)
-                      </p>
-                    </div>
-                    <div>
-                      <motion.button
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.8 }}
-                        className="text-SubTextColor mr-2 underline text-[14px] font-bold"
-                      >
-                        remove
-                      </motion.button>
-                    </div>
-                  </div>
                 </div>
-              </div>
+              ))
+            ) : (
+              <h1>No Product Added</h1>
+            )
+          ) : (
+            <div className="flex justify-center items-center p-10">
+              <Spinner
+                thickness="4px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="blue.500"
+                size="xl"
+              />
             </div>
-          ))}
+          )}
         </div>
 
         <div className="rounded-md p-3 bg-CardColor md:col-span-1 col-span-3 h-min">
@@ -178,7 +153,6 @@ const Cart = () => {
             </div>
           </motion.button>
         </div>
-
       </div>
     </div>
   );

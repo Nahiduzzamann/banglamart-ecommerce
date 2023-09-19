@@ -1,5 +1,3 @@
-
-
 // dummy cart
 
 import { useEffect, useState } from "react";
@@ -13,10 +11,12 @@ import { BsFillCartCheckFill, BsFillHeartFill } from "react-icons/bs";
 import { TbTruckDelivery } from "react-icons/tb";
 import Rating from "react-rating";
 import { Link } from "react-router-dom";
+import { postApi } from "../apis";
+import Swal from "sweetalert2";
 
 const ProductCart = ({ product }) => {
   // console.log(product);
-  
+
   const url = "http://62.72.31.204:1300";
 
   const [hover, setHover] = useState(false);
@@ -30,13 +30,41 @@ const ProductCart = ({ product }) => {
 
   useEffect(() => {
     if (product?.percentage) {
-      const percentageValue = calculatePercentage(product?.price, product?.offer);
+      const percentageValue = calculatePercentage(
+        product?.price,
+        product?.offer
+      );
       setNewPrice(product?.price - percentageValue);
     } else {
       setNewPrice(product?.price - product?.offer);
     }
   }, [product]);
 
+  const handleAddToCart = (id, minOrder) => {
+    // console.log(id);
+    const token = localStorage.getItem("token");
+
+    postApi(
+      "/cart/add",
+      {
+        productId: id,
+        quantity: minOrder,
+      },
+      token
+    )
+      .then(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Add to Cart successfully.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+      });
+  };
   return (
     <div>
       <div
@@ -62,8 +90,8 @@ const ProductCart = ({ product }) => {
         >
           <div className="pl-2 pt-1 pb-1 flex justify-between items-center pr-2">
             <div>
-            <div className="flex flex-wrap">
-                {product?.price>newPrice && (
+              <div className="flex flex-wrap">
+                {product?.price > newPrice && (
                   <p className={`relative mr-1 line-through text-SubTextColor`}>
                     {Math.ceil(product?.price)} ৳
                   </p>
@@ -95,7 +123,7 @@ const ProductCart = ({ product }) => {
                 }
               />
               <Link
-              to={`/productDetails/${product?.id}`}
+                to={`/productDetails/${product?.id}`}
                 className={`relative hover:underline break-all line-clamp-1 ${
                   hover ? "text-CardColor line-clamp-none" : "text-TextColor"
                 } `}
@@ -104,7 +132,7 @@ const ProductCart = ({ product }) => {
               </Link>
             </div>
             <div className="flex flex-col">
-              <button
+              {/* <button
                 onMouseEnter={() => setHeartIconHover(true)}
                 onMouseLeave={() => setHeartIconHover(false)}
                 className=" mb-1"
@@ -127,8 +155,9 @@ const ProductCart = ({ product }) => {
                     } `}
                   />
                 )}
-              </button>
+              </button> */}
               <button
+                onClick={() => handleAddToCart(product?.id, product?.minOrder)}
                 onMouseEnter={() => setCartIconHover(true)}
                 onMouseLeave={() => setCartIconHover(false)}
                 className=""
@@ -164,22 +193,22 @@ const ProductCart = ({ product }) => {
           </div>
         )}
         {product?.freeDelivery ? (
-        <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-l-full top-2 p-1 right-0">
-          <TbTruckDelivery className="text-MainColor text-[25px] ml-1 mr-1"></TbTruckDelivery>
+          <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-l-full top-2 p-1 right-0">
+            <TbTruckDelivery className="text-MainColor text-[25px] ml-1 mr-1"></TbTruckDelivery>
 
-          <p className="text-sm text-CardColor p-1 bg-MainColor rounded-full">
-            off
-          </p>
-        </div>
-      ) : (
-        <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-l-full top-2 p-1 right-0">
-          <TbTruckDelivery className="text-MainColor text-[25px] ml-1 mr-1"></TbTruckDelivery>
+            <p className="text-sm text-CardColor p-1 bg-MainColor rounded-full">
+              off
+            </p>
+          </div>
+        ) : (
+          <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-l-full top-2 p-1 right-0">
+            <TbTruckDelivery className="text-MainColor text-[25px] ml-1 mr-1"></TbTruckDelivery>
 
-          <p className="text-sm text-CardColor p-1 bg-MainColor rounded-full">
-            {product?.deliveryCharge} ৳
-          </p>
-        </div>
-      )}
+            <p className="text-sm text-CardColor p-1 bg-MainColor rounded-full">
+              {product?.deliveryCharge} ৳
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
