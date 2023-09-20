@@ -2,116 +2,29 @@ import { Helmet } from "react-helmet";
 import ProductCart from "../../components/ProductCart";
 import SellerShopCart from "../../components/SellerShopCart";
 import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { PiSmileySadLight } from "react-icons/pi";
+import { getApi } from "../../apis";
 
 const ShopPage = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const encodedData = queryParams.get('data');
+  const encodedData = queryParams.get("data");
   const data = JSON.parse(decodeURIComponent(encodedData));
-  const productData = [
-    {
-      thumbnail:
-        "https://media.istockphoto.com/id/1430997435/photo/set-of-amber-glass-bottles-with-dropper-lid-on-a-3d-wooden-podium-in-the-sunlight-containers.webp?b=1&s=170667a&w=0&k=20&c=7fqscVg7-pY9s-HHtqxmsvApVutdGL8GgprHdkjvHAQ=",
-      oldPrice: 200,
-      newPrice: 150,
-      title: "Product 1",
-      percentage: true,
-      offer: 25,
-      deliveryFree: false,
-    },
-    {
-      thumbnail:
-        "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-      oldPrice: 150,
-      newPrice: 120,
-      title: "Product 2",
-      percentage: true,
-      offer: 20,
-      deliveryFree: true,
-    },
-    {
-      thumbnail:
-        "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1099&q=80",
-      oldPrice: 50,
-      newPrice: 40,
-      title: "Product 3",
-      percentage: true,
-      offer: 20,
-      deliveryFree: false,
-    },
-    {
-      thumbnail:
-        "https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1004&q=80",
-      oldPrice: 1200,
-      newPrice: 950,
-      title: "Product 4",
-      percentage: true,
-      offer: 20,
-      deliveryFree: false,
-    },
-    {
-      thumbnail:
-        "https://images.unsplash.com/photo-1545127398-14699f92334b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1035&q=80",
-      oldPrice: 80,
-      newPrice: 60,
-      title: "Product 5",
-      percentage: true,
-      offer: 25,
-      deliveryFree: true,
-    },
-    {
-      thumbnail:
-        "https://i0.wp.com/post.healthline.com/wp-content/uploads/2020/07/505677-HL-Is_Ensure_or_Boost_Healthier-1296x728-Header.jpg?w=1155&h=1528",
-      oldPrice: 300,
-      newPrice: 250,
-      title: "Product 6",
-      percentage: true,
-      offer: 20,
-      deliveryFree: false,
-    },
-    {
-      thumbnail:
-        "https://images.unsplash.com/photo-1547949003-9792a18a2601?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-      oldPrice: 40,
-      newPrice: 30,
-      title: "Product 7",
-      percentage: true,
-      offer: 25,
-      deliveryFree: false,
-    },
-    {
-      thumbnail:
-        "https://images.unsplash.com/photo-1560343090-f0409e92791a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-      oldPrice: 180,
-      newPrice: 150,
-      title: "Product 8",
-      percentage: true,
-      offer: 20,
-      deliveryFree: true,
-    },
-    {
-      thumbnail:
-        "https://images.unsplash.com/photo-1539185441755-769473a23570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80",
-      oldPrice: 70,
-      newPrice: 60,
-      title: "Product 9",
-      percentage: true,
-      offer: 15,
-      deliveryFree: false,
-    },
-    {
-      thumbnail:
-        "https://images.unsplash.com/photo-1539185441755-769473a23570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80",
-      oldPrice: 70,
-      newPrice: 60,
-      title: "Product 9",
-      percentage: true,
-      offer: 15,
-      deliveryFree: false,
-    },
-  ];
+  const [productData, setProductData] = useState([]);
+  console.log(productData);
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
 
+    getApi(`/product/get-seller-product?sellerId=${data?.id}`, token)
+      .then((res) => {
+        setProductData(res.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   return (
     <div className="container mx-auto bg-CardColor lg:mt-4 mt-2">
       <Helmet>
@@ -123,9 +36,16 @@ const ShopPage = () => {
       <div className="p-4">
         <h1 className="text-SubTextColor pb-4">Products</h1>
         <div className="grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4">
-          {productData.map((data, i) => (
-            <ProductCart data={data} key={i}></ProductCart>
-          ))}
+          {productData?.length > 0 ? (
+            productData?.map((product, i) => (
+              <ProductCart product={product} key={i}></ProductCart>
+            ))
+          ) : (
+            <div className="flex flex-col items-center justify-center mt-1">
+              <PiSmileySadLight className="text-SubTextColor text-4xl"></PiSmileySadLight>
+              <h1 className="text-SubTextColor">No Product Available</h1>
+            </div>
+          )}
         </div>
       </div>
     </div>
