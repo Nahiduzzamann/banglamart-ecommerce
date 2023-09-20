@@ -40,6 +40,7 @@ import { getApi, postApi } from "../../apis";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useLocation } from "react-router";
 import ReviewSection from "../../components/ReviewSection";
+import { PiSmileySadLight } from "react-icons/pi";
 const ProductDetails = () => {
   const { user } = useContext(AuthContext);
   const location = useLocation();
@@ -207,7 +208,7 @@ const ProductDetails = () => {
   }, [id, updateComment]);
 
   useEffect(() => {
-    getApi(`/review/get-by-product?productId=clmhdbd5d004ejl06ea5kbpdn`)
+    getApi(`/review/get-by-product?productId=${id}`)
       .then((res) => {
         setReviewsData(res.data.data);
       })
@@ -623,34 +624,34 @@ const ProductDetails = () => {
           <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
             {reviewsData?.length > 0 ? (
               <Accordion allowMultiple>
-              <AccordionItem>
-                {({ isExpanded }) => (
-                  <>
-                    <h2>
-                      <AccordionButton
-                        _expanded={{ bg: "#5dade2", color: "white" }}
-                      >
-                        <Box as="span" flex="1" textAlign="left">
-                          <h1>Customer Reviews</h1>
-                        </Box>
-                        {isExpanded ? (
-                          <MdRemove fontSize="18px" />
-                        ) : (
-                          <MdAdd fontSize="18px" />
-                        )}
-                      </AccordionButton>
-                    </h2>
-                    <AccordionPanel pb={4}>
-                    <ReviewSection reviews={reviewsData} />
-                    </AccordionPanel>
-                  </>
-                )}
-              </AccordionItem>
-            </Accordion>
-              
+                <AccordionItem>
+                  {({ isExpanded }) => (
+                    <>
+                      <h2>
+                        <AccordionButton
+                          _expanded={{ bg: "#5dade2", color: "white" }}
+                        >
+                          <Box as="span" flex="1" textAlign="left">
+                            <h1>Customer Reviews</h1>
+                          </Box>
+                          {isExpanded ? (
+                            <MdRemove fontSize="18px" />
+                          ) : (
+                            <MdAdd fontSize="18px" />
+                          )}
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel pb={4}>
+                        <ReviewSection reviews={reviewsData} />
+                      </AccordionPanel>
+                    </>
+                  )}
+                </AccordionItem>
+              </Accordion>
             ) : (
-              <div className="flex justify-center items-center p-10">
-                <h1>No Reviews.</h1>
+              <div className="flex flex-col items-center justify-center">
+                <PiSmileySadLight className="text-SubTextColor text-4xl"></PiSmileySadLight>
+                <h1 className="text-SubTextColor">No Reviews</h1>
               </div>
             )}
           </div>
@@ -749,9 +750,10 @@ const ProductDetails = () => {
                     </div>
                   ))
                 ) : (
-                  <p className="text-SubTextColor p-2">
-                    No comments available!
-                  </p>
+                  <div className="flex flex-col items-center justify-center mt-1">
+                    <PiSmileySadLight className="text-SubTextColor text-4xl"></PiSmileySadLight>
+                    <h1 className="text-SubTextColor">No Queries</h1>
+                  </div>
                 )
               ) : (
                 <div className="flex justify-center items-center p-10">
