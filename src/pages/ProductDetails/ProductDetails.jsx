@@ -38,7 +38,8 @@ import { MdAdd, MdOutlineDisabledByDefault, MdRemove } from "react-icons/md";
 import Swal from "sweetalert2";
 import { getApi, postApi } from "../../apis";
 import { AuthContext } from "../../providers/AuthProvider";
-import {  useLocation } from "react-router";
+import { useLocation } from "react-router";
+import ReviewSection from "../../components/ReviewSection";
 const ProductDetails = () => {
   const { user } = useContext(AuthContext);
   const location = useLocation();
@@ -173,7 +174,8 @@ const ProductDetails = () => {
   const [updateComment, setUpdateComment] = useState();
   const [getComment, setGetComment] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  // console.log(getComment);
+  const [reviewsData, setReviewsData] = useState([]);
+  console.log(reviewsData);
   const handleSubmitComment = () => {
     setIsLoading(true);
     const data = new FormData();
@@ -203,6 +205,17 @@ const ProductDetails = () => {
         console.log(error);
       });
   }, [id, updateComment]);
+
+  useEffect(() => {
+    getApi(`/review/get-by-product?productId=clmhdbd5d004ejl06ea5kbpdn`)
+      .then((res) => {
+        setReviewsData(res.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   if (product == null) {
     return (
       <div className="w-full min-h-screen flex justify-center items-center">
@@ -608,7 +621,38 @@ const ProductDetails = () => {
             </div>
           </div>
           <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
-            Reviews
+            {reviewsData?.length > 0 ? (
+              <Accordion allowMultiple>
+              <AccordionItem>
+                {({ isExpanded }) => (
+                  <>
+                    <h2>
+                      <AccordionButton
+                        _expanded={{ bg: "#5dade2", color: "white" }}
+                      >
+                        <Box as="span" flex="1" textAlign="left">
+                          <h1>Customer Reviews</h1>
+                        </Box>
+                        {isExpanded ? (
+                          <MdRemove fontSize="18px" />
+                        ) : (
+                          <MdAdd fontSize="18px" />
+                        )}
+                      </AccordionButton>
+                    </h2>
+                    <AccordionPanel pb={4}>
+                    <ReviewSection reviews={reviewsData} />
+                    </AccordionPanel>
+                  </>
+                )}
+              </AccordionItem>
+            </Accordion>
+              
+            ) : (
+              <div className="flex justify-center items-center p-10">
+                <h1>No Reviews.</h1>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -674,9 +718,13 @@ const ProductDetails = () => {
                         <div className="mr-4">
                           <TbUserQuestion className="text-3xl text-MainColor"></TbUserQuestion>
                         </div>
-                        <div>
-                          <h2>{c?.message}</h2>
-                          <p className="text-SubTextColor">Authentic Comment</p>
+                        <div className="">
+                          <p className="text-[16px] font-semibold">
+                            {c?.message}
+                          </p>
+                          <p className="text-SubTextColor text-[12px] font-mono">
+                            Ask by- {c?.user.name}
+                          </p>
                         </div>
                       </div>
                       <div className="flex items-center p-1">
@@ -719,8 +767,16 @@ const ProductDetails = () => {
             </div>
           ) : (
             <h2 className="text-SubTextColor pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
-              Please <Link to='/login' state={{from: location}} replace className="text-MainColor font-bold cursor-pointer hover:underline">Login</Link> to
-              write & see comments{" "}
+              Please{" "}
+              <Link
+                to="/login"
+                state={{ from: location }}
+                replace
+                className="text-MainColor font-bold cursor-pointer hover:underline"
+              >
+                Login
+              </Link>{" "}
+              to write & see comments{" "}
             </h2>
           )}
         </div>
