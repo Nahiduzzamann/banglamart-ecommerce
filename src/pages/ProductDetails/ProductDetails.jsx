@@ -167,6 +167,28 @@ const ProductDetails = () => {
       </table>
     </figure>`;
 
+  const [comment, setComment] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmitComment = () => {
+    setIsLoading(true);
+    const data = new FormData();
+    data.append("message", comment);
+    data.append("image", null);
+    data.append("productId", id);
+
+    const token = localStorage.getItem("token");
+    postApi("/comment/create", data, token)
+      .then(() => {
+        setComment("");
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        console.log(error);
+      });
+  };
+
   if (product == null) {
     return (
       <div className="w-full min-h-screen flex justify-center items-center">
@@ -584,7 +606,47 @@ const ProductDetails = () => {
             </div>
           </div>
           <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
-            cmnt
+            <div className="flex justify-between items-center w-full p-4 border border-gray-300 rounded-lg">
+              <input
+                type="text"
+                placeholder="Write a comment..."
+                value={comment}
+                className="w-full outline-none"
+                onChange={(e) => setComment(e.target.value)}
+              />
+              <button
+                onClick={handleSubmitComment}
+                className={`bg-blue-500 text-white px-4 py-2 rounded-lg ml-2 ${
+                  !comment || isLoading ? "cursor-not-allowed opacity-50" : ""
+                }`}
+                disabled={!comment || isLoading}
+              >
+                {isLoading ? (
+                  <svg
+                    className="animate-spin h-5 w-5 mr-1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.373A8 8 0 0112 4v4h4a8 8 0 01-8 8v-4H6z"
+                    ></path>
+                  </svg>
+                ) : (
+                  "Comment"
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </div>
