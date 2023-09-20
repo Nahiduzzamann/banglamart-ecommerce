@@ -2,13 +2,15 @@ import { Link } from "react-router-dom";
 import { PiSmileySadLight } from "react-icons/pi";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
-import { useContext} from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Spinner } from "@chakra-ui/react";
 import CartComponent from "../../components/CartComponent";
+import {  useLocation } from "react-router";
 
 const Cart = () => {
-  const { user,cart } = useContext(AuthContext);
+  const { user, cart } = useContext(AuthContext);
+  const location = useLocation();
 
   return (
     <div className="container mx-auto m-4">
@@ -17,30 +19,45 @@ const Cart = () => {
       </Helmet>
       <div className="grid grid-cols-3 gap-4">
         <div className="p-3 bg-CardColor md:col-span-2 col-span-3">
-          {user?(cart ? (
-            cart?.length > 0 ? (
-              cart?.map((data, i) => (
-                <CartComponent key={i} data={data}></CartComponent>
-              ))
+          {user ? (
+            cart ? (
+              cart?.length > 0 ? (
+                cart?.map((data, i) => (
+                  <CartComponent key={i} data={data}></CartComponent>
+                ))
+              ) : (
+                <div className="flex flex-col items-center justify-center">
+                  <PiSmileySadLight className="text-SubTextColor text-8xl"></PiSmileySadLight>
+                  <h1 className="text-SubTextColor">No Product Added</h1>
+                </div>
+              )
             ) : (
-              <div className="flex flex-col items-center justify-center">
-                <PiSmileySadLight className="text-SubTextColor text-8xl"></PiSmileySadLight>
-                <h1 className="text-SubTextColor">No Product Added</h1>
+              <div className="flex justify-center items-center p-10">
+                <Spinner
+                  thickness="4px"
+                  speed="0.65s"
+                  emptyColor="gray.200"
+                  color="blue.500"
+                  size="xl"
+                />
               </div>
             )
           ) : (
             <div className="flex justify-center items-center p-10">
-              <Spinner
-                thickness="4px"
-                speed="0.65s"
-                emptyColor="gray.200"
-                color="blue.500"
-                size="xl"
-              />
+              <h2 className="text-SubTextColor pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
+                Please{" "}
+                <Link
+                  to="/login"
+                  state={{ from: location }}
+                  replace
+                  className="text-MainColor font-bold cursor-pointer hover:underline"
+                >
+                  Login
+                </Link>{" "}
+                to see your cart{" "}
+              </h2>
             </div>
-          )):(<div className="flex justify-center items-center p-10">
-          <h1>Please Log in!</h1>
-        </div>)}
+          )}
         </div>
 
         <div className="rounded-md p-3 bg-CardColor md:col-span-1 col-span-3 h-min">

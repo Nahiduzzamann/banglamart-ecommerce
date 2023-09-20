@@ -38,10 +38,10 @@ import { MdAdd, MdOutlineDisabledByDefault, MdRemove } from "react-icons/md";
 import Swal from "sweetalert2";
 import { getApi, postApi } from "../../apis";
 import { AuthContext } from "../../providers/AuthProvider";
-
+import {  useLocation } from "react-router";
 const ProductDetails = () => {
   const { user } = useContext(AuthContext);
-
+  const location = useLocation();
   const [messageShow, setMessageShow] = useState(false);
   const { id } = useParams();
   const [product, setProductDetails] = useState(null);
@@ -719,8 +719,8 @@ const ProductDetails = () => {
             </div>
           ) : (
             <h2 className="text-SubTextColor pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
-              Please <Link to='/login' className="text-MainColor font-bold cursor-pointer hover:underline">Login</Link> to
-              write & see comment{" "}
+              Please <Link to='/login' state={{from: location}} replace className="text-MainColor font-bold cursor-pointer hover:underline">Login</Link> to
+              write & see comments{" "}
             </h2>
           )}
         </div>
