@@ -30,11 +30,13 @@ import {
   CloseButton,
   Spinner,
 } from "@chakra-ui/react";
+import { BiSolidSend } from "react-icons/bi";
+import { TbUserCheck, TbUserQuestion } from "react-icons/tb";
 import Scrollbars from "react-custom-scrollbars";
 import Rating from "react-rating";
 import { MdAdd, MdOutlineDisabledByDefault, MdRemove } from "react-icons/md";
 import Swal from "sweetalert2";
-import { postApi } from "../../apis";
+import { getApi, postApi } from "../../apis";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const ProductDetails = () => {
@@ -168,8 +170,10 @@ const ProductDetails = () => {
     </figure>`;
 
   const [comment, setComment] = useState("");
+  const [updateComment, setUpdateComment] = useState();
+  const [getComment, setGetComment] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  // console.log(getComment);
   const handleSubmitComment = () => {
     setIsLoading(true);
     const data = new FormData();
@@ -179,8 +183,9 @@ const ProductDetails = () => {
 
     const token = localStorage.getItem("token");
     postApi("/comment/create", data, token)
-      .then(() => {
+      .then((res) => {
         setComment("");
+        setUpdateComment(res.data);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -189,6 +194,15 @@ const ProductDetails = () => {
       });
   };
 
+  useEffect(() => {
+    getApi(`/comment/get-by-product?productId=${id}`)
+      .then((res) => {
+        setGetComment(res.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [id, updateComment]);
   if (product == null) {
     return (
       <div className="w-full min-h-screen flex justify-center items-center">
@@ -605,49 +619,110 @@ const ProductDetails = () => {
               <h1 className="">Comments</h1>
             </div>
           </div>
-          <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
-            <div className="flex justify-between items-center w-full p-4 border border-gray-300 rounded-lg">
-              <input
-                type="text"
-                placeholder="Write a comment..."
-                value={comment}
-                className="w-full outline-none"
-                onChange={(e) => setComment(e.target.value)}
-              />
-              <button
-                onClick={handleSubmitComment}
-                className={`bg-blue-500 text-white px-4 py-2 rounded-lg ml-2 ${
-                  !comment || isLoading ? "cursor-not-allowed opacity-50" : ""
-                }`}
-                disabled={!comment || isLoading}
-              >
-                {isLoading ? (
-                  <svg
-                    className="animate-spin h-5 w-5 mr-1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.373A8 8 0 0112 4v4h4a8 8 0 01-8 8v-4H6z"
-                    ></path>
-                  </svg>
+          {user ? (
+            <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
+              <div className="flex justify-between items-center w-full p-4 mt-4 border border-gray-300 rounded-lg">
+                <input
+                  type="text"
+                  placeholder="Write a comment..."
+                  value={comment}
+                  className="w-full outline-none"
+                  onChange={(e) => setComment(e.target.value)}
+                />
+                <button
+                  onClick={handleSubmitComment}
+                  className={`bg-blue-500 text-white px-4 py-2 rounded-lg ml-2 ${
+                    !comment || isLoading ? "cursor-not-allowed opacity-50" : ""
+                  }`}
+                  disabled={!comment || isLoading}
+                >
+                  {isLoading ? (
+                    <svg
+                      className="animate-spin h-5 w-5 mr-1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.373A8 8 0 0112 4v4h4a8 8 0 01-8 8v-4H6z"
+                      ></path>
+                    </svg>
+                  ) : (
+                    <BiSolidSend
+                      className={`text-2xl ${
+                        !comment || isLoading ? "" : "text-MainColor"
+                      }`}
+                    ></BiSolidSend>
+                  )}
+                </button>
+              </div>
+              {getComment ? (
+                getComment?.length > 0 ? (
+                  getComment.map((c, i) => (
+                    <div key={i} className="border-b border-b-[#ece8e8] m-4">
+                      <div className="flex items-center p-1">
+                        <div className="mr-4">
+                          <TbUserQuestion className="text-3xl text-MainColor"></TbUserQuestion>
+                        </div>
+                        <div>
+                          <h2>{c?.message}</h2>
+                          <p className="text-SubTextColor">Authentic Comment</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center p-1">
+                        <div className="mr-4">
+                          <TbUserCheck className="text-3xl text-MainColor"></TbUserCheck>
+                        </div>
+                        <div>
+                          {c?.replay ? (
+                            <div>
+                              <h2>okay</h2>
+                              <p className="text-SubTextColor">
+                                Authentic Reply by seller
+                              </p>
+                            </div>
+                          ) : (
+                            <h3 className="text-SubTextColor">
+                              Seller did not response yet. Please Wait!
+                            </h3>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))
                 ) : (
-                  "Comment"
-                )}
-              </button>
+                  <p className="text-SubTextColor p-2">
+                    No comments available!
+                  </p>
+                )
+              ) : (
+                <div className="flex justify-center items-center p-10">
+                  <Spinner
+                    thickness="4px"
+                    speed="0.65s"
+                    emptyColor="gray.200"
+                    color="blue.500"
+                    size="xl"
+                  />
+                </div>
+              )}
             </div>
-          </div>
+          ) : (
+            <h2 className="text-SubTextColor pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
+              Please <span className="text-MainColor font-bold">Login</span> to
+              write & see comment{" "}
+            </h2>
+          )}
         </div>
       </div>
     </div>
