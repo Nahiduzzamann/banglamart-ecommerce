@@ -624,7 +624,7 @@ const ProductDetails = () => {
               <div className="flex justify-between items-center w-full p-4 mt-4 border border-gray-300 rounded-lg">
                 <input
                   type="text"
-                  placeholder="Write a comment..."
+                  placeholder="Ask a Question..."
                   value={comment}
                   className="w-full outline-none"
                   onChange={(e) => setComment(e.target.value)}
