@@ -719,7 +719,7 @@ const ProductDetails = () => {
             </div>
           ) : (
             <h2 className="text-SubTextColor pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
-              Please <span className="text-MainColor font-bold">Login</span> to
+              Please <Link to='/login' className="text-MainColor font-bold cursor-pointer hover:underline">Login</Link> to
               write & see comment{" "}
             </h2>
           )}

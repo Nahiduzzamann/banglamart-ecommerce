@@ -17,7 +17,7 @@ const Cart = () => {
       </Helmet>
       <div className="grid grid-cols-3 gap-4">
         <div className="p-3 bg-CardColor md:col-span-2 col-span-3">
-          {cart ? (
+          {user?(cart ? (
             cart?.length > 0 ? (
               cart?.map((data, i) => (
                 <CartComponent key={i} data={data}></CartComponent>
@@ -38,7 +38,9 @@ const Cart = () => {
                 size="xl"
               />
             </div>
-          )}
+          )):(<div className="flex justify-center items-center p-10">
+          <h1>Please Log in!</h1>
+        </div>)}
         </div>
 
         <div className="rounded-md p-3 bg-CardColor md:col-span-1 col-span-3 h-min">
