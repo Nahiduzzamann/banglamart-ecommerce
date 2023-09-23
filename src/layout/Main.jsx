@@ -22,6 +22,7 @@ import { fetchForYouProducts } from "../services/actions/forYouProductAction";
 import { fetchBestSellingProducts } from "../services/actions/bestSellingAction";
 import { fetchNewProducts } from './../services/actions/newProductsAction';
 import { fetchTopProducts } from './../services/actions/topProductsAction';
+import { fetchBrand } from "../services/actions/brandAction";
 
 const Main = () => {
   const { user } = useContext(AuthContext);
@@ -82,6 +83,9 @@ const Main = () => {
   }, [dispatch]);
   useEffect(() => {
     dispatch(fetchTopProducts());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchBrand());
   }, [dispatch]);
 
   // isFlash sell available or not 

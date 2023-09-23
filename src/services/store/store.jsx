@@ -15,6 +15,7 @@ import forYouProductsReducer from '../reducers/forYouProductsReducer';
 import bestSellingProductsReducer from '../reducers/bestSellingReducer';
 import newProductsReducer from '../reducers/newProductsReducer';
 import topProductsReducer from './../reducers/topProductsReducer';
+import brandReducer from '../reducers/brandReducer';
 // ...
 
 const rootReducer = combineReducers({
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   bestSellingProduct: bestSellingProductsReducer,
   newProduct: newProductsReducer,
   topProduct: topProductsReducer,
+  brand: brandReducer,
   
   // Add other reducers here
 });
