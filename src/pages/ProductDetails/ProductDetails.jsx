@@ -42,7 +42,7 @@ import { useLocation } from "react-router";
 import ReviewSection from "../../components/ReviewSection";
 import { PiSmileySadLight } from "react-icons/pi";
 const ProductDetails = () => {
-  const { user } = useContext(AuthContext);
+  const { user,setCartUpdate } = useContext(AuthContext);
   const location = useLocation();
   const [messageShow, setMessageShow] = useState(false);
   const { id } = useParams();
@@ -145,7 +145,7 @@ const ProductDetails = () => {
         },
         token
       )
-        .then(() => {
+        .then((res) => {
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -153,6 +153,7 @@ const ProductDetails = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+          setCartUpdate(res.data)
         })
         .catch((error) => {
           console.log(error.response.data.message);
