@@ -42,7 +42,7 @@ import { useLocation } from "react-router";
 import ReviewSection from "../../components/ReviewSection";
 import { PiSmileySadLight } from "react-icons/pi";
 const ProductDetails = () => {
-  const { user,setCartUpdate } = useContext(AuthContext);
+  const { user, setCartUpdate } = useContext(AuthContext);
   const location = useLocation();
   const [messageShow, setMessageShow] = useState(false);
   const { id } = useParams();
@@ -66,18 +66,11 @@ const ProductDetails = () => {
     fetchProductDetails();
   }, [id]);
 
-  const [formData, setFormData] = useState({
-    message: "",
-  });
-  // const minRows = 2;
-  const handleChange = (e) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  const [formData, setFormData] = useState("");
+
   const sendMessage = (e) => {
     e.preventDefault();
+    setFormData("");
   };
   const handleMessageShow = () => {
     setMessageShow(!messageShow);
@@ -153,7 +146,7 @@ const ProductDetails = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          setCartUpdate(res.data)
+          setCartUpdate(res.data);
         })
         .catch((error) => {
           console.log(error.response.data.message);
@@ -395,20 +388,25 @@ const ProductDetails = () => {
                   <input
                     type="text"
                     name="message"
-                    value={formData.message}
-                    onChange={handleChange}
+                    value={formData}
+                    onChange={(e) => setFormData(e.target.value)}
                     placeholder="Type Message..."
                     className="border p-2 pl-4 rounded-full focus:outline-none focus:ring focus:border-blue-500 resize-none"
                   ></input>
-
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.8 }}
-                    type="submit"
-                    className="ml-2 text-[18px] bg-CardColor rounded-full border border-MainColor h-8 w-8 flex justify-center items-center"
-                  >
-                    <AiOutlineSend className="text-MainColor "></AiOutlineSend>
-                  </motion.button>
+                  {formData === "" ? (
+                    <button disabled className="ml-2 text-[18px] bg-CardColor rounded-full border border-SubTextColor h-8 w-8 ">
+                      <AiOutlineSend className="text-SubTextColor ml-2"></AiOutlineSend>
+                    </button>
+                  ) : (
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.8 }}
+                      type="submit"
+                      className="ml-2 text-[18px] bg-CardColor rounded-full border border-MainColor h-8 w-8 "
+                    >
+                      <AiOutlineSend className="text-MainColor ml-2"></AiOutlineSend>
+                    </motion.button>
+                  )}
                 </form>
               </div>
             </div>
