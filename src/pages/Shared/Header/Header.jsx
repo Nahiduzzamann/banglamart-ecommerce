@@ -63,6 +63,8 @@ const Header = () => {
     Navigate(from, { replace: true });
   };
 
+   const [searchText,setSearchText]=useState("")
+  const handleSearch = () => {};
   return (
     <div className="shadow-lg ">
       {/* Add Section  */}
@@ -124,10 +126,13 @@ const Header = () => {
                 <input
                   className="focus:border-MainColor outline-MainColor w-full rounded-full py-2 pl-4 pr-4 focus:outline-1"
                   type="text"
+                  value={searchText}
                   placeholder="Search..."
+                  onChange={(e)=>setSearchText(e.target.value)}
                 />
                 <div className="bg-MainColor hover:bg-MainColor absolute inset-y-0 right-0 flex items-center justify-center rounded-r-full pl-3 pr-3 rounded-e-lg">
                   <motion.button
+                    onClick={handleSearch}
                     whileHover={{ scale: 1.4 }}
                     whileTap={{ scale: 0.8 }}
                     className=""
@@ -164,7 +169,7 @@ const Header = () => {
                   <AiOutlineShoppingCart className="text-SubTextColor text-[30px]" />
                   <div>
                     <div className="bg-MainColor text-CardColor absolute right-[45px] -top-2 flex h-5 w-5 items-center justify-center rounded-full text-[10px]">
-                      {user?(cart?.length > 9 ? "9+" : cart?.length):('0')}
+                      {user ? (cart?.length > 9 ? "9+" : cart?.length) : "0"}
                     </div>
                     <p className=" text-SubTextColor">Cart</p>
                   </div>
@@ -352,7 +357,9 @@ const Header = () => {
                   <AiOutlineShoppingCart className="text-SubTextColor text-[20px]" />
                   <div>
                     <div className="bg-MainColor text-CardColor absolute right-[40px] -top-[6px] flex h-4 w-4 items-center justify-center rounded-full text-[10px]">
-                    <p className="p-[1px]">{cart?.length > 9 ? "9+" : cart?.length}</p>
+                      <p className="p-[1px]">
+                        {cart?.length > 9 ? "9+" : cart?.length}
+                      </p>
                     </div>
                     <p className=" text-SubTextColor">Cart</p>
                   </div>
