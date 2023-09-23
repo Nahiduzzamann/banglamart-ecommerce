@@ -13,6 +13,7 @@ const CartComponent = ({ data }) => {
   let product = data.product;
   const url = "http://62.72.31.204:1300";
 
+  const [loading, setLoading] = useState(false);
   const [minOrder, setQuantity] = useState(null);
   const [newPrice, setNewPrice] = useState(product?.price);
   const [totalPrice, setTotalPrice] = useState();
@@ -46,7 +47,6 @@ const CartComponent = ({ data }) => {
     setFinalPrice(actualAmount);
   }, [product]);
 
-
   // calculation portion
 
   const handleIncrease = () => {
@@ -65,6 +65,7 @@ const CartComponent = ({ data }) => {
     }
   };
   const handleRemoveFromCart = (id) => {
+    setLoading(true);
     // console.log(id);
     const token = localStorage.getItem("token");
     deleteApi(`/cart/delete?cartId=${id}`, token)
@@ -77,8 +78,11 @@ const CartComponent = ({ data }) => {
           timer: 1500,
         });
         setCartUpdate(res.data);
+        setLoading(false);
       })
       .catch((error) => {
+        setLoading(false);
+
         console.log(error.response.data.message);
       });
   };
@@ -136,14 +140,23 @@ const CartComponent = ({ data }) => {
           <h2 className="line-through text-SubTextColor">{newPrice} ৳</h2>
           <h1 className="">{totalPrice} ৳</h1>
           <div className="">
-            <motion.button
-              onClick={() => handleRemoveFromCart(data?.id)}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
-              className="text-CardColor flex bg-[#e65b5b] hover:underline pb-1 pl-2 pr-2 rounded-full"
-            >
-              remove
-            </motion.button>
+            {loading ? (
+              <button
+                disabled
+                className="text-CardColor text-sm  flex bg-[#e65b5b]  pb-1 pl-2 pr-2 rounded-full"
+              >
+                Loading...
+              </button>
+            ) : (
+              <motion.button
+                onClick={() => handleRemoveFromCart(data?.id)}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.8 }}
+                className="text-CardColor flex bg-[#e65b5b] hover:underline pb-1 pl-2 pr-2 rounded-full"
+              >
+                remove
+              </motion.button>
+            )}
           </div>
         </div>
         <div className="m-1">
