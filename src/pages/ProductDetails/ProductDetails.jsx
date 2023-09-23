@@ -216,7 +216,7 @@ const ProductDetails = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [id]);
 
   if (product == null) {
     return (
