@@ -44,8 +44,8 @@ const AllSeller = () => {
         <div className="shadow-xl shadow-BackgroundColor rounded">
           <h1 className=" lg:mt-10 text-SubTextColor">All Sellers</h1>
           <div className="p-4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
-            {AllSellers.length > 0 ? (
-              AllSellers.map((data, i) => (
+            {AllSellers?.length > 0 ? (
+              AllSellers?.map((data, i) => (
                 <SellerShopCart key={i} data={data} />
               ))
             ) : (

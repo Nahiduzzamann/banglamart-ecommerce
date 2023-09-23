@@ -122,7 +122,7 @@ const Header = () => {
               {/* search  */}
               <div className="relative mr-2 ml-2 w-full rounded-full shadow-sm shadow-[#b6b6b6] md:mr-0 md:ml-0 md:w-[400px] lg:w-[500px] xl:w-[600px]">
                 <input
-                  className="focus:border-MainColor w-full rounded-full py-2 pl-4 pr-4 focus:outline-none"
+                  className="focus:border-MainColor outline-MainColor w-full rounded-full py-2 pl-4 pr-4 focus:outline-1"
                   type="text"
                   placeholder="Search..."
                 />
