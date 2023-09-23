@@ -108,12 +108,12 @@ const Header = () => {
         </div>
         {/* search logo section  */}
         <div className="bg-CardColor border-b-BorderColor border-b-[1px]">
-          <div className="container mx-auto p-2">
+          <div className="container mx-auto p-1">
             <div className="flex items-center justify-between ">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full lg:h-20 lg:w-20 xl:h-24 xl:w-24">
+              <div className=" h-16 w-16 rounded-full lg:h-20 lg:w-20">
                 <Link className="" to="/">
                   <img
-                    className="h-16 w-16 lg:h-20 lg:w-20 xl:h-24 xl:w-24 "
+                    className="h-16 w-16 lg:h-20 lg:w-20 "
                     src="https://i.ibb.co/9t1wQGK/banglamart-prev-ui.png"
                     alt=""
                   />
