@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import FlashSaleBanner from "../../../components/FlashSaleBanner";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Rating from "react-rating";
 import {
   AiFillStar,
@@ -18,9 +18,11 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../../providers/AuthProvider";
 
 const BargainingProducts = () => {
-  const bargainingProducts = useSelector(
+  const [bargainingProducts,setBargainingProducts]=useState([])
+  const data = useSelector(
     (state) => state.bargainingProducts.bargainingProducts?.data
   );
+  useEffect(()=>{setBargainingProducts(data)},[data])
   // console.log(bargainingProducts);
   return (
     <div className=" mt-4 lg:mt-8 m-1 lg:m-0 bg-[#440a96] rounded-lg p-4">
