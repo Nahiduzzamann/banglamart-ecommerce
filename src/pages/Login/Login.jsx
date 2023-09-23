@@ -68,30 +68,36 @@ const Login = () => {
     try {
       const res = await signInWithGoogle();
       console.log(res.user);
-      postApi("/auth/thirdPartySignIn", {
-        uid:res.user.uid,
-        name: res.user.displayName,
-        phone:res.user.phoneNumber,
-        email:res.user.email,
-      },null)
-      .then((res) => {
-        saveToken(res.data.token);
-        setIsLoading(false);
-        setUserState(657);
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "LogIn Successful.",
-          showConfirmButton: false,
-          timer: 1500,
+      postApi(
+        "/auth/thirdPartySignIn",
+        {
+          uid: res.user.uid,
+          name: res.user.displayName,
+          phone: res.user.phoneNumber,
+          email: res.user.email,
+        },
+        null
+      )
+        .then((res) => {
+          saveToken(res.data.token);
+          setIsLoading(false);
+          setUserState(657);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "LogIn Successful.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate(from, { replace: true });
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          setErrorMessage(error.response.data.message);
         });
-        navigate(from, { replace: true });
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        setErrorMessage(error.response.data.message);
-      });
     } catch (error) {
+      setIsLoading(false);
+
       console.error(error.message);
     }
   };
