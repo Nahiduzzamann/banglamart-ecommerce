@@ -19,7 +19,7 @@ const SellerShopCart = ({ data }) => {
           />
         </div>
         <div className="flex flex-col p-2 w-[220px] sm:w-[270px] md:w-[280px] lg:w-[300px]">
-          <h1 className="text-SubTextColor line-clamp-1">{data.shopName}</h1>
+          <h1 className="text-SubTextColor line-clamp-1">{data?.shopName}</h1>
           <div className="mt-1">
             <Rating
               initialRating={4.5}

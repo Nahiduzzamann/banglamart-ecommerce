@@ -12,7 +12,7 @@ const BrandProductsPage = () => {
   const encodedData = queryParams.get("data");
   const data = JSON.parse(decodeURIComponent(encodedData));
   const [productData, setProductData] = useState([]);
-  console.log(productData);
+  // console.log(productData);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
