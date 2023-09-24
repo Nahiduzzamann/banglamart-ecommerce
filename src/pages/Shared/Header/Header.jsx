@@ -23,7 +23,6 @@ import {
 } from "react-icons/tb";
 import {
   Avatar,
-  Button,
   Menu,
   MenuButton,
   MenuGroup,
@@ -222,23 +221,21 @@ const Header = () => {
                   </div>
                 </button> */}
               <div className="flex items-center">
-                <Menu>
-                  <MenuButton className="hover:border-BorderColor border-CardColor relative ml-2 md:flex hidden items-center rounded-md border hover:border ">
-                    <AiOutlineComment className="text-SubTextColor text-[30px]" />
-                    <div>
-                      <div className="bg-MainColor text-CardColor absolute right-[15px] -top-3 flex h-5 w-5 items-center justify-center rounded-full text-[10px]">
-                        10
+                <div className="md:flex hidden">
+                  <Menu>
+                    <MenuButton className="hover:border-BorderColor border-CardColor relative ml-2 md:flex hidden items-center rounded-md border hover:border ">
+                      <AiOutlineComment className="text-SubTextColor text-[30px]" />
+                      <div>
+                        <div className="bg-MainColor text-CardColor absolute right-[15px] -top-3 flex h-5 w-5 items-center justify-center rounded-full text-[10px]">
+                          10
+                        </div>
                       </div>
-                    </div>
-                  </MenuButton>
-                  <MenuList>
-                    <MenuItem>Download</MenuItem>
-                    <MenuItem>Create a Copy</MenuItem>
-                    <MenuItem>Mark as Draft</MenuItem>
-                    <MenuItem>Delete</MenuItem>
-                    <MenuItem>Attend a Workshop</MenuItem>
-                  </MenuList>
-                </Menu>
+                    </MenuButton>
+                    <MenuList bg="#ecf8f8">
+                      <ConversationList />
+                    </MenuList>
+                  </Menu>
+                </div>
                 <Link
                   to="/notifications"
                   className="hover:border-BorderColor border-CardColor relative ml-2 md:flex hidden items-center rounded-md border hover:border "
@@ -437,23 +434,23 @@ const Header = () => {
             <div className="relative flex items-center justify-between p-1 md:hidden">
               <Burger></Burger>
               <div className="flex items-center">
-              <Menu>
-                  <MenuButton  className="hover:border-BorderColor border-CardColor relative ml-2 flex md:hidden items-center rounded-md border hover:border ">
-                    <AiOutlineComment className="text-SubTextColor text-[20px]" />
-                    <div>
-                    <div className="bg-MainColor text-CardColor absolute right-[12px] -top-[6px] flex h-4 w-4 items-center justify-center rounded-full text-[10px]">
-                      <p className="text-[10px]">10</p>
-                    </div>
-                    </div>
-                  </MenuButton>
-                  <MenuList>
-                    <MenuItem>Download</MenuItem>
-                    <MenuItem>Create a Copy</MenuItem>
-                    <MenuItem>Mark as Draft</MenuItem>
-                    <MenuItem>Delete</MenuItem>
-                    <MenuItem>Attend a Workshop</MenuItem>
-                  </MenuList>
-                </Menu>
+                <div>
+                  <Menu>
+                    <MenuButton className="hover:border-BorderColor border-CardColor relative ml-2 flex md:hidden items-center rounded-md border hover:border ">
+                      <AiOutlineComment className="text-SubTextColor text-[20px]" />
+                      <div>
+                        <div className="bg-MainColor text-CardColor absolute right-[12px] -top-[6px] flex h-4 w-4 items-center justify-center rounded-full text-[10px]">
+                          <p className="text-[10px]">10</p>
+                        </div>
+                      </div>
+                    </MenuButton>
+                    <MenuList bg="#ecf8f8">
+                      <MenuItem  bg="#ecf8f8">
+                        <ConversationList />
+                      </MenuItem>
+                    </MenuList>
+                  </Menu>
+                </div>
                 <Link
                   to="/notifications"
                   className="hover:border-BorderColor border-CardColor relative ml-2 flex md:hidden items-center rounded-md border hover:border "
@@ -490,3 +487,83 @@ const Header = () => {
 };
 
 export default Header;
+
+const ConversationList = () => {
+  // Dummy conversation data
+  const conversations = [
+    {
+      id: 1,
+      img: "https://imgv3.fotor.com/images/gallery/Realistic-Male-Profile-Picture.jpg",
+      name: "John Doe",
+      senderMessage: "Hey there Hey there Hey there Hey there Hey there!",
+      timestamp: "2 mins ago",
+    },
+    {
+      id: 2,
+      img: "https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg",
+      name: "Alice Smith",
+      senderMessage: "Hello!",
+      timestamp: "5 mins ago",
+    },
+    {
+      id: 3,
+      img: "https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg",
+      name: "Alice Smith",
+      senderMessage: "Hello!",
+      timestamp: "5 mins ago",
+    },
+    {
+      id: 4,
+      img: "https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg",
+      name: "Alice Smith",
+      senderMessage: "Hello!",
+      timestamp: "5 mins ago",
+    },
+    {
+      id: 5,
+      img: "https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg",
+      name: "Alice Smith",
+      senderMessage: "Hello!",
+      timestamp: "5 mins ago",
+    },
+    // Add more conversation objects as needed
+  ];
+
+  return (
+    <div className="max-h-[300px] overflow-y-auto">
+      {conversations.map((conversation, i) => (
+        <ConversationCard
+          key={i}
+          senderImage={conversation.img}
+          senderMessage={conversation.senderMessage}
+          senderName={conversation.name}
+          timestamp={conversation.timestamp}
+        />
+      ))}
+    </div>
+  );
+};
+
+const ConversationCard = ({
+  senderImage,
+  senderMessage,
+  senderName,
+  timestamp,
+}) => {
+  return (
+    <div className="bg-CardColor border-[1px] border-MainColor rounded-lg shadow-md p-2 m-2 flex items-center w-[300px] md:w-[400px]">
+      <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
+        <img
+          src={senderImage}
+          alt="Sender"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <div className="flex-grow w-36">
+        <div className="font-semibold line-clamp-1">{senderName}</div>
+        <div className="text-gray-600 w-36 line-clamp-1 ">{senderMessage}</div>
+      </div>
+      <div className="text-xs text-gray-400">{timestamp}</div>
+    </div>
+  );
+};
