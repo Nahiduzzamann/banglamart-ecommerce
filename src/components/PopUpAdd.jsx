@@ -10,7 +10,6 @@ const PopUpAdd = ({ setAdds }) => {
   const [addImages, setAddImages] = useState(null);
   const [image, setImage] = useState(null);
   const [ids, setId] = useState(null);
-
   useEffect(() => {
     let addId = [];
     const visitorId = localStorage.getItem("visitorId");
@@ -23,12 +22,19 @@ const PopUpAdd = ({ setAdds }) => {
         data.data.map((data) => addId.push(data.id));
         setId(addId);
       } catch (error) {
+        setAdds(false);
         console.error("Error fetching instructor classes:", error);
       }
     };
 
     fetchAdds();
   }, []);
+  useEffect(() => {
+    if (addImages?.length > 0) {
+      setAdds(true);
+    }
+  }, [addImages]);
+
   // console.log(ids);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -61,9 +67,13 @@ const PopUpAdd = ({ setAdds }) => {
         visitorId: visitorId,
       },
       null
-    );
-    console.log(ids,visitorId);
-    setAdds(false);
+    )
+      .then(() => {
+        setAdds(false);
+      })
+      .catch(() => {
+        setAdds(false);
+      });
   };
   if (addImages?.length == 0) {
     setAdds(false);

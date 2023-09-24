@@ -26,8 +26,8 @@ import { fetchBrand } from "../services/actions/brandAction";
 
 const Main = () => {
   const { user } = useContext(AuthContext);
-  const [isLoading, setIsLoading] = useState(true);
-  const [adds, setAdds] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [adds, setAdds] = useState(false);
 // loading animation 
   useEffect(() => {
     // Simulate a delay to demonstrate loading animation
