@@ -437,6 +437,23 @@ const Header = () => {
             <div className="relative flex items-center justify-between p-1 md:hidden">
               <Burger></Burger>
               <div className="flex items-center">
+              <Menu>
+                  <MenuButton  className="hover:border-BorderColor border-CardColor relative ml-2 flex md:hidden items-center rounded-md border hover:border ">
+                    <AiOutlineComment className="text-SubTextColor text-[20px]" />
+                    <div>
+                    <div className="bg-MainColor text-CardColor absolute right-[12px] -top-[6px] flex h-4 w-4 items-center justify-center rounded-full text-[10px]">
+                      <p className="text-[10px]">10</p>
+                    </div>
+                    </div>
+                  </MenuButton>
+                  <MenuList>
+                    <MenuItem>Download</MenuItem>
+                    <MenuItem>Create a Copy</MenuItem>
+                    <MenuItem>Mark as Draft</MenuItem>
+                    <MenuItem>Delete</MenuItem>
+                    <MenuItem>Attend a Workshop</MenuItem>
+                  </MenuList>
+                </Menu>
                 <Link
                   to="/notifications"
                   className="hover:border-BorderColor border-CardColor relative ml-2 flex md:hidden items-center rounded-md border hover:border "
@@ -454,7 +471,7 @@ const Header = () => {
                 >
                   <AiOutlineShoppingCart className="text-SubTextColor text-[20px]" />
                   <div>
-                    <div className="bg-MainColor text-CardColor absolute right-[36px] -top-[6px] flex h-4 w-4 items-center justify-center rounded-full text-[10px]">
+                    <div className="bg-MainColor text-CardColor absolute right-[35px] -top-[6px] flex h-4 w-4 items-center justify-center rounded-full text-[10px]">
                       <p className="p-[1px]">
                         {cart?.length > 9 ? "9+" : cart?.length}
                       </p>
