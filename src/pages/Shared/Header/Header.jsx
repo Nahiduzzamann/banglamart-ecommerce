@@ -550,6 +550,7 @@ const ConversationCard = ({
   senderName,
   timestamp,
 }) => {
+ 
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}

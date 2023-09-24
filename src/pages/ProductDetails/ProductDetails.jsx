@@ -43,8 +43,9 @@ import ReviewSection from "../../components/ReviewSection";
 import { PiSmileySadLight } from "react-icons/pi";
 const ProductDetails = () => {
   const { user, setCartUpdate } = useContext(AuthContext);
-  const location = useLocation();
   const [messageShow, setMessageShow] = useState(false);
+
+  const location = useLocation();
   const { id } = useParams();
   const [product, setProductDetails] = useState(null);
   // console.log(product);
@@ -394,7 +395,10 @@ const ProductDetails = () => {
                     className="border p-2 pl-4 rounded-full focus:outline-none focus:ring focus:border-blue-500 resize-none"
                   ></input>
                   {formData === "" ? (
-                    <button disabled className="ml-2 text-[18px] bg-CardColor rounded-full border border-SubTextColor h-8 w-8 ">
+                    <button
+                      disabled
+                      className="ml-2 text-[18px] bg-CardColor rounded-full border border-SubTextColor h-8 w-8 "
+                    >
                       <AiOutlineSend className="text-SubTextColor ml-2"></AiOutlineSend>
                     </button>
                   ) : (

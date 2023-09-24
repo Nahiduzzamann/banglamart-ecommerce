@@ -16,12 +16,13 @@ const provider = new GoogleAuthProvider();
 const url = "http://62.72.31.204:1300";
 
 const AuthProvider = ({ children }) => {
+
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [userState, setUserState] = useState(134);
 
   const [cart, setCart] = useState(null);
-  const [cartUpdate,setCartUpdate]=useState(null)
+  const [cartUpdate, setCartUpdate] = useState(null);
   useEffect(() => {
     const token = localStorage.getItem("token");
     getApi("/cart/get", token)
@@ -31,7 +32,7 @@ const AuthProvider = ({ children }) => {
       .catch((error) => {
         console.log(error.response.data.message);
       });
-  }, [userState,cartUpdate]);
+  }, [userState, cartUpdate]);
 
   const createUser = async (route, data, token) =>
     axios.post(`${url}${route}`, data, {
