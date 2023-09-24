@@ -5,6 +5,8 @@ import {
   AiOutlineSearch,
   AiOutlineShoppingCart,
   AiOutlineUser,
+  AiOutlineBell,
+  AiOutlineComment,
 } from "react-icons/ai";
 import LanguageToggle from "../../../components/LanguageToggle";
 import { useTranslation } from "react-i18next";
@@ -12,12 +14,16 @@ import { Link, NavLink, Navigate } from "react-router-dom";
 import Burger from "./Nav/Burger";
 import { motion } from "framer-motion";
 import { CgProfile } from "react-icons/cg";
-import { TbBrandMessenger, TbListDetails, TbLogout2, TbTruckDelivery, TbUserShield } from "react-icons/tb";
 import {
-  MdOutlineNotificationsActive,
-} from "react-icons/md";
+  TbBrandMessenger,
+  TbListDetails,
+  TbLogout2,
+  TbTruckDelivery,
+  TbUserShield,
+} from "react-icons/tb";
 import {
   Avatar,
+  Button,
   Menu,
   MenuButton,
   MenuGroup,
@@ -91,13 +97,13 @@ const Header = () => {
       setSearchResults(filteredResults);
       setLoading(false);
     }, 500);
-  }, [searchQuery,reLoad]);
+  }, [searchQuery, reLoad]);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
   const handleSearch = (e) => {
-    setReLoad(e.timeStamp)
+    setReLoad(e.timeStamp);
   };
   return (
     <div className="shadow-lg ">
@@ -179,7 +185,9 @@ const Header = () => {
                 </div>
                 {searchQuery && (
                   <div className="mr-2 ml-2 md:mr-0 md:ml-0 search-results absolute bg-BorderColor z-10 w-[220px] sm:w-[300px] md:w-[400px] lg:w-[500px] xl:w-[600px] p-2 rounded-md text-SubTextColor">
-                    <h1 className="text-center bg-CardColor rounded">Products</h1>
+                    <h1 className="text-center bg-CardColor rounded">
+                      Products
+                    </h1>
                     {loading ? (
                       <div className="flex justify-center items-center p-10">
                         <Spinner
@@ -214,24 +222,41 @@ const Header = () => {
                   </div>
                 </button> */}
               <div className="flex items-center">
+                <Menu>
+                  <MenuButton className="hover:border-BorderColor border-CardColor relative ml-2 md:flex hidden items-center rounded-md border hover:border ">
+                    <AiOutlineComment className="text-SubTextColor text-[30px]" />
+                    <div>
+                      <div className="bg-MainColor text-CardColor absolute right-[15px] -top-3 flex h-5 w-5 items-center justify-center rounded-full text-[10px]">
+                        10
+                      </div>
+                    </div>
+                  </MenuButton>
+                  <MenuList>
+                    <MenuItem>Download</MenuItem>
+                    <MenuItem>Create a Copy</MenuItem>
+                    <MenuItem>Mark as Draft</MenuItem>
+                    <MenuItem>Delete</MenuItem>
+                    <MenuItem>Attend a Workshop</MenuItem>
+                  </MenuList>
+                </Menu>
                 <Link
                   to="/notifications"
-                  className="hover:border-BorderColor border-CardColor relative ml-2 md:flex hidden items-center rounded-md border p-1 hover:border "
+                  className="hover:border-BorderColor border-CardColor relative ml-2 md:flex hidden items-center rounded-md border hover:border "
                 >
-                  <MdOutlineNotificationsActive className="text-SubTextColor text-[30px]" />
+                  <AiOutlineBell className="text-SubTextColor text-[30px]" />
                   <div>
-                    <div className="bg-MainColor text-CardColor absolute right-[20px] -top-2 flex h-5 w-5 items-center justify-center rounded-full text-[10px]">
+                    <div className="bg-MainColor text-CardColor absolute right-[12px] -top-3 flex h-5 w-5 items-center justify-center rounded-full text-[10px]">
                       10
                     </div>
                   </div>
                 </Link>
                 <Link
                   to="/cart"
-                  className="hover:border-BorderColor border-CardColor relative ml-2 md:flex hidden items-center rounded-md border p-1 hover:border mr-2"
+                  className="hover:border-BorderColor border-CardColor relative ml-2 md:flex hidden items-center rounded-md border hover:border mr-2"
                 >
                   <AiOutlineShoppingCart className="text-SubTextColor text-[30px]" />
                   <div>
-                    <div className="bg-MainColor text-CardColor absolute right-[45px] -top-2 flex h-5 w-5 items-center justify-center rounded-full text-[10px]">
+                    <div className="bg-MainColor text-CardColor absolute right-[35px] -top-3 flex h-5 w-5 items-center justify-center rounded-full text-[10px]">
                       {user ? (cart?.length > 9 ? "9+" : cart?.length) : "0"}
                     </div>
                     <p className=" text-SubTextColor">Cart</p>
@@ -414,22 +439,22 @@ const Header = () => {
               <div className="flex items-center">
                 <Link
                   to="/notifications"
-                  className="hover:border-BorderColor border-CardColor relative ml-2 flex md:hidden items-center rounded-md border p-1 hover:border "
+                  className="hover:border-BorderColor border-CardColor relative ml-2 flex md:hidden items-center rounded-md border hover:border "
                 >
-                  <MdOutlineNotificationsActive className="text-SubTextColor text-[20px]" />
+                  <AiOutlineBell className="text-SubTextColor text-[20px]" />
                   <div>
-                    <div className="bg-MainColor text-CardColor absolute right-[15px] -top-[6px] flex h-4 w-4 items-center justify-center rounded-full text-[10px]">
+                    <div className="bg-MainColor text-CardColor absolute right-[12px] -top-[6px] flex h-4 w-4 items-center justify-center rounded-full text-[10px]">
                       <p className="text-[10px]">10</p>
                     </div>
                   </div>
                 </Link>
                 <Link
                   to="/cart"
-                  className="hover:border-BorderColor border-CardColor relative ml-2 flex md:hidden items-center rounded-md border p-1 hover:border mr-2"
+                  className="hover:border-BorderColor border-CardColor relative ml-2 flex md:hidden items-center rounded-md border hover:border mr-2"
                 >
                   <AiOutlineShoppingCart className="text-SubTextColor text-[20px]" />
                   <div>
-                    <div className="bg-MainColor text-CardColor absolute right-[40px] -top-[6px] flex h-4 w-4 items-center justify-center rounded-full text-[10px]">
+                    <div className="bg-MainColor text-CardColor absolute right-[36px] -top-[6px] flex h-4 w-4 items-center justify-center rounded-full text-[10px]">
                       <p className="p-[1px]">
                         {cart?.length > 9 ? "9+" : cart?.length}
                       </p>
