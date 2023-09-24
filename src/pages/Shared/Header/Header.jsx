@@ -195,7 +195,7 @@ const Header = () => {
                         <div key={product.id}>{product.name}</div>
                       ))
                     ) : (
-                      <div className="flex flex-col items-center justify-center">
+                      <div className="flex flex-col items-center justify-center mt-4">
                         <PiSmileySadLight className="text-SubTextColor text-4xl"></PiSmileySadLight>
                         <p className="text-SubTextColor">No Result Found</p>
                       </div>
