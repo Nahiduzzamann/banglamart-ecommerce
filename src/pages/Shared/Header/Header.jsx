@@ -445,7 +445,7 @@ const Header = () => {
                       </div>
                     </MenuButton>
                     <MenuList bg="#ecf8f8">
-                      <MenuItem  bg="#ecf8f8">
+                      <MenuItem bg="#ecf8f8">
                         <ConversationList />
                       </MenuItem>
                     </MenuList>
@@ -551,7 +551,10 @@ const ConversationCard = ({
   timestamp,
 }) => {
   return (
-    <div className="bg-CardColor border-[1px] border-MainColor rounded-lg shadow-md p-2 m-2 flex items-center w-[300px] md:w-[400px]">
+    <motion.div
+      whileHover={{ scale: 1.02 }}
+      className="bg-CardColor border-[1px] border-MainColor rounded-lg shadow-md p-2 m-2 flex items-center w-[300px] md:w-[400px] cursor-pointer"
+    >
       <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
         <img
           src={senderImage}
@@ -564,6 +567,6 @@ const ConversationCard = ({
         <div className="text-gray-600 w-36 line-clamp-1 ">{senderMessage}</div>
       </div>
       <div className="text-xs text-gray-400">{timestamp}</div>
-    </div>
+    </motion.div>
   );
 };
