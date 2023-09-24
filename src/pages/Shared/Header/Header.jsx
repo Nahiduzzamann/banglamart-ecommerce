@@ -3,7 +3,6 @@ import {
   AiOutlineClose,
   AiFillPhone,
   AiOutlineSearch,
-  // AiOutlineHeart,
   AiOutlineShoppingCart,
   AiOutlineUser,
 } from "react-icons/ai";
@@ -25,9 +24,11 @@ import {
   MenuGroup,
   MenuItem,
   MenuList,
+  Spinner,
 } from "@chakra-ui/react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { PiSmileySadLight } from "react-icons/pi";
 
 const Header = () => {
   const { user, logOut, cart } = useContext(AuthContext);
@@ -63,8 +64,42 @@ const Header = () => {
     Navigate(from, { replace: true });
   };
 
-   const [searchText,setSearchText]=useState("")
-  const handleSearch = () => {};
+  const products = [
+    { id: 1, name: "Product 1" },
+    { id: 2, name: "Product 2" },
+    { id: 3, name: "Product 3" },
+    { id: 4, name: "Product 4" },
+    { id: 5, name: "Product 5" },
+    { id: 6, name: "Product 4" },
+    { id: 7, name: "Product 4" },
+    { id: 8, name: "Product 4" },
+    { id: 9, name: "Product 4" },
+    // Add more products as needed
+  ];
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [reLoad, setReLoad] = useState(null);
+
+  useEffect(() => {
+    // Simulate an API call with a delay to fetch search results
+    setLoading(true);
+    setTimeout(() => {
+      const filteredResults = products.filter((product) =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setSearchResults(filteredResults);
+      setLoading(false);
+    }, 500);
+  }, [searchQuery,reLoad]);
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+  const handleSearch = (e) => {
+    setReLoad(e.timeStamp)
+  };
   return (
     <div className="shadow-lg ">
       {/* Add Section  */}
@@ -122,25 +157,54 @@ const Header = () => {
                 </Link>
               </div>
               {/* search  */}
-              <div className="relative mr-2 ml-2 w-full rounded-full shadow-sm shadow-[#b6b6b6] md:mr-0 md:ml-0 md:w-[400px] lg:w-[500px] xl:w-[600px]">
-                <input
-                  className="focus:border-MainColor outline-MainColor w-full rounded-full py-2 pl-4 pr-4 focus:outline-1"
-                  type="text"
-                  value={searchText}
-                  placeholder="Search..."
-                  onChange={(e)=>setSearchText(e.target.value)}
-                />
-                <div className="bg-MainColor hover:bg-MainColor absolute inset-y-0 right-0 flex items-center justify-center rounded-r-full pl-3 pr-3 rounded-e-lg">
-                  <motion.button
-                    onClick={handleSearch}
-                    whileHover={{ scale: 1.4 }}
-                    whileTap={{ scale: 0.8 }}
-                    className=""
-                  >
-                    <AiOutlineSearch className="text-CardColor text-[25px]  " />
-                  </motion.button>
+              <div>
+                <div className="relative mr-2 ml-2 w-[220px] rounded-full shadow-sm shadow-[#b6b6b6] md:mr-0 md:ml-0 sm:w-[300px] md:w-[400px] lg:w-[500px] xl:w-[600px]">
+                  <input
+                    className="focus:border-MainColor outline-MainColor w-full rounded-full py-2 pl-4 pr-4 focus:outline-1"
+                    type="text"
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    placeholder="Search..."
+                  />
+
+                  <div className="bg-MainColor absolute inset-y-0 right-0 flex items-center justify-center rounded-r-full pl-3 pr-3 rounded-e-lg">
+                    <motion.button
+                      onClick={handleSearch}
+                      whileHover={{ scale: 1.4 }}
+                      whileTap={{ scale: 0.8 }}
+                      className=""
+                    >
+                      <AiOutlineSearch className="text-CardColor text-[25px]  " />
+                    </motion.button>
+                  </div>
                 </div>
+                {searchQuery && (
+                  <div className="mr-2 ml-2 md:mr-0 md:ml-0 search-results absolute bg-BorderColor z-10 w-[220px] sm:w-[300px] md:w-[400px] lg:w-[500px] xl:w-[600px] p-2 rounded-md text-SubTextColor">
+                    <h1 className="text-center bg-CardColor rounded">Products</h1>
+                    {loading ? (
+                      <div className="flex justify-center items-center p-10">
+                        <Spinner
+                          thickness="4px"
+                          speed="0.65s"
+                          emptyColor="gray.200"
+                          color="blue.500"
+                          size="xl"
+                        />
+                      </div>
+                    ) : searchResults?.length > 0 ? (
+                      searchResults?.map((product) => (
+                        <div key={product.id}>{product.name}</div>
+                      ))
+                    ) : (
+                      <div className="flex flex-col items-center justify-center">
+                        <PiSmileySadLight className="text-SubTextColor text-4xl"></PiSmileySadLight>
+                        <p className="text-SubTextColor">No Result Found</p>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
+
               {/* <button className="flex items-center ml-5 relative hover:border hover:border-BorderColor p-1 border border-CardColor rounded-md">
                   <AiOutlineHeart className="text-[30px] text-SubTextColor" />
                   <div className="">
