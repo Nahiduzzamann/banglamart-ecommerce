@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 import {
-  AiOutlineClose,
   AiFillPhone,
   AiOutlineSearch,
   AiOutlineShoppingCart,
@@ -41,21 +40,6 @@ const Header = () => {
   const from = location.state?.from?.pathname || "/";
 
   const { t } = useTranslation();
-  const [hide, setHide] = useState(false);
-  const [show, setShow] = useState(true);
-  const [position, setPosition] = useState(0);
-  const handleCloseAdd = () => {
-    setHide(true);
-  };
-  useEffect(() => {
-    window.onscroll = function () {
-      // print "false" if direction is down and "true" if up
-      setShow(this.oldScroll > this.scrollY);
-      this.oldScroll = this.scrollY;
-      setPosition(this.scrollY);
-      //console.log(this.scrollY);
-    };
-  }, []);
 
   const handleLogOut = () => {
     logOut();
@@ -73,7 +57,6 @@ const Header = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [reLoad, setReLoad] = useState(null);
-  console.log(searchResults);
   useEffect(() => {
     // Simulate an API call with a delay to fetch search results
     setLoading(true);
@@ -98,32 +81,31 @@ const Header = () => {
   const handleSearchClose = () => {
     setSearchQuery("");
   };
+
+  const [scrollingUp, setScrollingUp] = useState(true);
+
+  useEffect(() => {
+    let prevScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrollingUp(currentScrollY < prevScrollY);
+      prevScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const headerOpacity = scrollingUp ? 1 : 0;
   return (
-    <div className="shadow-lg ">
-      {/* Add Section  */}
+    <div  className="pt-[120px] md:pt-[150px] lg:pt-[175px]">
       <div
-        className={`relative flex h-[35px] items-center justify-end ${
-          hide && "hidden"
-        }`}
-      >
-        <button className="absolute mr-4 text-2xl" onClick={handleCloseAdd}>
-          <AiOutlineClose />
-        </button>
-        <img
-          className="h-[35px] w-full object-cover"
-          src="https://www.pngkit.com/png/full/282-2825717_special-offer-banner-blue-special-offer-banner.png"
-        ></img>
-      </div>
-      <motion.div
-        transition={{ duration: 0.5 }}
-        initial={{
-          opacity: 1,
-        }}
-        animate={{
-          //height:140
-          opacity: show ? 1 : 0,
-        }}
-        className={`${position > 30 && "fixed top-0 z-50 w-full shadow-md"}`}
+        className="fixed top-0 left-0 w-full z-30 shadow-lg shadow-SubTextColor"
+        style={{ opacity: headerOpacity, transition: "opacity 0.3s" }}
       >
         {/* number Section  */}
         <div className=" bg-CardColor border-b-BorderColor hidden border-b-[1px]  md:block">
@@ -479,7 +461,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };
@@ -597,7 +579,10 @@ const SearchProductCart = ({ product, handleSearchClose }) => {
 
   return (
     <Link onClick={handleSearchClose} to={`/productDetails/${product?.id}`}>
-      <motion.div whileHover={{ scale: 1.03 }} className="m-1 lg:m-3 bg-CardColor p-1 rounded shadow shadow-MainColor">
+      <motion.div
+        whileHover={{ scale: 1.03 }}
+        className="m-1 lg:m-3 bg-CardColor p-1 rounded shadow shadow-MainColor"
+      >
         <div className="flex items-center">
           <div className="mt-1 mb-1">
             <img

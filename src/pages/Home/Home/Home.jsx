@@ -14,7 +14,7 @@ import ForYouProducts from "../ForYouProduct/ForYouProduct";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
-  
+
   return (
     <div>
       <TopBannerSection></TopBannerSection>
@@ -40,7 +40,9 @@ const Home = () => {
                 borderRadius: ["20%", "20%", "50%", "50%", "20%"],
               }}
             >
-              <Link to="/seller-form" id="animatedButton"><h1 className="z-10 text-CardColor">Be A Seller</h1></Link>
+              <Link to="/seller-form" id="animatedButton">
+                <h1 className="z-10 text-CardColor">Be A Seller</h1>
+              </Link>
             </motion.div>
           </div>
         )}
