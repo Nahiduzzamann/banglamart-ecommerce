@@ -4,15 +4,14 @@ import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
 import useMediaQuery from "../hooks/useMediaQuery";
 import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
-import { BsFillCartCheckFill, BsFillHeartFill } from "react-icons/bs";
+import {  AiOutlineShoppingCart } from "react-icons/ai";
+import { BsFillCartCheckFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import ProductCartFlashSell from "./ProductCartFlashSell";
 import { TbTruckDelivery } from "react-icons/tb";
 
 const FlashSellProductShowSlider = ({flashSellData}) => {
-  const Categories = flashSellData
-  const totalSlides = Categories?.length || 1;
+  // const totalSlides = flashSellData?.length || 1;
   const [mainSlider, setMainSlider] = useState();
   const [currentSlide, setCurrentSlide] = useState(1);
   const isSm = useMediaQuery("(min-width: 640px)");
@@ -78,7 +77,7 @@ const FlashSellProductShowSlider = ({flashSellData}) => {
                 ref={(slider1) => setMainSlider(slider1)}
                 {...sliderSettings}
               >
-                {Categories?.map((data, i) => (
+                {flashSellData?.map((data, i) => (
                   <ProductCartFlashSell
                   data={data}
                   key={i}
@@ -91,7 +90,7 @@ const FlashSellProductShowSlider = ({flashSellData}) => {
 
         {!isSm && (
           <div className="flex overflow-x-auto no-scrollbar gap-3 snap-x pt-5">
-            {Categories?.map((data, i) => (
+            {flashSellData?.map((data, i) => (
               <Cart2 data={data} key={i} />
             ))}
           </div>
@@ -111,7 +110,7 @@ const Cart2 = ({ data }) => {
   const url = "http://62.72.31.204:1300";
 
   const [hover, setHover] = useState(false);
-  const [heartIconHover, setHeartIconHover] = useState(false);
+  // const [heartIconHover, setHeartIconHover] = useState(false);
   const [cartIconHover, setCartIconHover] = useState(false);
   const [newPrice, setNewPrice] = useState(oldPrice);
 

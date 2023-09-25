@@ -30,13 +30,12 @@ const FlashSale = () => {
   const flashSellData = useSelector(
     (state) => state.flashSellData?.flashSellData?.data
   );
-
+console.log(flashSellData);
   //calculate time
-  const flashSell = useSelector((state) => state.flashSell?.flashSell?.data[0]);
 
   const flashSaleData = {
-    startAt: new Date(flashSell?.startAt).getTime(),
-    endAt: new Date(flashSell?.endAt).getTime(),
+    startAt: new Date(flashSellInfo?.startAt).getTime(),
+    endAt: new Date(flashSellInfo?.endAt).getTime(),
   };
 
   const [remainingTime, setRemainingTime] = useState(
