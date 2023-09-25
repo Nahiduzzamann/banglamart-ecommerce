@@ -5,17 +5,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchFlashSellData } from "../../../services/actions/flashSellDataAction";
 import EmptyContent from "../../../components/EmptyContent";
 import FlashSellProductShowSlider from "../../../components/FlashSellProductShowSlider";
+import { getApi } from "../../../apis";
 
 const FlashSale = () => {
   const dispatch = useDispatch();
+  const [flashSellInfo, setFlashSellInfo] = useState(null);
 
-  const flashSellId =useSelector(
-    (state) => state.flashSell?.flashSell?.data[0]?.id
-  )
+  // console.log(flashSellInfo);
 
   useEffect(() => {
-    dispatch(fetchFlashSellData(flashSellId));
-  }, [flashSellId]);
+    getApi("/product/get/flash", null)
+      .then((res) => {
+        setFlashSellInfo(res.data.data[0]);
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+      });
+  }, []);
+
+  useEffect(() => {
+    dispatch(fetchFlashSellData(flashSellInfo?.id));
+  }, [flashSellInfo]);
 
   const flashSellData = useSelector(
     (state) => state.flashSellData?.flashSellData?.data
@@ -43,21 +53,22 @@ const FlashSale = () => {
       clearInterval(interval);
     };
   }, []);
-  
   return (
     <div
-      className={`${  
-        remainingTime || "hidden" } mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg`}
+      className={`${
+        remainingTime <1 && "hidden"
+      } mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg`}
     >
       <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
         <div className="border-b-[3px] border-b-MainColor ">
           <h1 className="">Flash Sale</h1>
         </div>
         <div className={`${flashSellData?.length > 10 || "mr-4"}`}>
-          {flashSaleData&&flashSaleData.endAt&&(<TimerFlashSell flashSaleData={flashSaleData}></TimerFlashSell>)}
+          {flashSaleData && flashSaleData.endAt && (
+            <TimerFlashSell flashSaleData={flashSaleData}></TimerFlashSell>
+          )}
         </div>
-      
-       
+
         {flashSellData?.length > 10 && (
           <Link
             to="flash-sell"
@@ -71,7 +82,9 @@ const FlashSale = () => {
         {flashSellData?.length <= 0 ? (
           <EmptyContent text="No Offer available"></EmptyContent>
         ) : (
-          <FlashSellProductShowSlider flashSellData={flashSellData}></FlashSellProductShowSlider>
+          <FlashSellProductShowSlider
+            flashSellData={flashSellData}
+          ></FlashSellProductShowSlider>
         )}
       </div>
     </div>

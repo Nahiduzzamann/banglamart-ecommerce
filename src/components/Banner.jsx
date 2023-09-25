@@ -8,7 +8,7 @@ const Banner = () => {
   const url = "http://62.72.31.204:1300";
 
   const [sliders, setSliders] = useState(null);
-  console.log(sliders);
+  // console.log(sliders);
   useEffect(() => {
     getApi("/adds/get/slider", null)
       .then((res) => {
