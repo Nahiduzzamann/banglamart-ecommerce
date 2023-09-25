@@ -597,7 +597,7 @@ const SearchProductCart = ({ product, handleSearchClose }) => {
 
   return (
     <Link onClick={handleSearchClose} to={`/productDetails/${product?.id}`}>
-      <div className="m-1 lg:m-3 bg-CardColor p-1 rounded shadow shadow-MainColor">
+      <motion.div whileHover={{ scale: 1.03 }} className="m-1 lg:m-3 bg-CardColor p-1 rounded shadow shadow-MainColor">
         <div className="flex items-center">
           <div className="mt-1 mb-1">
             <img
@@ -634,7 +634,7 @@ const SearchProductCart = ({ product, handleSearchClose }) => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </Link>
   );
 };
