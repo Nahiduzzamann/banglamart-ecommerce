@@ -33,6 +33,7 @@ import {
 import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { PiSmileySadLight } from "react-icons/pi";
+import { getApi } from "../../../apis";
 
 const Header = () => {
   const { user, logOut, cart } = useContext(AuthContext);
@@ -68,34 +69,24 @@ const Header = () => {
     Navigate(from, { replace: true });
   };
 
-  const products = [
-    { id: 1, name: "Product 1" },
-    { id: 2, name: "Product 2" },
-    { id: 3, name: "Product 3" },
-    { id: 4, name: "Product 4" },
-    { id: 5, name: "Product 5" },
-    { id: 6, name: "Product 4" },
-    { id: 7, name: "Product 4" },
-    { id: 8, name: "Product 4" },
-    { id: 9, name: "Product 4" },
-    // Add more products as needed
-  ];
-
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [reLoad, setReLoad] = useState(null);
-
+  console.log(searchResults);
   useEffect(() => {
     // Simulate an API call with a delay to fetch search results
     setLoading(true);
-    setTimeout(() => {
-      const filteredResults = products.filter((product) =>
-        product.name.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      setSearchResults(filteredResults);
-      setLoading(false);
-    }, 500);
+
+    getApi(`/product/search?query=${searchQuery}`, null)
+      .then((results) => {
+        setSearchResults(results.data.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
   }, [searchQuery, reLoad]);
 
   const handleSearchChange = (e) => {
@@ -103,6 +94,9 @@ const Header = () => {
   };
   const handleSearch = (e) => {
     setReLoad(e.timeStamp);
+  };
+  const handleSearchClose = () => {
+    setSearchQuery("");
   };
   return (
     <div className="shadow-lg ">
@@ -183,7 +177,7 @@ const Header = () => {
                   </div>
                 </div>
                 {searchQuery && (
-                  <div className="mr-2 ml-2 md:mr-0 md:ml-0 search-results absolute bg-BorderColor z-10 w-[220px] sm:w-[300px] md:w-[400px] lg:w-[500px] xl:w-[600px] p-2 rounded-md text-SubTextColor">
+                  <div className="mr-2 ml-2 md:mr-0 md:ml-0 search-results absolute bg-BorderColor z-10 w-[220px] sm:w-[300px] md:w-[400px] lg:w-[500px] xl:w-[600px] p-2 rounded-md text-SubTextColor max-h-[400px] lg:max-h-[500px] overflow-y-auto">
                     <h1 className="text-center bg-CardColor rounded">
                       Products
                     </h1>
@@ -199,7 +193,11 @@ const Header = () => {
                       </div>
                     ) : searchResults?.length > 0 ? (
                       searchResults?.map((product) => (
-                        <div key={product.id}>{product.name}</div>
+                        <SearchProductCart
+                          key={product.id}
+                          product={product}
+                          handleSearchClose={handleSearchClose}
+                        ></SearchProductCart>
                       ))
                     ) : (
                       <div className="flex flex-col items-center justify-center mt-4">
@@ -550,7 +548,6 @@ const ConversationCard = ({
   senderName,
   timestamp,
 }) => {
- 
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
@@ -569,5 +566,75 @@ const ConversationCard = ({
       </div>
       <div className="text-xs text-gray-400">{timestamp}</div>
     </motion.div>
+  );
+};
+
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import Rating from "react-rating";
+
+const SearchProductCart = ({ product, handleSearchClose }) => {
+  // console.log(product);
+
+  const url = "http://62.72.31.204:1300";
+
+  const [newPrice, setNewPrice] = useState(product?.price);
+
+  function calculatePercentage(value, percentage) {
+    return (value * percentage) / 100;
+  }
+
+  useEffect(() => {
+    if (product?.percentage) {
+      const percentageValue = calculatePercentage(
+        product?.price,
+        product?.offer
+      );
+      setNewPrice(product?.price - percentageValue);
+    } else {
+      setNewPrice(product?.price - product?.offer);
+    }
+  }, [product]);
+
+  return (
+    <Link onClick={handleSearchClose} to={`/productDetails/${product?.id}`}>
+      <div className="m-1 lg:m-3 bg-CardColor p-1 rounded shadow shadow-MainColor">
+        <div className="flex items-center">
+          <div className="mt-1 mb-1">
+            <img
+              src={`${url}${product?.thumbnail}`}
+              crossOrigin="anonymous"
+              className="object-cover rounded w-12 h-12 lg:w-20 lg:h-20"
+            />
+          </div>
+          <div className="pl-2 ">
+            <Link
+              onClick={handleSearchClose}
+              to={`/productDetails/${product?.id}`}
+              className={`relative hover:underline break-all line-clamp-1 `}
+            >
+              <h2>{product?.title}</h2>
+            </Link>
+            <div className="flex flex-wrap">
+              <div className="flex flex-wrap mr-2">
+                {product?.price > newPrice && (
+                  <p className={`relative mr-1 line-through text-SubTextColor`}>
+                    {Math.ceil(product?.price)} ৳
+                  </p>
+                )}
+                <h3 className="text-MainColor font-bold">
+                  {Math.ceil(newPrice)} ৳
+                </h3>
+              </div>
+              <Rating
+                initialRating={3.5}
+                readonly
+                emptySymbol={<AiOutlineStar className="text-sm" />}
+                fullSymbol={<AiFillStar className="text-sm" />}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </Link>
   );
 };
