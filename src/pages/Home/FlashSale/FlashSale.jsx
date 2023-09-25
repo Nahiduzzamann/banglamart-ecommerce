@@ -30,7 +30,6 @@ const FlashSale = () => {
   const flashSellData = useSelector(
     (state) => state.flashSellData?.flashSellData?.data
   );
-console.log(flashSellData);
   //calculate time
 
   const flashSaleData = {

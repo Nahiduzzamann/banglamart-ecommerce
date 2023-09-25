@@ -82,15 +82,14 @@ const Header = () => {
     setSearchQuery("");
   };
 
-  const [scrollingUp, setScrollingUp] = useState(true);
+  const [scrollingDown, setScrollingDown] = useState(false);
+  const [prevScrollY, setPrevScrollY] = useState(0);
 
   useEffect(() => {
-    let prevScrollY = window.scrollY;
-
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      setScrollingUp(currentScrollY < prevScrollY);
-      prevScrollY = currentScrollY;
+      setScrollingDown(currentScrollY > prevScrollY && currentScrollY > 150);
+      setPrevScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -98,11 +97,11 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [prevScrollY]);
 
-  const headerOpacity = scrollingUp ? 1 : 0;
+  const headerOpacity = scrollingDown ? 0 : 1;
   return (
-    <div  className="pt-[120px] md:pt-[150px] lg:pt-[175px]">
+    <div className="pt-[120px] md:pt-[150px] lg:pt-[175px]">
       <div
         className="fixed top-0 left-0 w-full z-30 shadow-lg shadow-SubTextColor"
         style={{ opacity: headerOpacity, transition: "opacity 0.3s" }}
