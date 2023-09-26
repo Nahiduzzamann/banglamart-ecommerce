@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import ProductShowSlider from "../../../components/ProductShowSlider";
 import { useSelector } from "react-redux";
 import { Spinner } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const NewProducts = () => {
+  const encodedData = encodeURIComponent(JSON.stringify("/product/get/new"));
   const [products, setProducts] = useState(null);
   const data = useSelector((state) => state.newProduct.newProduct.data);
 
@@ -18,9 +20,14 @@ const NewProducts = () => {
         <div className="border-b-[3px] border-b-MainColor ">
           <h1 className="">New Products</h1>
         </div>
-        {/* <Link className="mr-5 md:mr-10 pb-1 pt-1 pl-2 pr-2 md:pl-3 md:pr-3 bg-MainColor rounded-full text-CardColor shadow-lg hover:bg-MainColorHover text-sm">
-              View More
-            </Link> */}
+        {products?.length > 10 && (
+          <Link
+            to={`/various-products-page?data=${encodedData}`}
+            className="mr-5 md:mr-10 pb-1 pt-1 pl-2 pr-2 md:pl-3 md:pr-3 bg-MainColor rounded-full text-CardColor shadow-lg hover:bg-MainColorHover text-sm"
+          >
+            View More
+          </Link>
+        )}
       </div>
       {products ? (
         <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
