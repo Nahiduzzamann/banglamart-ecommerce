@@ -30,6 +30,8 @@ const Products = () => {
     fetchOptionProducts();
   }, [id]);
 
+  console.log(products);
+
   const itemsPerPage = 10; // Number of items per page
   const [currentPage, setCurrentPage] = useState(1);
 

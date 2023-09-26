@@ -171,7 +171,7 @@ const ProductDetails = () => {
   const [getComment, setGetComment] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [reviewsData, setReviewsData] = useState([]);
-  console.log(reviewsData);
+  // console.log(reviewsData);
   const handleSubmitComment = () => {
     setIsLoading(true);
     const data = new FormData();
