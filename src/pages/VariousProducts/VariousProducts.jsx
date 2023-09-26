@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import FilterCart from "../../components/FilterCart";
 import FlashSaleBanner from "../../components/FlashSaleBanner";
 import { AiFillFilter } from "react-icons/ai";
@@ -8,29 +8,26 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import EmptyContent from "../../components/EmptyContent";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
+import { getApi } from "../../apis";
 
-const Products = () => {
-  const [products, setProducts] = useState(null);
-  const { id } = useParams();
-  // console.log(products);
-  const url = "https://api.banglamartecommerce.com.bd";
+const VariousProductsPage = () => {
+  const [products, setProducts] = useState([]);
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const encodedData = queryParams.get("data");
+  const route = JSON.parse(decodeURIComponent(encodedData));
+  console.log(products);
+  //   const url = "https://api.banglamartecommerce.com.bd";
+
   useEffect(() => {
-    const fetchOptionProducts = async () => {
-      try {
-        const response = await fetch(
-          `${url}/product/getProductByOption?optionId=${id}`
-        );
-        const data = await response.json();
-        setProducts(data.data);
-      } catch (error) {
-        console.error("Error fetching instructor classes:", error);
-      }
-    };
-
-    fetchOptionProducts();
-  }, [id]);
-
-  // console.log(products);
+    getApi(route, null)
+      .then((response) => {
+        setProducts(response.data.data);
+      })
+      .catch((er) => {
+        console.log(er);
+      });
+  }, [route]);
 
   const itemsPerPage = 10; // Number of items per page
   const [currentPage, setCurrentPage] = useState(1);
@@ -70,9 +67,10 @@ const Products = () => {
           <div className="col-span-5 lg:col-span-4">
             <div className="flex justify-between items-center mb-4">
               <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
-              className=" lg:hidden flex justify-center items-center border border-MainColor p-1">
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.8 }}
+                className=" lg:hidden flex justify-center items-center border border-MainColor p-1"
+              >
                 <h1>
                   <AiFillFilter className="text-MainColor mr-1 " />
                 </h1>
@@ -108,8 +106,8 @@ const Products = () => {
                 <div className="join">
                   {Array.from({ length: totalPages }, (_, index) => (
                     <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.8 }}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.8 }}
                       key={index}
                       className={`join-item btn btn-md border border-BorderColor ${
                         index + 1 === currentPage
@@ -131,4 +129,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default VariousProductsPage;

@@ -48,7 +48,7 @@ const ProductDetails = () => {
   const location = useLocation();
   const { id } = useParams();
   const [product, setProductDetails] = useState(null);
-  // console.log(product);
+  console.log(product);
   const url = "https://api.banglamartecommerce.com.bd";
   useEffect(() => {
     const visitorId = localStorage.getItem("visitorId");

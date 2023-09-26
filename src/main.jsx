@@ -44,6 +44,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import NotificationPage from "./pages/NotificationPage/NotificationPage";
 import socket from "./socket";
 import BrandProductsPage from "./pages/BrandProductsPage/BrandProductsPage";
+import VariousProductsPage from "./pages/VariousProducts/VariousProducts";
 
 
 
@@ -65,10 +66,6 @@ const router = createBrowserRouter([
       {
         path: "/category",
         element: <Categories></Categories>,
-      },
-      {
-        path: "/products",
-        element: <Products></Products>,
       },
       {
         path: "/products/:id",
@@ -169,6 +166,10 @@ const router = createBrowserRouter([
       {
         path: "/brand-product-page",
         element: <BrandProductsPage></BrandProductsPage>,
+      },
+      {
+        path: "/various-products-page",
+        element: <VariousProductsPage></VariousProductsPage>,
       },
     ],
   },
