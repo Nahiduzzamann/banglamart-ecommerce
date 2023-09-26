@@ -61,7 +61,7 @@ const ProductCart = ({ product }) => {
   const { user, setCartUpdate } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const url = "http://62.72.31.204:1300";
+  const url = "https://api.banglamartecommerce.com.bd";
 
   const [hover, setHover] = useState(false);
   const [heartIconHover, setHeartIconHover] = useState(false);
@@ -127,7 +127,7 @@ const ProductCart = ({ product }) => {
           {/* TODO  */}
           <img
             src={`${url}${product?.thumbnail}`}
-            crossOrigin="anonymous"
+             
             className="object-fill w-full h-full"
           />
         </div>

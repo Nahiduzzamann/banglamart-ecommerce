@@ -49,7 +49,7 @@ const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProductDetails] = useState(null);
   // console.log(product);
-  const url = "http://62.72.31.204:1300";
+  const url = "https://api.banglamartecommerce.com.bd";
   useEffect(() => {
     const visitorId = localStorage.getItem("visitorId");
     const fetchProductDetails = async () => {
@@ -421,7 +421,7 @@ const ProductDetails = () => {
                   product?.seller?.thumbnail ||
                   "https://i.ibb.co/9t1wQGK/banglamart-prev-ui.png"
                 }
-                crossOrigin="anonymous"
+                 
                 className="h-16 w-16 rounded-full"
               />
             </div>
@@ -793,7 +793,7 @@ const ProductDetails = () => {
 export default ProductDetails;
 
 const ImageShow = ({ product }) => {
-  const url = "http://62.72.31.204:1300";
+  const url = "https://api.banglamartecommerce.com.bd";
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -834,13 +834,13 @@ const ImageShow = ({ product }) => {
         {product?.images ? (
           <img
             src={`${url}${product?.images[currentImageIndex]}`}
-            crossOrigin="anonymous"
+             
             className="object-cover h-96 w-full"
           />
         ) : (
           <img
             src={`${url}${product?.thumbnail}`}
-            crossOrigin="anonymous"
+             
             className="object-cover h-96 w-full"
           />
         )}
@@ -850,7 +850,7 @@ const ImageShow = ({ product }) => {
           <img
             key={index}
             src={`${url}${image}`}
-            crossOrigin="anonymous"
+             
             alt={`Product ${index + 1}`}
             className={`cursor-pointer h-16 w-16 border-[3px] ${
               currentImageIndex === index

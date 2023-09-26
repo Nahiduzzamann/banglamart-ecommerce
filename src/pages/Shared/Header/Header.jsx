@@ -556,7 +556,7 @@ import Rating from "react-rating";
 const SearchProductCart = ({ product, handleSearchClose }) => {
   // console.log(product);
 
-  const url = "http://62.72.31.204:1300";
+  const url = "https://api.banglamartecommerce.com.bd";
 
   const [newPrice, setNewPrice] = useState(product?.price);
 
@@ -586,7 +586,7 @@ const SearchProductCart = ({ product, handleSearchClose }) => {
           <div className="mt-1 mb-1">
             <img
               src={`${url}${product?.thumbnail}`}
-              crossOrigin="anonymous"
+               
               className="object-cover rounded w-12 h-12 lg:w-20 lg:h-20"
             />
           </div>

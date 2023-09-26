@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 
 const AllCategory = () => {
-  const url = "http://62.72.31.204:1300";
+  const url = "https://api.banglamartecommerce.com.bd";
 
   // const [categories, setCategories] = useState(null);
   const [subCategories, setSubCategories] = useState([]);
@@ -49,7 +49,7 @@ const AllCategory = () => {
                 {/* TODO  */}
                 <img
                   className="h-6 w-6 mr-2"
-                  crossOrigin="anonymous"
+                   
                   src={`${url}${category.icon}`}
                   alt=""
                 />

@@ -107,7 +107,7 @@ export default FlashSellProductShowSlider;
 
 const Cart2 = ({ data }) => {
   const product = data.product;
-const url = "http://62.72.31.204:1300";
+const url = "https://api.banglamartecommerce.com.bd";
   const { user, setCartUpdate } = useContext(AuthContext);
   const navigate = useNavigate();
   const [hover, setHover] = useState(false);
@@ -169,7 +169,7 @@ const url = "http://62.72.31.204:1300";
       <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
         <img
           src={`${url}${product?.thumbnail}`}
-          crossOrigin="anonymous"
+           
           className="object-cover w-full h-full"
         />
       </div>

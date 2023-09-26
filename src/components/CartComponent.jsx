@@ -11,7 +11,7 @@ const CartComponent = ({ data }) => {
   const { setCartUpdate } = useContext(AuthContext);
   // console.log(data);
   let product = data.product;
-  const url = "http://62.72.31.204:1300";
+  const url = "https://api.banglamartecommerce.com.bd";
 
   const [loading, setLoading] = useState(false);
   const [minOrder, setQuantity] = useState(null);
@@ -92,7 +92,7 @@ const CartComponent = ({ data }) => {
         <div className="flex items-center m-1">
           <img
             src={`${url}${product?.thumbnail}`}
-            crossOrigin="anonymous"
+             
             className="object-cover h-20 w-20 rounded"
           />
           <div className="ml-2">

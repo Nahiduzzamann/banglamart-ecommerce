@@ -13,7 +13,7 @@ const Products = () => {
   const [products, setProducts] = useState(null);
   const { id } = useParams();
   // console.log(products);
-  const url = "http://62.72.31.204:1300";
+  const url = "https://api.banglamartecommerce.com.bd";
   useEffect(() => {
     const fetchOptionProducts = async () => {
       try {

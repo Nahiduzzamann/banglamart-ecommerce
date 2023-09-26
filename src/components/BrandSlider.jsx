@@ -93,7 +93,7 @@ const BrandCart = ({ data }) => {
   const encodedData = encodeURIComponent(JSON.stringify(data));
 
   const [hover, setHover] = useState(false);
-  const url = "http://62.72.31.204:1300";
+  const url = "https://api.banglamartecommerce.com.bd";
 
   return (
     <Link to={`/brand-product-page?data=${encodedData}`}>
@@ -105,7 +105,7 @@ const BrandCart = ({ data }) => {
         <div className="inset-0 absolute  group-hover:scale-110 ease-in-out duration-300">
           <img
             src={`${url}${data?.brandIcon}`}
-            crossOrigin="anonymous"
+             
             className="object-cover h-full w-full "
           />
         </div>

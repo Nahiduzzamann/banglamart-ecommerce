@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { putApi } from "../apis";
 
 const PopUpAdd = ({ setAdds }) => {
-  const url = "http://62.72.31.204:1300";
+  const url = "https://api.banglamartecommerce.com.bd";
 
   const [addImages, setAddImages] = useState(null);
   const [image, setImage] = useState(null);
@@ -95,7 +95,7 @@ const PopUpAdd = ({ setAdds }) => {
           <Link to={`/productDetails/${image?.productId}`}>
             <img
               className="h-[30vw] w-[60vw]"
-              crossOrigin="anonymous"
+               
               src={`${url}${image?.image}`}
               alt={`Image ${currentIndex}`}
             />

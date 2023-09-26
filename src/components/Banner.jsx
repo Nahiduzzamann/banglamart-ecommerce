@@ -5,7 +5,7 @@ import { getApi } from "../apis";
 import { Spinner } from "@chakra-ui/react";
 
 const Banner = () => {
-  const url = "http://62.72.31.204:1300";
+  const url = "https://api.banglamartecommerce.com.bd";
 
   const [sliders, setSliders] = useState(null);
   // console.log(sliders);
@@ -38,7 +38,7 @@ const Banner = () => {
               <img
                 className="object-fill max-h-[300px]"
                 src={`${url}${slider?.image}`}
-                crossOrigin="anonymous"
+                 
                 alt="Slider Image 1"
               />
             </div>

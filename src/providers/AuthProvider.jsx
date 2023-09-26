@@ -13,7 +13,7 @@ export const AuthContext = createContext();
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-const url = "http://62.72.31.204:1300";
+const url = "https://api.banglamartecommerce.com.bd";
 
 const AuthProvider = ({ children }) => {
 

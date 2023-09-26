@@ -3,7 +3,7 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import Rating from "react-rating";
 
 const BrandShopCart = ({ data }) => {
-  const url = "http://62.72.31.204:1300";
+  const url = "https://api.banglamartecommerce.com.bd";
 
   return (
     <div className="mt-4 shadow-md shadow-BorderColor">
@@ -14,7 +14,7 @@ const BrandShopCart = ({ data }) => {
             size="xl"
             name={data?.brandName}
             src={`${url}${data?.brandIcon}`}
-            crossOrigin="anonymous"
+             
           />
         </div>
         <div className="flex flex-col p-2 w-[220px] sm:w-[270px] md:w-[280px] lg:w-[300px]">

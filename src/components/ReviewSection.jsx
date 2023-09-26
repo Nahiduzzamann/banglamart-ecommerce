@@ -2,7 +2,7 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import Rating from "react-rating";
 
 const ReviewSection = ({ reviews }) => {
-  const url = "http://62.72.31.204:1300"; 
+  const url = "https://api.banglamartecommerce.com.bd"; 
 
   return (
     <div className="flex flex-col items-center">
@@ -32,7 +32,7 @@ const ReviewSection = ({ reviews }) => {
             </p>
             <img
             src={`${url}${review?.user.image}`}
-            crossOrigin="anonymous"
+             
               alt={review?.user.name}
               className="w-12 h-12 rounded-full mt-4"
             />
