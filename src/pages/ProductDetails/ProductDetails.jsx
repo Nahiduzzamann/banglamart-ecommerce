@@ -421,7 +421,6 @@ const ProductDetails = () => {
                   product?.seller?.thumbnail ||
                   "https://i.ibb.co/9t1wQGK/banglamart-prev-ui.png"
                 }
-                 
                 className="h-16 w-16 rounded-full"
               />
             </div>
@@ -792,6 +791,10 @@ const ProductDetails = () => {
 
 export default ProductDetails;
 
+// import { useRef, useMemo } from "react"
+// import {  useZoomImageHover} from "@zoom-image/react"
+// import { cropImage } from "@zoom-image/core"
+
 const ImageShow = ({ product }) => {
   const url = "https://api.banglamartecommerce.com.bd";
 
@@ -800,47 +803,31 @@ const ImageShow = ({ product }) => {
   const handleImageClick = (index) => {
     setCurrentImageIndex(index);
   };
+  // const zoomTargetRef = useRef<HTMLDivElement>(null)
+  // const imageHoverContainerRef = useRef<HTMLDivElement>(null)
+  // const imageContainer = imageHoverContainerRef.current as HTMLDivElement
+  //     const zoomTarget = zoomTargetRef.current as HTMLDivElement
+  //     createZoomImageHover(imageContainer, {
+  //       zoomImageSource: "https://nam-assets.netlify.app/static/large.webp",
+  //       customZoom: { width: 300, height: 500 },
+  //       zoomTarget,
+  //       scaleFactor: 0.5,
+  //     })
   return (
     <div className="flex flex-col items-center">
       <div className="mb-4">
-        {/* <ReactImageMagnify
-          {...{
-            smallImage: {
-              alt: `Product ${currentImageIndex + 1}`,
-              isFluidWidth: true,
-              src: `${url}${product?.images[currentImageIndex]}`,
-              sizes:
-                "(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px",
-              
-            },
-            largeImage: {
-              src: `${url}${product?.images[currentImageIndex]}`,
-              width: 1200,
-              height: 1800,
-            
-            },
-            enlargedImagePosition: "over",
-            enlargedImageContainerDimensions: {
-              width: "200%",
-              height: "200%",
-            },
-            shouldUsePositiveSpaceLens: true,
-            lensStyle: { background: "rgba(255,255,255,.5)" },
-            isHintEnabled: true,
-            hintBgOpacity: 1,
-            hintTextColor: "#000",
-          }}
-        /> */}
         {product?.images ? (
+          //   <div ref={imageHoverContainerRef} className="relative flex h-[250px] w-[250px] items-start">
+          //   <img className="h-full w-full" alt="Small Pic" src={`${url}${product?.images[currentImageIndex]}`}/>
+          //   <div ref={zoomTargetRef} className="absolute left-[300px]"></div>
+          // </div>
           <img
             src={`${url}${product?.images[currentImageIndex]}`}
-             
             className="object-cover h-96 w-full"
           />
         ) : (
           <img
             src={`${url}${product?.thumbnail}`}
-             
             className="object-cover h-96 w-full"
           />
         )}
@@ -850,7 +837,6 @@ const ImageShow = ({ product }) => {
           <img
             key={index}
             src={`${url}${image}`}
-             
             alt={`Product ${index + 1}`}
             className={`cursor-pointer h-16 w-16 border-[3px] ${
               currentImageIndex === index
