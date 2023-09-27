@@ -1,5 +1,5 @@
 import axios from "axios";
-const url = "https://api.banglamartecommerce.com.bd";
+export const url = "https://api.banglamartecommerce.com.bd";
 
 export const postApi = async (route, data, token) =>
     axios.post(

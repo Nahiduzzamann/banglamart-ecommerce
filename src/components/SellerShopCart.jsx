@@ -2,10 +2,11 @@ import { Avatar } from "@chakra-ui/react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import Rating from "react-rating";
 import { Link, useLocation } from "react-router-dom";
+import { url } from "../apis";
 
 const SellerShopCart = ({ data }) => {
   const encodedData = encodeURIComponent(JSON.stringify(data));
-  // console.log(data);
+ // console.log(data);
   const location = useLocation();
   return (
     <div className="mt-4 shadow-md shadow-BorderColor">
@@ -15,7 +16,7 @@ const SellerShopCart = ({ data }) => {
             bg="teal.500"
             size="xl"
             name={data?.shopName}
-            src={data?.shopName}
+            src={`${url}${data?.logo}`}
           />
         </div>
         <div className="flex flex-col p-2 w-[220px] sm:w-[270px] md:w-[280px] lg:w-[300px]">
