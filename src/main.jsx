@@ -45,6 +45,7 @@ import NotificationPage from "./pages/NotificationPage/NotificationPage";
 import socket from "./socket";
 import BrandProductsPage from "./pages/BrandProductsPage/BrandProductsPage";
 import VariousProductsPage from "./pages/VariousProducts/VariousProducts";
+import ForYouProductsPage from "./pages/ForYouProductsPage/ForYouProductsPage";
 
 
 
@@ -162,6 +163,10 @@ const router = createBrowserRouter([
       {
         path: "/notifications",
         element: <NotificationPage></NotificationPage>,
+      },
+      {
+        path: "/for-you-product-page",
+        element: <ForYouProductsPage></ForYouProductsPage>
       },
       {
         path: "/brand-product-page",
