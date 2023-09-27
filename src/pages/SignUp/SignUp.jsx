@@ -91,7 +91,7 @@ const SignUp = () => {
 
     try {
       const res = await signInWithGoogle();
-      console.log(res.user);
+      // console.log(res.user);
       postApi(
         "/auth/thirdPartySignIn",
         {
