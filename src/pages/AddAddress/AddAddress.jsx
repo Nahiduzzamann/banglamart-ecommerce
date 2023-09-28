@@ -5,7 +5,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { Avatar } from "@chakra-ui/react";
 import { FaUserEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
-// const url = "https://api.banglamartecommerce.com.bd";
+const url = "https://api.banglamartecommerce.com.bd";
 const AddDeliveryAddressForm = () => {
   const { user, setUserState, updateUser } = useContext(AuthContext);
   const [divisions, setDivisions] = useState([]);
@@ -156,14 +156,26 @@ const AddDeliveryAddressForm = () => {
         >
           <div className="flex flex-col items-center">
             <div className="relative">
-              <Avatar
-                size="xl"
-                name={user?.name}
-                src={image && URL.createObjectURL(image)}
-                onClick={() => {
-                  document.getElementById("profile-picture-input").click();
-                }}
-              />
+              {user?.image ? (
+                <Avatar
+                  size="xl"
+                  name={user?.name}
+                  src={`${url}${user?.image}`}
+                  onClick={() => {
+                    document.getElementById("profile-picture-input").click();
+                  }}
+                />
+              ) : (
+                <Avatar
+                  size="xl"
+                  name={user?.name}
+                  src={image && URL.createObjectURL(image)}
+                  onClick={() => {
+                    document.getElementById("profile-picture-input").click();
+                  }}
+                />
+              )}
+
               <input
                 type="file"
                 id="profile-picture-input"

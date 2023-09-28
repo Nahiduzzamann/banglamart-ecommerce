@@ -13,22 +13,20 @@ import { AuthContext } from "../../providers/AuthProvider";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
+  const url = "https://api.banglamartecommerce.com.bd";
 
   return (
     <div className="pt-4 bg-BackgroundColor flex items-center justify-center m-1 lg:m-0">
       {user ? (
         <div className="bg-CardColor shadow-md rounded-lg w-full md:w-1/2 lg:w-1/3 p-4 text-SubTextColor">
           <div className="text-center">
-            <Avatar size="xl" name={user?.name} src={user?.image} />
-            <h1 className="text-2xl font-semibold">
-              {user?.name || "N/A"}
-            </h1>
+            <Avatar size="xl" name={user?.name} src={`${url}${user?.image}`} />
+            <h1 className="text-2xl font-semibold">{user?.name || "N/A"}</h1>
             {user?.address?.union ? (
-                <span></span>
-              ) : (
-                <p className="text-[#f35454]">*Please Update Your Profile</p>
-              )}
-            
+              <span></span>
+            ) : (
+              <p className="text-[#f35454]">*Please Update Your Profile</p>
+            )}
           </div>
           <div className="mt-4">
             <div className="flex items-center mb-2">

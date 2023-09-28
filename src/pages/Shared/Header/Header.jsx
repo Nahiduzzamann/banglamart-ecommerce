@@ -35,6 +35,7 @@ import { getApi } from "../../../apis";
 
 const Header = () => {
   const { user, logOut, cart } = useContext(AuthContext);
+  const url = "https://api.banglamartecommerce.com.bd";
   // console.log(user);
   const from = location.state?.from?.pathname || "/";
 
@@ -246,7 +247,7 @@ const Header = () => {
                         icon={<AiOutlineUser fontSize="1.5rem" />}
                         size="md"
                         name={user?.name}
-                        src={user?.image}
+                        src={`${url}${user?.image}`}
                       />
                     </MenuButton>
                     <MenuList>
