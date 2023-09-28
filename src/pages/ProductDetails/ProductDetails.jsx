@@ -425,44 +425,50 @@ const ProductDetails = () => {
             </div>
           </div>
 
-          <div className="border-b border-b-BorderColor items-center flex flex-wrap p-4">
+          <div className="border-b border-b-BorderColor items-center flex flex-wrap p-4 gap-2">
             <p className="text-TextColor">Variant-</p>
-            {
-              product?.colors && <p>Color: {product?.colors}</p>
-
-            }
-            {
-              product?.sizes && <p>Color: {product?.sizes}</p>
-
-            }
-            {
-              product?.specifications && <Accordion allowMultiple>
-              <AccordionItem>
-                {({ isExpanded }) => (
-                  <>
-                    <h2>
-                      <AccordionButton
-                        _expanded={{ bg: "#5dade2", color: "white" }}
-                      >
-                        <Box as="span" flex="1" textAlign="left">
-                          <h1>Specifications</h1>
-                        </Box>
-                        {isExpanded ? (
-                          <MdRemove fontSize="18px" />
-                        ) : (
-                          <MdAdd fontSize="18px" />
-                        )}
-                      </AccordionButton>
-                    </h2>
-                    <AccordionPanel pb={4}>
-                      {product?.specifications}
-                    </AccordionPanel>
-                  </>
-                )}
-              </AccordionItem>
-            </Accordion>
-
-            }
+            {product?.colors && (
+              <p className="text-SubTextColor">Color: {product?.colors}</p>
+            )}
+            {product?.sizes && (
+              <p className="text-SubTextColor">Color: {product?.sizes}</p>
+            )}
+            {product?.specifications && (
+              <Accordion allowMultiple>
+                <AccordionItem>
+                  {({ isExpanded }) => (
+                    <>
+                      <h2>
+                        <AccordionButton
+                          _expanded={{ bg: "#5dade2", color: "white" }}
+                          
+                        >
+                          <Box as="span" flex="1" textAlign="left">
+                            <p className="mr-1">Specifications</p>
+                          </Box>
+                          {isExpanded ? (
+                            <MdRemove
+                              fontSize="18px"
+                              className="text-CardColor"
+                            />
+                          ) : (
+                            <MdAdd
+                              fontSize="18px"
+                              className="text-SubTextColor"
+                            />
+                          )}
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel pb={4}>
+                        <p className="text-SubTextColor">
+                          {product?.specifications}
+                        </p>
+                      </AccordionPanel>
+                    </>
+                  )}
+                </AccordionItem>
+              </Accordion>
+            )}
           </div>
           <div className="border-b border-b-BorderColor p-4">
             {newPrice > totalPrice && (
@@ -826,8 +832,6 @@ const ProductDetails = () => {
 
 export default ProductDetails;
 
-
-
 const ImageShow = ({ product }) => {
   const url = "https://api.banglamartecommerce.com.bd";
 
@@ -836,12 +840,11 @@ const ImageShow = ({ product }) => {
   const handleImageClick = (index) => {
     setCurrentImageIndex(index);
   };
- 
+
   return (
     <div className="flex flex-col items-center">
       <div className="mb-4">
         {product?.images ? (
-         
           <img
             src={`${url}${product?.images[currentImageIndex]}`}
             className="object-cover h-96 w-full"
