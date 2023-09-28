@@ -47,7 +47,7 @@ const ProductDetails = () => {
   const location = useLocation();
   const { id } = useParams();
   const [product, setProductDetails] = useState(null);
-  console.log(product);
+
   const url = "https://api.banglamartecommerce.com.bd";
   useEffect(() => {
     const visitorId = localStorage.getItem("visitorId");
@@ -426,19 +426,18 @@ const ProductDetails = () => {
           </div>
 
           <div className="border-b border-b-BorderColor items-center flex flex-wrap p-4 gap-2">
-            <p className="text-TextColor">Variant-</p>
-            {product?.colors &&
-              product?.colors?.map((color, i) => {
-                <p key={i} className="text-SubTextColor">
-                  Color: {"..."}
-                </p>;
-              })}
-            {product?.sizes &&
-              product?.sizes?.map((size, i) => {
-                <p key={i} className="text-SubTextColor">
-                  Size: {size?.label}
-                </p>;
-              })}
+            {product?.colors?.map((color, i) => (
+              <p key={i} className="text-SubTextColor">
+                Color: {"..."}
+              </p>
+            ))}
+            <div className="flex flex-col ml-2 mr-2">
+              {product?.sizes?.map((size, i) => (
+                <p key={i} className="text-SubTextColor ">
+                  Size: <span className="font-bold">{size.label}</span> 
+                </p>
+              ))}
+            </div>
             {product?.specifications && (
               <Accordion allowMultiple>
                 <AccordionItem>
@@ -465,14 +464,11 @@ const ProductDetails = () => {
                         </AccordionButton>
                       </h2>
                       <AccordionPanel pb={4}>
-                        {
-                          product?.specifications?.map((specification, i) => {
-                            <p key={i} className="text-SubTextColor">
-                              Specification: {"..."}
-                            </p>;
-                          })
-                        }
-                        
+                        {product?.specifications?.map((specification, i) => (
+                          <p key={i} className="text-SubTextColor">
+                            Specification: {"..."}
+                          </p>
+                        ))}
                       </AccordionPanel>
                     </>
                   )}
