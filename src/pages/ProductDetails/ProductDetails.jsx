@@ -26,6 +26,7 @@ import {
   AccordionPanel,
   Avatar,
   Box,
+  Checkbox,
   CloseButton,
   Spinner,
 } from "@chakra-ui/react";
@@ -433,9 +434,14 @@ const ProductDetails = () => {
             ))}
             <div className="flex flex-col ml-2 mr-2">
               {product?.sizes?.map((size, i) => (
-                <p key={i} className="text-SubTextColor ">
-                  Size: <span className="font-bold">{size.label}</span> 
-                </p>
+                <div
+                  key={i}
+                  className="text-SubTextColor flex flex-row justify-center items-center"
+                >
+                  <p className="mr-1">Size:</p>
+                  <p className="font-bold mr-[2px]">{size.label}</p>
+                  <Checkbox size="sm" colorScheme="red"></Checkbox>
+                </div>
               ))}
             </div>
             {product?.specifications && (
