@@ -17,7 +17,6 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
 } from "react-share";
-// import ReactImageMagnify from "react-image-magnify";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import {
@@ -791,9 +790,7 @@ const ProductDetails = () => {
 
 export default ProductDetails;
 
-// import { useRef, useMemo } from "react"
-// import {  useZoomImageHover} from "@zoom-image/react"
-// import { cropImage } from "@zoom-image/core"
+
 
 const ImageShow = ({ product }) => {
   const url = "https://api.banglamartecommerce.com.bd";
@@ -803,24 +800,12 @@ const ImageShow = ({ product }) => {
   const handleImageClick = (index) => {
     setCurrentImageIndex(index);
   };
-  // const zoomTargetRef = useRef<HTMLDivElement>(null)
-  // const imageHoverContainerRef = useRef<HTMLDivElement>(null)
-  // const imageContainer = imageHoverContainerRef.current as HTMLDivElement
-  //     const zoomTarget = zoomTargetRef.current as HTMLDivElement
-  //     createZoomImageHover(imageContainer, {
-  //       zoomImageSource: "https://nam-assets.netlify.app/static/large.webp",
-  //       customZoom: { width: 300, height: 500 },
-  //       zoomTarget,
-  //       scaleFactor: 0.5,
-  //     })
+ 
   return (
     <div className="flex flex-col items-center">
       <div className="mb-4">
         {product?.images ? (
-          //   <div ref={imageHoverContainerRef} className="relative flex h-[250px] w-[250px] items-start">
-          //   <img className="h-full w-full" alt="Small Pic" src={`${url}${product?.images[currentImageIndex]}`}/>
-          //   <div ref={zoomTargetRef} className="absolute left-[300px]"></div>
-          // </div>
+         
           <img
             src={`${url}${product?.images[currentImageIndex]}`}
             className="object-cover h-96 w-full"
