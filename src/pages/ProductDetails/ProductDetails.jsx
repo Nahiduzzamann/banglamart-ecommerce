@@ -47,7 +47,7 @@ const ProductDetails = () => {
   const location = useLocation();
   const { id } = useParams();
   const [product, setProductDetails] = useState(null);
-  console.log(product);
+  // console.log(product);
   const url = "https://api.banglamartecommerce.com.bd";
   useEffect(() => {
     const visitorId = localStorage.getItem("visitorId");
@@ -425,8 +425,44 @@ const ProductDetails = () => {
             </div>
           </div>
 
-          <div className="border-b border-b-BorderColor flex items-center p-4">
-            <p className="text-TextColor">Variant:</p>
+          <div className="border-b border-b-BorderColor items-center flex flex-wrap p-4">
+            <p className="text-TextColor">Variant-</p>
+            {
+              product?.colors && <p>Color: {product?.colors}</p>
+
+            }
+            {
+              product?.sizes && <p>Color: {product?.sizes}</p>
+
+            }
+            {
+              product?.specifications && <Accordion allowMultiple>
+              <AccordionItem>
+                {({ isExpanded }) => (
+                  <>
+                    <h2>
+                      <AccordionButton
+                        _expanded={{ bg: "#5dade2", color: "white" }}
+                      >
+                        <Box as="span" flex="1" textAlign="left">
+                          <h1>Specifications</h1>
+                        </Box>
+                        {isExpanded ? (
+                          <MdRemove fontSize="18px" />
+                        ) : (
+                          <MdAdd fontSize="18px" />
+                        )}
+                      </AccordionButton>
+                    </h2>
+                    <AccordionPanel pb={4}>
+                      {product?.specifications}
+                    </AccordionPanel>
+                  </>
+                )}
+              </AccordionItem>
+            </Accordion>
+
+            }
           </div>
           <div className="border-b border-b-BorderColor p-4">
             {newPrice > totalPrice && (
