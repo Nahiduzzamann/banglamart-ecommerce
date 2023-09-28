@@ -134,6 +134,7 @@ const AddDeliveryAddressForm = () => {
           })
           .catch((error) => {
             setIsLoading(false);
+            console.log(error);
             setErrorMessage(error);
           });
       } else if (result.isDenied) {
