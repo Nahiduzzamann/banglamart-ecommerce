@@ -21,7 +21,8 @@ const TimerFlashSell = ({ flashSaleData }) => {
   return (
     
     <span className="countdown font-mono text-2xl text-MainColor flex items-center">
-      <span className="mt-2 mb-2 pt-1 pb-1 h-6" style={{ "--value": remainingTime / (24 * 60 * 60) }}></span>:
+      <span className="mt-2 mb-2 pt-1 pb-1 h-6 " style={{ "--value": remainingTime / (24 * 60 * 60) }}></span>
+      :
       <span className="mt-2 mb-2 pt-1 pb-1 h-6" style={{ "--value": (remainingTime / 3600) % 24 }}></span>:
       <span className="mt-2 mb-2 pt-1 pb-1 h-6" style={{ "--value": (remainingTime / 60) % 60 }}></span>:
       <span className="mt-2 mb-2 pt-1 pb-1 h-6" style={{ "--value": remainingTime % 60 }}></span>
