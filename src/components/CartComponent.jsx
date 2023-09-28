@@ -138,7 +138,7 @@ const CartComponent = ({ data }) => {
         </div>
         <div className="flex flex-col items-center m-1">
           <h2 className="line-through text-SubTextColor">{newPrice} ৳</h2>
-          <h1 className="">{totalPrice.toFixed(2)} ৳</h1>
+          <h1 className="">{totalPrice?.toFixed(2)} ৳</h1>
           <div className="">
             {loading ? (
               <button
@@ -170,13 +170,13 @@ const CartComponent = ({ data }) => {
                 <p className="text-SubTextColor">
                   Discount ({product?.offer}%)
                 </p>
-                <p className="text-SubTextColor">-{discount.toFixed(2)} ৳</p>
+                <p className="text-SubTextColor">-{discount?.toFixed(2)} ৳</p>
               </div>
             )}
             {product?.vat > 0 && (
               <div className="flex justify-between">
                 <p className="text-SubTextColor">Vat ({product?.vat}%)</p>
-                <p className="text-SubTextColor">+{vat.toFixed(2)} ৳</p>
+                <p className="text-SubTextColor">+{vat?.toFixed(2)} ৳</p>
               </div>
             )}
             {!product?.freeDelivery && (
@@ -195,7 +195,7 @@ const CartComponent = ({ data }) => {
             )}
             <div className="flex items-center justify-between border-t-SubTextColor border-t-[1px]">
               <p className="text-TextColor">Total Price:</p>
-              <h1 className="text-MainColor">{finalPrice.toFixed(2)} ৳</h1>
+              <h1 className="text-MainColor">{finalPrice?.toFixed(2)} ৳</h1>
             </div>
           </div>
         </div>

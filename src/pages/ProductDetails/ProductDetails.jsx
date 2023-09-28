@@ -47,7 +47,7 @@ const ProductDetails = () => {
   const location = useLocation();
   const { id } = useParams();
   const [product, setProductDetails] = useState(null);
-  // console.log(product);
+  console.log(product);
   const url = "https://api.banglamartecommerce.com.bd";
   useEffect(() => {
     const visitorId = localStorage.getItem("visitorId");
@@ -427,12 +427,18 @@ const ProductDetails = () => {
 
           <div className="border-b border-b-BorderColor items-center flex flex-wrap p-4 gap-2">
             <p className="text-TextColor">Variant-</p>
-            {product?.colors && (
-              <p className="text-SubTextColor">Color: {product?.colors}</p>
-            )}
-            {product?.sizes && (
-              <p className="text-SubTextColor">Color: {product?.sizes}</p>
-            )}
+            {product?.colors &&
+              product?.colors?.map((color, i) => {
+                <p key={i} className="text-SubTextColor">
+                  Color: {"..."}
+                </p>;
+              })}
+            {product?.sizes &&
+              product?.sizes?.map((size, i) => {
+                <p key={i} className="text-SubTextColor">
+                  Size: {size?.label}
+                </p>;
+              })}
             {product?.specifications && (
               <Accordion allowMultiple>
                 <AccordionItem>
@@ -441,7 +447,6 @@ const ProductDetails = () => {
                       <h2>
                         <AccordionButton
                           _expanded={{ bg: "#5dade2", color: "white" }}
-                          
                         >
                           <Box as="span" flex="1" textAlign="left">
                             <p className="mr-1">Specifications</p>
@@ -460,9 +465,14 @@ const ProductDetails = () => {
                         </AccordionButton>
                       </h2>
                       <AccordionPanel pb={4}>
-                        <p className="text-SubTextColor">
-                          {product?.specifications}
-                        </p>
+                        {
+                          product?.specifications?.map((specification, i) => {
+                            <p key={i} className="text-SubTextColor">
+                              Specification: {"..."}
+                            </p>;
+                          })
+                        }
+                        
                       </AccordionPanel>
                     </>
                   )}
@@ -483,7 +493,7 @@ const ProductDetails = () => {
             <p className="text-SubTextColor">
               Current Price:
               <span className="text-[18px] text-MainColor ml-2">
-                {totalPrice} ৳
+                {totalPrice?.toFixed(2)} ৳
               </span>
               /pc
             </p>
@@ -532,13 +542,13 @@ const ProductDetails = () => {
                   <p className="text-SubTextColor">
                     Discount ({product?.offer}%)
                   </p>
-                  <p className="text-SubTextColor">-{discount} ৳</p>
+                  <p className="text-SubTextColor">-{discount?.toFixed(2)} ৳</p>
                 </div>
               )}
               {product?.vat > 0 && (
                 <div className="flex justify-between">
                   <p className="text-SubTextColor">Vat ({product?.vat}%)</p>
-                  <p className="text-SubTextColor">+{vat} ৳</p>
+                  <p className="text-SubTextColor">+{vat?.toFixed(2)} ৳</p>
                 </div>
               )}
               {!product?.freeDelivery && (
@@ -557,7 +567,7 @@ const ProductDetails = () => {
               )}
               <div className="flex items-center justify-between border-t-SubTextColor border-t-[1px]">
                 <p className="text-TextColor">Total Price:</p>
-                <h1 className="text-MainColor">{finalPrice} ৳</h1>
+                <h1 className="text-MainColor">{finalPrice?.toFixed(2)} ৳</h1>
               </div>
             </div>
             <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-2">
