@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import {
@@ -11,6 +11,20 @@ import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 import { postApi } from "../../apis";
+import {
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
+} from "@chakra-ui/react";
 
 const Login = () => {
   const { signIn, signInWithGoogle, setUserState } = useContext(AuthContext);
@@ -20,6 +34,11 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const initialRef = React.useRef(null);
+  const finalRef = React.useRef(null);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -101,7 +120,9 @@ const Login = () => {
       console.error(error.message);
     }
   };
-  const handlePhoneLogin = () => {};
+  const handlePhoneLogin = () => {
+    setIsLoading(true)
+  };
 
   return (
     <div className="flex items-center justify-center ">
@@ -168,7 +189,7 @@ const Login = () => {
             disabled={isLoading}
           >
             {isLoading ? (
-              <span className="loading loading-bars loading-md "></span>
+              <span className="loading loading-bars loading-xs "></span>
             ) : (
               "Log in"
             )}
@@ -184,7 +205,7 @@ const Login = () => {
             disabled={isLoading}
           >
             {isLoading ? (
-              <span className="loading loading-bars loading-md"></span>
+              <span className="loading loading-bars loading-xs"></span>
             ) : (
               <div className="flex justify-center items-center">
                 <AiOutlineGoogle className="text-2xl mr-1" />
@@ -195,12 +216,12 @@ const Login = () => {
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.8 }}
-            onClick={handlePhoneLogin}
+            onClick={onOpen}
             className="bg-MainColor text-CardColor shadow-lg shadow-MainColorHover rounded-md p-2 w-full hover:bg-MainColorHover"
             disabled={isLoading}
           >
             {isLoading ? (
-              <span className="loading loading-bars loading-md"></span>
+              <span className="loading loading-bars loading-xs"></span>
             ) : (
               <div className="flex justify-center items-center">
                 <AiFillPhone className="text-2xl mr-1" />
@@ -208,6 +229,51 @@ const Login = () => {
               </div>
             )}
           </motion.button>
+          {/* phone login modal  */}
+          <div>
+            <Modal
+              initialFocusRef={initialRef}
+              finalFocusRef={finalRef}
+              isOpen={isOpen}
+              onClose={onClose}
+            >
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader>Login using Phone Number</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody pb={6}>
+                  <FormControl>
+                    <FormLabel>Phone Number</FormLabel>
+                    <Input ref={initialRef} placeholder="Phone Number" />
+                  </FormControl>
+
+                  <FormControl mt={4}>
+                    <FormLabel>Password</FormLabel>
+                    <Input placeholder="Enter Password" />
+                  </FormControl>
+                </ModalBody>
+
+                <ModalFooter>
+                  {errorMessage && (
+                    <div
+                      className="bg-[#fdd5d5] border-l-4 border-[#ff8383] text-[#ff2b2b] p-4 mb-4"
+                      role="alert"
+                    >
+                      <p>{errorMessage}</p>
+                    </div>
+                  )}
+                  <Button onClick={handlePhoneLogin} colorScheme="blue" mr={3}>
+                    {isLoading ? (
+                      <span className="loading loading-bars loading-xs "></span>
+                    ) : (
+                      "Log in"
+                    )}
+                  </Button>
+                  <Button onClick={onClose}>Cancel</Button>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
+          </div>
           <p className="mt-10 text-SubTextColor">
             Do not have an account?{" "}
             <Link

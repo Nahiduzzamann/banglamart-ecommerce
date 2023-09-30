@@ -31,6 +31,7 @@ const SignUpWithPhone = () => {
       });
   };
   const handlePhoneLogin = () => {
+    setErrorMessage(null)
     setIsLoading(true);
     const token = localStorage.getItem("otpToken");
     postApi(
@@ -49,13 +50,14 @@ const SignUpWithPhone = () => {
         setIsLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+        setErrorMessage(error.message);
         setIsLoading(false);
       });
   };
 
   // Function to verify OTP
   const verifyOtp = () => {
+    setErrorMessage(null)
     setIsLoading(true);
     const token = localStorage.getItem("otpToken");
     postApi("/auth/verify-otp", { token: token, otp: otp }, null)
@@ -67,7 +69,7 @@ const SignUpWithPhone = () => {
         setIsLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+        setErrorMessage(error.message);
         setIsLoading(false);
       });
   };
