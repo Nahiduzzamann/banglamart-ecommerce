@@ -10,23 +10,27 @@ const SignUpWithPhone = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [otp, setOtp] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [isCountdownCompleted, setIsCountdownCompleted] = useState(true);
   const [isSendButtonEnabled, setIsSendButtonEnabled] = useState(false);
   // Function to send OTP
   const sendOtp = () => {
+    setIsLoading(true)
     postApi("/auth/send-otp", { phone: phoneNumber }, null)
       .then((response) => {
         localStorage.setItem("otpToken",response.data.token)
         setIsOtpSent(true);
-        console.log(response);
+        setIsLoading(false)
       })
       .catch((error) => {
         console.log(error);
+        setIsLoading(false)
       });
     
   };
   const handlePhoneLogin = () => {
+    setIsLoading(true)
     const token =localStorage.getItem("otpToken")
     postApi("/auth/sign-up-with-phone", { 
         name:name,
@@ -37,10 +41,12 @@ const SignUpWithPhone = () => {
         localStorage.removeItem("otpToken");
         localStorage.setItem("token",response.data.token)
         setUserState(response.data.user.createdAt)
-        console.log(response);
+        setIsLoading(false)
+
       })
       .catch((error) => {
         console.log(error);
+        setIsLoading(false)
       });
     
   };
@@ -48,16 +54,20 @@ const SignUpWithPhone = () => {
 
   // Function to verify OTP
   const verifyOtp = () => {
+    setIsLoading(true)
     const token =localStorage.getItem("otpToken")
     postApi("/auth/verify-otp", { token: token, otp:otp }, null)
       .then((response) => {
         localStorage.removeItem("otpToken");
         localStorage.setItem("otpToken",response.data.token)
+        setIsLoading(false)
         handlePhoneLogin()
-        console.log(response);
+        setIsLoading(false)
+
       })
       .catch((error) => {
         console.log(error);
+        setIsLoading(false)
       });
     
   };
@@ -127,17 +137,27 @@ const SignUpWithPhone = () => {
         {isOtpSent ? (
           <button
             onClick={verifyOtp}
-            className="bg-MainColor text-CardColor rounded-md p-2"
+            className="bg-MainColor text-CardColor rounded-md p-2 w-28"
           >
-            Verify OTP
+            {isLoading ? (
+              <span className="loading loading-bars loading-xs"></span>
+            ) : (
+              "Verify OTP"
+            )}
+            
           </button>
         ) : (
           <button
             disabled={!isSendButtonEnabled}
             onClick={sendOtp}
-            className="bg-MainColor text-CardColor rounded-md p-2"
+            className="bg-MainColor text-CardColor rounded-md p-2 w-28"
           >
-            Send OTP
+            {isLoading ? (
+              <span className="loading loading-bars loading-xs"></span>
+            ) : (
+              "Send OTP"
+            )}
+            
           </button>
         )}
       </div>
@@ -157,7 +177,7 @@ const SignUpWithPhone = () => {
               setIsCountdownCompleted(false);
               handleOtpResent();
             }}
-            className="bg-MainColor text-CardColor rounded-md p-2"
+            className="bg-MainColor text-CardColor rounded-md p-2 w-28"
           >
             Resend OTP
           </button>
