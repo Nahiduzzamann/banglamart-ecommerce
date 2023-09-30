@@ -30,13 +30,13 @@ import {
 } from "@chakra-ui/react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
-import { PiSmileySadLight } from "react-icons/pi";
+import {  PiSmileySadLight } from "react-icons/pi";
 import { getApi } from "../../../apis";
-
+import { FaCoins } from "react-icons/fa";
 const Header = () => {
   const { user, logOut, cart } = useContext(AuthContext);
   const url = "https://api.banglamartecommerce.com.bd";
-  // console.log(user);
+  console.log(user);
   const from = location.state?.from?.pathname || "/";
 
   const { t } = useTranslation();
@@ -261,10 +261,13 @@ const Header = () => {
                             to="/profile"
                           >
                             <CgProfile className="text-[18px] text-SubTextColor mr-2" />
+
                             <h3 className="hover:underline">Profile</h3>
+                           <FaCoins className="ml-4 mr-1 text-[16px] text-[#ffdb3a]"/>
+                           <p className="text-[#ffdb3a]">{user?.coin}</p>
                           </Link>
                         </MenuItem>
-                        {user?.role === 2 ? (
+                        {user?.role === 1 ? (
                           <MenuItem>
                             <a
                               className="text-SubTextColor flex items-center"
@@ -586,7 +589,6 @@ const SearchProductCart = ({ product, handleSearchClose }) => {
           <div className="mt-1 mb-1">
             <img
               src={`${url}${product?.thumbnail}`}
-               
               className="object-cover rounded w-12 h-12 lg:w-20 lg:h-20"
             />
           </div>

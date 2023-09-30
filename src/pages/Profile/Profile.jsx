@@ -7,6 +7,7 @@ import {
   FaGenderless,
   FaUserAstronaut,
   FaPhoneAlt,
+  FaCoins,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
@@ -23,12 +24,15 @@ const Profile = () => {
           <div className="text-center">
             <Avatar size="xl" name={user?.name} src={`${url}${user?.image}`} />
             <h1 className="text-2xl font-semibold">{user?.name || "N/A"}</h1>
-            {user?.address?.union ? (
-              <span></span>
-            ) : (
-              <p className="text-[#f35454]">*Please Update Your Profile</p>
-            )}
           </div>
+          <div className="flex justify-center items-center">
+            <FaCoins className="mr-1 text-[18px] text-[#ffdb3a]" />
+            <h3>Your available coin:</h3>
+            <h1 className="ml-1 text-[#ffdb3a]">{user?.coin}</h1>{" "}
+          </div>
+          {user?.coin <= 0 && (
+            <p className="text-[#f35454] text-center">Buy product and EARN </p>
+          )}
           <div className="mt-4">
             <div className="flex items-center mb-2">
               <FaUserAstronaut className="mr-2" />
@@ -63,6 +67,11 @@ const Profile = () => {
                 <span>N/A</span>
               )}
             </div>
+            {user?.address?.union ? (
+              <span></span>
+            ) : (
+              <p className="text-[#f35454]">*Please Update Your Profile</p>
+            )}
           </div>
 
           <div className="flex justify-center">
