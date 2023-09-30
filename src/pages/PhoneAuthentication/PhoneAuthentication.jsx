@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import Countdown from "react-countdown";
 import { postApi } from "../../apis";
 import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const SignUpWithPhone = () => {
   const { setUserState } = useContext(AuthContext);
@@ -48,6 +49,13 @@ const SignUpWithPhone = () => {
         localStorage.setItem("token", response.data.token);
         setUserState(response.data.user.createdAt);
         setIsLoading(false);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "User created successfully.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .catch((error) => {
         setErrorMessage(error.message);

@@ -120,8 +120,38 @@ const Login = () => {
       console.error(error.message);
     }
   };
+
+  const [phone, setPhone] = useState('');
+  const [phonePass, setPhonePass] = useState('');
+
+ 
+
   const handlePhoneLogin = () => {
-    setIsLoading(true)
+    setErrorMessage(null);
+    setIsLoading(true);
+    signIn("/auth/sign-in-with-phone", {
+      phone:phone,
+      password:phonePass
+    }, null)
+      .then((res) => {
+        saveToken(res.data.token);
+        setIsLoading(false);
+        setUserState(567546);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "LogIn Successful.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        setErrorMessage(error.message);
+      });
+      setPhone('')
+      setPhonePass('')
   };
 
   return (
@@ -244,16 +274,23 @@ const Login = () => {
                 <ModalBody pb={6}>
                   <FormControl>
                     <FormLabel>Phone Number</FormLabel>
-                    <Input ref={initialRef} placeholder="Phone Number" />
+                    <Input
+                      ref={initialRef}
+                      placeholder="Phone Number"
+                      value={phone}
+                      onChange={(e)=>setPhone(e.target.value)}
+                    />
                   </FormControl>
 
                   <FormControl mt={4}>
                     <FormLabel>Password</FormLabel>
-                    <Input placeholder="Enter Password" />
+                    <Input
+                    ref={initialRef}
+                      value={phonePass}
+                      onChange={(e)=>setPhonePass(e.target.value)}
+                      placeholder="Enter Password"
+                    />
                   </FormControl>
-                </ModalBody>
-
-                <ModalFooter>
                   {errorMessage && (
                     <div
                       className="bg-[#fdd5d5] border-l-4 border-[#ff8383] text-[#ff2b2b] p-4 mb-4"
@@ -262,6 +299,10 @@ const Login = () => {
                       <p>{errorMessage}</p>
                     </div>
                   )}
+                </ModalBody>
+
+                <ModalFooter>
+                 
                   <Button onClick={handlePhoneLogin} colorScheme="blue" mr={3}>
                     {isLoading ? (
                       <span className="loading loading-bars loading-xs "></span>
