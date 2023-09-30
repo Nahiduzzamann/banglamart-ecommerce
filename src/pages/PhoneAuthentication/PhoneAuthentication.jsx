@@ -4,8 +4,7 @@ import { postApi } from "../../apis";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const SignUpWithPhone = () => {
-    const { setUserState } =
-    useContext(AuthContext);
+  const { setUserState } = useContext(AuthContext);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -14,62 +13,63 @@ const SignUpWithPhone = () => {
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [isCountdownCompleted, setIsCountdownCompleted] = useState(true);
   const [isSendButtonEnabled, setIsSendButtonEnabled] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+
   // Function to send OTP
   const sendOtp = () => {
-    setIsLoading(true)
+    setErrorMessage(null)
+    setIsLoading(true);
     postApi("/auth/send-otp", { phone: phoneNumber }, null)
       .then((response) => {
-        localStorage.setItem("otpToken",response.data.token)
+        localStorage.setItem("otpToken", response.data.token);
         setIsOtpSent(true);
-        setIsLoading(false)
+        setIsLoading(false);
       })
       .catch((error) => {
-        console.log(error);
-        setIsLoading(false)
+        setErrorMessage(error.message);
+        setIsLoading(false);
       });
-    
   };
   const handlePhoneLogin = () => {
-    setIsLoading(true)
-    const token =localStorage.getItem("otpToken")
-    postApi("/auth/sign-up-with-phone", { 
-        name:name,
-        password:password,
-        token: token, 
-    }, null)
+    setIsLoading(true);
+    const token = localStorage.getItem("otpToken");
+    postApi(
+      "/auth/sign-up-with-phone",
+      {
+        name: name,
+        password: password,
+        token: token,
+      },
+      null
+    )
       .then((response) => {
         localStorage.removeItem("otpToken");
-        localStorage.setItem("token",response.data.token)
-        setUserState(response.data.user.createdAt)
-        setIsLoading(false)
-
+        localStorage.setItem("token", response.data.token);
+        setUserState(response.data.user.createdAt);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
-        setIsLoading(false)
+        setIsLoading(false);
       });
-    
   };
-
 
   // Function to verify OTP
   const verifyOtp = () => {
-    setIsLoading(true)
-    const token =localStorage.getItem("otpToken")
-    postApi("/auth/verify-otp", { token: token, otp:otp }, null)
+    setIsLoading(true);
+    const token = localStorage.getItem("otpToken");
+    postApi("/auth/verify-otp", { token: token, otp: otp }, null)
       .then((response) => {
         localStorage.removeItem("otpToken");
-        localStorage.setItem("otpToken",response.data.token)
-        setIsLoading(false)
-        handlePhoneLogin()
-        setIsLoading(false)
-
+        localStorage.setItem("otpToken", response.data.token);
+        setIsLoading(false);
+        handlePhoneLogin();
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
-        setIsLoading(false)
+        setIsLoading(false);
       });
-    
   };
 
   // Countdown completion handler
@@ -77,7 +77,7 @@ const SignUpWithPhone = () => {
     setIsCountdownCompleted(true);
   };
   const handleOtpResent = () => {
-    sendOtp()
+    sendOtp();
   };
 
   useEffect(() => {
@@ -97,16 +97,16 @@ const SignUpWithPhone = () => {
       <h1 className="text-2xl font-semibold mb-4">Sign Up with Phone</h1>
       <div className="mb-4">
         <input
-        required
+          required
           type="text"
           placeholder="Enter your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           className="rounded-md mb-2 p-2 w-full outline-none shadow focus:shadow-SubTextColor"
         />
-       
+
         <input
-        required
+          required
           type="text"
           placeholder="Phone Number"
           value={phoneNumber}
@@ -116,12 +116,12 @@ const SignUpWithPhone = () => {
       </div>
       <input
         required
-          type="password"
-          placeholder="Enter Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="rounded-md p-2 w-full outline-none shadow focus:shadow-SubTextColor"
-        />
+        type="password"
+        placeholder="Enter Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="rounded-md p-2 w-full outline-none shadow focus:shadow-SubTextColor"
+      />
       {isOtpSent ? (
         <div className="mb-4">
           <input
@@ -133,6 +133,14 @@ const SignUpWithPhone = () => {
           />
         </div>
       ) : null}
+      {errorMessage && (
+        <div
+          className="bg-[#fdd5d5] border-l-4 border-[#ff8383] text-[#ff2b2b] p-4 mb-4"
+          role="alert"
+        >
+          <p>{errorMessage}</p>
+        </div>
+      )}
       <div className="mb-4 mt-4">
         {isOtpSent ? (
           <button
@@ -144,7 +152,6 @@ const SignUpWithPhone = () => {
             ) : (
               "Verify OTP"
             )}
-            
           </button>
         ) : (
           <button
@@ -157,7 +164,6 @@ const SignUpWithPhone = () => {
             ) : (
               "Send OTP"
             )}
-            
           </button>
         )}
       </div>
