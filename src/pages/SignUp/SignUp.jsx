@@ -124,7 +124,6 @@ const SignUp = () => {
     }
   };
 
-  const handlePhoneLogin = () => {};
   return (
     <div className="flex items-center justify-center min-h-screen">
       <Helmet>
@@ -235,22 +234,23 @@ const SignUp = () => {
               </div>
             )}
           </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.8 }}
-            onClick={handlePhoneLogin}
-            className="bg-MainColor text-CardColor shadow-lg shadow-MainColorHover rounded-md p-2 w-full hover:bg-MainColorHover"
-            disabled={isLoading}
-          >
-            {isLoading ? (
-              <span className="loading loading-bars loading-md"></span>
-            ) : (
-              <div className="flex justify-center items-center">
-                <AiFillPhone className="text-2xl mr-1" />
-                <h2>Sign Up with Phone</h2>
-              </div>
-            )}
-          </motion.button>
+          <Link to="/signUp-phone-page">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className="bg-MainColor text-CardColor shadow-lg shadow-MainColorHover rounded-md p-2 w-full hover:bg-MainColorHover"
+            >
+              {isLoading ? (
+                <span className="loading loading-bars loading-md"></span>
+              ) : (
+                <div className="flex justify-center items-center">
+                  <AiFillPhone className="text-2xl mr-1" />
+                  <h2>Sign Up with Phone</h2>
+                </div>
+              )}
+            </motion.button>
+          </Link>
+
           <p className="mt-10 text-center">
             Already have an account?{" "}
             <Link

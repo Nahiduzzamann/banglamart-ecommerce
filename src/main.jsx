@@ -42,10 +42,10 @@ import BargainingProductsPage from "./pages/BargainingProductsPage/BargainingPro
 import Profile from "./pages/Profile/Profile";
 import { ChakraProvider } from "@chakra-ui/react";
 import NotificationPage from "./pages/NotificationPage/NotificationPage";
-import socket from "./socket";
 import BrandProductsPage from "./pages/BrandProductsPage/BrandProductsPage";
 import VariousProductsPage from "./pages/VariousProducts/VariousProducts";
 import ForYouProductsPage from "./pages/ForYouProductsPage/ForYouProductsPage";
+import SignUpWithPhone from "./pages/PhoneAuthentication/PhoneAuthentication";
 
 
 
@@ -175,6 +175,10 @@ const router = createBrowserRouter([
       {
         path: "/various-products-page",
         element: <VariousProductsPage></VariousProductsPage>,
+      },
+      {
+        path: "/signUp-phone-page",
+        element: <SignUpWithPhone></SignUpWithPhone>
       },
     ],
   },

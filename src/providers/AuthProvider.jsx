@@ -16,8 +16,8 @@ const provider = new GoogleAuthProvider();
 const url = "https://api.banglamartecommerce.com.bd";
 
 const AuthProvider = ({ children }) => {
-
   const [user, setUser] = useState(null);
+  console.log(user);
   const [loading, setLoading] = useState(true);
   const [userState, setUserState] = useState(134);
 
@@ -68,19 +68,29 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     setUserState(435);
-    setUserState(45);
+    setUserState(4555);
   }, []);
 
   useEffect(() => {
+    console.log("1");
+
     const token = localStorage.getItem("token");
+    console.log("2");
 
     if (token) {
+      console.log("3");
+
       currentUser("/auth/getUser", token)
         .then((res) => {
+          console.log("4");
+
           setLoading(false);
           setUser(res.data.user);
+          console.log(res.data.user);
         })
         .catch(() => {
+          console.log("5");
+
           setUser(null);
         });
     } else {
