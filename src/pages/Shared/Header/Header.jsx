@@ -36,7 +36,7 @@ import { FaCoins } from "react-icons/fa";
 const Header = () => {
   const { user, logOut, cart } = useContext(AuthContext);
   const url = "https://api.banglamartecommerce.com.bd";
-  console.log(user);
+  // console.log(user);
   const from = location.state?.from?.pathname || "/";
 
   const { t } = useTranslation();

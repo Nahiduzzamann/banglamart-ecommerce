@@ -48,7 +48,7 @@ const ProductDetails = () => {
   const location = useLocation();
   const { id } = useParams();
   const [product, setProductDetails] = useState(null);
-
+  console.log(product);
   const url = "https://api.banglamartecommerce.com.bd";
   useEffect(() => {
     const visitorId = localStorage.getItem("visitorId");
@@ -427,11 +427,24 @@ const ProductDetails = () => {
           </div>
 
           <div className="border-b border-b-BorderColor items-center flex flex-wrap p-4 gap-2">
-            {product?.colors?.map((color, i) => (
-              <p key={i} className="text-SubTextColor">
-                Color: {"..."}
-              </p>
-            ))}
+            <div className="flex flex-col ml-2 mr-2">
+              <p>Available Color:</p>
+              {product?.colors?.map((color, i) => {
+                const backgroundColor = color?.value;
+                return (
+                  <div
+                    key={i}
+                    className="text-SubTextColor flex flex-row justify-center items-center"
+                  >
+                    <div
+                      style={{ backgroundColor: backgroundColor}}
+                      className="m-1 mr-1 h-6 w-6 rounded-full"
+                    ></div>
+                    <Checkbox size="sm" colorScheme="red"></Checkbox>
+                  </div>
+                );
+              })}
+            </div>
             <div className="flex flex-col ml-2 mr-2">
               {product?.sizes?.map((size, i) => (
                 <div
@@ -472,7 +485,7 @@ const ProductDetails = () => {
                       <AccordionPanel pb={4}>
                         {product?.specifications?.map((specification, i) => (
                           <p key={i} className="text-SubTextColor">
-                            Specification: {"..."}
+                            {specification.label} : {specification.value}
                           </p>
                         ))}
                       </AccordionPanel>
