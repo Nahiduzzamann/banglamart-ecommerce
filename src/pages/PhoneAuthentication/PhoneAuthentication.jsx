@@ -14,6 +14,7 @@ const SignUpWithPhone = () => {
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [isCountdownCompleted, setIsCountdownCompleted] = useState(true);
   const [isSendButtonEnabled, setIsSendButtonEnabled] = useState(false);
+  const [isReSendButtonEnabled, setIsReSendButtonEnabled] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
   // Function to send OTP
@@ -25,6 +26,7 @@ const SignUpWithPhone = () => {
         localStorage.setItem("otpToken", response.data.token);
         setIsOtpSent(true);
         setIsLoading(false);
+        setIsReSendButtonEnabled(true)
       })
       .catch((error) => {
         setErrorMessage(error.message);
@@ -188,6 +190,7 @@ const SignUpWithPhone = () => {
       ) : (
         <div>
           <button
+          disabled={!isReSendButtonEnabled}
             onClick={() => {
               setIsOtpSent(false);
               setIsCountdownCompleted(false);
