@@ -135,7 +135,7 @@ const AddDeliveryAddressForm = () => {
           .catch((error) => {
             setIsLoading(false);
             console.log(error.message);
-            setErrorMessage(error.message);
+            setErrorMessage(error.response.data.message);
           });
       } else if (result.isDenied) {
         Swal.fire("Changes are not saved", "", "info");

@@ -55,7 +55,7 @@ const SignUpWithPhone = () => {
             Swal.fire("User Created", "Welcome to our family!", "success");
           })
           .catch((error) => {
-            setErrorMessage(error.message);
+            setErrorMessage(error.response.data.message);
             setIsLoading(false);
           });
       }
@@ -134,7 +134,7 @@ const SignUpWithPhone = () => {
         setIsLoading(false);
       })
       .catch((error) => {
-        setErrorMessage(error.message);
+        setErrorMessage(error.response.data.message);
         setIsLoading(false);
       });
   };

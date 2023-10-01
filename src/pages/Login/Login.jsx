@@ -148,7 +148,7 @@ const Login = () => {
       })
       .catch((error) => {
         setIsLoading(false);
-        setErrorMessage(error.message);
+        setErrorMessage(error.response.data.message);
       });
       setPhone('')
       setPhonePass('')
