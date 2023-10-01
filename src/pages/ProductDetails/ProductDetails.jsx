@@ -426,7 +426,7 @@ const ProductDetails = () => {
             </div>
           </div>
 
-          <div className="border-b border-b-BorderColor items-center flex flex-wrap p-4 gap-2">
+          <div className="border-b border-b-BorderColor flex flex-wrap p-4 gap-2">
             <div className="flex flex-col ml-2 mr-2">
               <p>Available Color:</p>
               {product?.colors?.map((color, i) => {
@@ -437,8 +437,8 @@ const ProductDetails = () => {
                     className="text-SubTextColor flex flex-row justify-center items-center"
                   >
                     <div
-                      style={{ backgroundColor: backgroundColor}}
-                      className="m-1 mr-1 h-6 w-6 rounded-full"
+                      style={{ backgroundColor: backgroundColor }}
+                      className="m-1 mr-1 h-5 w-5 rounded-full"
                     ></div>
                     <Checkbox size="sm" colorScheme="red"></Checkbox>
                   </div>
@@ -458,41 +458,14 @@ const ProductDetails = () => {
               ))}
             </div>
             {product?.specifications && (
-              <Accordion allowMultiple>
-                <AccordionItem>
-                  {({ isExpanded }) => (
-                    <>
-                      <h2>
-                        <AccordionButton
-                          _expanded={{ bg: "#5dade2", color: "white" }}
-                        >
-                          <Box as="span" flex="1" textAlign="left">
-                            <p className="mr-1">Specifications</p>
-                          </Box>
-                          {isExpanded ? (
-                            <MdRemove
-                              fontSize="18px"
-                              className="text-CardColor"
-                            />
-                          ) : (
-                            <MdAdd
-                              fontSize="18px"
-                              className="text-SubTextColor"
-                            />
-                          )}
-                        </AccordionButton>
-                      </h2>
-                      <AccordionPanel pb={4}>
-                        {product?.specifications?.map((specification, i) => (
-                          <p key={i} className="text-SubTextColor">
-                            {specification.label} : {specification.value}
-                          </p>
-                        ))}
-                      </AccordionPanel>
-                    </>
-                  )}
-                </AccordionItem>
-              </Accordion>
+              <div>
+                <p className="mr-1">Specifications:</p>
+                {product?.specifications?.map((specification, i) => (
+                  <p key={i} className="text-SubTextColor">
+                    {specification.label} : {specification.value}
+                  </p>
+                ))}
+              </div>
             )}
           </div>
           <div className="border-b border-b-BorderColor p-4">
@@ -644,43 +617,6 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-      {/* descriptions  */}
-      <div>
-        <div className=" mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg">
-          <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
-            <div className="border-b-[3px] border-b-MainColor ">
-              <h1 className="">Descriptions</h1>
-            </div>
-          </div>
-          <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
-            <Accordion allowMultiple>
-              <AccordionItem>
-                {({ isExpanded }) => (
-                  <>
-                    <h2>
-                      <AccordionButton
-                        _expanded={{ bg: "#5dade2", color: "white" }}
-                      >
-                        <Box as="span" flex="1" textAlign="left">
-                          {product?.title}
-                        </Box>
-                        {isExpanded ? (
-                          <MdRemove fontSize="18px" />
-                        ) : (
-                          <MdAdd fontSize="18px" />
-                        )}
-                      </AccordionButton>
-                    </h2>
-                    <AccordionPanel pb={4}>
-                      <p dangerouslySetInnerHTML={{ __html: htmlContent }}></p>
-                    </AccordionPanel>
-                  </>
-                )}
-              </AccordionItem>
-            </Accordion>
-          </div>
-        </div>
-      </div>
       {/* Reviews  */}
       <div>
         <div className=" mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg">
@@ -725,6 +661,22 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
+      {/* descriptions  */}
+      <div>
+        <div className=" mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg">
+          <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
+            <div className="border-b-[3px] border-b-MainColor ">
+              <h1 className="">Descriptions</h1>
+            </div>
+          </div>
+          <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
+          <h1 className="text-center">{product?.title}</h1>
+          <p dangerouslySetInnerHTML={{ __html: htmlContent }}></p>
+           
+          </div>
+        </div>
+      </div>
+      
       <div>
         <div className=" mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg">
           <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
