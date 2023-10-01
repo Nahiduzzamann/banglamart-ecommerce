@@ -4,6 +4,7 @@ import { postApi } from "../../apis";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const SignUpWithPhone = () => {
   const navigate = useNavigate();
@@ -155,8 +156,12 @@ const SignUpWithPhone = () => {
   }, [isCountdownCompleted]);
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-semibold mb-4">Sign Up with Phone</h1>
+    <div className="flex items-center justify-center min-h-screen">
+      <Helmet>
+        <title>Sign Up with phone | Banglamart E-commerce</title>
+      </Helmet>
+      <div className="w-full max-w-md p-6 bg-BackgroundColor rounded-md shadow-lg m-4 ld:m-0">
+      <h2 className="text-2xl font-semibold text-center mb-6">Sign Up with Phone</h2>
       <div className="mb-4">
         <input
           required
@@ -261,6 +266,7 @@ const SignUpWithPhone = () => {
           </button>
         </div>
       )}
+      </div>
     </div>
   );
 };
