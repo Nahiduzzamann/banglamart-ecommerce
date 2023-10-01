@@ -267,7 +267,7 @@ const Header = () => {
                            <p className="text-[#ffdb3a]">{user?.coin}</p>
                           </Link>
                         </MenuItem>
-                        {user?.role === 1 ? (
+                        {user?.role === 2 ? (
                           <MenuItem>
                             <a
                               className="text-SubTextColor flex items-center"
