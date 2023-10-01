@@ -1,28 +1,25 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import FlashSaleBanner from "../../../components/FlashSaleBanner";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Rating from "react-rating";
-import {
-  AiFillStar,
-  AiOutlineHeart,
-  AiOutlineShoppingCart,
-  AiOutlineStar,
-} from "react-icons/ai";
-import { BsFillCartCheckFill, BsFillHeartFill } from "react-icons/bs";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+// import { BsFillCartCheckFill } from "react-icons/bs";
 import { TbTruckDelivery } from "react-icons/tb";
 import useMediaQuery from "../../../hooks/useMediaQuery";
 import { useSelector } from "react-redux";
 import EmptyContent from "../../../components/EmptyContent";
-import { postApi } from "../../../apis";
-import Swal from "sweetalert2";
-import { AuthContext } from "../../../providers/AuthProvider";
+// import { postApi } from "../../../apis";
+// import Swal from "sweetalert2";
+// import { AuthContext } from "../../../providers/AuthProvider";
 
 const BargainingProducts = () => {
-  const [bargainingProducts,setBargainingProducts]=useState([])
+  const [bargainingProducts, setBargainingProducts] = useState([]);
   const data = useSelector(
     (state) => state.bargainingProducts.bargainingProducts?.data
   );
-  useEffect(()=>{setBargainingProducts(data)},[data])
+  useEffect(() => {
+    setBargainingProducts(data);
+  }, [data]);
   // console.log(bargainingProducts);
   return (
     <div className=" mt-4 lg:mt-8 m-1 lg:m-0 bg-[#440a96] rounded-lg p-4">
@@ -37,7 +34,11 @@ const BargainingProducts = () => {
           View More
         </Link>
       </div>
-      <FlashSaleBanner bannerURL={'https://i.ibb.co/HPzrRX1/Building-a-Discount-Strategy-From-Scratch-Beware-of-Bargain-Hunters-linkedin.png'}></FlashSaleBanner>
+      <FlashSaleBanner
+        bannerURL={
+          "https://i.ibb.co/HPzrRX1/Building-a-Discount-Strategy-From-Scratch-Beware-of-Bargain-Hunters-linkedin.png"
+        }
+      ></FlashSaleBanner>
       <div className="">
         <div className="flex overflow-x-auto scrollbar-hide gap-4 snap-x pt-5">
           {bargainingProducts?.length > 0 ? (
@@ -59,46 +60,47 @@ export default BargainingProducts;
 
 const Cart2 = ({ product }) => {
   const isSm = useMediaQuery("(min-width: 740px)");
-  const { user,setCartUpdate } = useContext(AuthContext);
-  const navigate = useNavigate();
+  // const { user,setCartUpdate } = useContext(AuthContext);
+  // const navigate = useNavigate();
   // TODO
   const url = "https://api.banglamartecommerce.com.bd";
 
   const [hover, setHover] = useState(false);
-  const [heartIconHover, setHeartIconHover] = useState(false);
-  const [cartIconHover, setCartIconHover] = useState(false);
+  // const [heartIconHover, setHeartIconHover] = useState(false);
+  // const [cartIconHover, setCartIconHover] = useState(false);
 
-  const handleAddToCart = (id, minOrder) => {
-    if (user) {
-      const token = localStorage.getItem("token");
-      postApi(
-        "/cart/add",
-        {
-          productId: id,
-          quantity: minOrder,
-        },
-        token
-      )
-        .then((res) => {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Add to Cart successfully.",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          setCartUpdate(res.data)
-        })
-        .catch((error) => {
-          console.log(error.response.data.message);
-        });
-    } else {
-      Swal.fire('Please LogIn')
-      navigate('/login')
-    }
-  };
+  // const handleAddToCart = (id, minOrder) => {
+  //   if (user) {
+  //     const token = localStorage.getItem("token");
+  //     postApi(
+  //       "/cart/add",
+  //       {
+  //         productId: id,
+  //         quantity: minOrder,
+  //       },
+  //       token
+  //     )
+  //       .then((res) => {
+  //         Swal.fire({
+  //           position: "top-end",
+  //           icon: "success",
+  //           title: "Add to Cart successfully.",
+  //           showConfirmButton: false,
+  //           timer: 1500,
+  //         });
+  //         setCartUpdate(res.data)
+  //       })
+  //       .catch((error) => {
+  //         console.log(error.response.data.message);
+  //       });
+  //   } else {
+  //     Swal.fire('Please LogIn')
+  //     navigate('/login')
+  //   }
+  // };
   return (
-    <div
+    <Link
+      to={`/productDetails/${product?.id}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       className={`flex-shrink-0 ${isSm || "w-[45%]"} ${
@@ -108,7 +110,6 @@ const Cart2 = ({ product }) => {
       <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
         <img
           src={`${url}${product?.thumbnail}`}
-           
           className="object-fill w-full h-full"
         />
       </div>
@@ -180,7 +181,7 @@ const Cart2 = ({ product }) => {
                 />
               )}
             </button> */}
-            <button
+            {/* <button
             onClick={() => handleAddToCart(product?.id, product?.minOrder)}
               onMouseEnter={() => setCartIconHover(true)}
               onMouseLeave={() => setCartIconHover(false)}
@@ -204,7 +205,7 @@ const Cart2 = ({ product }) => {
                   } `}
                 />
               )}
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
@@ -233,6 +234,6 @@ const Cart2 = ({ product }) => {
           </p>
         </div>
       )}
-    </div>
+    </Link>
   );
 };

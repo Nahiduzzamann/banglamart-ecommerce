@@ -160,69 +160,69 @@ const Cart2 = ({ data }) => {
   //   }
   // };
   return (
-    <Link to={`/productDetails/${product?.id}`}>
+    <Link
+      to={`/productDetails/${product?.id}`}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      className="flex-shrink-0 w-[45%] snap-start cursor-pointer group aspect-[228/347]  rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor"
+    >
+      <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
+        <img
+          src={`${url}${product?.thumbnail}`}
+          className="object-cover w-full h-full"
+        />
+      </div>
       <div
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-        className="flex-shrink-0 w-[45%] snap-start cursor-pointer group aspect-[228/347]  rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor"
+        className={`absolute bottom-0 w-full ${
+          hover ? "bg-MainColor " : "bg-[#ffffffd7]"
+        }`}
       >
-        <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
-          <img
-            src={`${url}${product?.thumbnail}`}
-            className="object-cover w-full h-full"
-          />
-        </div>
-        <div
-          className={`absolute bottom-0 w-full ${
-            hover ? "bg-MainColor " : "bg-[#ffffffd7]"
-          }`}
-        >
-          <div className="pl-2 pt-1 pb-1 flex justify-between items-center pr-2">
-            <div>
-              <div className="flex">
-                {product?.price > newPrice && (
-                  <p className={`relative mr-1 line-through text-SubTextColor`}>
-                    {Math.ceil(product?.price)} ৳
-                  </p>
-                )}
-
-                <p
-                  className={`relative ${
-                    hover ? "text-CardColor" : "text-[#f84545]"
-                  } `}
-                >
-                  {newPrice} ৳
+        <div className="pl-2 pt-1 pb-1 flex justify-between items-center pr-2">
+          <div>
+            <div className="flex">
+              {product?.price > newPrice && (
+                <p className={`relative mr-1 line-through text-SubTextColor`}>
+                  {Math.ceil(product?.price)} ৳
                 </p>
-              </div>
-              <Rating
-                initialRating={3.5}
-                readonly
-                emptySymbol={
-                  <AiOutlineStar
-                    className={` text-[14px] ${
-                      hover ? "text-BorderColor" : "text-MainColor"
-                    }`}
-                  />
-                }
-                fullSymbol={
-                  <AiFillStar
-                    className={` text-[14px] ${
-                      hover ? "text-BorderColor" : "text-MainColorHover"
-                    }`}
-                  />
-                }
-              />
-              <Link
-                to={`/productDetails/${product?.id}`}
-                className={`relative line-clamp-1 break-all hover:underline ${
-                  hover ? "text-CardColor line-clamp-none" : "text-TextColor"
+              )}
+
+              <p
+                className={`relative ${
+                  hover ? "text-CardColor" : "text-[#f84545]"
                 } `}
               >
-                {product?.title}
-              </Link>
+                {newPrice} ৳
+              </p>
             </div>
-            <div className="flex flex-col">
-              {/* <button
+            <Rating
+              initialRating={3.5}
+              readonly
+              emptySymbol={
+                <AiOutlineStar
+                  className={` text-[14px] ${
+                    hover ? "text-BorderColor" : "text-MainColor"
+                  }`}
+                />
+              }
+              fullSymbol={
+                <AiFillStar
+                  className={` text-[14px] ${
+                    hover ? "text-BorderColor" : "text-MainColorHover"
+                  }`}
+                />
+              }
+            />
+            <Link
+              to={`/productDetails/${product?.id}`}
+              className={`relative line-clamp-1 break-all hover:underline ${
+                hover ? "text-CardColor line-clamp-none" : "text-TextColor"
+              } `}
+            >
+              {product?.title}
+            </Link>
+          </div>
+          <div className="flex flex-col">
+            {/* <button
               onMouseEnter={() => setHeartIconHover(true)}
               onMouseLeave={() => setHeartIconHover(false)}
               className=" mb-1"
@@ -246,7 +246,7 @@ const Cart2 = ({ data }) => {
                 />
               )}
             </button> */}
-              {/* <button
+            {/* <button
             onClick={() => handleAddToCart(product?.id, product?.minOrder)}
               onMouseEnter={() => setCartIconHover(true)}
               onMouseLeave={() => setCartIconHover(false)}
@@ -271,35 +271,34 @@ const Cart2 = ({ data }) => {
                 />
               )}
             </button> */}
-            </div>
           </div>
         </div>
-        {product.percentage && (
-          <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-r-full top-2 p-1">
-            <p className="text-xs text-[#fc3e3e] mr-1">OFF</p>
-            <p className="text-sm text-CardColor p-1 bg-[#fc3e3e] rounded-full">
-              {product.offer}%
-            </p>
-          </div>
-        )}
-        {product?.freeDelivery ? (
-          <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-l-full top-2 p-1 right-0">
-            <TbTruckDelivery className="text-MainColor text-[25px] ml-1 mr-1"></TbTruckDelivery>
-
-            <p className="text-sm text-CardColor p-1 bg-MainColor rounded-full">
-              off
-            </p>
-          </div>
-        ) : (
-          <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-l-full top-2 p-1 right-0">
-            <TbTruckDelivery className="text-MainColor text-[25px] ml-1 mr-1"></TbTruckDelivery>
-
-            <p className="text-sm text-CardColor p-1 bg-MainColor rounded-full">
-              {product?.deliveryCharge} ৳
-            </p>
-          </div>
-        )}
       </div>
+      {product.percentage && (
+        <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-r-full top-2 p-1">
+          <p className="text-xs text-[#fc3e3e] mr-1">OFF</p>
+          <p className="text-sm text-CardColor p-1 bg-[#fc3e3e] rounded-full">
+            {product.offer}%
+          </p>
+        </div>
+      )}
+      {product?.freeDelivery ? (
+        <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-l-full top-2 p-1 right-0">
+          <TbTruckDelivery className="text-MainColor text-[25px] ml-1 mr-1"></TbTruckDelivery>
+
+          <p className="text-sm text-CardColor p-1 bg-MainColor rounded-full">
+            off
+          </p>
+        </div>
+      ) : (
+        <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-l-full top-2 p-1 right-0">
+          <TbTruckDelivery className="text-MainColor text-[25px] ml-1 mr-1"></TbTruckDelivery>
+
+          <p className="text-sm text-CardColor p-1 bg-MainColor rounded-full">
+            {product?.deliveryCharge} ৳
+          </p>
+        </div>
+      )}
     </Link>
   );
 };

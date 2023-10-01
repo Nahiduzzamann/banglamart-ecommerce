@@ -1,19 +1,19 @@
 import { useSelector } from "react-redux";
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { Spinner } from "@chakra-ui/react";
 import Slider from "react-slick/lib/slider";
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
 import Rating from "react-rating";
 import { AiFillStar,  AiOutlineStar } from "react-icons/ai";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { BsFillCartCheckFill } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
+// import { AiOutlineShoppingCart } from "react-icons/ai";
+// import { BsFillCartCheckFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 import { TbTruckDelivery } from "react-icons/tb";
 import useMediaQuery from "../../../hooks/useMediaQuery";
 import ProductCart from "../../../components/ProductCart";
-import { postApi } from "../../../apis";
-import Swal from "sweetalert2";
-import { AuthContext } from "../../../providers/AuthProvider";
+// import { postApi } from "../../../apis";
+// import Swal from "sweetalert2";
+// import { AuthContext } from "../../../providers/AuthProvider";
 
 const ForYouProducts = () => {
 
@@ -154,11 +154,11 @@ const ProductShowSlider = ({ products }) => {
 
 const Cart2 = ({ product }) => {
   const url = "https://api.banglamartecommerce.com.bd";
-  const { user, setCartUpdate } = useContext(AuthContext);
-  const navigate = useNavigate();
+  // const { user, setCartUpdate } = useContext(AuthContext);
+  // const navigate = useNavigate();
   const [hover, setHover] = useState(false);
-  const [heartIconHover, setHeartIconHover] = useState(false);
-  const [cartIconHover, setCartIconHover] = useState(false);
+  // const [heartIconHover, setHeartIconHover] = useState(false);
+  // const [cartIconHover, setCartIconHover] = useState(false);
   const [newPrice, setNewPrice] = useState(product?.price);
 
   function calculatePercentage(value, percentage) {
@@ -177,37 +177,38 @@ const Cart2 = ({ product }) => {
     }
   }, [product]);
 
-  const handleAddToCart = (id, minOrder) => {
-    if (user) {
-      const token = localStorage.getItem("token");
-      postApi(
-        "/cart/add",
-        {
-          productId: id,
-          quantity: minOrder,
-        },
-        token
-      )
-        .then((res) => {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Add to Cart successfully.",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          setCartUpdate(res.data);
-        })
-        .catch((error) => {
-          console.log(error.response.data.message);
-        });
-    } else {
-      Swal.fire("Please LogIn");
-      navigate("/login");
-    }
-  };
+  // const handleAddToCart = (id, minOrder) => {
+  //   if (user) {
+  //     const token = localStorage.getItem("token");
+  //     postApi(
+  //       "/cart/add",
+  //       {
+  //         productId: id,
+  //         quantity: minOrder,
+  //       },
+  //       token
+  //     )
+  //       .then((res) => {
+  //         Swal.fire({
+  //           position: "top-end",
+  //           icon: "success",
+  //           title: "Add to Cart successfully.",
+  //           showConfirmButton: false,
+  //           timer: 1500,
+  //         });
+  //         setCartUpdate(res.data);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error.response.data.message);
+  //       });
+  //   } else {
+  //     Swal.fire("Please LogIn");
+  //     navigate("/login");
+  //   }
+  // };
   return (
-    <div
+    <Link
+    to={`/productDetails/${product?.id}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       className="flex-shrink-0 w-[45%] snap-start cursor-pointer group aspect-[228/347]  rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor"
@@ -293,7 +294,7 @@ const Cart2 = ({ product }) => {
                 />
               )}
             </button> */}
-            <button
+            {/* <button
               onClick={() => handleAddToCart(product?.id, product?.minOrder)}
               onMouseEnter={() => setCartIconHover(true)}
               onMouseLeave={() => setCartIconHover(false)}
@@ -317,7 +318,7 @@ const Cart2 = ({ product }) => {
                   } `}
                 />
               )}
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
@@ -346,6 +347,6 @@ const Cart2 = ({ product }) => {
           </p>
         </div>
       )}
-    </div>
+    </Link>
   );
 };

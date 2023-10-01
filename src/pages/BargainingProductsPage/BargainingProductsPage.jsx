@@ -2,20 +2,15 @@ import { PiSmileySadLight } from "react-icons/pi";
 import FlashSaleBanner from "../../components/FlashSaleBanner";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useContext } from "react";
-import {
-  AiFillStar,
-  AiOutlineHeart,
-  AiOutlineShoppingCart,
-  AiOutlineStar,
-} from "react-icons/ai";
-import { BsFillCartCheckFill, BsFillHeartFill } from "react-icons/bs";
+// import { useContext } from "react";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+// import { BsFillCartCheckFill} from "react-icons/bs";
 import { TbTruckDelivery } from "react-icons/tb";
 import Rating from "react-rating";
-import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import { postApi } from "../../apis";
-import { AuthContext } from "../../providers/AuthProvider";
+import { Link } from "react-router-dom";
+// import Swal from "sweetalert2";
+// import { postApi } from "../../apis";
+// import { AuthContext } from "../../providers/AuthProvider";
 
 const BargainingProductsPage = () => {
   const [bargainingProducts, setBargainingProducts] = useState([]);
@@ -58,14 +53,14 @@ export default BargainingProductsPage;
 
 const ProductCart = ({ product }) => {
   // console.log(product);
-  const { user, setCartUpdate } = useContext(AuthContext);
-  const navigate = useNavigate();
+  // const { user, setCartUpdate } = useContext(AuthContext);
+  // const navigate = useNavigate();
 
   const url = "https://api.banglamartecommerce.com.bd";
 
   const [hover, setHover] = useState(false);
-  const [heartIconHover, setHeartIconHover] = useState(false);
-  const [cartIconHover, setCartIconHover] = useState(false);
+  // const [heartIconHover, setHeartIconHover] = useState(false);
+  // const [cartIconHover, setCartIconHover] = useState(false);
   const [newPrice, setNewPrice] = useState(product?.price);
 
   function calculatePercentage(value, percentage) {
@@ -84,37 +79,37 @@ const ProductCart = ({ product }) => {
     }
   }, [product]);
 
-  const handleAddToCart = (id, minOrder) => {
-    if (user) {
-      const token = localStorage.getItem("token");
-      postApi(
-        "/cart/add",
-        {
-          productId: id,
-          quantity: minOrder,
-        },
-        token
-      )
-        .then((res) => {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Add to Cart successfully.",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          setCartUpdate(res.data);
-        })
-        .catch((error) => {
-          console.log(error.response.data.message);
-        });
-    } else {
-      Swal.fire("Please LogIn");
-      navigate("/login");
-    }
-  };
+  // const handleAddToCart = (id, minOrder) => {
+  //   if (user) {
+  //     const token = localStorage.getItem("token");
+  //     postApi(
+  //       "/cart/add",
+  //       {
+  //         productId: id,
+  //         quantity: minOrder,
+  //       },
+  //       token
+  //     )
+  //       .then((res) => {
+  //         Swal.fire({
+  //           position: "top-end",
+  //           icon: "success",
+  //           title: "Add to Cart successfully.",
+  //           showConfirmButton: false,
+  //           timer: 1500,
+  //         });
+  //         setCartUpdate(res.data);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error.response.data.message);
+  //       });
+  //   } else {
+  //     Swal.fire("Please LogIn");
+  //     navigate("/login");
+  //   }
+  // };
   return (
-    <div>
+    <Link to={`/productDetails/${product?.id}`}>
       <div
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
@@ -127,7 +122,6 @@ const ProductCart = ({ product }) => {
           {/* TODO  */}
           <img
             src={`${url}${product?.thumbnail}`}
-             
             className="object-fill w-full h-full"
           />
         </div>
@@ -204,7 +198,7 @@ const ProductCart = ({ product }) => {
                   />
                 )}
               </button> */}
-              <button
+              {/* <button
                 onClick={() => handleAddToCart(product?.id, product?.minOrder)}
                 onMouseEnter={() => setCartIconHover(true)}
                 onMouseLeave={() => setCartIconHover(false)}
@@ -228,7 +222,7 @@ const ProductCart = ({ product }) => {
                     } `}
                   />
                 )}
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -258,6 +252,6 @@ const ProductCart = ({ product }) => {
           </div>
         )}
       </div>
-    </div>
+    </Link>
   );
 };
