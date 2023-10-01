@@ -823,12 +823,12 @@ const ImageShow = ({ product }) => {
         {product?.images ? (
           <img
             src={`${url}${product?.images[currentImageIndex]}`}
-            className="object-cover h-96 w-full"
+            className="object-cover h-[500px] w-full"
           />
         ) : (
           <img
             src={`${url}${product?.thumbnail}`}
-            className="object-cover h-96 w-full"
+            className="object-cover h-[500px] w-full"
           />
         )}
       </div>
