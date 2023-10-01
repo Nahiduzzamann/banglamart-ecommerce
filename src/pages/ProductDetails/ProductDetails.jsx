@@ -427,7 +427,7 @@ const ProductDetails = () => {
 
           <div className="border-b border-b-BorderColor flex flex-wrap p-4 gap-2">
             <div className="flex flex-col ml-2 mr-2">
-              <p>Color:</p>
+              <p>Select Color:</p>
               {product?.colors?.map((color, i) => {
                 const backgroundColor = color?.value;
                 return (
@@ -445,11 +445,11 @@ const ProductDetails = () => {
               })}
             </div>
             <div className="flex flex-col ml-2 mr-2">
-              <p className="mr-1">Size:</p>
+              <p className="mr-1">Select Size:</p>
               {product?.sizes?.map((size, i) => (
                 <div
                   key={i}
-                  className="text-SubTextColor flex flex-row justify-center items-center"
+                  className="text-SubTextColor flex flex-row  items-center"
                 >
                   <p className="font-bold mr-[2px]">{size.label}</p>
                   <Checkbox size="sm" colorScheme="red"></Checkbox>

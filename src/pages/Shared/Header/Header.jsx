@@ -363,25 +363,25 @@ const Header = () => {
                   className="text-SubTextColor hover:underline hover:text-TextColor"
                   to="/"
                 >
-                  <h1>Home</h1>
+                  <h2>Home</h2>
                 </NavLink>
                 <NavLink
                   className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/flash-sell"
                 >
-                  <h1>Flash Sale</h1>
+                  <h2>Flash Sale</h2>
                 </NavLink>
                 <NavLink
                   className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/bargaining-products"
                 >
-                  <h1>Bargaining Products</h1>
+                  <h2>Bargaining Products</h2>
                 </NavLink>
                 <NavLink
                   className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/all-seller"
                 >
-                  <h1>All Seller</h1>
+                  <h2>All Seller</h2>
                 </NavLink>
                 {/* <Link className="hover:underline text-SubTextColor hover:text-TextColor" to="/">
                   Affiliating
@@ -390,25 +390,25 @@ const Header = () => {
                   className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/category"
                 >
-                  <h1>Categories</h1>
+                  <h2>Categories</h2>
                 </NavLink>
                 <NavLink
                   className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/brands"
                 >
-                  <h1>Brands</h1>
+                  <h2>Brands</h2>
                 </NavLink>
                 <NavLink
                   className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/track-order"
                 >
-                 <h1>Track Order</h1>
+                 <h2>Track Order</h2>
                 </NavLink>
                 <NavLink
                   className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/support"
                 >
-                  <h1>Support</h1>
+                  <h2>Support</h2>
                 </NavLink>
               </div>
             </div>
