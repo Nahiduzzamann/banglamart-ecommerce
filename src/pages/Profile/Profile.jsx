@@ -31,7 +31,7 @@ const Profile = () => {
             <h1 className="ml-1 text-[#ffdb3a]">{user?.coin}</h1>{" "}
           </div>
           {user?.coin <= 0 && (
-            <p className="text-[#f35454] text-center">Buy product and EARN </p>
+            <p className="text-[#f35454] text-center text-xs">Buy product and earn COIN</p>
           )}
           <div className="mt-4">
             <div className="flex items-center mb-2">

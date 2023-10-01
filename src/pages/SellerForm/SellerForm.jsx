@@ -21,7 +21,6 @@ const SellerForm = () => {
 
     Swal.fire({
       title: "Are you sure? Or Check Informations",
-      text: "You won't change this!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
