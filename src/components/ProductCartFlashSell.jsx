@@ -1,27 +1,23 @@
-import { useContext, useEffect, useState } from "react";
-import {
-  AiFillStar,
-  AiOutlineShoppingCart,
-  AiOutlineStar,
-} from "react-icons/ai";
+import { useEffect, useState } from "react";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { TbTruckDelivery } from "react-icons/tb";
-import { BsFillCartCheckFill } from "react-icons/bs";
+// import { BsFillCartCheckFill } from "react-icons/bs";
 import Rating from "react-rating";
-import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import { postApi } from "../apis";
-import { AuthContext } from "../providers/AuthProvider";
+import { Link } from "react-router-dom";
+// import Swal from "sweetalert2";
+// import { postApi } from "../apis";
+// import { AuthContext } from "../providers/AuthProvider";
 
 const ProductCartFlashSell = ({ data }) => {
   const product = data?.product;
-  const { user, setCartUpdate } = useContext(AuthContext);
-  const navigate = useNavigate();
+  // const { user, setCartUpdate } = useContext(AuthContext);
+  // const navigate = useNavigate();
 
   const url = "https://api.banglamartecommerce.com.bd";
 
   const [hover, setHover] = useState(false);
   // const [heartIconHover, setHeartIconHover] = useState(false);
-  const [cartIconHover, setCartIconHover] = useState(false);
+  // const [cartIconHover, setCartIconHover] = useState(false);
   const [newPrice, setNewPrice] = useState(product?.price);
 
   function calculatePercentage(value, percentage) {
@@ -40,47 +36,45 @@ const ProductCartFlashSell = ({ data }) => {
     }
   }, [product]);
 
-  const handleAddToCart = (id, minOrder) => {
-    if (user) {
-      const token = localStorage.getItem("token");
-      postApi(
-        "/cart/add",
-        {
-          productId: id,
-          quantity: minOrder,
-        },
-        token
-      )
-        .then((res) => {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Add to Cart successfully.",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          setCartUpdate(res.data);
-        })
-        .catch((error) => {
-          console.log(error.response.data.message);
-        });
-    } else {
-      Swal.fire("Please LogIn");
-      navigate("/login");
-    }
-  };
+  // const handleAddToCart = (id, minOrder) => {
+  //   if (user) {
+  //     const token = localStorage.getItem("token");
+  //     postApi(
+  //       "/cart/add",
+  //       {
+  //         productId: id,
+  //         quantity: minOrder,
+  //       },
+  //       token
+  //     )
+  //       .then((res) => {
+  //         Swal.fire({
+  //           position: "top-end",
+  //           icon: "success",
+  //           title: "Add to Cart successfully.",
+  //           showConfirmButton: false,
+  //           timer: 1500,
+  //         });
+  //         setCartUpdate(res.data);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error.response.data.message);
+  //       });
+  //   } else {
+  //     Swal.fire("Please LogIn");
+  //     navigate("/login");
+  //   }
+  // };
   return (
-    <div>
+    <Link to={`/productDetails/${product?.id}`} >
       <div
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         className="w-[95%] cursor-pointer group aspect-[20/25] rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor hover:shadow-lg"
       >
         <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
-          {/* TODO  */}
           <img
             src={`${url}${product?.thumbnail}`}
-             
             className="object-fill w-full h-full"
           />
         </div>
@@ -157,7 +151,7 @@ const ProductCartFlashSell = ({ data }) => {
                   />
                 )}
               </button> */}
-              <button
+              {/* <button
                 onClick={() => handleAddToCart(product?.id, product?.minOrder)}
                 onMouseEnter={() => setCartIconHover(true)}
                 onMouseLeave={() => setCartIconHover(false)}
@@ -181,7 +175,7 @@ const ProductCartFlashSell = ({ data }) => {
                     } `}
                   />
                 )}
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -211,7 +205,7 @@ const ProductCartFlashSell = ({ data }) => {
           </div>
         )}
       </div>
-    </div>
+    </Link>
   );
 };
 export default ProductCartFlashSell;
