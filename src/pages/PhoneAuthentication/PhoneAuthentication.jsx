@@ -21,6 +21,15 @@ const SignUpWithPhone = () => {
   const [isSendButtonEnabled, setIsSendButtonEnabled] = useState(false);
   const [isReSendButtonEnabled, setIsReSendButtonEnabled] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [isValid, setIsValid] = useState(true);
+
+  const handlePhoneNumberChange = (e) => {
+    const newPhoneNumber = e.target.value;
+    const phoneNumberRegex = /^01[3-9]\d{8}$/;
+    const newIsValid = phoneNumberRegex.test(newPhoneNumber);
+    setPhoneNumber(newPhoneNumber);
+    setIsValid(newIsValid);
+  };
 
   // Function to send OTP
   const sendOtp = () => {
@@ -29,14 +38,13 @@ const SignUpWithPhone = () => {
     Swal.fire({
       title: customTitle,
       text: "Phone Number Ok?",
-      icon: 'info',
+      icon: "info",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Send OTP'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Send OTP",
     }).then((result) => {
       if (result.isConfirmed) {
-
         setIsLoading(true);
         postApi("/auth/send-otp", { phone: phoneNumber }, null)
           .then((response) => {
@@ -44,20 +52,14 @@ const SignUpWithPhone = () => {
             setIsOtpSent(true);
             setIsLoading(false);
             setIsReSendButtonEnabled(true);
-            Swal.fire(
-              'User Created',
-              'Welcome to our family!',
-              'success'
-            )
+            Swal.fire("User Created", "Welcome to our family!", "success");
           })
           .catch((error) => {
             setErrorMessage(error.message);
             setIsLoading(false);
           });
-        
       }
-    })
-   
+    });
   };
   const handlePhoneSignUp = () => {
     setErrorMessage("");
@@ -83,6 +85,8 @@ const SignUpWithPhone = () => {
     } else if (password !== confirmPassword) {
       // Password mismatch error
       setErrorMessage("Passwords do not match");
+    } else if (!isValid) {
+      setErrorMessage("Use valid phone number");
     } else {
       setIsLoading(true);
       const token = localStorage.getItem("otpToken");
@@ -110,7 +114,7 @@ const SignUpWithPhone = () => {
           navigate(from, { replace: true });
         })
         .catch((error) => {
-          setErrorMessage(error.message);
+          setErrorMessage(error.response.data.message);
           setIsLoading(false);
         });
     }
@@ -161,111 +165,115 @@ const SignUpWithPhone = () => {
         <title>Sign Up with phone | Banglamart E-commerce</title>
       </Helmet>
       <div className="w-full max-w-md p-6 bg-BackgroundColor rounded-md shadow-lg m-4 ld:m-0">
-      <h2 className="text-2xl font-semibold text-center mb-6">Sign Up with Phone</h2>
-      <div className="mb-4">
-        <input
-          required
-          type="text"
-          placeholder="Enter your name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="rounded-md mb-2 p-2 w-full outline-none shadow focus:shadow-SubTextColor"
-        />
-
-        <input
-          required
-          type="text"
-          placeholder="Phone Number"
-          value={phoneNumber}
-          onChange={(e) => setPhoneNumber(e.target.value)}
-          className="rounded-md p-2 w-full outline-none shadow focus:shadow-SubTextColor"
-        />
-      </div>
-      <input
-        required
-        type="password"
-        placeholder="Enter Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className="rounded-md mb-2 p-2 w-full outline-none shadow focus:shadow-SubTextColor"
-      />
-      <input
-        type="password"
-        id="confirmPassword"
-        className="rounded-md p-2 w-full outline-none shadow focus:shadow-SubTextColor"
-        placeholder="Confirm your password"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-        required
-      />
-      {isOtpSent ? (
+        <h2 className="text-2xl font-semibold text-center mb-6">
+          Sign Up with Phone
+        </h2>
         <div className="mb-4">
           <input
+            required
             type="text"
-            placeholder="Enter OTP"
-            value={otp}
-            onChange={(e) => setOtp(e.target.value)}
-            className="border p-2 w-full"
+            placeholder="Enter your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="rounded-md mb-2 p-2 w-full outline-none shadow focus:shadow-SubTextColor"
+          />
+
+          <input
+            required
+            type="text"
+            placeholder="Phone Number"
+            value={phoneNumber}
+            onChange={handlePhoneNumberChange}
+            className="rounded-md p-2 w-full outline-none shadow focus:shadow-SubTextColor"
+          />
+          {!isValid && <p className="text-[#fd4e4e]">*Invalid phone number</p>}
+
+          <input
+            required
+            type="password"
+            placeholder="Enter Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="mt-4 rounded-md mb-2 p-2 w-full outline-none shadow focus:shadow-SubTextColor"
+          />
+          <input
+            type="password"
+            id="confirmPassword"
+            className="rounded-md p-2 w-full outline-none shadow focus:shadow-SubTextColor"
+            placeholder="Confirm your password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
           />
         </div>
-      ) : null}
-      {errorMessage && (
-        <div
-          className="bg-[#fdd5d5] border-l-4 border-[#ff8383] text-[#ff2b2b] p-4 mb-4"
-          role="alert"
-        >
-          <p>{errorMessage}</p>
-        </div>
-      )}
-      <div className="mb-4 mt-4">
         {isOtpSent ? (
-          <button
-            onClick={verifyOtp}
-            className="bg-MainColor text-CardColor rounded-md p-2 w-28"
+          <div className="mb-4">
+            <input
+              type="text"
+              placeholder="Enter OTP"
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
+              className="border p-2 w-full"
+            />
+          </div>
+        ) : null}
+        {errorMessage && (
+          <div
+            className="bg-[#fdd5d5] border-l-4 border-[#ff8383] text-[#ff2b2b] p-4 mb-4"
+            role="alert"
           >
-            {isLoading ? (
-              <span className="loading loading-bars loading-xs"></span>
-            ) : (
-              "Verify OTP"
-            )}
-          </button>
-        ) : (
-          <button
-            disabled={!isSendButtonEnabled}
-            onClick={sendOtp}
-            className="bg-MainColor text-CardColor rounded-md p-2 w-28"
-          >
-            {isLoading ? (
-              <span className="loading loading-bars loading-xs"></span>
-            ) : (
-              "Send OTP"
-            )}
-          </button>
+            <p>{errorMessage}</p>
+          </div>
         )}
-      </div>
-      {!isCountdownCompleted ? (
-        <div className="text-red-500">
-          Resend OTP in{" "}
-          <Countdown
-            date={Date.now() + 60000}
-            onComplete={handleCountdownComplete}
-          />
+        <div className="mb-4 mt-4">
+          {isOtpSent ? (
+            <button
+              onClick={verifyOtp}
+              className="bg-MainColor text-CardColor rounded-md p-2 w-28"
+            >
+              {isLoading ? (
+                <span className="loading loading-bars loading-xs"></span>
+              ) : (
+                "Verify OTP"
+              )}
+            </button>
+          ) : (
+            <button
+              disabled={!isSendButtonEnabled}
+              onClick={sendOtp}
+              className="bg-MainColor text-CardColor rounded-md p-2 w-28"
+            >
+              {isLoading ? (
+                <span className="loading loading-bars loading-xs"></span>
+              ) : (
+                "Send OTP"
+              )}
+            </button>
+          )}
         </div>
-      ) : (
-        <div>
-          <button
-            disabled={!isReSendButtonEnabled}
-            onClick={() => {
-              setIsOtpSent(false);
-              setIsCountdownCompleted(false);
-              handleOtpResent();
-            }}
-            className="bg-MainColor text-CardColor rounded-md p-2 w-28"
-          >
-            Resend OTP
-          </button>
-        </div>
-      )}
+        {!isCountdownCompleted ? (
+          <div className="text-red-500">
+            Resend OTP in{" "}
+            <Countdown
+              date={Date.now() + 60000}
+              onComplete={handleCountdownComplete}
+            />
+          </div>
+        ) : (
+          <div>
+            <button
+              disabled={!isReSendButtonEnabled}
+              onClick={() => {
+                setIsOtpSent(false);
+                setIsCountdownCompleted(false);
+                handleOtpResent();
+              }}
+              className="bg-MainColor text-CardColor rounded-md p-2 w-28"
+            >
+              Resend OTP
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
