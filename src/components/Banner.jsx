@@ -44,7 +44,7 @@ const Banner = () => {
             </div>
           ))
         ) : (
-          <div className="flex justify-center items-center p-10 ">
+          <div className="flex justify-center items-center p-10 lg:h-[300px] h-[200px]">
             <Spinner
               thickness="4px"
               speed="0.65s"

@@ -428,7 +428,7 @@ const ProductDetails = () => {
 
           <div className="border-b border-b-BorderColor flex flex-wrap p-4 gap-2">
             <div className="flex flex-col ml-2 mr-2">
-              <p>Available Color:</p>
+              <p>Color:</p>
               {product?.colors?.map((color, i) => {
                 const backgroundColor = color?.value;
                 return (
@@ -446,12 +446,12 @@ const ProductDetails = () => {
               })}
             </div>
             <div className="flex flex-col ml-2 mr-2">
+              <p className="mr-1">Size:</p>
               {product?.sizes?.map((size, i) => (
                 <div
                   key={i}
                   className="text-SubTextColor flex flex-row justify-center items-center"
                 >
-                  <p className="mr-1">Size:</p>
                   <p className="font-bold mr-[2px]">{size.label}</p>
                   <Checkbox size="sm" colorScheme="red"></Checkbox>
                 </div>
@@ -670,13 +670,12 @@ const ProductDetails = () => {
             </div>
           </div>
           <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
-          <h1 className="text-center">{product?.title}</h1>
-          <p dangerouslySetInnerHTML={{ __html: htmlContent }}></p>
-           
+            <h1 className="text-center">{product?.title}</h1>
+            <p dangerouslySetInnerHTML={{ __html: htmlContent }}></p>
           </div>
         </div>
       </div>
-      
+
       <div>
         <div className=" mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg">
           <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
