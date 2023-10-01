@@ -8,7 +8,7 @@ import {
   AiOutlineShoppingCart,
   AiOutlineStar,
 } from "react-icons/ai";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import {
   FacebookIcon,
   FacebookMessengerIcon,
@@ -44,11 +44,11 @@ import { PiSmileySadLight } from "react-icons/pi";
 const ProductDetails = () => {
   const { user, setCartUpdate } = useContext(AuthContext);
   const [messageShow, setMessageShow] = useState(false);
-
+  const navigate = useNavigate();
   const location = useLocation();
   const { id } = useParams();
   const [product, setProductDetails] = useState(null);
-  console.log(product);
+  // console.log(product);
   const url = "https://api.banglamartecommerce.com.bd";
   useEffect(() => {
     const visitorId = localStorage.getItem("visitorId");
@@ -153,8 +153,7 @@ const ProductDetails = () => {
           console.log(error.response.data.message);
         });
     } else {
-      Swal.fire("Please LogIn");
-      Navigate("/login");
+      navigate("/login", { state: { from: location } });
     }
   };
 
