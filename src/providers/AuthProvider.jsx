@@ -69,27 +69,21 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     setUserState(435);
     setUserState(4555);
+    setLoading(false);
   }, []);
 
   useEffect(() => {
-    console.log("1");
-
     const token = localStorage.getItem("token");
-    console.log("2");
 
     if (token) {
-      console.log("3");
-
       currentUser("/auth/getUser", token)
         .then((res) => {
-          console.log("4");
-
           setLoading(false);
           setUser(res.data.user);
           console.log(res.data.user);
         })
         .catch(() => {
-          console.log("5");
+          setLoading(false);
 
           setUser(null);
         });

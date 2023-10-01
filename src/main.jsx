@@ -46,6 +46,7 @@ import BrandProductsPage from "./pages/BrandProductsPage/BrandProductsPage";
 import VariousProductsPage from "./pages/VariousProducts/VariousProducts";
 import ForYouProductsPage from "./pages/ForYouProductsPage/ForYouProductsPage";
 import SignUpWithPhone from "./pages/PhoneAuthentication/PhoneAuthentication";
+import PrivateRoute from "./routes/PrivateRoute";
 
 
 
@@ -118,7 +119,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <Cart></Cart>,
+        element: <PrivateRoute><Cart></Cart></PrivateRoute>,
       },
       {
         path: "/addDeliveryAddress",
@@ -126,7 +127,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/seller-form",
-        element: <SellerForm></SellerForm>,
+        element: <PrivateRoute><SellerForm></SellerForm></PrivateRoute>,
       },
       {
         path: "/all-seller",
@@ -146,7 +147,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/track-order",
-        element: <TrackOrder></TrackOrder>,
+        element: <PrivateRoute><TrackOrder></TrackOrder></PrivateRoute>,
       },
       {
         path: "/support",
