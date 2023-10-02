@@ -211,6 +211,16 @@ const ProductDetails = () => {
       });
   }, [id]);
 
+  const [couponCode, setCouponCode] = useState("");
+
+  const handleCouponCodeChange = (e) => {
+    setCouponCode(e.target.value);
+  };
+
+  const applyCouponCode = () => {
+    // Add logic to apply the promo code here
+  };
+
   if (product == null) {
     return (
       <div className="w-full min-h-screen flex justify-center items-center">
@@ -519,42 +529,68 @@ const ProductDetails = () => {
             </p>
           </div>
           <div className="p-4">
-            <div className=" w-40">
-              <div className="flex justify-between">
-                <p className="text-SubTextColor">Product Price:</p>
-                <p className="text-SubTextColor">{newPrice} ৳</p>
+            <div className="flex justify-around flex-wrap gap-4">
+              <div className="relative">
+                <label className="block text-SubTextColor text-sm font-bold mb-1">
+                  Apply Coupon Code
+                </label>
+                <input
+                  type="text"
+                  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-SubTextColor leading-tight focus:outline-MainColor"
+                  placeholder="Enter Coupon Code"
+                  value={couponCode}
+                  onChange={handleCouponCodeChange}
+                />
+                <p className="text-xs text-[#ff6868]">
+                  *Apply coupon code to get discount
+                </p>
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
+                  onClick={applyCouponCode}
+                >
+                  Apply
+                </motion.button>
               </div>
-              {product?.percentage > 0 && (
+              <div className=" w-40">
                 <div className="flex justify-between">
-                  <p className="text-SubTextColor">
-                    Discount ({product?.offer}%)
-                  </p>
-                  <p className="text-SubTextColor">-{discount?.toFixed(2)} ৳</p>
+                  <p className="text-SubTextColor">Product Price:</p>
+                  <p className="text-SubTextColor">{newPrice} ৳</p>
                 </div>
-              )}
-              {product?.vat > 0 && (
-                <div className="flex justify-between">
-                  <p className="text-SubTextColor">Vat ({product?.vat}%)</p>
-                  <p className="text-SubTextColor">+{vat?.toFixed(2)} ৳</p>
+                {product?.percentage > 0 && (
+                  <div className="flex justify-between">
+                    <p className="text-SubTextColor">
+                      Discount ({product?.offer}%)
+                    </p>
+                    <p className="text-SubTextColor">
+                      -{discount?.toFixed(2)} ৳
+                    </p>
+                  </div>
+                )}
+                {product?.vat > 0 && (
+                  <div className="flex justify-between">
+                    <p className="text-SubTextColor">Vat ({product?.vat}%)</p>
+                    <p className="text-SubTextColor">+{vat?.toFixed(2)} ৳</p>
+                  </div>
+                )}
+                {!product?.freeDelivery && (
+                  <div className="flex justify-between">
+                    <p className="text-SubTextColor">Delivery Charge</p>
+                    <p className="text-SubTextColor">
+                      +{product?.deliveryCharge} ৳
+                    </p>
+                  </div>
+                )}
+                {!product?.percentage && product?.offer > 0 && (
+                  <div className="flex justify-between">
+                    <p className="text-SubTextColor">Discount</p>
+                    <p className="text-SubTextColor">-{product?.offer} ৳</p>
+                  </div>
+                )}
+                <div className="flex items-center justify-between border-t-SubTextColor border-t-[1px]">
+                  <p className="text-TextColor">Total Price:</p>
+                  <h1 className="text-MainColor">{finalPrice?.toFixed(2)} ৳</h1>
                 </div>
-              )}
-              {!product?.freeDelivery && (
-                <div className="flex justify-between">
-                  <p className="text-SubTextColor">Delivery Charge</p>
-                  <p className="text-SubTextColor">
-                    +{product?.deliveryCharge} ৳
-                  </p>
-                </div>
-              )}
-              {!product?.percentage && product?.offer > 0 && (
-                <div className="flex justify-between">
-                  <p className="text-SubTextColor">Discount</p>
-                  <p className="text-SubTextColor">-{product?.offer} ৳</p>
-                </div>
-              )}
-              <div className="flex items-center justify-between border-t-SubTextColor border-t-[1px]">
-                <p className="text-TextColor">Total Price:</p>
-                <h1 className="text-MainColor">{finalPrice?.toFixed(2)} ৳</h1>
               </div>
             </div>
             <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-2">
