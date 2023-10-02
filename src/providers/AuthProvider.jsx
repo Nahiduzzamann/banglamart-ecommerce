@@ -17,7 +17,7 @@ const url = "https://api.banglamartecommerce.com.bd";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  console.log(user);
+  // console.log(user);
   const [loading, setLoading] = useState(true);
   const [userState, setUserState] = useState(134);
 
@@ -80,7 +80,6 @@ const AuthProvider = ({ children }) => {
         .then((res) => {
           setLoading(false);
           setUser(res.data.user);
-          console.log(res.data.user);
         })
         .catch(() => {
           setLoading(false);

@@ -11,7 +11,7 @@ const FlashSale = () => {
   const dispatch = useDispatch();
   const [flashSellInfo, setFlashSellInfo] = useState(null);
 
-  // console.log(flashSellInfo);
+  console.log(flashSellInfo);
 
   useEffect(() => {
     getApi("/product/get/flash", null)
@@ -37,24 +37,24 @@ const FlashSale = () => {
     endAt: new Date(flashSellInfo?.endAt).getTime(),
   };
 
-  const [remainingTime, setRemainingTime] = useState(
-    flashSaleData.endAt - new Date().getTime()
-  );
+  // const [remainingTime, setRemainingTime] = useState(
+  //   flashSaleData.endAt - new Date().getTime()
+  // );
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const newRemainingTime = flashSaleData.endAt - new Date().getTime();
-      setRemainingTime(newRemainingTime); //
-    }, 1000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const newRemainingTime = flashSaleData.endAt - new Date().getTime();
+  //     setRemainingTime(newRemainingTime); //
+  //   }, 1000);
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, []);
   return (
     <div
       className={`${
-        remainingTime <1 && "hidden"
+        flashSellInfo || "hidden"
       } mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg`}
     >
       <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
