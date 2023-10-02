@@ -103,9 +103,9 @@ const Cart2 = ({ product }) => {
       to={`/productDetails/${product?.id}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className={`flex-shrink-0 ${isSm || "w-[45%]"} ${
+      className={`flex-shrink-0 bg-CardColor ${
         isSm && "w-[20%]"
-      } snap-start cursor-pointer group aspect-[228/347]  rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor`}
+      } snap-start cursor-pointer group aspect-[228/300]  rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor`}
     >
       <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
         <img

@@ -81,7 +81,7 @@ const ProductShowSlider = ({ products }) => {
     infinite: false,
     dots: false,
     speed: 200,
-    slidesToShow: 5,
+    slidesToShow: 6,
     slidesToScroll: 1,
     initialSlide: 0,
     swipeToSlide: true,

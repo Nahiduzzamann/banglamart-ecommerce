@@ -157,14 +157,14 @@ const ProductDetails = () => {
     }
   };
 
-  const htmlContent = `<figure>
-      <table>
-        <tbody>
-          ${product?.description}
-        </tbody>
-      </table>
-    </figure>`;
-
+  // const htmlContent = `<figure>
+  //     <table>
+  //       <tbody>
+  //         ${product?.description}
+  //       </tbody>
+  //     </table>
+  //   </figure>`;
+  const htmlContent = `${product?.description}`;
   const [comment, setComment] = useState("");
   const [updateComment, setUpdateComment] = useState();
   const [getComment, setGetComment] = useState(null);
@@ -670,7 +670,7 @@ const ProductDetails = () => {
           </div>
           <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
             <h1 className="text-center">{product?.title}</h1>
-            <p dangerouslySetInnerHTML={{ __html: htmlContent }}></p>
+            <h2 dangerouslySetInnerHTML={{ __html: htmlContent }}></h2>
           </div>
         </div>
       </div>
