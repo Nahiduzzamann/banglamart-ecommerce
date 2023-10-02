@@ -29,8 +29,7 @@ const Banner = () => {
         showIndicators={true}
         showThumbs={false}
         interval={2000}
-        // centerMode={true}
-        // centerSlidePercentage={95}
+        
       >
         {sliders ? (
           sliders.map((slider, i) => (
