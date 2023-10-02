@@ -22,9 +22,10 @@ const Home = () => {
       <div className="container mx-auto ">
         <FlashSale></FlashSale>
         <ForYouProducts></ForYouProducts>
+        <BestSelling></BestSelling>
         <BargainingProducts></BargainingProducts>
         <NewProducts></NewProducts>
-        <BestSelling></BestSelling>
+        
       </div>
       <FlashSaleBanner></FlashSaleBanner>
       <div className="container mx-auto">

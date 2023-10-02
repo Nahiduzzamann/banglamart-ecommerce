@@ -35,7 +35,7 @@ const BrandProductsPage = () => {
         <BrandShopCart data={data}></BrandShopCart>
       </div>
       <div className="p-4">
-        <h1 className="text-SubTextColor pb-4">Products</h1>
+        <h1 className="text-SubTextColor pb-4">Products: {productData?.length}</h1>
         <div className="grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4">
           {productData?.length > 0 ? (
             productData?.map((product, i) => (
