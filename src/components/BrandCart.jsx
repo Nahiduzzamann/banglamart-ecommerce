@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const BrandCart = ({ data }) => {
   const encodedData = encodeURIComponent(JSON.stringify(data));
-
+  // console.log(data);
   const [hover, setHover] = useState(false);
   const url = "https://api.banglamartecommerce.com.bd";
 
@@ -17,7 +17,6 @@ const BrandCart = ({ data }) => {
         <div className="inset-0 absolute w-full aspect-[20/14] group-hover:scale-110 ease-in-out duration-300">
           <img
             src={`${url}${data?.brandIcon}`}
-             
             className="object-fill w-full aspect-[20/14]"
           />
         </div>

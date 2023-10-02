@@ -48,6 +48,7 @@ const ProductDetails = () => {
   const location = useLocation();
   const { id } = useParams();
   const [product, setProductDetails] = useState(null);
+  const [shopDetails, setShopDetails] = useState(null);
   // console.log(product);
   const url = "https://api.banglamartecommerce.com.bd";
   useEffect(() => {
@@ -59,6 +60,19 @@ const ProductDetails = () => {
         );
         const data = await response.json();
         setProductDetails(data.data);
+        if (data.data.brand != null) {
+          const encodedData = encodeURIComponent(
+            JSON.stringify(data.data.brand)
+          );
+          setShopDetails(encodedData);
+        }
+        else if (data.data.seller != null) {
+          const encodedData = encodeURIComponent(
+            JSON.stringify(data.data.seller)
+          );
+
+          setShopDetails(encodedData);
+        }
       } catch (error) {
         console.error("Error fetching instructor classes:", error);
       }
@@ -265,8 +279,12 @@ const ProductDetails = () => {
             {product?.brand && (
               <div>
                 <p className="text-SubTextColor">Sold by:</p>
-                <h3 className="text-TextColor">{product?.brand?.brandName}<span className="badge badge-md border-[1px] border-BorderColor">brand</span></h3>
-                
+                <h3 className="text-TextColor">
+                  {product?.brand?.brandName}
+                  <span className="badge badge-md border-[1px] border-BorderColor">
+                    brand
+                  </span>
+                </h3>
               </div>
             )}
             {product?.seller && (
@@ -275,7 +293,6 @@ const ProductDetails = () => {
                 <h3 className="text-TextColor">{product?.seller?.shopName}</h3>
               </div>
             )}
-            
 
             <motion.button
               onClick={handleMessageShow}
@@ -433,22 +450,21 @@ const ProductDetails = () => {
             </div>
             {/* message section end  */}
             {product?.brand && (
-              <div className="">
-              <img
-                src={`${url}${product?.brand?.brandIcon}`}
-                className="h-16 w-16 rounded-full"
-              />
-            </div>
+              <Link to={`/brand-product-page?data=${shopDetails}`} className="">
+                <img
+                  src={`${url}${product?.brand?.brandIcon}`}
+                  className="h-16 w-16 rounded-full"
+                />
+              </Link>
             )}
             {product?.seller && (
-              <div>
+              <Link to={`/shop-page?data=${shopDetails}`}>
                 <img
-                src={`${url}${product?.seller?.logo}`}
-                className="h-16 w-16 rounded-full"
-              />
-              </div>
+                  src={`${url}${product?.seller?.logo}`}
+                  className="h-16 w-16 rounded-full"
+                />
+              </Link>
             )}
-            
           </div>
 
           <div className="border-b border-b-BorderColor flex flex-wrap p-4 gap-2">
