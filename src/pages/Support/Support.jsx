@@ -83,7 +83,9 @@ const Support = () => {
 
     setFormData(initialFormState);
   };
-
+  const handlePhoneClick = () => {
+    window.location.href = 'tel:+8801713337752';
+  };
   return (
     <div className="">
       <div className="container mx-auto p-4 mt-4 lg:mt-12 pb-12 bg-CardColor">
@@ -96,7 +98,7 @@ const Support = () => {
             <h1 className=" mb-4 text-SubTextColor">Branch Office</h1>
             <div className="flex items-center mb-2 text-blue-900">
               <AiOutlinePhone className=" mr-2 text-SubTextColor" />
-              <p className="text-SubTextColor">+8801713-337752</p>
+              <p onClick={handlePhoneClick} className="text-SubTextColor cursor-pointer">+8801713-337752</p>
             </div>
             <div className="flex items-center mb-2 text-blue-900">
               <AiOutlineMail className=" mr-2 text-SubTextColor" />
@@ -130,7 +132,7 @@ const Support = () => {
             <h1 className=" mb-4 text-SubTextColor">Head Office</h1>
             <div className="flex items-center mb-2 text-blue-900">
               <AiOutlinePhone className=" mr-2 text-SubTextColor" />
-              <p className="text-SubTextColor">+8809611677639</p>
+              <p onClick={handlePhoneClick} className="text-SubTextColor cursor-pointer">+8809611677639</p>
             </div>
             <div className="flex items-center mb-2 text-blue-900">
               <AiOutlineMail className=" mr-2 text-SubTextColor" />
