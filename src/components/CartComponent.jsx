@@ -10,7 +10,7 @@ import { AuthContext } from "../providers/AuthProvider";
 const CartComponent = ({ data }) => {
   const { setCartUpdate } = useContext(AuthContext);
   let product = data.product;
-  console.log(product);
+  // console.log(product);
   const url = "https://api.banglamartecommerce.com.bd";
 
   const [loading, setLoading] = useState(false);
@@ -92,7 +92,6 @@ const CartComponent = ({ data }) => {
         <div className="flex items-center m-1">
           <img
             src={`${url}${product?.thumbnail}`}
-             
             className="object-cover h-20 w-20 rounded"
           />
           <div className="ml-2">
@@ -136,6 +135,11 @@ const CartComponent = ({ data }) => {
             </div>
           </div>
         </div>
+        <div className="m-1 hidden xl:block text-SubTextColor">
+          <p>Color:</p>
+          <p>Size:</p>
+          <p>Specification:</p>
+        </div>
         <div className="flex flex-col items-center m-1">
           <h2 className="line-through text-SubTextColor">{newPrice} ৳</h2>
           <h1 className="">{totalPrice?.toFixed(2)} ৳</h1>
@@ -159,7 +163,7 @@ const CartComponent = ({ data }) => {
             )}
           </div>
         </div>
-        <div className="m-1">
+        {/* <div className="m-1">
           <div className=" w-40">
             <div className="flex justify-between">
               <p className="text-SubTextColor">Product Price:</p>
@@ -198,7 +202,12 @@ const CartComponent = ({ data }) => {
               <h1 className="text-MainColor">{finalPrice?.toFixed(2)} ৳</h1>
             </div>
           </div>
-        </div>
+        </div> */}
+      </div>
+      <div className="ml-6 block xl:hidden p-2 text-SubTextColor">
+        <p>Color:</p>
+        <p>Size:</p>
+        <p>Specification:</p>
       </div>
     </div>
   );

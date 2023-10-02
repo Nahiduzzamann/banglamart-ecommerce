@@ -157,6 +157,10 @@ const Cart = () => {
             <h3 className="text-TextColor">0 ৳</h3>
           </div>
           <div className="flex justify-between mt-2">
+            <h3 className="text-SubTextColor">Code Discount</h3>
+            <h3 className="text-TextColor">(-) 0 ৳</h3>
+          </div>
+          <div className="flex justify-between mt-2">
             <h3 className="text-SubTextColor">Total</h3>
             <h3 className="text-TextColor">0 ৳</h3>
           </div>
