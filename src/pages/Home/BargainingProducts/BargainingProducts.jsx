@@ -59,7 +59,7 @@ const BargainingProducts = () => {
 export default BargainingProducts;
 
 const Cart2 = ({ product }) => {
-  const isSm = useMediaQuery("(min-width: 740px)");
+  const isSm = useMediaQuery("(min-width: 1024px)");
   // const { user,setCartUpdate } = useContext(AuthContext);
   // const navigate = useNavigate();
   // TODO
@@ -103,9 +103,9 @@ const Cart2 = ({ product }) => {
       to={`/productDetails/${product?.id}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className={`flex-shrink-0 bg-CardColor ${
-        isSm && "w-[20%]"
-      } snap-start cursor-pointer group aspect-[228/300]  rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor`}
+      className={`flex-shrink-0 ${isSm || "w-[40%]"} ${
+        isSm && "w-[16%]"
+      } snap-start cursor-pointer group aspect-[230/310]  rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor`}
     >
       <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
         <img

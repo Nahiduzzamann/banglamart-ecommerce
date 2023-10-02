@@ -91,6 +91,13 @@ const ProductShowSlider = ({ products }) => {
     mobileFirst: true,
     responsive: [
       {
+        breakpoint: 1535,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+        },
+      },
+      {
         breakpoint: 1024,
         settings: {
           slidesToShow: 4,
