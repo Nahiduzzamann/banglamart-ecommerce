@@ -234,7 +234,6 @@ const ProductDetails = () => {
       </div>
     );
   }
-
   return (
     <div className="container mx-auto mt-4">
       <Helmet>
@@ -263,12 +262,21 @@ const ProductDetails = () => {
             </div>
           </div>
           <div className="border-b border-b-BorderColor flex items-center p-4">
-            <div>
-              <p className="text-SubTextColor">Sold by:</p>
-              <h3 className="text-TextColor">
-                {product?.seller?.shopName || "In house product"}
-              </h3>
-            </div>
+            {product?.brand && (
+              <div>
+                <p className="text-SubTextColor">Sold by:</p>
+                <h3 className="text-TextColor">{product?.brand?.brandName}<span className="badge badge-md border-[1px] border-BorderColor">brand</span></h3>
+                
+              </div>
+            )}
+            {product?.seller && (
+              <div>
+                <p className="text-SubTextColor">Sold by:</p>
+                <h3 className="text-TextColor">{product?.seller?.shopName}</h3>
+              </div>
+            )}
+            
+
             <motion.button
               onClick={handleMessageShow}
               whileHover={{ scale: 1.1 }}
@@ -424,15 +432,23 @@ const ProductDetails = () => {
               </div>
             </div>
             {/* message section end  */}
-            <div className="">
+            {product?.brand && (
+              <div className="">
               <img
-                src={
-                  product?.seller?.thumbnail ||
-                  "https://i.ibb.co/9t1wQGK/banglamart-prev-ui.png"
-                }
+                src={`${url}${product?.brand?.brandIcon}`}
                 className="h-16 w-16 rounded-full"
               />
             </div>
+            )}
+            {product?.seller && (
+              <div>
+                <img
+                src={`${url}${product?.seller?.logo}`}
+                className="h-16 w-16 rounded-full"
+              />
+              </div>
+            )}
+            
           </div>
 
           <div className="border-b border-b-BorderColor flex flex-wrap p-4 gap-2">
