@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+
+  const handlePhoneClick = () => {
+    window.location.href = 'tel:+8809611677639';
+  };
   return (
     <div className="pt-10 mt-10 pb-8 bg-[#DCDCDC] pl-3 pr-1 lg:pr-4 lg:pl-4 ">
       <div className="container mx-auto">
@@ -48,11 +52,11 @@ const Footer = () => {
             </div>
             <div className="mb-2">
               <p className="text-SubTextColor">Phone:</p>
-              <p className="text-TextColor">+8809611677639</p>
+              <p onClick={handlePhoneClick} className="text-TextColor cursor-pointer">+8809611677639</p>
             </div>
             <div>
               <p className="text-SubTextColor">Email:</p>
-              <p className="text-TextColor">banglamartecommerce@gmail.com</p>
+              <a href="mailto:banglamartecommerceltd@gmail.com" className="text-TextColor cursor-pointer"><p>banglamartecommerceltd@gmail.com</p></a>
             </div>
           </div>
           <div>

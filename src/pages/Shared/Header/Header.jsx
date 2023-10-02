@@ -100,6 +100,9 @@ const Header = () => {
   }, [prevScrollY]);
 
   const headerOpacity = scrollingDown ? 0 : 1;
+  const handlePhoneClick = () => {
+    window.location.href = 'tel:+8809611677639'; 
+  };
   return (
     <div className="pt-[120px] md:pt-[150px] lg:pt-[175px]">
       <div
@@ -115,7 +118,7 @@ const Header = () => {
               </div>
               <div className="flex items-center">
                 <AiFillPhone className=" text-SubTextColor" />
-                <p className="text-SubTextColor lg:mr-0">
+                <p onClick={handlePhoneClick} className="cursor-pointer text-SubTextColor lg:mr-0">
                   {t("header.number")}
                 </p>
               </div>
