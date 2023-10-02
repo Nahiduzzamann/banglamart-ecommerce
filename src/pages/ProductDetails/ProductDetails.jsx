@@ -275,9 +275,9 @@ const ProductDetails = () => {
               />
             </div>
           </div>
-          <div className="border-b border-b-BorderColor flex items-center p-4">
+          <div className="border-b border-b-BorderColor flex flex-wrap items-center p-4">
             {product?.brand && (
-              <div>
+              <div className="mt-2 mb-2 mr-2">
                 <p className="text-SubTextColor">Sold by:</p>
                 <h3 className="text-TextColor">
                   {product?.brand?.brandName}
@@ -288,7 +288,7 @@ const ProductDetails = () => {
               </div>
             )}
             {product?.seller && (
-              <div>
+              <div className="mt-2 mb-2 mr-2">
                 <p className="text-SubTextColor">Sold by:</p>
                 <h3 className="text-TextColor">{product?.seller?.shopName}</h3>
               </div>
