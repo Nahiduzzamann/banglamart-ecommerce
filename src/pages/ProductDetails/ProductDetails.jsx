@@ -234,7 +234,7 @@ const ProductDetails = () => {
   const applyCouponCode = () => {
     // Add logic to apply the promo code here
   };
-
+  const shareUrl = `https://banglamartecommerce.com.bd/productDetails/${id}`;
   if (product == null) {
     return (
       <div className="w-full min-h-screen flex justify-center items-center">
@@ -670,13 +670,13 @@ const ProductDetails = () => {
             <div className="mt-4 flex justify-center items-center">
               <p className="text-SubTextColor mr-2">Share:</p>
               <div className="flex ">
-                <FacebookShareButton url="#">
+                <FacebookShareButton url={shareUrl}>
                   <FacebookIcon className="h-10 w-10 rounded-full ml-2" />
                 </FacebookShareButton>
-                <WhatsappShareButton url="#">
+                <WhatsappShareButton url={shareUrl}>
                   <WhatsappIcon className="h-10 w-10 rounded-full ml-2" />
                 </WhatsappShareButton>
-                <FacebookMessengerShareButton url="#">
+                <FacebookMessengerShareButton url={shareUrl}>
                   <FacebookMessengerIcon className="h-10 w-10 rounded-full ml-2" />
                 </FacebookMessengerShareButton>
               </div>
