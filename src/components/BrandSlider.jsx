@@ -6,11 +6,39 @@ import "keen-slider/keen-slider.min.css";
 
 const BrandSlider = () => {
   const [brandData, setBrandData] = useState([]);
+
   const brand = useSelector((state) => state.brand.brand.data);
-  const show = brandData?.length > 3 ? 3 : brandData?.length;
+  const [show, setShow] = useState(8);
   useEffect(() => {
     setBrandData(brand);
-  }, [brand]);
+  }, [brand, brandData]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+
+      if (screenWidth <= 768) {
+        setShow(3);
+      } else if (screenWidth <= 1024) {
+        setShow(4);
+      } else if (screenWidth <= 1440) {
+        setShow(5);
+      } else {
+        setShow(6);
+      }
+    };
+
+    // Initialize the screen size on component mount
+    handleResize();
+
+    // Listen for window resize events
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const animation = { duration: 5000, easing: (t) => t };
 
@@ -79,7 +107,7 @@ const BrandCart = ({ data }) => {
                 hover ? "text-CardColor underline" : "text-SubTextColor"
               } `}
             >
-              {data?.brandName}
+              <p className="font-semibold">{data?.brandName}</p>
             </Link>
           </div>
         </div>
