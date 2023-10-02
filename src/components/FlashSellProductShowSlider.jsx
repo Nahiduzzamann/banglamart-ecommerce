@@ -31,7 +31,7 @@ const FlashSellProductShowSlider = ({ flashSellData }) => {
     infinite: false,
     dots: false,
     speed: 200,
-    slidesToShow: 5,
+    slidesToShow: 6,
     slidesToScroll: 1,
     initialSlide: 0,
     swipeToSlide: true,
@@ -40,6 +40,13 @@ const FlashSellProductShowSlider = ({ flashSellData }) => {
     beforeChange: (current, next) => setCurrentSlide(next + 1),
     mobileFirst: true,
     responsive: [
+      {
+        breakpoint: 1535,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+        },
+      },
       {
         breakpoint: 1024,
         settings: {
