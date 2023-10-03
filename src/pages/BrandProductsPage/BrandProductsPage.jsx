@@ -6,15 +6,24 @@ import { getApi } from "../../apis";
 import BrandShopCart from "../../components/BrandShopCart";
 import ProductCart from "../../components/ProductCart";
 import Skeleton from "react-loading-skeleton";
-import { Box, SkeletonText } from "@chakra-ui/react";
-
+import {
+  Box,
+  Button,
+  Center,
+  Grid,
+  SkeletonText,
+  Spinner,
+  Stack,
+} from "@chakra-ui/react";
+import { Paginated } from "@makotot/paginated";
+import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from "react-icons/ai";
 const BrandProductsPage = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const encodedData = queryParams.get("data");
   const data = JSON.parse(decodeURIComponent(encodedData));
   const [productData, setProductData] = useState(null);
-  // console.log(productData);
+
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -28,6 +37,18 @@ const BrandProductsPage = () => {
       });
   }, []);
 
+  const itemsPerPage = 24; // Number of items per page
+  const [currentPage, updateCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(null);
+
+  useEffect(() => {
+    const totalPage = Math.ceil(productData?.length / itemsPerPage);
+    setTotalPage(totalPage);
+  }, [productData]);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  const currentProducts = productData?.slice(startIndex, endIndex);
   return (
     <div className="container mx-auto bg-CardColor lg:mt-4 mt-2">
       <Helmet>
@@ -40,10 +61,10 @@ const BrandProductsPage = () => {
         <h1 className="text-SubTextColor pb-4">
           Products: {productData?.length}
         </h1>
-        <div className="grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4">
+        <div className="grid 2xl:grid-cols-6 xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4">
           {productData ? (
             productData?.length > 0 ? (
-              productData?.map((product, i) => (
+              currentProducts?.map((product, i) => (
                 <ProductCart product={product} key={i}></ProductCart>
               ))
             ) : (
@@ -62,6 +83,112 @@ const BrandProductsPage = () => {
                 skeletonHeight="2"
               />
             </Box>
+          )}
+        </div>
+        {/* Pagination */}
+        <div className=" m-4">
+          {totalPage ? (
+            <Paginated
+              currentPage={currentPage}
+              totalPage={totalPage}
+              siblingsSize={1}
+              boundarySize={1}
+            >
+              {({
+                pages,
+                currentPage,
+                hasPrev,
+                hasNext,
+                getFirstBoundary,
+                getLastBoundary,
+                isPrevTruncated,
+                isNextTruncated,
+              }) => (
+                <Grid
+                  width="100%"
+                  justifyContent="center"
+                  alignItems="center"
+                  gridTemplateColumns="min-content 1fr min-content"
+                  gridGap={2}
+                >
+                  <Stack direction="row">
+                    {hasPrev() && (
+                      <Button
+                      size='sm'
+                        leftIcon={<AiOutlineDoubleLeft className="text-[14px]" />}
+                        colorScheme="blue"
+                        onClick={() => updateCurrentPage(currentPage - 1)}
+                      >
+                        Prev
+                      </Button>
+                    )}
+                  </Stack>
+                  <Center>
+                    <Stack direction="row">
+                      {getFirstBoundary().map((boundary) => (
+                        <Button
+                        size='sm'
+                          key={boundary}
+                          colorScheme="blue"
+                          variant="outline"
+                          onClick={() => updateCurrentPage(boundary)}
+                        >
+                          {boundary}
+                        </Button>
+                      ))}
+                      {isPrevTruncated && <span>...</span>}
+                      {pages.map((page) => {
+                        return page === currentPage ? (
+                          <Button size='sm' key={page} colorScheme="blue" variant="solid">
+                            {page}
+                          </Button>
+                        ) : (
+                          <Button
+                          size='sm'
+                            key={page}
+                            colorScheme="blue"
+                            variant="outline"
+                            onClick={() => updateCurrentPage(page)}
+                          >
+                            {page}
+                          </Button>
+                        );
+                      })}
+
+                      {isNextTruncated && <span>...</span>}
+                      {getLastBoundary().map((boundary) => (
+                        <Button
+                        size='sm'
+                          key={boundary}
+                          colorScheme="blue"
+                          variant="outline"
+                          onClick={() => updateCurrentPage(boundary)}
+                        >
+                          {boundary}
+                        </Button>
+                      ))}
+                    </Stack>
+                  </Center>
+
+                  <Stack direction="row">
+                    {hasNext() && (
+                      <Button
+                      size='sm'
+                        rightIcon={<AiOutlineDoubleRight className="text-"/>}
+                        colorScheme="blue"
+                        onClick={() => updateCurrentPage(currentPage + 1)}
+                      >
+                        Next
+                      </Button>
+                    )}
+                  </Stack>
+                </Grid>
+              )}
+            </Paginated>
+          ) : (
+            <div className="flex justify-center">
+              <Spinner />
+            </div>
           )}
         </div>
       </div>

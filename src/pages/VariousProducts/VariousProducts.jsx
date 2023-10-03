@@ -1,7 +1,11 @@
 import { useLocation } from "react-router-dom";
 import FilterCart from "../../components/FilterCart";
 import FlashSaleBanner from "../../components/FlashSaleBanner";
-import { AiFillFilter } from "react-icons/ai";
+import {
+  AiFillFilter,
+  AiOutlineDoubleLeft,
+  AiOutlineDoubleRight,
+} from "react-icons/ai";
 import { useEffect, useState } from "react";
 import ProductCart from "../../components/ProductCart";
 import Skeleton from "react-loading-skeleton";
@@ -9,7 +13,16 @@ import EmptyContent from "../../components/EmptyContent";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { getApi } from "../../apis";
-import { Box, SkeletonText } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  Grid,
+  SkeletonText,
+  Spinner,
+  Stack,
+} from "@chakra-ui/react";
+import { Paginated } from "@makotot/paginated";
 
 const VariousProductsPage = () => {
   const [products, setProducts] = useState(null);
@@ -30,18 +43,18 @@ const VariousProductsPage = () => {
       });
   }, [route]);
 
-  const itemsPerPage = 10; // Number of items per page
-  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 24; // Number of items per page
+  const [currentPage, updateCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(null);
 
-  const totalPages = Math.ceil(products?.length / itemsPerPage);
+  useEffect(() => {
+    const totalPage = Math.ceil(products?.length / itemsPerPage);
+    setTotalPage(totalPage);
+  }, [products]);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
   const currentProducts = products?.slice(startIndex, endIndex);
-
-  const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
-  };
   return (
     <div className="">
       <Helmet>
@@ -107,24 +120,119 @@ const VariousProductsPage = () => {
                 )}
               </div>
               {/* Pagination */}
-              <div className="flex justify-center m-4">
-                <div className="join">
-                  {Array.from({ length: totalPages }, (_, index) => (
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.8 }}
-                      key={index}
-                      className={`join-item btn btn-md border border-BorderColor ${
-                        index + 1 === currentPage
-                          ? " btn-disabled"
-                          : "bg-MainColorHover"
-                      }`}
-                      onClick={() => handlePageChange(index + 1)}
-                    >
-                      {index + 1}
-                    </motion.button>
-                  ))}
-                </div>
+              <div className=" m-4">
+                {totalPage ? (
+                  <Paginated
+                    currentPage={currentPage}
+                    totalPage={totalPage}
+                    siblingsSize={1}
+                    boundarySize={1}
+                  >
+                    {({
+                      pages,
+                      currentPage,
+                      hasPrev,
+                      hasNext,
+                      getFirstBoundary,
+                      getLastBoundary,
+                      isPrevTruncated,
+                      isNextTruncated,
+                    }) => (
+                      <Grid
+                        width="100%"
+                        justifyContent="center"
+                        alignItems="center"
+                        gridTemplateColumns="min-content 1fr min-content"
+                        gridGap={2}
+                      >
+                        <Stack direction="row">
+                          {hasPrev() && (
+                            <Button
+                              size="sm"
+                              leftIcon={
+                                <AiOutlineDoubleLeft className="text-[14px]" />
+                              }
+                              colorScheme="blue"
+                              onClick={() => updateCurrentPage(currentPage - 1)}
+                            >
+                              Prev
+                            </Button>
+                          )}
+                        </Stack>
+                        <Center>
+                          <Stack direction="row">
+                            {getFirstBoundary().map((boundary) => (
+                              <Button
+                                size="sm"
+                                key={boundary}
+                                colorScheme="blue"
+                                variant="outline"
+                                onClick={() => updateCurrentPage(boundary)}
+                              >
+                                {boundary}
+                              </Button>
+                            ))}
+                            {isPrevTruncated && <span>...</span>}
+                            {pages.map((page) => {
+                              return page === currentPage ? (
+                                <Button
+                                  size="sm"
+                                  key={page}
+                                  colorScheme="blue"
+                                  variant="solid"
+                                >
+                                  {page}
+                                </Button>
+                              ) : (
+                                <Button
+                                  size="sm"
+                                  key={page}
+                                  colorScheme="blue"
+                                  variant="outline"
+                                  onClick={() => updateCurrentPage(page)}
+                                >
+                                  {page}
+                                </Button>
+                              );
+                            })}
+
+                            {isNextTruncated && <span>...</span>}
+                            {getLastBoundary().map((boundary) => (
+                              <Button
+                                size="sm"
+                                key={boundary}
+                                colorScheme="blue"
+                                variant="outline"
+                                onClick={() => updateCurrentPage(boundary)}
+                              >
+                                {boundary}
+                              </Button>
+                            ))}
+                          </Stack>
+                        </Center>
+
+                        <Stack direction="row">
+                          {hasNext() && (
+                            <Button
+                              size="sm"
+                              rightIcon={
+                                <AiOutlineDoubleRight className="text-" />
+                              }
+                              colorScheme="blue"
+                              onClick={() => updateCurrentPage(currentPage + 1)}
+                            >
+                              Next
+                            </Button>
+                          )}
+                        </Stack>
+                      </Grid>
+                    )}
+                  </Paginated>
+                ) : (
+                  <div className="flex justify-center">
+                    <Spinner />
+                  </div>
+                )}
               </div>
             </div>
           </div>
