@@ -1,24 +1,22 @@
 import { useSelector } from "react-redux";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Spinner } from "@chakra-ui/react";
 import Slider from "react-slick/lib/slider";
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
 import Rating from "react-rating";
-import { AiFillStar,  AiOutlineStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 // import { AiOutlineShoppingCart } from "react-icons/ai";
 // import { BsFillCartCheckFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { TbTruckDelivery } from "react-icons/tb";
-import useMediaQuery from "../../../hooks/useMediaQuery";
 import ProductCart from "../../../components/ProductCart";
 // import { postApi } from "../../../apis";
 // import Swal from "sweetalert2";
 // import { AuthContext } from "../../../providers/AuthProvider";
 
 const ForYouProducts = () => {
-
   const [products, setProducts] = useState(null);
-  
+
   const data = useSelector(
     (state) => state.forYouProducts.forYouProducts?.data
   );
@@ -67,7 +65,29 @@ const ProductShowSlider = ({ products }) => {
   const totalSlides = products?.length || 1;
   const [mainSlider, setMainSlider] = useState();
   const [currentSlide, setCurrentSlide] = useState(1);
-  const isSm = useMediaQuery("(min-width: 640px)");
+  const [isSm, setIsSm] = useState(window.innerWidth >= 640);
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+
+      if (screenWidth <= 640) {
+        setIsSm(false);
+      } else {
+        setIsSm(true);
+      }
+    };
+
+    // Initialize the screen size on component mount
+    handleResize();
+
+    // Listen for window resize events
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const goNext = () => {
     mainSlider?.slickNext();
@@ -215,7 +235,7 @@ const Cart2 = ({ product }) => {
   // };
   return (
     <Link
-    to={`/productDetails/${product?.id}`}
+      to={`/productDetails/${product?.id}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       className="flex-shrink-0 w-[45%] snap-start cursor-pointer group aspect-[228/347]  rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor"
@@ -223,7 +243,6 @@ const Cart2 = ({ product }) => {
       <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
         <img
           src={`${url}${product?.thumbnail}`}
-           
           className="object-cover w-full h-full"
         />
       </div>

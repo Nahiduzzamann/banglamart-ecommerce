@@ -1,7 +1,6 @@
 import Slider from "react-slick/lib/slider";
 import { useEffect, useState } from "react";
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
-import useMediaQuery from "../hooks/useMediaQuery";
 import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 // import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -18,7 +17,29 @@ const ProductShowSlider = ({ products }) => {
   const totalSlides = products?.length || 1;
   const [mainSlider, setMainSlider] = useState();
   const [currentSlide, setCurrentSlide] = useState(1);
-  const isSm = useMediaQuery("(min-width: 640px)");
+  const [isSm, setIsSm] = useState(window.innerWidth >= 640 );
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+
+      if (screenWidth <= 640) {
+        setIsSm(false);
+      } else {
+        setIsSm(true);
+      }
+    };
+
+    // Initialize the screen size on component mount
+    handleResize();
+
+    // Listen for window resize events
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const goNext = () => {
     mainSlider?.slickNext();
@@ -95,7 +116,7 @@ const ProductShowSlider = ({ products }) => {
           </div>
         )}
 
-        {!isSm && (
+        {isSm || (
           <div className="flex overflow-x-auto no-scrollbar gap-3 snap-x pt-5">
             {products?.map((product, i) => (
               <Cart2 product={product} key={i} />
@@ -164,10 +185,11 @@ const Cart2 = ({ product }) => {
   //   }
   // };
   return (
-    <Link to={`/productDetails/${product?.id}`}
+    <Link
+      to={`/productDetails/${product?.id}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className="flex-shrink-0 w-[45%] snap-start cursor-pointer group aspect-[228/347]  rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor"
+      className={`flex-shrink-0 w-[45%] snap-start cursor-pointer group aspect-[228/347]  rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor`}
     >
       <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
         <img

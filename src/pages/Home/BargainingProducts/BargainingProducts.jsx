@@ -59,7 +59,29 @@ const BargainingProducts = () => {
 export default BargainingProducts;
 
 const Cart2 = ({ product }) => {
-  const isSm = useMediaQuery("(min-width: 1024px)");
+  const [isSm, setIsSm] = useState(window.innerWidth >= 640 );
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+
+      if (screenWidth <= 640) {
+        setIsSm(false);
+      } else {
+        setIsSm(true);
+      }
+    };
+
+    // Initialize the screen size on component mount
+    handleResize();
+
+    // Listen for window resize events
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   // const { user,setCartUpdate } = useContext(AuthContext);
   // const navigate = useNavigate();
   // TODO

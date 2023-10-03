@@ -1,7 +1,6 @@
 import Slider from "react-slick/lib/slider";
 import { useEffect, useState } from "react";
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
-import useMediaQuery from "../hooks/useMediaQuery";
 import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 // import {  AiOutlineShoppingCart } from "react-icons/ai";
@@ -17,7 +16,29 @@ const FlashSellProductShowSlider = ({ flashSellData }) => {
   // const totalSlides = flashSellData?.length || 1;
   const [mainSlider, setMainSlider] = useState();
   const [currentSlide, setCurrentSlide] = useState(1);
-  const isSm = useMediaQuery("(min-width: 640px)");
+  const [isSm, setIsSm] = useState(window.innerWidth >= 640 );
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+
+      if (screenWidth <= 640) {
+        setIsSm(false);
+      } else {
+        setIsSm(true);
+      }
+    };
+
+    // Initialize the screen size on component mount
+    handleResize();
+
+    // Listen for window resize events
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const goNext = () => {
     mainSlider?.slickNext();
