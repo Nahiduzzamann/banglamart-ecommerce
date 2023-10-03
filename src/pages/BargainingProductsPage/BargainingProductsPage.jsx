@@ -8,12 +8,13 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { TbTruckDelivery } from "react-icons/tb";
 import Rating from "react-rating";
 import { Link } from "react-router-dom";
+import { Box, Skeleton, SkeletonText } from "@chakra-ui/react";
 // import Swal from "sweetalert2";
 // import { postApi } from "../../apis";
 // import { AuthContext } from "../../providers/AuthProvider";
 
 const BargainingProductsPage = () => {
-  const [bargainingProducts, setBargainingProducts] = useState([]);
+  const [bargainingProducts, setBargainingProducts] = useState(null);
   const data = useSelector(
     (state) => state.bargainingProducts.bargainingProducts?.data
   );
@@ -32,15 +33,27 @@ const BargainingProductsPage = () => {
         <h1 className="">Bargaining Products</h1>
         <div className="mt-4 m-1 ">
           <div className="grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4">
-            {bargainingProducts?.length > 0 ? (
-              bargainingProducts?.map((product, i) => (
-                <ProductCart product={product} key={i}></ProductCart>
-              ))
+            {bargainingProducts ? (
+              bargainingProducts?.length > 0 ? (
+                bargainingProducts?.map((product, i) => (
+                  <ProductCart product={product} key={i}></ProductCart>
+                ))
+              ) : (
+                <div className="flex flex-col items-center justify-center mt-1">
+                  <PiSmileySadLight className="text-SubTextColor text-4xl"></PiSmileySadLight>
+                  <h1 className="text-SubTextColor">No Product Available</h1>
+                </div>
+              )
             ) : (
-              <div className="flex flex-col items-center justify-center mt-1">
-                <PiSmileySadLight className="text-SubTextColor text-4xl"></PiSmileySadLight>
-                <h1 className="text-SubTextColor">No Product Available</h1>
-              </div>
+              <Box padding="6" boxShadow="lg" bg="#FAD7A0">
+                <Skeleton height="200px" />
+                <SkeletonText
+                  mt="4"
+                  noOfLines={3}
+                  spacing="4"
+                  skeletonHeight="2"
+                />
+              </Box>
             )}
           </div>
         </div>

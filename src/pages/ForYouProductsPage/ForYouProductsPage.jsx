@@ -1,7 +1,6 @@
-
 import { AiFillFilter } from "react-icons/ai";
 import { useEffect, useState } from "react";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import Skeleton from "react-loading-skeleton";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
@@ -9,9 +8,10 @@ import FlashSaleBanner from "../../components/FlashSaleBanner";
 import FilterCart from "../../components/FilterCart";
 import ProductCart from "../../components/ProductCart";
 import EmptyContent from "../../components/EmptyContent";
+import { Box, SkeletonText } from "@chakra-ui/react";
 
 const ForYouProductsPage = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
   const data = useSelector(
     (state) => state.forYouProducts.forYouProducts?.data
   );
@@ -85,11 +85,15 @@ const ForYouProductsPage = () => {
                     <EmptyContent text="No Product Available!"></EmptyContent>
                   )
                 ) : (
-                  <SkeletonTheme baseColor="#5dade2" highlightColor="#FAD7A0">
-                    <h3>
-                      <Skeleton count={1} width={200} height={250} />
-                    </h3>
-                  </SkeletonTheme>
+                  <Box padding="6" boxShadow="lg" bg="#FAD7A0">
+                    <Skeleton height="200px" />
+                    <SkeletonText
+                      mt="4"
+                      noOfLines={3}
+                      spacing="4"
+                      skeletonHeight="2"
+                    />
+                  </Box>
                 )}
               </div>
               {/* Pagination */}

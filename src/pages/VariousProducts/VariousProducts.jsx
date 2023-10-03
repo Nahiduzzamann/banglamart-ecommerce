@@ -4,19 +4,20 @@ import FlashSaleBanner from "../../components/FlashSaleBanner";
 import { AiFillFilter } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import ProductCart from "../../components/ProductCart";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import Skeleton from "react-loading-skeleton";
 import EmptyContent from "../../components/EmptyContent";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { getApi } from "../../apis";
+import { Box, SkeletonText } from "@chakra-ui/react";
 
 const VariousProductsPage = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const encodedData = queryParams.get("data");
   const route = JSON.parse(decodeURIComponent(encodedData));
-  console.log(products);
+  // console.log(products);
   //   const url = "https://api.banglamartecommerce.com.bd";
 
   useEffect(() => {
@@ -94,11 +95,15 @@ const VariousProductsPage = () => {
                     <EmptyContent text="No Product Available!"></EmptyContent>
                   )
                 ) : (
-                  <SkeletonTheme baseColor="#5dade2" highlightColor="#FAD7A0">
-                    <h3>
-                      <Skeleton count={1} width={200} height={250} />
-                    </h3>
-                  </SkeletonTheme>
+                  <Box padding="6" boxShadow="lg" bg="#FAD7A0">
+                    <Skeleton height="200px" />
+                    <SkeletonText
+                      mt="4"
+                      noOfLines={3}
+                      spacing="4"
+                      skeletonHeight="2"
+                    />
+                  </Box>
                 )}
               </div>
               {/* Pagination */}

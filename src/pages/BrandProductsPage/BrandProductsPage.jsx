@@ -5,13 +5,15 @@ import { PiSmileySadLight } from "react-icons/pi";
 import { getApi } from "../../apis";
 import BrandShopCart from "../../components/BrandShopCart";
 import ProductCart from "../../components/ProductCart";
+import Skeleton from "react-loading-skeleton";
+import { Box, SkeletonText } from "@chakra-ui/react";
 
 const BrandProductsPage = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const encodedData = queryParams.get("data");
   const data = JSON.parse(decodeURIComponent(encodedData));
-  const [productData, setProductData] = useState([]);
+  const [productData, setProductData] = useState(null);
   // console.log(productData);
 
   useEffect(() => {
@@ -35,17 +37,31 @@ const BrandProductsPage = () => {
         <BrandShopCart data={data}></BrandShopCart>
       </div>
       <div className="p-4">
-        <h1 className="text-SubTextColor pb-4">Products: {productData?.length}</h1>
+        <h1 className="text-SubTextColor pb-4">
+          Products: {productData?.length}
+        </h1>
         <div className="grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4">
-          {productData?.length > 0 ? (
-            productData?.map((product, i) => (
-              <ProductCart product={product} key={i}></ProductCart>
-            ))
+          {productData ? (
+            productData?.length > 0 ? (
+              productData?.map((product, i) => (
+                <ProductCart product={product} key={i}></ProductCart>
+              ))
+            ) : (
+              <div className="flex flex-col items-center justify-center mt-1">
+                <PiSmileySadLight className="text-SubTextColor text-4xl"></PiSmileySadLight>
+                <h1 className="text-SubTextColor">No Product Available</h1>
+              </div>
+            )
           ) : (
-            <div className="flex flex-col items-center justify-center mt-1">
-              <PiSmileySadLight className="text-SubTextColor text-4xl"></PiSmileySadLight>
-              <h1 className="text-SubTextColor">No Product Available</h1>
-            </div>
+            <Box padding="6" boxShadow="lg" bg="#FAD7A0">
+              <Skeleton height="200px" />
+              <SkeletonText
+                mt="4"
+                noOfLines={3}
+                spacing="4"
+                skeletonHeight="2"
+              />
+            </Box>
           )}
         </div>
       </div>
