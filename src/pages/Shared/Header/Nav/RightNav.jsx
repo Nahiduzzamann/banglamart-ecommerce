@@ -1,11 +1,11 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const Ul = styled.ul`
   list-style: none;
   display: flex;
   flex-flow: row nowrap;
-  
+
   @media (max-width: 768px) {
     flex-flow: column nowrap;
     background-color: #5dade2;
@@ -17,42 +17,76 @@ const Ul = styled.ul`
     width: 200px;
     padding-top: 3.5rem;
     transition: transform 0.3s ease-in-out;
-    z-index: 999 
+    z-index: 999;
   }
 `;
 
-const RightNav = ({ open }) => {
+const RightNav = ({ open, setOpen }) => {
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <Ul open={open}>
       <div className="p-2">
-      <NavLink className="text-CardColor hover:text-TextColor" to="/">
-        <h3 className="p-2">Home</h3>
-      </NavLink>
-      <NavLink className="text-CardColor hover:text-TextColor" to="/flash-sell">
-        <h3 className="p-2">Flash Sale</h3>
-      </NavLink>
-      <NavLink className="text-CardColor hover:text-TextColor" to="bargaining-products">
-        <h3 className="p-2">Bargaining Products</h3>
-      </NavLink>
-      <NavLink className="text-CardColor hover:text-TextColor" to="/all-seller">
-        <h3 className="p-2">All Seller</h3>
-      </NavLink>
-      {/* <Link className="text-CardColor hover:text-TextColor" to="/">
+        <NavLink
+          onClick={handleClose}
+          className="text-CardColor hover:text-TextColor"
+          to="/"
+        >
+          <h3 className="p-2">Home</h3>
+        </NavLink>
+        <NavLink
+          onClick={handleClose}
+          className="text-CardColor hover:text-TextColor"
+          to="/flash-sell"
+        >
+          <h3 className="p-2">Flash Sale</h3>
+        </NavLink>
+        <NavLink
+          onClick={handleClose}
+          className="text-CardColor hover:text-TextColor"
+          to="bargaining-products"
+        >
+          <h3 className="p-2">Bargaining Products</h3>
+        </NavLink>
+        <NavLink
+          onClick={handleClose}
+          className="text-CardColor hover:text-TextColor"
+          to="/all-seller"
+        >
+          <h3 className="p-2">All Seller</h3>
+        </NavLink>
+        {/* <Link className="text-CardColor hover:text-TextColor" to="/">
         <h3 className="p-2">Affiliating</h3>
       </Link> */}
-      <NavLink className="text-CardColor hover:text-TextColor" to="/category">
-        <h3 className="p-2">Categories</h3>
-      </NavLink>
-      <NavLink className="text-CardColor hover:text-TextColor" to="/brands">
-        <h3 className="p-2">Brands</h3>
-      </NavLink>
-      <NavLink className="text-CardColor hover:text-TextColor" to="/track-order">
-        <h3 className="p-2">Track Order</h3>
-      </NavLink>
-      <NavLink className="text-CardColor hover:text-TextColor" to="/support">
-        <h3 className="p-2">Support</h3>
-      </NavLink>
-      
+        <NavLink
+          onClick={handleClose}
+          className="text-CardColor hover:text-TextColor"
+          to="/category"
+        >
+          <h3 className="p-2">Categories</h3>
+        </NavLink>
+        <NavLink
+          onClick={handleClose}
+          className="text-CardColor hover:text-TextColor"
+          to="/brands"
+        >
+          <h3 className="p-2">Brands</h3>
+        </NavLink>
+        <NavLink
+          onClick={handleClose}
+          className="text-CardColor hover:text-TextColor"
+          to="/track-order"
+        >
+          <h3 className="p-2">Track Order</h3>
+        </NavLink>
+        <NavLink
+          onClick={handleClose}
+          className="text-CardColor hover:text-TextColor"
+          to="/support"
+        >
+          <h3 className="p-2">Support</h3>
+        </NavLink>
       </div>
     </Ul>
   );

@@ -304,7 +304,7 @@ const ProductDetails = () => {
             </motion.button>
             {/* message section  */}
             <div
-              className={`bg-CardColor pb-4 rounded-t-xl bottom-0 w-[280px] lg:right-32 fixed ${
+              className={`bg-CardColor z-10 pb-4 rounded-t-xl bottom-0 w-[280px] lg:right-32 fixed ${
                 messageShow
                   ? "transition-all transform translate-y-0"
                   : "transition-all transform translate-y-full"
