@@ -9,10 +9,9 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { useSelector } from "react-redux";
 const AllSeller = () => {
   const { user } = useContext(AuthContext);
-  const AllSellers =useSelector(
+  const AllSellers = useSelector(
     (state) => state.allSellerData.allSeller?.data
-  )
-  
+  );
 
   return (
     <div className="m-1 lg:m-0">
@@ -29,11 +28,15 @@ const AllSeller = () => {
             }}
           >
             {user?.role === 2 ? (
-              <Link to="/" id="animatedButton">
+              <a
+                href="https://admin.banglamartecommerce.com.bd/seller/default"
+                target="blank"
+                id="animatedButton"
+              >
                 <h1 className="z-10 text-CardColor text-center p-2">
                   Go Your Panel and Add Your Product!
                 </h1>
-              </Link>
+              </a>
             ) : (
               <Link to="/seller-form" id="animatedButton">
                 <h1 className="z-10 text-CardColor">Be A Seller</h1>

@@ -5,7 +5,6 @@ import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 // import { BsFillCartCheckFill } from "react-icons/bs";
 import { TbTruckDelivery } from "react-icons/tb";
-import useMediaQuery from "../../../hooks/useMediaQuery";
 import { useSelector } from "react-redux";
 import EmptyContent from "../../../components/EmptyContent";
 // import { postApi } from "../../../apis";
