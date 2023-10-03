@@ -67,12 +67,12 @@ const FlashSale = () => {
           )}
         </div>
 
-        {flashSellData?.length > 10 && (
+        {flashSellData?.length > 7 && (
           <Link
             to="flash-sell"
             className="mr-5 md:mr-10 pb-1 pt-1 pl-2 pr-2 md:pl-3 md:pr-3 bg-MainColor rounded-full text-CardColor shadow-lg hover:bg-MainColorHover text-sm"
           >
-            View All
+            View More
           </Link>
         )}
       </div>

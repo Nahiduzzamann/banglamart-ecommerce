@@ -583,7 +583,7 @@ const ProductDetails = () => {
                   Apply
                 </motion.button>
               </div>
-              <div className=" w-40">
+              <div className=" w-52">
                 <div className="flex justify-between">
                   <p className="text-SubTextColor">Product Price:</p>
                   <p className="text-SubTextColor">{newPrice} ৳</p>
