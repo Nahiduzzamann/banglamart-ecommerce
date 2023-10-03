@@ -65,8 +65,7 @@ const ProductDetails = () => {
             JSON.stringify(data.data.brand)
           );
           setShopDetails(encodedData);
-        }
-        else if (data.data.seller != null) {
+        } else if (data.data.seller != null) {
           const encodedData = encodeURIComponent(
             JSON.stringify(data.data.seller)
           );
@@ -885,7 +884,7 @@ const ImageShow = ({ product }) => {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col  items-center">
       <div className="mb-4">
         {product?.images ? (
           <img
@@ -899,7 +898,7 @@ const ImageShow = ({ product }) => {
           />
         )}
       </div>
-      <div className="flex space-x-4">
+      <div className="flex flex-wrap space-x-4">
         {product?.images?.map((image, index) => (
           <img
             key={index}
