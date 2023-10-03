@@ -74,7 +74,7 @@ const FlashSalePage = () => {
           <h1 className="text-SubTextColor mb-4">Hunt Special Offer</h1>
         </div>
         <div>
-          <div className="grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4">
+          <div className="grid 2xl:grid-cols-6 xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4">
             {flashSellId ? (
               flashSellData?.length > 0 ? (
                 flashSellData?.map((data, i) => (
