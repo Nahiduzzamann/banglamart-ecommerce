@@ -142,7 +142,7 @@ const CartComponent = ({ data }) => {
         </div>
         <div className="flex flex-col items-center m-1">
           <h2 className="line-through text-SubTextColor">{newPrice} ৳</h2>
-          <h1 className="">{totalPrice?.toFixed(2)} ৳</h1>
+          <h1 className="">{totalPrice?.toFixed()} ৳</h1>
           <div className="">
             {loading ? (
               <button

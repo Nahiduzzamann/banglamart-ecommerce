@@ -527,7 +527,7 @@ const ProductDetails = () => {
               <p className="text-SubTextColor">
                 Current Price:
                 <span className="text-[18px] text-MainColor ml-2 font-semibold">
-                  {totalPrice?.toFixed(2)} ৳
+                  {totalPrice?.toFixed()} ৳
                 </span>
                 /pc
               </p>
@@ -648,7 +648,7 @@ const ProductDetails = () => {
                 )}
                 <div className="flex items-center justify-between border-t-SubTextColor border-t-[1px]">
                   <p className="text-TextColor">Total Price:</p>
-                  <h1 className="text-MainColor">{finalPrice?.toFixed(2)} ৳</h1>
+                  <h1 className="text-MainColor">{finalPrice?.toFixed()} ৳</h1>
                 </div>
               </div>
             </div>
