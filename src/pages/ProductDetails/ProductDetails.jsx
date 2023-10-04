@@ -508,23 +508,46 @@ const ProductDetails = () => {
               </div>
             )}
           </div>
-          <div className="border-b border-b-BorderColor p-4">
-            {newPrice > totalPrice && (
+          <div className="flex gap-4 flex-wrap border-b border-b-BorderColor">
+            <div className=" p-4">
+              {newPrice > totalPrice && (
+                <p className="text-SubTextColor">
+                  Old Price:
+                  <span className="line-through text-[18px] text-SubTextColor ml-2">
+                    {newPrice} ৳
+                  </span>
+                  /pc
+                </p>
+              )}
               <p className="text-SubTextColor">
-                Old Price:
-                <span className="line-through text-[18px] text-SubTextColor ml-2">
-                  {newPrice} ৳
+                Current Price:
+                <span className="text-[18px] text-MainColor ml-2 font-semibold">
+                  {totalPrice?.toFixed(2)} ৳
                 </span>
                 /pc
               </p>
+            </div>
+            {product?.fixedPrice || (
+              <div className="relative m-2">
+                <label className="block text-MainColor text-sm font-semibold mb-1">
+                  Offer Your Price
+                </label>
+                <input
+                  type="text"
+                  className="shadow appearance-none border rounded-r-full w-full py-2 px-3 text-SubTextColor leading-tight focus:outline-MainColor"
+                  placeholder="Enter your Price"
+                  value={couponCode}
+                  onChange={handleCouponCodeChange}
+                />
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
+                  onClick={applyCouponCode}
+                >
+                  Offer
+                </motion.button>
+              </div>
             )}
-            <p className="text-SubTextColor">
-              Current Price:
-              <span className="text-[18px] text-MainColor ml-2">
-                {totalPrice?.toFixed(2)} ৳
-              </span>
-              /pc
-            </p>
           </div>
           <div className="border-b border-b-BorderColor p-4 flex items-center">
             <p className="mr-4 text-SubTextColor">Quantity:</p>
