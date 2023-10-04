@@ -224,6 +224,11 @@ const ProductDetails = () => {
       });
   }, [id]);
 
+  const [offerPrice, setOfferPrice] = useState("");
+
+  const handleOfferPriceChange = (e) => {
+    setOfferPrice(e.target.value);
+  };
   const [couponCode, setCouponCode] = useState("");
 
   const handleCouponCodeChange = (e) => {
@@ -533,11 +538,11 @@ const ProductDetails = () => {
                   Offer Your Price
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="shadow appearance-none border rounded-r-full w-full py-2 px-3 text-SubTextColor leading-tight focus:outline-MainColor"
                   placeholder="Enter your Price"
-                  value={couponCode}
-                  onChange={handleCouponCodeChange}
+                  value={offerPrice}
+                  onChange={handleOfferPriceChange}
                 />
                 <motion.button
                   whileHover={{ scale: 1.03 }}
