@@ -235,8 +235,20 @@ const ProductDetails = () => {
     setCouponCode(e.target.value);
   };
 
-  const applyCouponCode = () => {
-    // Add logic to apply the promo code here
+  const handleOfferPrice = () => {
+    // console.log('function working...');
+  };
+  console.log(id);
+  const applyCouponCode = (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    getApi(`/verify-coupon-code?code=${couponCode}&productId=${id}`, token)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   const shareUrl = `https://banglamartecommerce.com.bd/productDetails/${id}`;
   if (product == null) {
@@ -547,7 +559,7 @@ const ProductDetails = () => {
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
-                  onClick={applyCouponCode}
+                  onClick={handleOfferPrice}
                 >
                   Offer
                 </motion.button>
@@ -589,28 +601,31 @@ const ProductDetails = () => {
           </div>
           <div className="p-4">
             <div className="flex justify-around flex-wrap gap-4">
-              <div className="relative">
-                <label className="block text-SubTextColor text-sm font-bold mb-1">
-                  Apply Coupon Code
-                </label>
-                <input
-                  type="text"
-                  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-SubTextColor leading-tight focus:outline-MainColor"
-                  placeholder="Enter Coupon Code"
-                  value={couponCode}
-                  onChange={handleCouponCodeChange}
-                />
-                <p className="text-xs text-[#ff6868]">
-                  *Apply coupon code to get discount
-                </p>
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
-                  onClick={applyCouponCode}
-                >
-                  Apply
-                </motion.button>
-              </div>
+              <form onSubmit={applyCouponCode}>
+                <div className="relative">
+                  <label className="block text-SubTextColor text-sm font-bold mb-1">
+                    Apply Coupon Code
+                  </label>
+                  <input
+                    type="text"
+                    className="shadow appearance-none border rounded-full w-full py-2 px-3 text-SubTextColor leading-tight focus:outline-MainColor"
+                    placeholder="Enter Coupon Code"
+                    value={couponCode}
+                    onChange={handleCouponCodeChange}
+                    required
+                  />
+                  <p className="text-xs text-[#ff6868]">
+                    *Apply coupon code to get a discount
+                  </p>
+                  <motion.button
+                    whileHover={{ scale: 1.03 }}
+                    type="submit"
+                    className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
+                  >
+                    Apply
+                  </motion.button>
+                </div>
+              </form>
               <div className=" w-52">
                 <div className="flex justify-between">
                   <p className="text-SubTextColor">Product Price:</p>

@@ -11,7 +11,7 @@ const FlashSale = () => {
   const dispatch = useDispatch();
   const [flashSellInfo, setFlashSellInfo] = useState(null);
 
-  console.log(flashSellInfo);
+  // console.log(flashSellInfo);
 
   useEffect(() => {
     getApi("/product/get/flash", null)
