@@ -210,16 +210,16 @@ const Cart2 = ({ data }) => {
             <div className="flex">
               {product?.price > newPrice && (
                 <p className={`relative mr-1 line-through text-SubTextColor`}>
-                  {Math.ceil(product?.price)} ৳
+                  {product?.price.toFixed()} ৳
                 </p>
               )}
 
               <p
-                className={`relative ${
+                className={`relative font-semibold ${
                   hover ? "text-CardColor" : "text-[#f84545]"
                 } `}
               >
-                {newPrice} ৳
+                {newPrice.toFixed()} ৳
               </p>
             </div>
             <Rating

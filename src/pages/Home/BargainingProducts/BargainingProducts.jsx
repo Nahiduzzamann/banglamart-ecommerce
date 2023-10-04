@@ -143,7 +143,7 @@ const Cart2 = ({ product }) => {
           <div>
             <div className="flex">
               <p
-                className={`relative ${
+                className={`relative font-semibold ${
                   hover ? "text-CardColor" : "text-[#f84545]"
                 } `}
               >
