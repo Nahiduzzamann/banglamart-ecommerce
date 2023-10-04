@@ -1,9 +1,11 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const Footer = () => {
-
+  const { user } = useContext(AuthContext);
   const handlePhoneClick = () => {
-    window.location.href = 'tel:+8809611677639';
+    window.location.href = "tel:+8809611677639";
   };
   return (
     <div className="pt-10 mt-10 pb-8 bg-[#DCDCDC] pl-3 pr-1 lg:pr-4 lg:pl-4 ">
@@ -52,11 +54,21 @@ const Footer = () => {
             </div>
             <div className="mb-2">
               <p className="text-SubTextColor">Phone:</p>
-              <p onClick={handlePhoneClick} className="text-TextColor cursor-pointer">+8809611677639</p>
+              <p
+                onClick={handlePhoneClick}
+                className="text-TextColor cursor-pointer"
+              >
+                +8809611677639
+              </p>
             </div>
             <div>
               <p className="text-SubTextColor">Email:</p>
-              <a href="mailto:banglamartecommerceltd@gmail.com" className="text-TextColor cursor-pointer"><p>banglamartecommerceltd@gmail.com</p></a>
+              <a
+                href="mailto:banglamartecommerceltd@gmail.com"
+                className="text-TextColor cursor-pointer"
+              >
+                <p>banglamartecommerceltd@gmail.com</p>
+              </a>
             </div>
           </div>
           <div>
@@ -119,13 +131,16 @@ const Footer = () => {
               <h1>ACCOUNT</h1>
             </div>
             <div className="flex flex-col">
-              <Link
-                className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
-                to="/login"
-              >
-                Login
-              </Link>
-              {/* <Link  className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor" to="/">Wishlist</Link> */}
+              {user ? (
+                ""
+              ) : (
+                <Link
+                  className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
+                  to="/login"
+                >
+                  Login
+                </Link>
+              )}
               <Link
                 className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
                 to="/track-order"
@@ -149,7 +164,8 @@ const Footer = () => {
           </div>
         </div>
         <p className="text-TextColor text-center md:text-right mt-4 ">
-          &copy; {new Date().getFullYear()} Banglamart E-commerce Ltd. All rights reserved.
+          &copy; {new Date().getFullYear()} Banglamart E-commerce Ltd. All
+          rights reserved.
         </p>
       </div>
     </div>
