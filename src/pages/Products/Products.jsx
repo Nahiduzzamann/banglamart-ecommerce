@@ -13,7 +13,7 @@ import EmptyContent from "../../components/EmptyContent";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { Paginated } from "@makotot/paginated";
-import { Button, Center, Grid, Spinner, Stack } from "@chakra-ui/react";
+import { Button, Center, Grid, Stack } from "@chakra-ui/react";
 
 const Products = () => {
   const [products, setProducts] = useState(null);
@@ -219,7 +219,8 @@ const Products = () => {
                   </Paginated>
                 ) : (
                   <div className="flex justify-center">
-                    <Spinner />
+                    {/* <Spinner /> */}
+                    ....
                   </div>
                 )}
               </div>

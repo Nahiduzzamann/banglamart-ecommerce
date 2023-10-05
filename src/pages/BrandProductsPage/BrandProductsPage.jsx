@@ -12,7 +12,6 @@ import {
   Center,
   Grid,
   SkeletonText,
-  Spinner,
   Stack,
 } from "@chakra-ui/react";
 import { Paginated } from "@makotot/paginated";
@@ -187,7 +186,8 @@ const BrandProductsPage = () => {
             </Paginated>
           ) : (
             <div className="flex justify-center">
-              <Spinner />
+              {/* <Spinner /> */}
+              ....
             </div>
           )}
         </div>
