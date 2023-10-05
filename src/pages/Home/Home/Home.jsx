@@ -21,11 +21,10 @@ const Home = () => {
       <FlashSaleBanner></FlashSaleBanner>
       <div className="container mx-auto ">
         <FlashSale></FlashSale>
+        <NewProducts></NewProducts>
         <ForYouProducts></ForYouProducts>
         <BestSelling></BestSelling>
         <BargainingProducts></BargainingProducts>
-        <NewProducts></NewProducts>
-        
       </div>
       <FlashSaleBanner></FlashSaleBanner>
       <div className="container mx-auto">
