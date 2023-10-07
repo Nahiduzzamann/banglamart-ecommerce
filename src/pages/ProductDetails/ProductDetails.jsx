@@ -112,6 +112,7 @@ const ProductDetails = () => {
     } else if (product?.offer > 0) {
       actualAmount -= product?.offer;
     }
+    setTotalPrice(actualAmount);
     if (product?.freeDelivery) {
       actualAmount -= product?.deliveryCharge;
     } else if (product?.deliveryCharge > 0) {
@@ -119,7 +120,7 @@ const ProductDetails = () => {
     }
     setQuantity(product?.minOrder);
     setNewPrice(product?.price);
-    setTotalPrice(actualAmount);
+    
     setFinalPrice(actualAmount);
   }, [product]);
 
@@ -238,7 +239,7 @@ const ProductDetails = () => {
   const handleOfferPrice = () => {
     // console.log('function working...');
   };
-  console.log(id);
+  // console.log(id);
   const applyCouponCode = (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
@@ -527,11 +528,11 @@ const ProductDetails = () => {
           </div>
           <div className="flex gap-4 flex-wrap border-b border-b-BorderColor">
             <div className=" p-4">
-              {newPrice > totalPrice && (
+              {product?.price && (
                 <p className="text-SubTextColor">
                   Old Price:
                   <span className="line-through text-[18px] text-SubTextColor ml-2">
-                    {newPrice} ৳
+                    {product?.price} ৳
                   </span>
                   /pc
                 </p>
