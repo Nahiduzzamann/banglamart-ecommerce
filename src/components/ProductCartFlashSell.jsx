@@ -195,7 +195,7 @@ const ProductCartFlashSell = ({ data }) => {
         ) : (
           <div className="absolute flex items-center justify-center bg-CardColor shadow-md shadow-[#f59090] rounded-r-full top-2 p-1">
             <span className="font-semibold text-[10px] text-[#fc3e3e] mr-1">OFF</span>
-            <span className="pl-[2px] pr-[2px] text-[12px] font-semibold text-CardColor bg-[#fc3e3e] rounded-r-full">
+            <span className="pl-[2px] pr-[2px] text-[14px] font-semibold text-CardColor bg-[#fc3e3e] rounded-r-full">
               -{product?.offer}৳
             </span>
           </div>
