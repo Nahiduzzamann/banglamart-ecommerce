@@ -66,7 +66,7 @@ const ProductCartFlashSell = ({ data }) => {
   //   }
   // };
   return (
-    <Link to={`/productDetails/${product?.id}`} >
+    <Link to={`/productDetails/${product?.id}`}>
       <div
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
@@ -179,12 +179,25 @@ const ProductCartFlashSell = ({ data }) => {
             </div>
           </div>
         </div>
-        {product?.percentage && (
-          <div className="absolute flex items-center justify-center bg-CardColor shadow-md shadow-[#f59090] rounded-r-full top-2 p-1">
-            <p className="text-xs text-[#fc3e3e] mr-1">OFF</p>
-            <p className="text-sm text-CardColor p-1 bg-[#fc3e3e] rounded-full">
+        {product?.percentage ? (
+          <div
+            style={{
+              clipPath:
+                "polygon(29% 0, 68% 28%, 39% 26%, 56% 53%, 27% 40%, 32% 68%, 0 29%)",
+            }}
+            className="absolute flex flex-col  bg-[#fc3e3e] shadow-md shadow-[#f59090] top-0 h-24 w-24"
+          >
+            <span className="ml-5 mt-[6px] text-CardColor font-semibold text-[10px]">Off</span>
+            <span className="text-[12px] font-semibold ml-[10px] text-CardColor bg-[#fc3e3e]">
               {product?.offer}%
-            </p>
+            </span>
+          </div>
+        ) : (
+          <div className="absolute flex items-center justify-center bg-CardColor shadow-md shadow-[#f59090] rounded-r-full top-2 p-1">
+            <span className="font-semibold text-[10px] text-[#fc3e3e] mr-1">OFF</span>
+            <span className="pl-[2px] pr-[2px] text-[12px] font-semibold text-CardColor bg-[#fc3e3e] rounded-r-full">
+              -{product?.offer}৳
+            </span>
           </div>
         )}
         {product?.freeDelivery ? (
