@@ -91,19 +91,13 @@ const ProductDetails = () => {
   };
 
   const [minOrder, setQuantity] = useState(null);
-  const [newPrice, setNewPrice] = useState(product?.price);
   const [totalPrice, setTotalPrice] = useState();
-  const [finalPrice, setFinalPrice] = useState();
   const [discount, setDiscount] = useState(null);
   const [vat, setVat] = useState(null);
 
   useEffect(() => {
     let actualAmount = product?.price;
-    if (product?.vat > 0) {
-      const vat = (product?.vat / 100) * actualAmount;
-      setVat(vat);
-      actualAmount += (product?.vat / 100) * actualAmount;
-    }
+    // let actualAmountWithDeliveryVat = actualAmount
 
     if (product?.percentage) {
       const disc = (product?.offer / 100) * actualAmount;
@@ -113,32 +107,29 @@ const ProductDetails = () => {
       actualAmount -= product?.offer;
     }
     setTotalPrice(actualAmount);
-    if (product?.freeDelivery) {
-      actualAmount -= product?.deliveryCharge;
-    } else if (product?.deliveryCharge > 0) {
-      actualAmount += product?.deliveryCharge;
+
+    if (product?.vat > 0) {
+      const vat = (product?.vat / 100) * actualAmount;
+      setVat(vat);
+      actualAmount += (product?.vat / 100) * actualAmount;
     }
     setQuantity(product?.minOrder);
-    setNewPrice(product?.price);
-    
-    setFinalPrice(actualAmount);
+
   }, [product]);
 
   // calculation portion
 
   const handleIncrease = () => {
     const newQuantity = minOrder + 1;
-    const newPrice = newQuantity * totalPrice;
+    // const newPrice = newQuantity * totalPrice;
     setQuantity(newQuantity);
-    setFinalPrice(newPrice);
   };
 
   const handleDecrease = () => {
     if (minOrder > product?.minOrder) {
       const newQuantity = minOrder - 1;
-      const newPrice = newQuantity * totalPrice;
+      // const newPrice = newQuantity * totalPrice;
       setQuantity(newQuantity);
-      setFinalPrice(newPrice);
     }
   };
 
@@ -540,7 +531,7 @@ const ProductDetails = () => {
               <p className="text-SubTextColor">
                 Current Price:
                 <span className="text-[18px] text-MainColor ml-2 font-semibold">
-                  {totalPrice?.toFixed()} ৳
+                  {totalPrice?.toFixed(1)} ৳
                 </span>
                 /pc
               </p>
@@ -627,10 +618,10 @@ const ProductDetails = () => {
                   </motion.button>
                 </div>
               </form>
-              <div className=" w-52">
+              {/* <div className=" w-52">
                 <div className="flex justify-between">
                   <p className="text-SubTextColor">Product Price:</p>
-                  <p className="text-SubTextColor">{newPrice} ৳</p>
+                  <p className="text-SubTextColor">{newPrice?.toFixed()} ৳</p>
                 </div>
                 {product?.percentage > 0 && (
                   <div className="flex justify-between">
@@ -638,14 +629,14 @@ const ProductDetails = () => {
                       Discount ({product?.offer}%)
                     </p>
                     <p className="text-SubTextColor">
-                      -{discount?.toFixed(2)} ৳
+                      -{discount?.toFixed()} ৳
                     </p>
                   </div>
                 )}
                 {product?.vat > 0 && (
                   <div className="flex justify-between">
                     <p className="text-SubTextColor">Vat ({product?.vat}%)</p>
-                    <p className="text-SubTextColor">+{vat?.toFixed(2)} ৳</p>
+                    <p className="text-SubTextColor">+{vat?.toFixed()} ৳</p>
                   </div>
                 )}
                 {!product?.freeDelivery && (
@@ -666,7 +657,7 @@ const ProductDetails = () => {
                   <p className="text-TextColor">Total Price:</p>
                   <h1 className="text-MainColor">{finalPrice?.toFixed()} ৳</h1>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-2">
               <motion.button

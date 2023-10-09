@@ -133,7 +133,7 @@ const Header = () => {
                 <Link className="" to="/">
                   <img
                     className="h-16 w-16 lg:h-20 lg:w-20 "
-                    src="https://i.ibb.co/nzcBPGp/logo.png"
+                    src="https://i.ibb.co/GPpX7Bd/banglamart-logo.png"
                     alt=""
                   />
                 </Link>
