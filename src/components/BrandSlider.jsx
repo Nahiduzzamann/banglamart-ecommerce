@@ -11,7 +11,8 @@ const BrandSlider = () => {
   useEffect(() => {
     setBrandData(brand);
   }, [brand, brandData]);
-  const [show, setShow] = useState(null);
+
+  const [show, setShow] = useState(6);
 
   const animation = { duration: 7000, easing: (t) => t };
 
@@ -20,6 +21,7 @@ const BrandSlider = () => {
     mode: "free",
     drag: false,
     renderMode: "performance",
+    
     created(s) {
       s.moveToIdx(5, true, animation);
     },
@@ -62,17 +64,16 @@ const BrandSlider = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
   return (
     <div>
-      {show && (
-        <div ref={sliderRef} className="keen-slider">
-          {brandData?.map((data, i) => (
-            <div key={i} className="keen-slider__slide">
-              <BrandCart data={data} />
-            </div>
-          ))}
-        </div>
-      )}
+      <div ref={sliderRef} className="keen-slider">
+        {brandData?.map((data, i) => (
+          <div key={i} className="keen-slider__slide">
+            <BrandCart data={data} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
