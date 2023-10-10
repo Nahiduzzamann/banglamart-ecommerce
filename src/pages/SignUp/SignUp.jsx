@@ -5,7 +5,7 @@ import { AiFillPhone, AiOutlineGoogle } from "react-icons/ai";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
-import { postApi } from "../../apis";
+import { getApi, postApi } from "../../apis";
 
 const SignUp = () => {
   const { signInWithGoogle, createUser, setUserState } =
@@ -66,18 +66,19 @@ const SignUp = () => {
     } else {
       setIsLoading(true);
       createUser("/auth/signUp", formData, null)
-        .then((res) => {
-          saveToken(res.data.token);
+        .then(async () => {
+          // saveToken(res.data.token);
+          await getApi("/auth/sendVerification")
           setIsLoading(false);
-          setUserState(67);
+          // setUserState(67);
           Swal.fire({
             position: "top-end",
-            icon: "success",
-            title: "User created successfully.",
+            icon: "info",
+            title: "Please Check Your Email to verify",
             showConfirmButton: false,
-            timer: 1500,
+            timer: 2000,
           });
-          navigate(from, { replace: true });
+          navigate("/login", { replace: true });
         })
         .catch((error) => {
           setIsLoading(false);
