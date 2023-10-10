@@ -8,10 +8,33 @@ const BrandSlider = () => {
   const [brandData, setBrandData] = useState([]);
 
   const brand = useSelector((state) => state.brand.brand.data);
-  const [show, setShow] = useState(8);
   useEffect(() => {
     setBrandData(brand);
   }, [brand, brandData]);
+  const [show, setShow] = useState(null);
+
+  const animation = { duration: 7000, easing: (t) => t };
+
+  const [sliderRef] = useKeenSlider({
+    loop: true,
+    mode: "free",
+    drag: false,
+    renderMode: "performance",
+    created(s) {
+      s.moveToIdx(5, true, animation);
+    },
+    updated(s) {
+      s.moveToIdx(s.track.details.abs + 5, true, animation);
+    },
+    animationEnded(s) {
+      s.moveToIdx(s.track.details.abs + 5, true, animation);
+    },
+
+    slides: {
+      perView: show,
+      spacing: 5,
+    },
+  });
 
   useEffect(() => {
     const handleResize = () => {
@@ -24,7 +47,7 @@ const BrandSlider = () => {
       } else if (screenWidth <= 1440) {
         setShow(5);
       } else {
-        setShow(6);
+        setShow(7);
       }
     };
 
@@ -39,35 +62,17 @@ const BrandSlider = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  const animation = { duration: 5000, easing: (t) => t };
-
-  const [sliderRef] = useKeenSlider({
-    loop: true,
-    mode: "free",
-    renderMode: "performance",
-    created(s) {
-      s.moveToIdx(5, true, animation);
-    },
-    updated(s) {
-      s.moveToIdx(s.track.details.abs + 5, true, animation);
-    },
-    animationEnded(s) {
-      s.moveToIdx(s.track.details.abs + 5, true, animation);
-    },
-    slides: {
-      perView: show,
-      spacing: 10,
-    },
-  });
-
   return (
-    <div ref={sliderRef} className="keen-slider">
-      {brandData?.map((data, i) => (
-        <div key={i} className="keen-slider__slide">
-          <BrandCart data={data} />
+    <div>
+      {show && (
+        <div ref={sliderRef} className="keen-slider">
+          {brandData?.map((data, i) => (
+            <div key={i} className="keen-slider__slide">
+              <BrandCart data={data} />
+            </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
   );
 };
