@@ -19,9 +19,7 @@ const BrandSlider = () => {
   const [sliderRef] = useKeenSlider({
     loop: true,
     mode: "free",
-    drag: false,
     renderMode: "performance",
-    
     created(s) {
       s.moveToIdx(5, true, animation);
     },
@@ -45,11 +43,11 @@ const BrandSlider = () => {
       if (screenWidth <= 768) {
         setShow(3);
       } else if (screenWidth <= 1024) {
-        setShow(4);
-      } else if (screenWidth <= 1440) {
         setShow(5);
+      } else if (screenWidth <= 1440) {
+        setShow(6);
       } else {
-        setShow(7);
+        setShow(8);
       }
     };
 
@@ -64,12 +62,11 @@ const BrandSlider = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
   return (
     <div>
-      <div ref={sliderRef} className="keen-slider">
+      <div ref={sliderRef} className="keen-slider ">
         {brandData?.map((data, i) => (
-          <div key={i} className="keen-slider__slide">
+          <div key={i} className="keen-slider__slide ">
             <BrandCart data={data} />
           </div>
         ))}
