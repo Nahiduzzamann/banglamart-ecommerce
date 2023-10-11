@@ -28,7 +28,10 @@ import {
   Box,
   Checkbox,
   CloseButton,
+  Radio,
+  RadioGroup,
   Spinner,
+  Stack,
 } from "@chakra-ui/react";
 import { BiSolidSend } from "react-icons/bi";
 import { TbUserCheck, TbUserQuestion } from "react-icons/tb";
@@ -114,7 +117,6 @@ const ProductDetails = () => {
       actualAmount += (product?.vat / 100) * actualAmount;
     }
     setQuantity(product?.minOrder);
-
   }, [product]);
 
   // calculation portion
@@ -132,16 +134,21 @@ const ProductDetails = () => {
       setQuantity(newQuantity);
     }
   };
+  const [codeId, setCodeId] = useState("");
+  const [offerPrice, setOfferPrice] = useState("");
 
-  const handleAddToCart = (id, minOrder) => {
+  const handleAddToCart = () => {
     if (user) {
       const token = localStorage.getItem("token");
       postApi(
         "/cart/add",
-        {
-          productId: id,
-          quantity: minOrder,
-        },
+        // {
+        //   productId: id,
+        //   quantity: minOrder,
+        //   codeId:codeId,
+        //   offerPrice:offerPrice,
+
+        // },
         token
       )
         .then((res) => {
@@ -216,8 +223,6 @@ const ProductDetails = () => {
       });
   }, [id]);
 
-  const [offerPrice, setOfferPrice] = useState("");
-
   const handleOfferPriceChange = (e) => {
     setOfferPrice(e.target.value);
   };
@@ -234,14 +239,26 @@ const ProductDetails = () => {
   const applyCouponCode = (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
-    getApi(`/verify-coupon-code?code=${couponCode}&productId=${id}`, token)
+    getApi(
+      `/codes/verify-coupon-code?code=${couponCode}&productId=${id}`,
+      token
+    )
       .then((res) => {
-        console.log(res);
+        setCodeId(res.data.code.id);
+        console.log(res.data.code);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response.data.message);
       });
   };
+
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [color, setColor] = useState(null);
+console.log(selectedColor);
+  const handleColorChange = (color) => {
+    setSelectedColor(color);
+  };
+
   const shareUrl = `https://banglamartecommerce.com.bd/productDetails/${id}`;
   if (product == null) {
     return (
@@ -478,21 +495,26 @@ const ProductDetails = () => {
           <div className="border-b border-b-BorderColor flex flex-wrap p-4 gap-2">
             <div className="flex flex-col ml-2 mr-2">
               <p>Select Color:</p>
-              {product?.colors?.map((color, i) => {
-                const backgroundColor = color?.value;
-                return (
-                  <div
-                    key={i}
-                    className="text-SubTextColor flex flex-row justify-center items-center"
-                  >
-                    <div
-                      style={{ backgroundColor: backgroundColor }}
-                      className="m-1 mr-1 h-5 w-5 rounded-full"
-                    ></div>
-                    <Checkbox size="sm" colorScheme="red"></Checkbox>
-                  </div>
-                );
-              })}
+              <RadioGroup onChange={setColor} value={color}>
+                <Stack>
+                  {product?.colors?.map((color, i) => {
+                    const backgroundColor = color?.value;
+                    return (
+                      <Radio
+                        value={color.value}
+                        key={i}
+                        className="text-SubTextColor "
+                        onClick={()=>handleColorChange(color)}
+                      >
+                        <div
+                          style={{ backgroundColor: backgroundColor }}
+                          className="m-1 mr-1 h-5 w-5 rounded-full"
+                        ></div>
+                      </Radio>
+                    );
+                  })}
+                </Stack>
+              </RadioGroup>
             </div>
             <div className="flex flex-col ml-2 mr-2">
               <p className="mr-1">Select Size:</p>
@@ -661,7 +683,7 @@ const ProductDetails = () => {
             </div>
             <div className="pt-4 pb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
               <motion.button
-                onClick={() => handleAddToCart(product?.id, product?.minOrder)}
+                onClick={handleAddToCart}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.8 }}
                 className="pl-3 pr-3 pt-2 pb-2 bg-[#d2eefd] rounded-full shadow-sm hover:shadow-md flex items-center justify-center"
