@@ -136,19 +136,35 @@ const ProductDetails = () => {
   };
   const [codeId, setCodeId] = useState("");
   const [offerPrice, setOfferPrice] = useState("");
-
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [color, setColor] = useState(null);
+  const handleColorChange = (color) => {
+    setSelectedColor(color);
+  };
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [size, setSize] = useState(null);
+  const handleSizeChange = (size) => {
+    setSelectedSize(size);
+  };
+  const [selectedSpecification, setSelectedSpecification] = useState(null);
+  const [specification, setSpecification] = useState(null);
+  const handleSpecificationChange = (specification) => {
+    setSpecification(specification);
+  };
+  console.log(selectedColor,selectedSize,specification);
   const handleAddToCart = () => {
     if (user) {
       const token = localStorage.getItem("token");
       postApi(
         "/cart/add",
-        // {
-        //   productId: id,
-        //   quantity: minOrder,
-        //   codeId:codeId,
-        //   offerPrice:offerPrice,
-
-        // },
+        {
+          productId: id,
+          quantity: minOrder,
+          codeId: codeId,
+          offerPrice: offerPrice,
+          colors: selectedColor,
+          sizes:selectedSize
+        },
         token
       )
         .then((res) => {
@@ -250,13 +266,6 @@ const ProductDetails = () => {
       .catch((error) => {
         console.log(error.response.data.message);
       });
-  };
-
-  const [selectedColor, setSelectedColor] = useState(null);
-  const [color, setColor] = useState(null);
-console.log(selectedColor);
-  const handleColorChange = (color) => {
-    setSelectedColor(color);
   };
 
   const shareUrl = `https://banglamartecommerce.com.bd/productDetails/${id}`;
@@ -504,7 +513,7 @@ console.log(selectedColor);
                         value={color.value}
                         key={i}
                         className="text-SubTextColor "
-                        onClick={()=>handleColorChange(color)}
+                        onClick={() => handleColorChange(color)}
                       >
                         <div
                           style={{ backgroundColor: backgroundColor }}
@@ -518,15 +527,22 @@ console.log(selectedColor);
             </div>
             <div className="flex flex-col ml-2 mr-2">
               <p className="mr-1">Select Size:</p>
-              {product?.sizes?.map((size, i) => (
-                <div
-                  key={i}
-                  className="text-SubTextColor flex flex-row  items-center"
-                >
-                  <p className="font-bold mr-[2px]">{size.label}</p>
-                  <Checkbox size="sm" colorScheme="red"></Checkbox>
-                </div>
-              ))}
+              <RadioGroup onChange={setSize} value={size}>
+                <Stack>
+                  {product?.sizes?.map((size, i) => {
+                    return (
+                      <Radio
+                        value={size.value}
+                        key={i}
+                        className="text-SubTextColor "
+                        onClick={() => handleSizeChange(size)}
+                      >
+                        <p className="font-bold mr-[2px]">{size.label}</p>
+                      </Radio>
+                    );
+                  })}
+                </Stack>
+              </RadioGroup>
             </div>
             {product?.specifications && (
               <div>
