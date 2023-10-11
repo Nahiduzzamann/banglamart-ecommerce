@@ -149,9 +149,9 @@ const ProductDetails = () => {
   const [selectedSpecification, setSelectedSpecification] = useState(null);
   const [specification, setSpecification] = useState(null);
   const handleSpecificationChange = (specification) => {
-    setSpecification(specification);
+    setSelectedSpecification(specification);
   };
-  console.log(selectedColor,selectedSize,specification);
+  // console.log(selectedSpecification);
   const handleAddToCart = () => {
     if (user) {
       const token = localStorage.getItem("token");
@@ -163,7 +163,8 @@ const ProductDetails = () => {
           codeId: codeId,
           offerPrice: offerPrice,
           colors: selectedColor,
-          sizes:selectedSize
+          sizes: selectedSize,
+          specifications:selectedSpecification
         },
         token
       )
@@ -544,16 +545,27 @@ const ProductDetails = () => {
                 </Stack>
               </RadioGroup>
             </div>
-            {product?.specifications && (
-              <div>
-                <p className="mr-1">Specifications:</p>
-                {product?.specifications?.map((specification, i) => (
-                  <p key={i} className="text-SubTextColor">
-                    {specification.label} : {specification.value}
-                  </p>
-                ))}
-              </div>
-            )}
+            <div className="flex flex-col ml-2 mr-2">
+              <p className="mr-1 ">Specifications:</p>
+              <RadioGroup onChange={setSpecification} value={specification}>
+                <Stack>
+                  {product?.specifications?.map((specification, i) => {
+                    return (
+                      <Radio
+                        value={specification.value}
+                        key={i}
+                        className="text-SubTextColor "
+                        onClick={() => handleSpecificationChange(specification)}
+                      >
+                        <p className="text-SubTextColor">
+                          {specification.label} : {specification.value}
+                        </p>
+                      </Radio>
+                    );
+                  })}
+                </Stack>
+              </RadioGroup>
+            </div>
           </div>
           <div className="flex gap-4 flex-wrap border-b border-b-BorderColor">
             <div className=" p-4">

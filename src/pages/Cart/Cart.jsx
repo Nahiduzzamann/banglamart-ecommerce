@@ -10,6 +10,7 @@ import { useLocation } from "react-router";
 
 const Cart = () => {
   const { user, cart } = useContext(AuthContext);
+  console.log(cart);
   const location = useLocation();
   const [promoCode, setPromoCode] = useState("");
   const [memberCode, setMemberCode] = useState("");
