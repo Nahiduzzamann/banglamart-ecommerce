@@ -200,14 +200,9 @@ const ProductDetails = () => {
             // console.log(error);
           });
       } else {
-        Swal.fire({
-          position: "top-end",
-          icon: "warning",
-          title:
-            "Please select Color, Size, Specification before adding to cart",
-          showConfirmButton: false,
-          timer: 2000,
-        });
+        Swal.fire(
+          "Please select Color, Size, Specification before adding to cart"
+        );
       }
     } else {
       navigate("/login", { state: { from: location } });
