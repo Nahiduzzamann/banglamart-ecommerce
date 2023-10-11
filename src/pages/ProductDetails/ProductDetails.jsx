@@ -138,6 +138,7 @@ const ProductDetails = () => {
   const [offerPrice, setOfferPrice] = useState("");
   const [selectedColor, setSelectedColor] = useState(null);
   const [color, setColor] = useState(null);
+
   const handleColorChange = (color) => {
     setSelectedColor(color);
   };
@@ -151,36 +152,63 @@ const ProductDetails = () => {
   const handleSpecificationChange = (specification) => {
     setSelectedSpecification(specification);
   };
+  const isColorAvailable = product?.colors && product.colors.length > 0;
+  const isSizeAvailable = product?.sizes && product.sizes.length > 0;
+  const isSpecificationAvailable =
+    product?.specifications && product.specifications.length > 0;
+
+  const isColorSelected = !!color;
+  const isSizeSelected = !!size;
+  const isSpecificationSelected = !!specification;
+
+  const isAddToCartEnabled =
+    (!isColorAvailable || (isColorAvailable && isColorSelected)) &&
+    (!isSizeAvailable || (isSizeAvailable && isSizeSelected)) &&
+    (!isSpecificationAvailable ||
+      (isSpecificationAvailable && isSpecificationSelected));
+
   // console.log(selectedSpecification);
   const handleAddToCart = () => {
     if (user) {
-      const token = localStorage.getItem("token");
-      postApi(
-        "/cart/add",
-        {
-          productId: id,
-          quantity: minOrder,
-          codeId: codeId,
-          offerPrice: offerPrice,
-          colors: selectedColor,
-          sizes: selectedSize,
-          specifications:selectedSpecification
-        },
-        token
-      )
-        .then((res) => {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Add to Cart successfully.",
-            showConfirmButton: false,
-            timer: 1500,
+      if (isAddToCartEnabled) {
+        const token = localStorage.getItem("token");
+        postApi(
+          "/cart/add",
+          {
+            productId: id,
+            quantity: minOrder,
+            codeId: codeId,
+            offerPrice: offerPrice,
+            colors: selectedColor,
+            sizes: selectedSize,
+            specifications: selectedSpecification,
+          },
+          token
+        )
+          .then((res) => {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Add to Cart successfully.",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            setCartUpdate(res.data);
+          })
+          .catch((error) => {
+            console.log(error.response.data.message);
+            // console.log(error);
           });
-          setCartUpdate(res.data);
-        })
-        .catch((error) => {
-          console.log(error.response.data.message);
+      } else {
+        Swal.fire({
+          position: "top-end",
+          icon: "warning",
+          title:
+            "Please select Color, Size, Specification before adding to cart",
+          showConfirmButton: false,
+          timer: 2000,
         });
+      }
     } else {
       navigate("/login", { state: { from: location } });
     }
@@ -721,16 +749,33 @@ const ProductDetails = () => {
                 </p>
                 <p className="text-MainColor">Add to cart</p>
               </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.8 }}
-                className="pl-3 pr-3 pt-2 pb-2 bg-MainColor rounded-full shadow-sm hover:shadow-md flex items-center justify-center"
-              >
-                <p>
-                  <AiOutlineShoppingCart className="text-CardColor  mr-1" />
-                </p>
-                <p className="text-CardColor">Buy Now</p>
-              </motion.button>
+              {isAddToCartEnabled ? (
+                <Link
+                  to="/cart"
+                  onClick={handleAddToCart}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.8 }}
+                  className="pl-3 pr-3 pt-2 pb-2 bg-MainColor rounded-full shadow-sm hover:shadow-md flex items-center justify-center"
+                >
+                  <p>
+                    <AiOutlineShoppingCart className="text-CardColor  mr-1" />
+                  </p>
+                  <p className="text-CardColor">Buy Now</p>
+                </Link>
+              ) : (
+                <motion.button
+                  onClick={handleAddToCart}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.8 }}
+                  className="pl-3 pr-3 pt-2 pb-2 bg-MainColor rounded-full shadow-sm hover:shadow-md flex items-center justify-center"
+                >
+                  <p>
+                    <AiOutlineShoppingCart className="text-CardColor  mr-1" />
+                  </p>
+                  <p className="text-CardColor">Buy Now</p>
+                </motion.button>
+              )}
+
               {/* <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.8 }}

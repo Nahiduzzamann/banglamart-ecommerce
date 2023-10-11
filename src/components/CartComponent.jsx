@@ -75,7 +75,7 @@ const CartComponent = ({ data }) => {
           icon: "success",
           title: "Remove successfully.",
           showConfirmButton: false,
-          timer: 1500,
+          timer: 1000,
         });
         setCartUpdate(res.data);
         setLoading(false);
