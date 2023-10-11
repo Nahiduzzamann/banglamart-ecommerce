@@ -670,33 +670,34 @@ const ProductDetails = () => {
             </p>
           </div>
           <div className="p-4">
-            <div className="flex justify-around flex-wrap gap-4">
-              <form onSubmit={applyCouponCode}>
-                <div className="relative">
-                  <label className="block text-SubTextColor text-sm font-bold mb-1">
-                    Apply Coupon Code
-                  </label>
-                  <input
-                    type="text"
-                    className="shadow appearance-none border rounded-full w-full py-2 px-3 text-SubTextColor leading-tight focus:outline-MainColor"
-                    placeholder="Enter Coupon Code"
-                    value={couponCode}
-                    onChange={handleCouponCodeChange}
-                    required
-                  />
-                  <p className="text-xs text-[#ff6868]">
-                    *Apply coupon code to get a discount
-                  </p>
-                  <motion.button
-                    whileHover={{ scale: 1.03 }}
-                    type="submit"
-                    className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
-                  >
-                    Apply
-                  </motion.button>
-                </div>
-              </form>
-              {/* <div className=" w-52">
+            {product?.fixedPrice && (
+              <div className="flex justify-around flex-wrap gap-4">
+                <form onSubmit={applyCouponCode}>
+                  <div className="relative">
+                    <label className="block text-SubTextColor text-sm font-bold mb-1">
+                      Apply Coupon Code
+                    </label>
+                    <input
+                      type="text"
+                      className="shadow appearance-none border rounded-full w-full py-2 px-3 text-SubTextColor leading-tight focus:outline-MainColor"
+                      placeholder="Enter Coupon Code"
+                      value={couponCode}
+                      onChange={handleCouponCodeChange}
+                      required
+                    />
+                    <p className="text-xs text-[#ff6868]">
+                      *Apply coupon code to get a discount
+                    </p>
+                    <motion.button
+                      whileHover={{ scale: 1.03 }}
+                      type="submit"
+                      className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
+                    >
+                      Apply
+                    </motion.button>
+                  </div>
+                </form>
+                {/* <div className=" w-52">
                 <div className="flex justify-between">
                   <p className="text-SubTextColor">Product Price:</p>
                   <p className="text-SubTextColor">{newPrice?.toFixed()} ৳</p>
@@ -736,7 +737,8 @@ const ProductDetails = () => {
                   <h1 className="text-MainColor">{finalPrice?.toFixed()} ৳</h1>
                 </div>
               </div> */}
-            </div>
+              </div>
+            )}
             <div className="pt-4 pb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
               <motion.button
                 onClick={handleAddToCart}
