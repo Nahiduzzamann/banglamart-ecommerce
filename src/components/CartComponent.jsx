@@ -78,7 +78,7 @@ const CartComponent = ({ data }) => {
   };
   return (
     <div className=" mb-2 shadow-md hover:shadow-lg shadow-BorderColor">
-      <div className="flex justify-between mt-2 mb-2 p-2 flex-wrap">
+      <div className="flex justify-between mt-2 mb-2 p-2 flex-wrap gap-4">
         <div className="flex items-center m-1">
           <img
             src={`${url}${product?.thumbnail}`}
@@ -125,48 +125,53 @@ const CartComponent = ({ data }) => {
             </div>
           </div>
         </div>
-        <div className="m-1 hidden xl:block text-SubTextColor">
-          {data?.colors && (
-            <p className="">
-              Color:{" "}
-              <span className="font-semibold">{data?.colors?.label}</span>{" "}
-            </p>
-          )}
-          {data?.sizes && (
-            <p>
-              Size: <span className="font-semibold">{data?.sizes?.label}</span>{" "}
-            </p>
-          )}
-          {data?.specifications && (
-            <p>
-              Specification:{" "}
-              <span className="font-semibold">
-                {data?.specifications?.label}
-              </span>{" "}
-            </p>
-          )}
-        </div>
-        <div className="flex flex-col items-center m-1">
-          <h2 className="line-through text-SubTextColor">{product?.price} ৳</h2>
-          <h1 className="">{totalPrice?.toFixed()} ৳</h1>
-          <div className="">
-            {loading ? (
-              <button
-                disabled
-                className="text-CardColor text-sm  flex bg-[#e65b5b]  pb-1 pl-2 pr-2 rounded-full"
-              >
-                Loading...
-              </button>
-            ) : (
-              <motion.button
-                onClick={() => handleRemoveFromCart(data?.id)}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.8 }}
-                className="text-CardColor flex bg-[#e65b5b] hover:underline pb-1 pl-2 pr-2 rounded-full"
-              >
-                remove
-              </motion.button>
+        <div className="flex justify-between items-center gap-4">
+          <div className=" text-SubTextColor ml-4">
+            {data?.colors && (
+              <p className="">
+                Color:{" "}
+                <span className="font-semibold">{data?.colors?.label}</span>{" "}
+              </p>
             )}
+            {data?.sizes && (
+              <p>
+                Size:{" "}
+                <span className="font-semibold">{data?.sizes?.label}</span>{" "}
+              </p>
+            )}
+            {data?.specifications && (
+              <p>
+                Specification:{" "}
+                <span className="font-semibold">
+                  {data?.specifications?.label}
+                </span>{" "}
+              </p>
+            )}
+          </div>
+          <div className="flex flex-col items-center m-1">
+            <h2 className="line-through text-SubTextColor">
+              {product?.price} ৳
+            </h2>
+            <h1 className="">{totalPrice?.toFixed()} ৳</h1>
+            <div className="">
+              {loading ? (
+                <button
+                  disabled
+                  className="text-CardColor text-sm  flex bg-[#e65b5b]  pb-1 pl-2 pr-2 rounded-full"
+                >
+                  Loading...
+                </button>
+              ) : (
+                <motion.button
+                  onClick={() => handleRemoveFromCart(data?.id)}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.8 }}
+                  className="text-CardColor flex bg-[#e65b5b] hover:underline pb-1 pl-2 pr-2 rounded-full"
+                >
+                  remove
+                </motion.button>
+              )}
+            </div>
           </div>
         </div>
         {/* <div className="m-1">
@@ -209,24 +214,6 @@ const CartComponent = ({ data }) => {
             </div>
           </div>
         </div> */}
-      </div>
-      <div className="ml-6 block xl:hidden p-2 text-SubTextColor">
-        {data?.colors && (
-          <p className="">
-            Color: <span className="font-semibold">{data?.colors?.label}</span>{" "}
-          </p>
-        )}
-        {data?.sizes && (
-          <p>
-            Size: <span className="font-semibold">{data?.sizes?.label}</span>{" "}
-          </p>
-        )}
-        {data?.specifications && (
-          <p>
-            Specification:{" "}
-            <span className="font-semibold">{data?.specifications?.label}</span>{" "}
-          </p>
-        )}
       </div>
     </div>
   );
