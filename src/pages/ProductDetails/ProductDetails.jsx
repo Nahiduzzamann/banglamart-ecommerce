@@ -114,7 +114,7 @@ const ProductDetails = () => {
       setVat(vat);
       actualAmount += (product?.vat / 100) * actualAmount;
     }
-    
+
     setTotalPrice(actualAmount);
 
     setQuantity(product?.minOrder);
@@ -579,7 +579,7 @@ const ProductDetails = () => {
                         className="text-SubTextColor "
                         onClick={() => handleSizeChange(size)}
                       >
-                        <p className="font-bold mr-[2px]">{size.label}</p>
+                        <p className="font-bold mr-[2px]">{size.label}{'('}{size.value}{')'}</p>
                       </Radio>
                     );
                   })}
