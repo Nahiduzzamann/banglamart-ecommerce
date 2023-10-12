@@ -539,10 +539,12 @@ const ProductDetails = () => {
                         className="text-SubTextColor "
                         onClick={() => handleColorChange(color)}
                       >
-                        <div
-                          style={{ backgroundColor: backgroundColor }}
-                          className="m-1 mr-1 h-5 w-5 rounded-full"
-                        ></div>
+                        <div className="p-[1px] bg-[#e7e5e5] rounded-full shadow-sm shadow-MainColorHover">
+                          <div
+                            style={{ backgroundColor: backgroundColor }}
+                            className="m-1 mr-1 h-5 w-5 rounded-full"
+                          ></div>
+                        </div>
                       </Radio>
                     );
                   })}
