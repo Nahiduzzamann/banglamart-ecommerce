@@ -543,7 +543,7 @@ const ProductDetails = () => {
 
           <div className="border-b border-b-BorderColor flex flex-wrap p-4 gap-2">
             <div className="flex flex-col ml-2 mr-2">
-              <p>Select Color:</p>
+              {product?.colors && <p>Select Color:</p>}
               <RadioGroup onChange={setColor} value={color}>
                 <Stack>
                   {product?.colors?.map((color, i) => {
@@ -568,7 +568,8 @@ const ProductDetails = () => {
               </RadioGroup>
             </div>
             <div className="flex flex-col ml-2 mr-2">
-              <p className="mr-1">Select Size:</p>
+              {product?.sizes && <p className="mr-1">Select Size:</p>}
+
               <RadioGroup onChange={setSize} value={size}>
                 <Stack>
                   {product?.sizes?.map((size, i) => {
@@ -579,7 +580,12 @@ const ProductDetails = () => {
                         className="text-SubTextColor "
                         onClick={() => handleSizeChange(size)}
                       >
-                        <p className="font-bold mr-[2px]">{size.label}{'('}{size.value}{')'}</p>
+                        <p className="font-bold mr-[2px]">
+                          {size.label}
+                          {"("}
+                          {size.value}
+                          {")"}
+                        </p>
                       </Radio>
                     );
                   })}
@@ -587,7 +593,10 @@ const ProductDetails = () => {
               </RadioGroup>
             </div>
             <div className="flex flex-col ml-2 mr-2">
-              <p className="mr-1 ">Specifications:</p>
+              {product?.specifications && (
+                <p className="mr-1 ">Specifications:</p>
+              )}
+
               <RadioGroup onChange={setSpecification} value={specification}>
                 <Stack>
                   {product?.specifications?.map((specification, i) => {

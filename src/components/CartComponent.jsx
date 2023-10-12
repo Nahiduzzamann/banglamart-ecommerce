@@ -136,7 +136,7 @@ const CartComponent = ({ data }) => {
             {data?.sizes && (
               <p>
                 Size:{" "}
-                <span className="font-semibold">{data?.sizes?.label}</span>{" "}
+                <span className="font-semibold">{data?.sizes?.label}{'('}{data?.sizes?.value}{')'}</span>{" "}
               </p>
             )}
             {data?.specifications && (
