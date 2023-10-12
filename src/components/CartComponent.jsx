@@ -10,7 +10,8 @@ import { AuthContext } from "../providers/AuthProvider";
 const CartComponent = ({ data }) => {
   const { setCartUpdate } = useContext(AuthContext);
   let product = data.product;
-  // console.log(product);
+
+  // console.log(data?.colors.label);
   const url = "https://api.banglamartecommerce.com.bd";
 
   const [loading, setLoading] = useState(false);
@@ -41,11 +42,11 @@ const CartComponent = ({ data }) => {
     } else if (product?.deliveryCharge > 0) {
       actualAmount += product?.deliveryCharge;
     }
-    setQuantity(product?.minOrder);
+    setQuantity(data?.quantity);
     setNewPrice(product?.price);
     setTotalPrice(actualAmount);
     setFinalPrice(actualAmount);
-  }, [product]);
+  }, [product, data]);
 
   // calculation portion
 
@@ -136,9 +137,25 @@ const CartComponent = ({ data }) => {
           </div>
         </div>
         <div className="m-1 hidden xl:block text-SubTextColor">
-          <p>Color:</p>
-          <p>Size:</p>
-          <p>Specification:</p>
+          {data?.colors && (
+            <p className="">
+              Color:{" "}
+              <span className="font-semibold">{data?.colors?.label}</span>{" "}
+            </p>
+          )}
+          {data?.sizes && (
+            <p>
+              Size: <span className="font-semibold">{data?.sizes?.label}</span>{" "}
+            </p>
+          )}
+          {data?.specifications && (
+            <p>
+              Specification:{" "}
+              <span className="font-semibold">
+                {data?.specifications?.label}
+              </span>{" "}
+            </p>
+          )}
         </div>
         <div className="flex flex-col items-center m-1">
           <h2 className="line-through text-SubTextColor">{newPrice} ৳</h2>
@@ -205,9 +222,22 @@ const CartComponent = ({ data }) => {
         </div> */}
       </div>
       <div className="ml-6 block xl:hidden p-2 text-SubTextColor">
-        <p>Color:</p>
-        <p>Size:</p>
-        <p>Specification:</p>
+        {data?.colors && (
+          <p className="">
+            Color: <span className="font-semibold">{data?.colors?.label}</span>{" "}
+          </p>
+        )}
+        {data?.sizes && (
+          <p>
+            Size: <span className="font-semibold">{data?.sizes?.label}</span>{" "}
+          </p>
+        )}
+        {data?.specifications && (
+          <p>
+            Specification:{" "}
+            <span className="font-semibold">{data?.specifications?.label}</span>{" "}
+          </p>
+        )}
       </div>
     </div>
   );

@@ -285,10 +285,25 @@ const ProductDetails = () => {
     )
       .then((res) => {
         setCodeId(res.data.code.id);
-        console.log(res.data.code);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Coupon offer added to this product",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        // console.log(res.data.code);
+        navigate("/cart", { state: { from: location } });
       })
       .catch((error) => {
         console.log(error.response.data.message);
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Oops! Something went wrong",
+          showConfirmButton: false,
+          timer: 1000,
+        });
       });
   };
 
