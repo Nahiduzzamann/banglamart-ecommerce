@@ -108,13 +108,15 @@ const ProductDetails = () => {
     } else if (product?.offer > 0) {
       actualAmount -= product?.offer;
     }
-    setTotalPrice(actualAmount);
 
     if (product?.vat > 0) {
       const vat = (product?.vat / 100) * actualAmount;
       setVat(vat);
       actualAmount += (product?.vat / 100) * actualAmount;
     }
+    
+    setTotalPrice(actualAmount);
+
     setQuantity(product?.minOrder);
   }, [product]);
 
