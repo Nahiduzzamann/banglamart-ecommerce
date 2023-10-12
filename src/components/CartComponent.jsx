@@ -16,19 +16,14 @@ const CartComponent = ({ data }) => {
 
   const [loading, setLoading] = useState(false);
   const [minOrder, setQuantity] = useState(null);
-  const [newPrice, setNewPrice] = useState(product?.price);
   const [totalPrice, setTotalPrice] = useState();
-  const [finalPrice, setFinalPrice] = useState();
   const [discount, setDiscount] = useState(null);
   const [vat, setVat] = useState(null);
 
   useEffect(() => {
     let actualAmount = product?.price;
-    if (product?.vat > 0) {
-      const vat = (product?.vat / 100) * actualAmount;
-      setVat(vat);
-      actualAmount += (product?.vat / 100) * actualAmount;
-    }
+    // let actualAmountWithDeliveryVat = actualAmount
+
     if (product?.percentage) {
       const disc = (product?.offer / 100) * actualAmount;
       setDiscount(disc);
@@ -36,33 +31,27 @@ const CartComponent = ({ data }) => {
     } else if (product?.offer > 0) {
       actualAmount -= product?.offer;
     }
+    setTotalPrice(actualAmount);
 
-    if (product?.freeDelivery) {
-      actualAmount -= product?.deliveryCharge;
-    } else if (product?.deliveryCharge > 0) {
-      actualAmount += product?.deliveryCharge;
+    if (product?.vat > 0) {
+      const vat = (product?.vat / 100) * actualAmount;
+      setVat(vat);
+      actualAmount += (product?.vat / 100) * actualAmount;
     }
     setQuantity(data?.quantity);
-    setNewPrice(product?.price);
-    setTotalPrice(actualAmount);
-    setFinalPrice(actualAmount);
   }, [product, data]);
 
   // calculation portion
 
   const handleIncrease = () => {
     const newQuantity = minOrder + 1;
-    const newPrice = newQuantity * totalPrice;
     setQuantity(newQuantity);
-    setFinalPrice(newPrice);
   };
 
   const handleDecrease = () => {
     if (minOrder > product?.minOrder) {
       const newQuantity = minOrder - 1;
-      const newPrice = newQuantity * totalPrice;
       setQuantity(newQuantity);
-      setFinalPrice(newPrice);
     }
   };
   const handleRemoveFromCart = (id) => {
@@ -158,7 +147,7 @@ const CartComponent = ({ data }) => {
           )}
         </div>
         <div className="flex flex-col items-center m-1">
-          <h2 className="line-through text-SubTextColor">{newPrice} ৳</h2>
+          <h2 className="line-through text-SubTextColor">{product?.price} ৳</h2>
           <h1 className="">{totalPrice?.toFixed()} ৳</h1>
           <div className="">
             {loading ? (

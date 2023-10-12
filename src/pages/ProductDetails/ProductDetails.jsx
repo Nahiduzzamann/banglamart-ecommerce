@@ -26,7 +26,6 @@ import {
   AccordionPanel,
   Avatar,
   Box,
-  Checkbox,
   CloseButton,
   Radio,
   RadioGroup,
