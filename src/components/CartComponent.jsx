@@ -6,8 +6,9 @@ import { Link } from "react-router-dom";
 import { deleteApi, putApi } from "../apis";
 import Swal from "sweetalert2";
 import { AuthContext } from "../providers/AuthProvider";
+import { Checkbox } from "@chakra-ui/react";
 
-const CartComponent = ({ data }) => {
+const CartComponent = ({ data, selectedProducts, handleCheckboxChange }) => {
   const { setCartUpdate } = useContext(AuthContext);
   let product = data.product;
   // console.log(data?.colors.label);
@@ -127,121 +128,131 @@ const CartComponent = ({ data }) => {
       }
     });
   };
+
   return (
     <div className=" mb-2 shadow-md hover:shadow-lg shadow-BorderColor">
-      <div className="flex justify-between mt-2 mb-2 p-2 flex-wrap gap-4">
-        <div className="flex items-center m-1">
-          <img
-            src={`${url}${product?.thumbnail}`}
-            className="object-cover h-20 w-20 rounded"
-          />
-          <div className="ml-2">
-            <Link
-              to={`/productDetails/${product?.id}`}
-              className="relative hover:underline break-all line-clamp-1"
-            >
-              {product?.title}
-            </Link>
-            <div className="flex items-center">
-              <p className="mr-2 text-SubTextColor">Quantity:</p>
-              {increaseLoad ? (
-                <div className="mr-4 rounded-full bg-[#d2eefd] h-[33px] w-[33px] flex items-center justify-center shadow-sm cursor-not-allowed">
-                  <span className="loading loading-spinner loading-xs"></span>
-                </div>
-              ) : (
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.8 }}
-                  onClick={handleDecrease}
-                  className="mr-2 rounded-full bg-[#d2eefd] p-2 shadow-sm hover:shadow-md"
+      <div className="flex items-center">
+        <div className="m-1">
+          <Checkbox
+            onChange={() => handleCheckboxChange(data.id)}
+            checked={selectedProducts.includes(data.id)}
+            colorScheme="red"
+          ></Checkbox>
+        </div>
+        <div>
+          <div className="flex justify-between mt-2 mb-2 p-2 flex-wrap gap-4">
+            <div className="flex items-center m-1">
+              <img
+                src={`${url}${product?.thumbnail}`}
+                className="object-cover h-20 w-20 rounded"
+              />
+              <div className="ml-2">
+                <Link
+                  to={`/productDetails/${product?.id}`}
+                  className="relative hover:underline break-all line-clamp-1"
                 >
-                  <AiOutlineLine className=" text-SubTextColor" />
-                </motion.button>
-              )}
+                  {product?.title}
+                </Link>
+                <div className="flex items-center">
+                  <p className="mr-2 text-SubTextColor">Quantity:</p>
+                  {increaseLoad ? (
+                    <div className="mr-4 rounded-full bg-[#d2eefd] h-[33px] w-[33px] flex items-center justify-center shadow-sm cursor-not-allowed">
+                      <span className="loading loading-spinner loading-xs"></span>
+                    </div>
+                  ) : (
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.8 }}
+                      onClick={handleDecrease}
+                      className="mr-2 rounded-full bg-[#d2eefd] p-2 shadow-sm hover:shadow-md"
+                    >
+                      <AiOutlineLine className=" text-SubTextColor" />
+                    </motion.button>
+                  )}
 
-              <p className="mr-2 text-TextColor">{minOrder}</p>
-              {minOrder == product?.quantity ? (
-                <button
-                  disabled
-                  className="mr-4 rounded-full bg-[#e9a093] p-2 shadow-sm hover:shadow-md"
-                >
-                  <MdOutlineDisabledByDefault className=" text-CardColor" />
-                </button>
-              ) : increaseLoad ? (
-                <div className="mr-4 rounded-full bg-[#d2eefd] h-[33px] w-[33px] flex items-center justify-center shadow-sm cursor-not-allowed">
-                  <span className="loading loading-spinner loading-xs"></span>
+                  <p className="mr-2 text-TextColor">{minOrder}</p>
+                  {minOrder == product?.quantity ? (
+                    <button
+                      disabled
+                      className="mr-4 rounded-full bg-[#e9a093] p-2 shadow-sm hover:shadow-md"
+                    >
+                      <MdOutlineDisabledByDefault className=" text-CardColor" />
+                    </button>
+                  ) : increaseLoad ? (
+                    <div className="mr-4 rounded-full bg-[#d2eefd] h-[33px] w-[33px] flex items-center justify-center shadow-sm cursor-not-allowed">
+                      <span className="loading loading-spinner loading-xs"></span>
+                    </div>
+                  ) : (
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.8 }}
+                      onClick={handleIncrease}
+                      className="mr-4 rounded-full bg-[#d2eefd] p-2 shadow-sm hover:shadow-md"
+                    >
+                      <AiOutlinePlus className=" text-TextColor" />
+                    </motion.button>
+                  )}
+                  <p className="mr-2 text-SubTextColor">
+                    available (<span>{product?.quantity}</span>)
+                  </p>
                 </div>
-              ) : (
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.8 }}
-                  onClick={handleIncrease}
-                  className="mr-4 rounded-full bg-[#d2eefd] p-2 shadow-sm hover:shadow-md"
-                >
-                  <AiOutlinePlus className=" text-TextColor" />
-                </motion.button>
-              )}
-              <p className="mr-2 text-SubTextColor">
-                available (<span>{product?.quantity}</span>)
-              </p>
+              </div>
             </div>
-          </div>
-        </div>
-        <div className="flex justify-between items-center gap-4">
-          <div className=" text-SubTextColor ml-4">
-            {data?.colors && (
-              <p className="">
-                Color:{" "}
-                <span className="font-semibold">{data?.colors?.label}</span>{" "}
-              </p>
-            )}
-            {data?.sizes && (
-              <p>
-                Size:{" "}
-                <span className="font-semibold">
-                  {data?.sizes?.label}
-                  {"("}
-                  {data?.sizes?.value}
-                  {")"}
-                </span>{" "}
-              </p>
-            )}
-            {data?.specifications && (
-              <p>
-                Specification:{" "}
-                <span className="font-semibold">
-                  {data?.specifications?.label}
-                </span>{" "}
-              </p>
-            )}
-          </div>
-          <div className="flex flex-col items-center m-1">
-            <h2 className="line-through text-SubTextColor">
-              {product?.price} ৳
-            </h2>
-            <h1 className="">{totalPrice?.toFixed()} ৳</h1>
-            <div className="">
-              {loading ? (
-                <button
-                  disabled
-                  className="text-CardColor text-sm  flex bg-[#e65b5b]  pb-1 pl-2 pr-2 rounded-full"
-                >
-                  Loading...
-                </button>
-              ) : (
-                <motion.button
-                  onClick={() => handleRemoveFromCart(data?.id)}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.8 }}
-                  className="text-CardColor flex bg-[#e65b5b] hover:underline pb-1 pl-2 pr-2 rounded-full"
-                >
-                  remove
-                </motion.button>
-              )}
+            <div className="flex justify-between items-center gap-4">
+              <div className=" text-SubTextColor ml-4">
+                {data?.colors && (
+                  <p className="">
+                    Color:{" "}
+                    <span className="font-semibold">{data?.colors?.label}</span>{" "}
+                  </p>
+                )}
+                {data?.sizes && (
+                  <p>
+                    Size:{" "}
+                    <span className="font-semibold">
+                      {data?.sizes?.label}
+                      {"("}
+                      {data?.sizes?.value}
+                      {")"}
+                    </span>{" "}
+                  </p>
+                )}
+                {data?.specifications && (
+                  <p>
+                    Specification:{" "}
+                    <span className="font-semibold">
+                      {data?.specifications?.label}
+                    </span>{" "}
+                  </p>
+                )}
+              </div>
+              <div className="flex flex-col items-center m-1">
+                <h2 className="line-through text-SubTextColor">
+                  {product?.price} ৳
+                </h2>
+                <h1 className="">{totalPrice?.toFixed()} ৳</h1>
+                <div className="">
+                  {loading ? (
+                    <button
+                      disabled
+                      className="text-CardColor text-sm  flex bg-[#e65b5b]  pb-1 pl-2 pr-2 rounded-full"
+                    >
+                      Loading...
+                    </button>
+                  ) : (
+                    <motion.button
+                      onClick={() => handleRemoveFromCart(data?.id)}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.8 }}
+                      className="text-CardColor flex bg-[#e65b5b] hover:underline pb-1 pl-2 pr-2 rounded-full"
+                    >
+                      remove
+                    </motion.button>
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        {/* <div className="m-1">
+            {/* <div className="m-1">
           <div className=" w-40">
             <div className="flex justify-between">
               <p className="text-SubTextColor">Product Price:</p>
@@ -281,6 +292,8 @@ const CartComponent = ({ data }) => {
             </div>
           </div>
         </div> */}
+          </div>
+        </div>
       </div>
     </div>
   );

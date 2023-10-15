@@ -4,16 +4,32 @@ import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import { Spinner } from "@chakra-ui/react";
+import { Spinner, Tooltip } from "@chakra-ui/react";
 import CartComponent from "../../components/CartComponent";
 import { useLocation } from "react-router";
+import { getApi, postApi } from "../../apis";
+import Swal from "sweetalert2";
 
 const Cart = () => {
   const { user, cart } = useContext(AuthContext);
-  // console.log(cart);
+  // console.log(user);
   const location = useLocation();
   const [promoCode, setPromoCode] = useState("");
   const [memberCode, setMemberCode] = useState("");
+  const [promoId, setPromoId] = useState(null);
+  const [memberId, setMemberId] = useState(null);
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [subTotal, setSubTotal] = useState(0);
+  const handleCheckboxChange = (productId) => {
+    if (selectedProducts.includes(productId)) {
+      // If the product ID is in the array, remove it.
+      setSelectedProducts(selectedProducts.filter((id) => id !== productId));
+    } else {
+      // If the product ID is not in the array, add it.
+      setSelectedProducts([...selectedProducts, productId]);
+    }
+  };
 
   const handlePromoCodeChange = (e) => {
     setPromoCode(e.target.value);
@@ -23,14 +39,74 @@ const Cart = () => {
     setMemberCode(e.target.value);
   };
 
-  const applyPromoCode = () => {
-    // Add logic to apply the promo code here
-    console.log(`Applied Promo Code: ${promoCode}`);
+  const applyPromoCode = (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    getApi(`/codes/verify-promo-code?code=${promoCode}`, token)
+      .then((r) => {
+        // console.log(r.data.code.id);
+        setPromoId(r.data.code.id)
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+        Swal.fire({
+          position: "top-end",
+          icon: "info",
+          title: "Promo code invalid",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      });
   };
 
-  const applyMemberCode = () => {
-    // Add logic to apply the member code here
-    console.log(`Applied Member Code: ${memberCode}`);
+  const applyMemberCode = (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    getApi(`/codes/verify-member-code?code=${memberCode}`, token)
+      .then((r) => {
+        // console.log(r.data.code.id);
+        setMemberId(r.data.code.id)
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+        Swal.fire({
+          position: "top-end",
+          icon: "info",
+          title: "Member code invalid",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      });
+  };
+
+  const handleCheckOut = () => {
+    setLoading(true);
+    const token = localStorage.getItem("token");
+    postApi(
+      "/order/check-out",
+      {
+        cartIds: selectedProducts,
+        address: {
+          division: user.address.division,
+          district: user.address.district,
+          subDistrict: user.address.subDistrict,
+          union: user.address.union,
+        },
+        specialCodeId: memberId,
+        promoId: promoId,
+      },
+      token
+    )
+      .then((res) => {
+        setLoading(false);
+        // console.log(res.data);
+        setSubTotal(res.data.subTotal)
+      })
+      .catch((err) => {
+        setLoading(false);
+
+        console.log(err);
+      });
   };
   return (
     <div className="container mx-auto m-4">
@@ -43,7 +119,12 @@ const Cart = () => {
             cart ? (
               cart?.length > 0 ? (
                 cart?.map((data, i) => (
-                  <CartComponent key={i} data={data}></CartComponent>
+                  <CartComponent
+                    key={i}
+                    data={data}
+                    handleCheckboxChange={handleCheckboxChange}
+                    selectedProducts={selectedProducts}
+                  ></CartComponent>
                 ))
               ) : (
                 <div className="flex flex-col items-center justify-center">
@@ -83,49 +164,58 @@ const Cart = () => {
         <div className="rounded-md p-3 bg-CardColor md:col-span-1 col-span-3 h-min">
           {/* apply code section  */}
           <div className="mb-4 relative">
-            <label className="block text-SubTextColor text-sm font-bold mb-1">
-              Apply Promo Code
-            </label>
-            <input
-              type="text"
-              className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-MainColor"
-              placeholder="Enter Promo Code"
-              value={promoCode}
-              onChange={handlePromoCodeChange}
-            />
-            <p className="text-xs text-[#ff6868]">
-              *Apply promo code to get discount
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
-              onClick={applyPromoCode}
-            >
-              Apply
-            </motion.button>
+            <form onSubmit={applyPromoCode}>
+              <div className="relative">
+                <label className="block text-SubTextColor text-sm font-bold mb-1">
+                  Apply Promo Code
+                </label>
+                <input
+                  type="text"
+                  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-SubTextColor leading-tight focus:outline-MainColor"
+                  placeholder="Enter Coupon Code"
+                  value={promoCode}
+                  onChange={handlePromoCodeChange}
+                  required
+                />
+                <p className="text-xs text-[#ff6868]">
+                  *Apply promo code to get a discount
+                </p>
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  type="submit"
+                  className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
+                >
+                  Apply
+                </motion.button>
+              </div>
+            </form>
 
-            <label className="block text-SubTextColor text-sm font-bold mb-1 mt-4">
-              Apply Social Member Code
-            </label>
-            <input
-              type="text"
-              className="shadow appearance-none border rounded-full w-full py-2 px-3 text-SubTextColor leading-tight focus:outline-MainColor "
-              placeholder="Enter Member Code"
-              value={memberCode}
-              onChange={handleMemberCodeChange}
-            />
-            <p className="text-xs text-[#ff6868]">
-              *Apply social member code to get discount
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              className="text-sm absolute text-CardColor top-[118.5px] right-0 rounded-r-full bg-MainColor p-2"
-              onClick={applyMemberCode}
-            >
-              Apply
-            </motion.button>
+            <form onSubmit={applyMemberCode}>
+              <div className="relative">
+                <label className="block text-SubTextColor text-sm font-bold mb-1">
+                  Apply Member Code
+                </label>
+                <input
+                  type="text"
+                  className="shadow appearance-none border rounded-full w-full py-2 px-3 text-SubTextColor leading-tight focus:outline-MainColor"
+                  placeholder="Enter Coupon Code"
+                  value={memberCode}
+                  onChange={handleMemberCodeChange}
+                  required
+                />
+                <p className="text-xs text-[#ff6868]">
+                  *Apply Member code to get a discount
+                </p>
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  type="submit"
+                  className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
+                >
+                  Apply
+                </motion.button>
+              </div>
+            </form>
           </div>
-
           <div></div>
           {/* buy section */}
           <div className="">
@@ -155,7 +245,7 @@ const Cart = () => {
           </div>
           <div className="flex justify-between mt-2">
             <h3 className="text-SubTextColor">Subtotal</h3>
-            <h3 className="text-TextColor">0 ৳</h3>
+            <h3 className="text-TextColor">{subTotal} ৳</h3>
           </div>
           <div className="flex justify-between mt-2">
             <h3 className="text-SubTextColor">Code Discount</h3>
@@ -165,15 +255,26 @@ const Cart = () => {
             <h3 className="text-SubTextColor">Total</h3>
             <h3 className="text-TextColor">0 ৳</h3>
           </div>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.8 }}
-            className="w-full mt-2 shadow-md shadow-SubTextColor hover:shadow-TextColor"
-          >
-            <div className="flex justify-center items-center bg-TextColor  p-1 rounded-sm ">
-              <h2 className="text-CardColor">Confirm Order</h2>
+          {selectedProducts.length > 0 ? (
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.8 }}
+              onClick={handleCheckOut}
+              className="w-full mt-2 shadow-md shadow-SubTextColor hover:shadow-TextColor"
+            >
+              <div className="flex justify-center items-center bg-TextColor  p-1 rounded-sm ">
+                <h2 className="text-CardColor">
+                  Confirm To Checkout ({selectedProducts.length})
+                </h2>
+              </div>
+            </motion.button>
+          ) : (
+            <div className="flex justify-center w-full mt-2 shadow-md shadow-SubTextColor hover:shadow-TextColor items-center bg-TextColor  p-1 rounded-sm cursor-not-allowed">
+              <Tooltip label="Please select product" aria-label="A tooltip">
+                <h2 className="text-CardColor">Confirm To Checkout</h2>
+              </Tooltip>
             </div>
-          </motion.button>
+          )}
         </div>
       </div>
     </div>

@@ -29,7 +29,6 @@ const Banner = () => {
         showIndicators={true}
         showThumbs={false}
         interval={2000}
-        
       >
         {sliders ? (
           sliders.map((slider, i) => (
@@ -37,10 +36,11 @@ const Banner = () => {
               <img
                 className="object-fill max-h-[300px]"
                 src={`${url}${slider?.image}`}
-                 
+
                 alt="Slider Image 1"
               />
             </div>
+          
           ))
         ) : (
           <div className="flex justify-center items-center p-10 lg:h-[300px] h-[200px]">
