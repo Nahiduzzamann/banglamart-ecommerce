@@ -3,14 +3,13 @@ import { AiOutlineLine, AiOutlinePlus } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { MdOutlineDisabledByDefault } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { deleteApi } from "../apis";
+import { deleteApi, putApi } from "../apis";
 import Swal from "sweetalert2";
 import { AuthContext } from "../providers/AuthProvider";
 
 const CartComponent = ({ data }) => {
   const { setCartUpdate } = useContext(AuthContext);
   let product = data.product;
-
   // console.log(data?.colors.label);
   const url = "https://api.banglamartecommerce.com.bd";
 
@@ -45,13 +44,55 @@ const CartComponent = ({ data }) => {
 
   const handleIncrease = () => {
     const newQuantity = minOrder + 1;
-    setQuantity(newQuantity);
+    //updateCart
+    const token = localStorage.getItem("token");
+    putApi(
+      "/cart/update",
+      {
+        quantity: newQuantity,
+        cartId: data.id,
+      },
+      token
+    )
+      .then(() => {
+        setQuantity(newQuantity);
+      })
+      .catch(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "warning",
+          title: "Somthing went wrong",
+          showConfirmButton: false,
+          timer: 500,
+        });
+      });
   };
 
   const handleDecrease = () => {
     if (minOrder > product?.minOrder) {
       const newQuantity = minOrder - 1;
-      setQuantity(newQuantity);
+
+      const token = localStorage.getItem("token");
+      putApi(
+        "/cart/update",
+        {
+          quantity: newQuantity,
+          cartId: data.id,
+        },
+        token
+      )
+        .then(() => {
+          setQuantity(newQuantity);
+        })
+        .catch(() => {
+          Swal.fire({
+            position: "top-end",
+            icon: "warning",
+            title: "Somthing went wrong",
+            showConfirmButton: false,
+            timer: 500,
+          });
+        });
     }
   };
   const handleRemoveFromCart = (id) => {
