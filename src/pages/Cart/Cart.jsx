@@ -104,7 +104,7 @@ const Cart = () => {
     )
       .then((res) => {
         setLoading(false);
-        // console.log(res.data);
+        console.log(res.data);
         setSubTotal(res.data.subTotal);
         setDeliveryCharge(res.data.totalDeliveryFee)
       })
@@ -257,7 +257,7 @@ const Cart = () => {
           </div>
           <div className="flex justify-between mt-2">
             <h3 className="text-SubTextColor">Delivery Charge</h3>
-            <h3 className="text-TextColor">(-) {deliveryCharge} ৳</h3>
+            <h3 className="text-TextColor">(+) {deliveryCharge} ৳</h3>
           </div>
           <div className="flex justify-between mt-2">
             <h3 className="text-SubTextColor">Total</h3>
