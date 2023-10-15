@@ -69,7 +69,6 @@ const CartComponent = ({ data }) => {
         const token = localStorage.getItem("token");
         deleteApi(`/cart/delete?cartId=${id}`, token)
           .then((res) => {
-            Swal.fire("removed!", "Your product has been removed.", "success");
             setCartUpdate(res.data);
             setLoading(false);
           })
