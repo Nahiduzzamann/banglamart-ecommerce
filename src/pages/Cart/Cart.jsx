@@ -21,13 +21,18 @@ const Cart = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [subTotal, setSubTotal] = useState(0);
+  const [deliveryCharge, setDeliveryCharge] = useState(0);
   const handleCheckboxChange = (productId) => {
     if (selectedProducts.includes(productId)) {
       // If the product ID is in the array, remove it.
       setSelectedProducts(selectedProducts.filter((id) => id !== productId));
+      setSubTotal(0)
+      setDeliveryCharge(0)
     } else {
       // If the product ID is not in the array, add it.
       setSelectedProducts([...selectedProducts, productId]);
+      setSubTotal(0)
+      setDeliveryCharge(0)
     }
   };
 
@@ -45,7 +50,7 @@ const Cart = () => {
     getApi(`/codes/verify-promo-code?code=${promoCode}`, token)
       .then((r) => {
         // console.log(r.data.code.id);
-        setPromoId(r.data.code.id)
+        setPromoId(r.data.code.id);
       })
       .catch((error) => {
         console.log(error.response.data.message);
@@ -65,7 +70,7 @@ const Cart = () => {
     getApi(`/codes/verify-member-code?code=${memberCode}`, token)
       .then((r) => {
         // console.log(r.data.code.id);
-        setMemberId(r.data.code.id)
+        setMemberId(r.data.code.id);
       })
       .catch((error) => {
         console.log(error.response.data.message);
@@ -100,7 +105,8 @@ const Cart = () => {
       .then((res) => {
         setLoading(false);
         // console.log(res.data);
-        setSubTotal(res.data.subTotal)
+        setSubTotal(res.data.subTotal);
+        setDeliveryCharge(res.data.totalDeliveryFee)
       })
       .catch((err) => {
         setLoading(false);
@@ -124,6 +130,8 @@ const Cart = () => {
                     data={data}
                     handleCheckboxChange={handleCheckboxChange}
                     selectedProducts={selectedProducts}
+                    setSubTotal={setSubTotal}
+                    setDeliveryCharge={setDeliveryCharge}
                   ></CartComponent>
                 ))
               ) : (
@@ -248,8 +256,8 @@ const Cart = () => {
             <h3 className="text-TextColor">{subTotal} ৳</h3>
           </div>
           <div className="flex justify-between mt-2">
-            <h3 className="text-SubTextColor">Code Discount</h3>
-            <h3 className="text-TextColor">(-) 0 ৳</h3>
+            <h3 className="text-SubTextColor">Delivery Charge</h3>
+            <h3 className="text-TextColor">(-) {deliveryCharge} ৳</h3>
           </div>
           <div className="flex justify-between mt-2">
             <h3 className="text-SubTextColor">Total</h3>
@@ -263,9 +271,15 @@ const Cart = () => {
               className="w-full mt-2 shadow-md shadow-SubTextColor hover:shadow-TextColor"
             >
               <div className="flex justify-center items-center bg-TextColor  p-1 rounded-sm ">
-                <h2 className="text-CardColor">
-                  Confirm To Checkout ({selectedProducts.length})
-                </h2>
+                {loading ? (
+                  <h3 className="text-CardColor font-semibold">
+                    <span className="loading loading-spinner loading-xs"></span>
+                  </h3>
+                ) : (
+                  <h3 className="text-CardColor font-semibold">
+                    Click To Calculate amount ({selectedProducts.length})
+                  </h3>
+                )}
               </div>
             </motion.button>
           ) : (
@@ -274,6 +288,17 @@ const Cart = () => {
                 <h2 className="text-CardColor">Confirm To Checkout</h2>
               </Tooltip>
             </div>
+          )}
+          {selectedProducts.length && subTotal > 0 ? (
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.8 }}
+              className="py-2 px-2 mt-4 shadow-md shadow-SubTextColor hover:shadow-TextColor rounded-full bg-TextColor w-full"
+            >
+              <h1 className="text-CardColor">Order Now</h1>
+            </motion.button>
+          ) : (
+            ""
           )}
         </div>
       </div>

@@ -8,7 +8,13 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../providers/AuthProvider";
 import { Checkbox } from "@chakra-ui/react";
 
-const CartComponent = ({ data, selectedProducts, handleCheckboxChange }) => {
+const CartComponent = ({
+  data,
+  selectedProducts,
+  handleCheckboxChange,
+  setSubTotal,
+  setDeliveryCharge
+}) => {
   const { setCartUpdate } = useContext(AuthContext);
   let product = data.product;
   // console.log(data?.colors.label);
@@ -44,6 +50,8 @@ const CartComponent = ({ data, selectedProducts, handleCheckboxChange }) => {
   // calculation portion
   const [increaseLoad, setIncreaseLoad] = useState(false);
   const handleIncrease = () => {
+    setSubTotal(0);
+    setDeliveryCharge(0)
     setIncreaseLoad(true);
     const newQuantity = minOrder + 1;
     //updateCart
@@ -74,6 +82,8 @@ const CartComponent = ({ data, selectedProducts, handleCheckboxChange }) => {
 
   const handleDecrease = () => {
     if (minOrder > product?.minOrder) {
+      setSubTotal(0);
+      setDeliveryCharge(0)
       const newQuantity = minOrder - 1;
       setIncreaseLoad(true);
 
