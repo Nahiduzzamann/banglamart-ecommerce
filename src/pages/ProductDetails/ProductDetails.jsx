@@ -293,15 +293,14 @@ const ProductDetails = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        // console.log(res.data.code);
-        navigate("/cart", { state: { from: location } });
+        handleAddToCart()
       })
       .catch((error) => {
         console.log(error.response.data.message);
         Swal.fire({
           position: "top-end",
-          icon: "error",
-          title: "Oops! Something went wrong",
+          icon: "info",
+          title: "Coupon code invalid",
           showConfirmButton: false,
           timer: 1000,
         });

@@ -1,76 +1,68 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
-import { useKeenSlider } from "keen-slider/react";
-import "keen-slider/keen-slider.min.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const BrandSlider = () => {
-  const [brandData, setBrandData] = useState([]);
+  const [brandData, setBrandData] = useState(null);
 
   const brand = useSelector((state) => state.brand.brand.data);
   useEffect(() => {
     setBrandData(brand);
-  }, [brand, brandData]);
+  }, [brand]);
 
-  const [show, setShow] = useState(6);
+  var settings = {
+    dots: false,
+    infinite: true,
+    autoplay: true,
+    speed: 3000,
+    autoplaySpeed: 3000,
+    cssEase: "linear",
+    slidesToShow: 7,
+    slidesToScroll: 3,
+    initialSlide: 0,
+    pauseOnHover: true,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 2,
+          initialSlide: 0,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
+      },
+    ],
+  };
 
-  const animation = { duration: 7000, easing: (t) => t };
-
-  const [sliderRef] = useKeenSlider({
-    loop: true,
-    mode: "free",
-    renderMode: "performance",
-    created(s) {
-      s.moveToIdx(5, true, animation);
-    },
-    updated(s) {
-      s.moveToIdx(s.track.details.abs + 5, true, animation);
-    },
-    animationEnded(s) {
-      s.moveToIdx(s.track.details.abs + 5, true, animation);
-    },
-
-    slides: {
-      perView: show,
-      spacing: 5,
-    },
-  });
-
-  useEffect(() => {
-    const handleResize = () => {
-      const screenWidth = window.innerWidth;
-
-      if (screenWidth <= 768) {
-        setShow(3);
-      } else if (screenWidth <= 1024) {
-        setShow(5);
-      } else if (screenWidth <= 1440) {
-        setShow(6);
-      } else {
-        setShow(8);
-      }
-    };
-
-    // Initialize the screen size on component mount
-    handleResize();
-
-    // Listen for window resize events
-    window.addEventListener("resize", handleResize);
-
-    // Clean up the event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
   return (
     <div>
-      <div ref={sliderRef} className="keen-slider ">
-        {brandData?.map((data, i) => (
-          <div key={i} className="keen-slider__slide ">
-            <BrandCart data={data} />
-          </div>
-        ))}
-      </div>
+      <Slider {...settings}>
+        {brandData
+          ? brandData?.map((data, i) => (
+              <div key={i} className="">
+                <BrandCart data={data} />
+              </div>
+            ))
+          : ""}
+      </Slider>
     </div>
   );
 };
@@ -90,7 +82,7 @@ const BrandCart = ({ data }) => {
       <div
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
-        className=" bg-CardColor cursor-pointer group rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor hover:shadow-md h-36 w-36 lg:w-[95px] lg:h-[95px] xl:w-[125px] xl:h-[125px] 2xl:w-[145px] 2xl:h-[145px]"
+        className=" bg-CardColor cursor-pointer group rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor hover:shadow-md h-[120px] w-[120px] lg:w-[95px] lg:h-[95px] xl:w-[125px] xl:h-[125px] 2xl:w-[145px] 2xl:h-[145px]"
       >
         <div className="inset-0 absolute  group-hover:scale-110 ease-in-out duration-300">
           <img
