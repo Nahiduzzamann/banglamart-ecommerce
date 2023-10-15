@@ -55,26 +55,31 @@ const CartComponent = ({ data }) => {
     }
   };
   const handleRemoveFromCart = (id) => {
-    setLoading(true);
-    // console.log(id);
-    const token = localStorage.getItem("token");
-    deleteApi(`/cart/delete?cartId=${id}`, token)
-      .then((res) => {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Remove successfully.",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-        setCartUpdate(res.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setLoading(false);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, remove it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setLoading(true);
+        const token = localStorage.getItem("token");
+        deleteApi(`/cart/delete?cartId=${id}`, token)
+          .then((res) => {
+            Swal.fire("removed!", "Your product has been removed.", "success");
+            setCartUpdate(res.data);
+            setLoading(false);
+          })
+          .catch((error) => {
+            setLoading(false);
 
-        console.log(error.response.data.message);
-      });
+            console.log(error.response.data.message);
+          });
+      }
+    });
   };
   return (
     <div className=" mb-2 shadow-md hover:shadow-lg shadow-BorderColor">
@@ -136,7 +141,12 @@ const CartComponent = ({ data }) => {
             {data?.sizes && (
               <p>
                 Size:{" "}
-                <span className="font-semibold">{data?.sizes?.label}{'('}{data?.sizes?.value}{')'}</span>{" "}
+                <span className="font-semibold">
+                  {data?.sizes?.label}
+                  {"("}
+                  {data?.sizes?.value}
+                  {")"}
+                </span>{" "}
               </p>
             )}
             {data?.specifications && (
