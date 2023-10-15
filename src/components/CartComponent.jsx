@@ -41,8 +41,9 @@ const CartComponent = ({ data }) => {
   }, [product, data]);
 
   // calculation portion
-
+  const [increaseLoad, setIncreaseLoad] = useState(false);
   const handleIncrease = () => {
+    setIncreaseLoad(true);
     const newQuantity = minOrder + 1;
     //updateCart
     const token = localStorage.getItem("token");
@@ -56,8 +57,10 @@ const CartComponent = ({ data }) => {
     )
       .then(() => {
         setQuantity(newQuantity);
+        setIncreaseLoad(false);
       })
       .catch(() => {
+        setIncreaseLoad(false);
         Swal.fire({
           position: "top-end",
           icon: "warning",
@@ -71,6 +74,7 @@ const CartComponent = ({ data }) => {
   const handleDecrease = () => {
     if (minOrder > product?.minOrder) {
       const newQuantity = minOrder - 1;
+      setIncreaseLoad(true);
 
       const token = localStorage.getItem("token");
       putApi(
@@ -83,6 +87,7 @@ const CartComponent = ({ data }) => {
       )
         .then(() => {
           setQuantity(newQuantity);
+          setIncreaseLoad(false);
         })
         .catch(() => {
           Swal.fire({
@@ -92,6 +97,7 @@ const CartComponent = ({ data }) => {
             showConfirmButton: false,
             timer: 500,
           });
+          setIncreaseLoad(false);
         });
     }
   };
@@ -138,14 +144,21 @@ const CartComponent = ({ data }) => {
             </Link>
             <div className="flex items-center">
               <p className="mr-2 text-SubTextColor">Quantity:</p>
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.8 }}
-                onClick={handleDecrease}
-                className="mr-2 rounded-full bg-[#d2eefd] p-2 shadow-sm hover:shadow-md"
-              >
-                <AiOutlineLine className=" text-SubTextColor" />
-              </motion.button>
+              {increaseLoad ? (
+                <div className="mr-4 rounded-full bg-[#d2eefd] h-[33px] w-[33px] flex items-center justify-center shadow-sm cursor-not-allowed">
+                  <span className="loading loading-spinner loading-xs"></span>
+                </div>
+              ) : (
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.8 }}
+                  onClick={handleDecrease}
+                  className="mr-2 rounded-full bg-[#d2eefd] p-2 shadow-sm hover:shadow-md"
+                >
+                  <AiOutlineLine className=" text-SubTextColor" />
+                </motion.button>
+              )}
+
               <p className="mr-2 text-TextColor">{minOrder}</p>
               {minOrder == product?.quantity ? (
                 <button
@@ -154,6 +167,10 @@ const CartComponent = ({ data }) => {
                 >
                   <MdOutlineDisabledByDefault className=" text-CardColor" />
                 </button>
+              ) : increaseLoad ? (
+                <div className="mr-4 rounded-full bg-[#d2eefd] h-[33px] w-[33px] flex items-center justify-center shadow-sm cursor-not-allowed">
+                  <span className="loading loading-spinner loading-xs"></span>
+                </div>
               ) : (
                 <motion.button
                   whileHover={{ scale: 1.1 }}
