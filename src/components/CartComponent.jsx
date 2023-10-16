@@ -23,16 +23,12 @@ const CartComponent = ({
   const [loading, setLoading] = useState(false);
   const [minOrder, setQuantity] = useState(null);
   const [totalPrice, setTotalPrice] = useState();
-  const [discount, setDiscount] = useState(null);
-  const [vat, setVat] = useState(null);
 
   useEffect(() => {
     let actualAmount = product?.price;
     // let actualAmountWithDeliveryVat = actualAmount
 
     if (product?.percentage) {
-      const disc = (product?.offer / 100) * actualAmount;
-      setDiscount(disc);
       actualAmount -= (product?.offer / 100) * actualAmount;
     } else if (product?.offer > 0) {
       actualAmount -= product?.offer;
@@ -40,8 +36,6 @@ const CartComponent = ({
     setTotalPrice(actualAmount);
 
     if (product?.vat > 0) {
-      const vat = (product?.vat / 100) * actualAmount;
-      setVat(vat);
       actualAmount += (product?.vat / 100) * actualAmount;
     }
     setQuantity(data?.quantity);
@@ -147,7 +141,7 @@ const CartComponent = ({
             onChange={() => handleCheckboxChange(data.id)}
             checked={selectedProducts.includes(data.id)}
             colorScheme="red"
-            size='lg'
+            size="lg"
             isInvalid
           ></Checkbox>
         </div>
