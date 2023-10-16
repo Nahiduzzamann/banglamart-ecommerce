@@ -15,6 +15,10 @@ const Cart = () => {
   // console.log(user);
   const location = useLocation();
   const [promoCode, setPromoCode] = useState("");
+  const [promoOffer, setPromoOffer] = useState(null);
+  const [promoLoading, setPromoLoading] = useState(false);
+  const [memberLoading, setMemberLoading] = useState(false);
+  const [memberOffer, setMemberOffer] = useState(null);
   const [memberCode, setMemberCode] = useState("");
   const [promoId, setPromoId] = useState(null);
   const [memberId, setMemberId] = useState(null);
@@ -26,13 +30,13 @@ const Cart = () => {
     if (selectedProducts.includes(productId)) {
       // If the product ID is in the array, remove it.
       setSelectedProducts(selectedProducts.filter((id) => id !== productId));
-      setSubTotal(0)
-      setDeliveryCharge(0)
+      setSubTotal(0);
+      setDeliveryCharge(0);
     } else {
       // If the product ID is not in the array, add it.
       setSelectedProducts([...selectedProducts, productId]);
-      setSubTotal(0)
-      setDeliveryCharge(0)
+      setSubTotal(0);
+      setDeliveryCharge(0);
     }
   };
 
@@ -46,11 +50,14 @@ const Cart = () => {
 
   const applyPromoCode = (e) => {
     e.preventDefault();
+    setPromoLoading(true);
     const token = localStorage.getItem("token");
     getApi(`/codes/verify-promo-code?code=${promoCode}`, token)
       .then((r) => {
-        // console.log(r.data.code.id);
+        // console.log(r.data);
+        setPromoOffer(r.data.code);
         setPromoId(r.data.code.id);
+        setPromoLoading(false);
       })
       .catch((error) => {
         console.log(error.response.data.message);
@@ -61,16 +68,20 @@ const Cart = () => {
           showConfirmButton: false,
           timer: 1000,
         });
+        setPromoLoading(false);
       });
   };
 
   const applyMemberCode = (e) => {
     e.preventDefault();
+    setMemberLoading(true);
     const token = localStorage.getItem("token");
     getApi(`/codes/verify-member-code?code=${memberCode}`, token)
       .then((r) => {
         // console.log(r.data.code.id);
+        setMemberOffer(r.data.code);
         setMemberId(r.data.code.id);
+        setMemberLoading(false);
       })
       .catch((error) => {
         console.log(error.response.data.message);
@@ -81,6 +92,7 @@ const Cart = () => {
           showConfirmButton: false,
           timer: 1000,
         });
+        setMemberLoading(false);
       });
   };
 
@@ -106,7 +118,7 @@ const Cart = () => {
         setLoading(false);
         console.log(res.data);
         setSubTotal(res.data.subTotal);
-        setDeliveryCharge(res.data.totalDeliveryFee)
+        setDeliveryCharge(res.data.totalDeliveryFee);
       })
       .catch((err) => {
         setLoading(false);
@@ -185,16 +197,37 @@ const Cart = () => {
                   onChange={handlePromoCodeChange}
                   required
                 />
-                <p className="text-xs text-[#ff6868]">
-                  *Apply promo code to get a discount
-                </p>
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  type="submit"
-                  className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
-                >
-                  Apply
-                </motion.button>
+                {promoOffer ? (
+                  promoOffer?.percentage ? (
+                    <p className="text-TextColor">
+                      Discount: {promoOffer.offer}%
+                    </p>
+                  ) : (
+                    <p className="text-TextColor">
+                      Discount: {promoOffer.offer}tk
+                    </p>
+                  )
+                ) : (
+                  <p className="text-xs text-[#ff6868]">
+                    *Apply promo code to get a discount
+                  </p>
+                )}
+                {promoLoading ? (
+                  <div
+                    type="submit"
+                    className="text-sm flex justify-center items-center absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
+                  >
+                    <span className="loading loading-spinner loading-sm"></span>
+                  </div>
+                ) : (
+                  <motion.button
+                    whileHover={{ scale: 1.03 }}
+                    type="submit"
+                    className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
+                  >
+                    Apply
+                  </motion.button>
+                )}
               </div>
             </form>
 
@@ -211,16 +244,38 @@ const Cart = () => {
                   onChange={handleMemberCodeChange}
                   required
                 />
-                <p className="text-xs text-[#ff6868]">
-                  *Apply Member code to get a discount
-                </p>
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  type="submit"
-                  className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
-                >
-                  Apply
-                </motion.button>
+
+                {memberOffer ? (
+                  memberOffer?.percentage ? (
+                    <p className="text-TextColor">
+                      Discount: {memberOffer.offer}%
+                    </p>
+                  ) : (
+                    <p className="text-TextColor">
+                      Discount: {memberOffer.offer}tk
+                    </p>
+                  )
+                ) : (
+                  <p className="text-xs text-[#ff6868]">
+                    *Apply member code to get a discount
+                  </p>
+                )}
+                {memberLoading ? (
+                  <div
+                    type="submit"
+                    className="text-sm flex justify-center items-center absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
+                  >
+                    <span className="loading loading-spinner loading-sm"></span>
+                  </div>
+                ) : (
+                  <motion.button
+                    whileHover={{ scale: 1.03 }}
+                    type="submit"
+                    className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
+                  >
+                    Apply
+                  </motion.button>
+                )}
               </div>
             </form>
           </div>
@@ -231,13 +286,13 @@ const Cart = () => {
               <div className="text-SubTextColor bg-BackgroundColor rounded p-2">
                 <h1 className="text-MainColor">Your Delivery Address:</h1>
                 <h2>{`${user.address.union}, ${user.address.subDistrict}, ${user.address.district}, ${user.address.division}`}</h2>
-                <motion.button
+                {/* <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.8 }}
                   className="py-1 px-2 mt-2 shadow-md shadow-SubTextColor hover:shadow-TextColor rounded-full bg-TextColor"
                 >
                   <p className="text-CardColor">Update address</p>
-                </motion.button>
+                </motion.button> */}
               </div>
             ) : (
               <div className="flex flex-col justify-center items-center p-2 bg-BackgroundColor rounded">
@@ -285,7 +340,7 @@ const Cart = () => {
           ) : (
             <div className="flex justify-center w-full mt-2 shadow-md shadow-SubTextColor hover:shadow-TextColor items-center bg-TextColor  p-1 rounded-sm cursor-not-allowed">
               <Tooltip label="Please select product" aria-label="A tooltip">
-                <h2 className="text-CardColor">Confirm To Checkout</h2>
+                <h2 className="text-CardColor">Select Product To Checkout</h2>
               </Tooltip>
             </div>
           )}

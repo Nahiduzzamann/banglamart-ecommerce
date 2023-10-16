@@ -13,7 +13,7 @@ const CartComponent = ({
   selectedProducts,
   handleCheckboxChange,
   setSubTotal,
-  setDeliveryCharge
+  setDeliveryCharge,
 }) => {
   const { setCartUpdate } = useContext(AuthContext);
   let product = data.product;
@@ -51,7 +51,7 @@ const CartComponent = ({
   const [increaseLoad, setIncreaseLoad] = useState(false);
   const handleIncrease = () => {
     setSubTotal(0);
-    setDeliveryCharge(0)
+    setDeliveryCharge(0);
     setIncreaseLoad(true);
     const newQuantity = minOrder + 1;
     //updateCart
@@ -83,7 +83,7 @@ const CartComponent = ({
   const handleDecrease = () => {
     if (minOrder > product?.minOrder) {
       setSubTotal(0);
-      setDeliveryCharge(0)
+      setDeliveryCharge(0);
       const newQuantity = minOrder - 1;
       setIncreaseLoad(true);
 
@@ -147,6 +147,8 @@ const CartComponent = ({
             onChange={() => handleCheckboxChange(data.id)}
             checked={selectedProducts.includes(data.id)}
             colorScheme="red"
+            size='lg'
+            isInvalid
           ></Checkbox>
         </div>
         <div>
