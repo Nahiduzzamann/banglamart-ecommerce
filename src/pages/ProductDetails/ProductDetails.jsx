@@ -268,6 +268,8 @@ const ProductDetails = () => {
     setOfferPrice(e.target.value);
   };
   const [couponCode, setCouponCode] = useState("");
+  const [couponLoading, setCouponLoading] = useState(false);
+  const [couponOffer, setCouponOffer] = useState(null);
 
   const handleCouponCodeChange = (e) => {
     setCouponCode(e.target.value);
@@ -279,6 +281,7 @@ const ProductDetails = () => {
   // console.log(id);
   const applyCouponCode = (e) => {
     e.preventDefault();
+    setCouponLoading(true)
     const token = localStorage.getItem("token");
     getApi(
       `/codes/verify-coupon-code?code=${couponCode}&productId=${id}`,
@@ -286,6 +289,8 @@ const ProductDetails = () => {
     )
       .then((res) => {
         setCodeId(res.data.code.id);
+        (res.data.code)
+        setCouponOffer(res.data.code)
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -294,6 +299,7 @@ const ProductDetails = () => {
           timer: 1500,
         });
         handleAddToCart()
+        setCouponLoading(false)
       })
       .catch((error) => {
         console.log(error.response.data.message);
@@ -304,6 +310,7 @@ const ProductDetails = () => {
           showConfirmButton: false,
           timer: 1000,
         });
+        setCouponLoading(false)
       });
   };
 
@@ -706,16 +713,37 @@ const ProductDetails = () => {
                       onChange={handleCouponCodeChange}
                       required
                     />
-                    <p className="text-xs text-[#ff6868]">
-                      *Apply coupon code to get a discount
+                     {couponOffer ? (
+                  couponOffer?.percentage ? (
+                    <p className="text-TextColor">
+                      Discount: {couponOffer.offer}%
                     </p>
-                    <motion.button
-                      whileHover={{ scale: 1.03 }}
-                      type="submit"
-                      className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
-                    >
-                      Apply
-                    </motion.button>
+                  ) : (
+                    <p className="text-TextColor">
+                      Discount: {couponOffer.offer}tk
+                    </p>
+                  )
+                ) : (
+                  <p className="text-xs text-[#ff6868]">
+                    *Apply coupon code to get a discount
+                  </p>
+                )}
+                {couponLoading ? (
+                  <div
+                    type="submit"
+                    className="text-sm flex justify-center items-center absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
+                  >
+                    <span className="loading loading-spinner loading-sm"></span>
+                  </div>
+                ) : (
+                  <motion.button
+                    whileHover={{ scale: 1.03 }}
+                    type="submit"
+                    className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
+                  >
+                    Apply
+                  </motion.button>
+                )}
                   </div>
                 </form>
                 {/* <div className=" w-52">
