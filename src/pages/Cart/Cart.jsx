@@ -350,7 +350,7 @@ const Cart = () => {
           </div>
           <div className="flex justify-between mt-2">
             <h3 className="text-SubTextColor">Subtotal</h3>
-            <h3 className="text-TextColor">{subTotal} ৳</h3>
+            <h3 className="text-TextColor"><span className="text-xs text-SubTextColor font-mono mr-2">(vat included)</span>{subTotal} ৳</h3>
           </div>
           <div className="flex justify-between mt-2">
             <h3 className="text-SubTextColor">Delivery Charge</h3>
@@ -358,7 +358,7 @@ const Cart = () => {
           </div>
           <div className="flex justify-between mt-2">
             <h3 className="text-SubTextColor">Total</h3>
-            <h3 className="text-TextColor">0 ৳</h3>
+            <h1 className="text-TextColor">{parseFloat(subTotal)+parseFloat(deliveryCharge)} ৳</h1>
           </div>
           {selectedProducts.length > 0 ? (
             <motion.button
