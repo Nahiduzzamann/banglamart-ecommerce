@@ -30,7 +30,7 @@ import {
 } from "@chakra-ui/react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
-import {  PiSmileySadLight } from "react-icons/pi";
+import { PiSmileySadLight } from "react-icons/pi";
 import { getApi } from "../../../apis";
 import { FaCoins } from "react-icons/fa";
 const Header = () => {
@@ -54,11 +54,11 @@ const Header = () => {
   };
 
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [reLoad, setReLoad] = useState(null);
   useEffect(() => {
-    // Simulate an API call with a delay to fetch search results
     setLoading(true);
 
     getApi(`/product/search?query=${searchQuery}`, null)
@@ -74,6 +74,7 @@ const Header = () => {
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
+    setSearchText(e.target.value)
   };
   const handleSearch = (e) => {
     setReLoad(e.timeStamp);
@@ -101,7 +102,7 @@ const Header = () => {
 
   const headerOpacity = scrollingDown ? 0 : 1;
   const handlePhoneClick = () => {
-    window.location.href = 'tel:+8809611677639'; 
+    window.location.href = "tel:+8809611677639";
   };
   return (
     <div className="pt-[120px] md:pt-[150px] lg:pt-[175px]">
@@ -118,7 +119,10 @@ const Header = () => {
               </div>
               <div className="flex items-center">
                 <AiFillPhone className=" text-SubTextColor" />
-                <p onClick={handlePhoneClick} className="cursor-pointer text-SubTextColor lg:mr-0">
+                <p
+                  onClick={handlePhoneClick}
+                  className="cursor-pointer text-SubTextColor lg:mr-0"
+                >
                   {t("header.number")}
                 </p>
               </div>
@@ -144,7 +148,7 @@ const Header = () => {
                   <input
                     className="focus:border-MainColor outline-MainColor w-full rounded-full py-2 pl-4 pr-4 focus:outline-1"
                     type="text"
-                    value={searchQuery}
+                    value={searchText}
                     onChange={handleSearchChange}
                     placeholder="Search..."
                   />
@@ -266,8 +270,8 @@ const Header = () => {
                             <CgProfile className="text-[18px] text-SubTextColor mr-2" />
 
                             <h3 className="hover:underline">Profile</h3>
-                           <FaCoins className="ml-4 mr-1 text-[16px] text-[#ffdb3a]"/>
-                           <p className="text-[#ffdb3a]">{user?.coin}</p>
+                            <FaCoins className="ml-4 mr-1 text-[16px] text-[#ffdb3a]" />
+                            <p className="text-[#ffdb3a]">{user?.coin}</p>
                           </Link>
                         </MenuItem>
                         {user?.role === 2 ? (
@@ -405,7 +409,7 @@ const Header = () => {
                   className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/track-order"
                 >
-                 <h2>Track Order</h2>
+                  <h2>Track Order</h2>
                 </NavLink>
                 <NavLink
                   className="hover:underline text-SubTextColor hover:text-TextColor"
