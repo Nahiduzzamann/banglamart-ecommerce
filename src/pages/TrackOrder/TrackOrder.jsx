@@ -15,6 +15,7 @@ import Swal from "sweetalert2";
 const TrackOrder = () => {
   const url = "https://api.banglamartecommerce.com.bd";
   const [loading, setLoading] = useState(false);
+  const [loading2, setLoading2] = useState(false);
   const [orders, setOrders] = useState([]);
   const [updateOrders, setUpdateOrders] = useState();
   // console.log(orders);
@@ -32,6 +33,7 @@ const TrackOrder = () => {
       });
   }, [updateOrders]);
   const handleCancelOrder = (id) => {
+    setLoading2(true);
     getApi(`/order/cancel/${id}`, null)
       .then((res) => {
         setUpdateOrders(res);
@@ -42,6 +44,7 @@ const TrackOrder = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        setLoading2(false);
       })
       .catch(() => {
         Swal.fire({
@@ -51,6 +54,7 @@ const TrackOrder = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        setLoading2(false);
       });
   };
   const [deliveryState, setDeliveryState] = useState("PENDING");
@@ -198,14 +202,20 @@ const TrackOrder = () => {
                 </div>
                 {deliveryState === "PENDING" && (
                   <div className="card-actions justify-end">
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.8 }}
-                      className="btn btn-info text-CardColor"
-                      onClick={()=>handleCancelOrder(order.id)}
-                    >
-                      Cancel Order
-                    </motion.button>
+                    {loading2 ? (
+                      <div className="btn btn-info text-CardColor">
+                        <span className="loading loading-spinner loading-md"></span>
+                      </div>
+                    ) : (
+                      <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.8 }}
+                        className="btn btn-info text-CardColor"
+                        onClick={() => handleCancelOrder(order.id)}
+                      >
+                        Cancel Order
+                      </motion.button>
+                    )}
                   </div>
                 )}
               </div>
