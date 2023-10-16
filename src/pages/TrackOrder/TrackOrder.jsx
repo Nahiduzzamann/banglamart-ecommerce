@@ -11,10 +11,12 @@ import {
 import { motion } from "framer-motion";
 import { getApi } from "../../apis";
 import { TbReceiptRefund } from "react-icons/tb";
+import Swal from "sweetalert2";
 const TrackOrder = () => {
   const url = "https://api.banglamartecommerce.com.bd";
   const [loading, setLoading] = useState(false);
   const [orders, setOrders] = useState([]);
+  const [updateOrders, setUpdateOrders] = useState();
   // console.log(orders);
   useEffect(() => {
     setLoading(true);
@@ -28,8 +30,29 @@ const TrackOrder = () => {
         setLoading(false);
         console.log(error);
       });
-  }, []);
-
+  }, [updateOrders]);
+  const handleCancelOrder = (id) => {
+    getApi(`/order/cancel/${id}`, null)
+      .then((res) => {
+        setUpdateOrders(res);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Canceled Order",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Something went wrong",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+  };
   const [deliveryState, setDeliveryState] = useState("PENDING");
 
   const handleDeliveryStateChange = (newState) => {
@@ -179,6 +202,7 @@ const TrackOrder = () => {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.8 }}
                       className="btn btn-info text-CardColor"
+                      onClick={()=>handleCancelOrder(order.id)}
                     >
                       Cancel Order
                     </motion.button>
