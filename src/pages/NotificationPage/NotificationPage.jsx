@@ -19,7 +19,7 @@ const notifications = [
 
 const NotificationPage = () => {
   return (
-    <div className="max-w-screen-lg mx-auto p-4">
+    <div className="container mx-auto p-4">
       <h1 className="text-3xl font-semibold mb-4">Notifications</h1>
       <div className="space-y-4">
         {notifications.map((notification) => (
