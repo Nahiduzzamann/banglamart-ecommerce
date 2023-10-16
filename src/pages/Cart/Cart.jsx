@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PiSmileySadLight } from "react-icons/pi";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 
 const Cart = () => {
   const { user, cart } = useContext(AuthContext);
+  const navigate = useNavigate();
   // console.log(user);
   const location = useLocation();
   const [promoCode, setPromoCode] = useState("");
@@ -138,13 +139,14 @@ const Cart = () => {
       {
         token: orderToken,
         paymentMethod: "offline",
-        redirectUrl: "https://banglamartecommerce.com.bd/",
+        redirectUrl: "/track-order",
       },
       token
     )
       .then((res) => {
         setOrderLoading(false);
-        console.log(res.data);
+        // console.log(res.data);
+
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -152,6 +154,7 @@ const Cart = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate(res.data.url);
       })
       .catch((err) => {
         setOrderLoading(false);
@@ -385,7 +388,7 @@ const Cart = () => {
           )}
           {selectedProducts.length && subTotal > 0 ? (
             orderLoading ? (
-              <div className="py-2 px-2 mt-4 shadow-md shadow-SubTextColor rounded-full bg-TextColor w-full">
+              <div className="py-2 px-2 mt-4 shadow-md shadow-SubTextColor flex justify-center items-center rounded-full bg-TextColor w-full p-1 text-CardColor">
                 <span className="loading loading-spinner loading-md"></span>
               </div>
             ) : (
