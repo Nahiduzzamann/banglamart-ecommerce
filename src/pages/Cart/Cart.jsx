@@ -22,8 +22,10 @@ const Cart = () => {
   const [memberCode, setMemberCode] = useState("");
   const [promoId, setPromoId] = useState(null);
   const [memberId, setMemberId] = useState(null);
+  const [orderToken, setOrderToken] = useState(null);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [orderLoading, setOrderLoading] = useState(false);
   const [subTotal, setSubTotal] = useState(0);
   const [deliveryCharge, setDeliveryCharge] = useState(0);
   const handleCheckboxChange = (productId) => {
@@ -116,7 +118,8 @@ const Cart = () => {
     )
       .then((res) => {
         setLoading(false);
-        console.log(res.data);
+        // console.log(res.data);
+        setOrderToken(res.data.token);
         setSubTotal(res.data.subTotal);
         setDeliveryCharge(res.data.totalDeliveryFee);
       })
@@ -124,6 +127,42 @@ const Cart = () => {
         setLoading(false);
 
         console.log(err);
+      });
+  };
+
+  const handleOrder = () => {
+    setOrderLoading(true);
+    const token = localStorage.getItem("token");
+    postApi(
+      "/order/create",
+      {
+        token: orderToken,
+        paymentMethod: "offline",
+        redirectUrl: "https://banglamartecommerce.com.bd/",
+      },
+      token
+    )
+      .then((res) => {
+        setOrderLoading(false);
+        console.log(res.data);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Order Submitted",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((err) => {
+        setOrderLoading(false);
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Something went wrong",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        console.log(err.message);
       });
   };
   return (
@@ -345,13 +384,20 @@ const Cart = () => {
             </div>
           )}
           {selectedProducts.length && subTotal > 0 ? (
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.8 }}
-              className="py-2 px-2 mt-4 shadow-md shadow-SubTextColor hover:shadow-TextColor rounded-full bg-TextColor w-full"
-            >
-              <h1 className="text-CardColor">Order Now</h1>
-            </motion.button>
+            orderLoading ? (
+              <div className="py-2 px-2 mt-4 shadow-md shadow-SubTextColor rounded-full bg-TextColor w-full">
+                <span className="loading loading-spinner loading-md"></span>
+              </div>
+            ) : (
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.8 }}
+                onClick={handleOrder}
+                className="py-2 px-2 mt-4 shadow-md shadow-SubTextColor hover:shadow-TextColor rounded-full bg-TextColor w-full"
+              >
+                <h1 className="text-CardColor">Order Now</h1>
+              </motion.button>
+            )
           ) : (
             ""
           )}
