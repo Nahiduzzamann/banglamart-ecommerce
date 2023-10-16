@@ -1,90 +1,95 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { AiOutlineCheck, AiOutlineUnorderedList } from "react-icons/ai";
-import { BsFillSendCheckFill } from "react-icons/bs";
-import { MdOutlineDeliveryDining } from "react-icons/md";
+import { AiFillCar } from "react-icons/ai";
+import { FcAcceptDatabase } from "react-icons/fc";
+import {
+  MdIncompleteCircle,
+  MdOutlineCancelPresentation,
+  MdOutlineCancelScheduleSend,
+  MdPendingActions,
+} from "react-icons/md";
 import { motion } from "framer-motion";
+import { getApi } from "../../apis";
+import { TbReceiptRefund } from "react-icons/tb";
 const TrackOrder = () => {
-  // Simulated order data with confirmation status
-  const [orders, setOrders] = useState([
-    {
-      id: 1,
-      name: "Camera",
-      price: 22220,
-      image:
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-      confirmationStatus: "ordered",
-    },
-    {
-      id: 2,
-      name: "Smart Watch",
-      price: 3330,
-      image:
-        "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1099&q=80",
-      confirmationStatus: "confirmed",
-    },
-    {
-      id: 3,
-      name: "Headphone",
-      price: 1115,
-      image:
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-      confirmationStatus: "sentToCourier",
-    },
-    {
-      id: 4,
-      name: "NIKE swoosh",
-      price: 4120,
-      image:
-        "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-      confirmationStatus: "ordered",
-    },
-    {
-      id: 5,
-      name: "Bag",
-      price: 920,
-      image:
-        "https://images.unsplash.com/photo-1491637639811-60e2756cc1c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1028&q=80",
-      confirmationStatus: "delivered",
-    },
-    // Add more orders here
-  ]);
+  const url = "https://api.banglamartecommerce.com.bd";
+  const [loading, setLoading] = useState(false);
+  const [orders, setOrders] = useState([]);
+  // console.log(orders);
+  useEffect(() => {
+    setLoading(true);
+    const token = localStorage.getItem("token");
+    getApi("/order/user", token)
+      .then((res) => {
+        setOrders(res.data.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log(error);
+      });
+  }, []);
 
-  const [deliveryState, setDeliveryState] = useState("ordered");
+  const [deliveryState, setDeliveryState] = useState("PENDING");
 
   const handleDeliveryStateChange = (newState) => {
     setDeliveryState(newState);
   };
 
   const getOrdersByState = (state) => {
-    return orders.filter((order) => order.confirmationStatus === state);
+    return orders.filter((order) => order?.status === state);
   };
 
   const deliveryStates = [
     {
-      key: "ordered",
-      label: "Ordered",
-      icon: <AiOutlineUnorderedList className="mr-1"></AiOutlineUnorderedList>,
+      key: "PENDING",
+      label: "PENDING",
+      icon: <MdPendingActions className="mr-1"></MdPendingActions>,
     },
     {
-      key: "confirmed",
-      label: "Confirmed",
-      icon: <AiOutlineCheck className="mr-1"></AiOutlineCheck>,
-    },
-    {
-      key: "sentToCourier",
-      label: "Sent to Courier",
-      icon: <BsFillSendCheckFill className="mr-1"></BsFillSendCheckFill>,
-    },
-    {
-      key: "delivered",
-      label: "Delivered",
+      key: "CANCELLED",
+      label: "CANCELLED",
       icon: (
-        <MdOutlineDeliveryDining className="mr-1"></MdOutlineDeliveryDining>
+        <MdOutlineCancelScheduleSend className="mr-1"></MdOutlineCancelScheduleSend>
       ),
     },
-  ];
+    {
+      key: "REJECTED",
+      label: "REJECTED",
+      icon: (
+        <MdOutlineCancelPresentation className="mr-1"></MdOutlineCancelPresentation>
+      ),
+    },
 
+    {
+      key: "ACCEPTED",
+      label: "ACCEPTED",
+      icon: <FcAcceptDatabase className="mr-1"></FcAcceptDatabase>,
+    },
+
+    {
+      key: "COURIER",
+      label: "COURIER",
+      icon: <AiFillCar className="mr-1"></AiFillCar>,
+    },
+    {
+      key: "REFUND",
+      label: "REFUND",
+      icon: <TbReceiptRefund className="mr-1"></TbReceiptRefund>,
+    },
+    {
+      key: "COMPLETED",
+      label: "COMPLETED",
+      icon: <MdIncompleteCircle className="mr-1"></MdIncompleteCircle>,
+    },
+  ];
+  if (loading) {
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
   return (
     <div className="container mx-auto mt-4">
       <Helmet>
@@ -113,7 +118,7 @@ const TrackOrder = () => {
             </motion.button>
           ))}
         </div>
-        <div className="mb-4">
+        <div className="mb-4 ">
           {getOrdersByState(deliveryState).map((order) => (
             <div
               key={order.id}
@@ -121,69 +126,54 @@ const TrackOrder = () => {
             >
               <figure>
                 <img
+                  src={`${url}${order?.product?.thumbnail}`}
                   className="h-60 ml-4 rounded-md"
-                  src={order.image}
-                  alt={order.name}
                 />
               </figure>
               <div className="card-body">
                 <div className="flex items-center justify-between flex-wrap">
                   <div>
-                    <h1 className=" text-SubTextColor mb-1">{order.name}</h1>
-                    <h1 className="text-SubTextColor">
-                      Price: {order.price}TK
+                    <h1 className=" text-MainColor mb-1">
+                      {order?.product?.title}
                     </h1>
-                    <p className="w-72 text-SubTextColor">
-                      description description description description
-                      description description description description
-                      description description description description
-                      description description description description
-                      description description description description
-                      description description{" "}
-                    </p>
-                  </div>
-                  <div>
-                    <ul className="steps steps-vertical text-SubTextColor">
-                      <li
-                        data-content="✓"
-                        className={`step ${
-                          deliveryState === "ordered" && "step-info"
-                        } ${deliveryState === "confirmed" && "step-info"} ${
-                          deliveryState === "sentToCourier" && "step-info"
-                        } ${deliveryState === "delivered" && "step-info"} `}
-                      >
-                        Ordered
-                      </li>
-                      <li
-                        data-content="✓"
-                        className={`step ${
-                          deliveryState === "confirmed" && "step-info"
-                        } ${deliveryState === "sentToCourier" && "step-info"} ${
-                          deliveryState === "delivered" && "step-info"
-                        }`}
-                      >
-                        Confirmed
-                      </li>
-                      <li
-                        data-content="✓"
-                        className={`step ${
-                          deliveryState === "sentToCourier" && "step-info"
-                        } ${deliveryState === "delivered" && "step-info"} `}
-                      >
-                        Sent to Courier
-                      </li>
-                      <li
-                        data-content="✓"
-                        className={`step ${
-                          deliveryState === "delivered" && "step-info"
-                        } `}
-                      >
-                        Delivered
-                      </li>
-                    </ul>
+                    <h2 className="text-SubTextColor">
+                      Quantity: {order?.quantity}
+                    </h2>
+                    <h1 className="text-SubTextColor">
+                      Total Price: {order.totalAmount}TK
+                    </h1>
+                    <div className=" text-SubTextColor mt-2">
+                      {order?.colors && (
+                        <p className="">
+                          Color:{" "}
+                          <span className="font-semibold">
+                            {order?.colors?.label}
+                          </span>{" "}
+                        </p>
+                      )}
+                      {order?.sizes && (
+                        <p>
+                          Size:{" "}
+                          <span className="font-semibold">
+                            {order?.sizes?.label}
+                            {"("}
+                            {order?.sizes?.value}
+                            {")"}
+                          </span>{" "}
+                        </p>
+                      )}
+                      {order?.specifications && (
+                        <p>
+                          Specification:{" "}
+                          <span className="font-semibold">
+                            {order?.specifications?.label}
+                          </span>{" "}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
-                {deliveryState === "ordered" && (
+                {deliveryState === "PENDING" && (
                   <div className="card-actions justify-end">
                     <motion.button
                       whileHover={{ scale: 1.1 }}
