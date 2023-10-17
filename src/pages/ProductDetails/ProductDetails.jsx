@@ -1071,7 +1071,7 @@ const ImageShow = ({ product }) => {
           <ReactImageMagnify
             {...{
               smallImage: {
-                width:500,
+                width: 500,
                 height: 500,
 
                 src: `${url}${product?.images[currentImageIndex]}`,
@@ -1079,14 +1079,30 @@ const ImageShow = ({ product }) => {
               largeImage: {
                 src: `${url}${product?.images[currentImageIndex]}`,
                 height: 1000,
-                width: 1000
+                width: 1000,
               },
             }}
           />
         ) : (
-          <img
-            src={`${url}${product?.thumbnail}`}
-            className="object-cover h-[500px] w-full"
+          // <img
+          //   src={`${url}${product?.thumbnail}`}
+          //   className="object-cover h-[500px] w-full"
+          // />
+
+          <ReactImageMagnify
+            {...{
+              smallImage: {
+                width: 500,
+                height: 500,
+
+                src: `${url}${product?.thumbnail}`,
+              },
+              largeImage: {
+                src: `${url}${product?.thumbnail}`,
+                height: 1000,
+                width: 1000,
+              },
+            }}
           />
         )}
       </div>
