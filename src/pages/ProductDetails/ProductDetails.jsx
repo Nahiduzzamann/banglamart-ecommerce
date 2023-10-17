@@ -43,6 +43,8 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { useLocation } from "react-router";
 import ReviewSection from "../../components/ReviewSection";
 import { PiSmileySadLight } from "react-icons/pi";
+import ReactImageMagnify from "react-image-magnify";
+
 const ProductDetails = () => {
   const { user, setCartUpdate } = useContext(AuthContext);
   const [messageShow, setMessageShow] = useState(false);
@@ -1056,14 +1058,30 @@ const ImageShow = ({ product }) => {
   const handleImageClick = (index) => {
     setCurrentImageIndex(index);
   };
-
+  // let img =
   return (
     <div className="flex flex-col  items-center">
       <div className="mb-4">
         {product?.images ? (
-          <img
-            src={`${url}${product?.images[currentImageIndex]}`}
-            className="object-cover h-[500px] w-full"
+          // <img
+          //   src={`${url}${product?.images[currentImageIndex]}`}
+          //   className="object-cover h-[500px] w-full"
+          // />
+
+          <ReactImageMagnify
+            {...{
+              smallImage: {
+                width:500,
+                height: 500,
+
+                src: `${url}${product?.images[currentImageIndex]}`,
+              },
+              largeImage: {
+                src: `${url}${product?.images[currentImageIndex]}`,
+                height: 1000,
+                width: 1000
+              },
+            }}
           />
         ) : (
           <img
