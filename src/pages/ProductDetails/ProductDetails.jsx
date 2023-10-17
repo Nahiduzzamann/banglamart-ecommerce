@@ -1061,7 +1061,7 @@ const ImageShow = ({ product }) => {
   // let img =
   return (
     <div className="flex flex-col  items-center">
-      <div className="mb-4">
+      <div className="mb-4 z-10">
         {product?.images ? (
           // <img
           //   src={`${url}${product?.images[currentImageIndex]}`}
