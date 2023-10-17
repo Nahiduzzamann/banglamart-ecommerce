@@ -1072,7 +1072,7 @@ const ImageShow = ({ product }) => {
           enlargedImagePosition='over'
             {...{
               smallImage: {
-                width: 300,
+                width: 350,
                 height: 500,
 
                 src: `${url}${product?.images[currentImageIndex]}`,
@@ -1080,7 +1080,7 @@ const ImageShow = ({ product }) => {
               largeImage: {
                 src: `${url}${product?.images[currentImageIndex]}`,
                 height: 1000,
-                width: 600,
+                width: 700,
               },
             }}
           />
