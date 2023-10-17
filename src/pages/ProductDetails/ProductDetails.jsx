@@ -1069,9 +1069,10 @@ const ImageShow = ({ product }) => {
           // />
 
           <ReactImageMagnify
+          enlargedImagePosition='over'
             {...{
               smallImage: {
-                width: 500,
+                width: 300,
                 height: 500,
 
                 src: `${url}${product?.images[currentImageIndex]}`,
@@ -1079,7 +1080,7 @@ const ImageShow = ({ product }) => {
               largeImage: {
                 src: `${url}${product?.images[currentImageIndex]}`,
                 height: 1000,
-                width: 1000,
+                width: 600,
               },
             }}
           />
