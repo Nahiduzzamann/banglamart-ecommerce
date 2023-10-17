@@ -107,15 +107,16 @@ const TrackOrder = () => {
       icon: <AiFillCar className="mr-1"></AiFillCar>,
     },
     {
-      key: "REFUND",
-      label: "REFUND",
-      icon: <TbReceiptRefund className="mr-1"></TbReceiptRefund>,
-    },
-    {
       key: "COMPLETED",
       label: "COMPLETED",
       icon: <MdIncompleteCircle className="mr-1"></MdIncompleteCircle>,
     },
+    {
+      key: "REFUND",
+      label: "REFUND",
+      icon: <TbReceiptRefund className="mr-1"></TbReceiptRefund>,
+    },
+    
   ];
   if (loading) {
     return (
