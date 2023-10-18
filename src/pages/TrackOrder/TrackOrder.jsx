@@ -64,6 +64,41 @@ const TrackOrder = () => {
       }
     });
   };
+  const handleRefund = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Refund it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setLoading2(true);
+        getApi(`/order/refund/${id}`, null)
+          .then((res) => {
+            setUpdateOrders(res);
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Requested",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            setLoading2(false);
+          })
+          .catch(() => {
+            Swal.fire(
+              "Requested!",
+              "Your order has been refund requested.",
+              "success"
+            );
+            setLoading2(false);
+          });
+      }
+    });
+  };
   const [deliveryState, setDeliveryState] = useState("PENDING");
 
   const handleDeliveryStateChange = (newState) => {
@@ -116,7 +151,6 @@ const TrackOrder = () => {
       label: "REFUND",
       icon: <TbReceiptRefund className="mr-1"></TbReceiptRefund>,
     },
-    
   ];
   if (loading) {
     return (
@@ -227,13 +261,33 @@ const TrackOrder = () => {
                       )}
                     </div>
                   )}
+                  {deliveryState === "COMPLETED" && (
+                    <div className="card-actions justify-end">
+                      {loading2 ? (
+                        <div className="btn btn-info text-CardColor">
+                          <span className="loading loading-spinner loading-md"></span>
+                        </div>
+                      ) : (
+                        <motion.button
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.8 }}
+                          className="btn btn-info text-CardColor"
+                          onClick={() => handleRefund(order.id)}
+                        >
+                          Refund Request
+                        </motion.button>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             ))
           ) : (
             <div className="flex flex-col items-center justify-center m-20">
               <PiSmileySadLight className="text-SubTextColor text-4xl"></PiSmileySadLight>
-              <h1 className="text-SubTextColor">Empty {deliveryState.toLowerCase()} product!</h1>
+              <h1 className="text-SubTextColor">
+                Empty {deliveryState.toLowerCase()} product!
+              </h1>
             </div>
           )}
         </div>
