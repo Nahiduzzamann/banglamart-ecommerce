@@ -22,32 +22,39 @@ const BrandProductsPage = () => {
   const encodedData = queryParams.get("data");
   const data = JSON.parse(decodeURIComponent(encodedData));
   const [productData, setProductData] = useState(null);
-
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    getApi(`/product/get-brand-product?brandId=${data?.id}`, token)
-      .then((res) => {
-        setProductData(res.data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  // console.log(productData);
+  let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 12, 13, 14, 15, 16, 17, 18];
+  const [productDataLength, setProductDataLength] = useState(null);
+  // console.log(productDataLength);
 
   const itemsPerPage = 24; // Number of items per page
   const [currentPage, updateCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(null);
 
   useEffect(() => {
-    const totalPage = Math.ceil(productData?.length / itemsPerPage);
-    setTotalPage(totalPage);
-  }, [productData]);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
+    const token = localStorage.getItem("token");
+    setProductData(null);
+    getApi(
+      `/product/get-brand-product?brandId=${data?.id}&page=${currentPage}&perPage=24`,
+      token
+    )
+      .then((res) => {
+        setProductDataLength(res.data.length);
+        setProductData(res.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [currentPage]);
 
-  const currentProducts = productData?.slice(startIndex, endIndex);
+  useEffect(() => {
+    const totalPage = Math.ceil(productDataLength / itemsPerPage);
+    setTotalPage(totalPage);
+  }, [productDataLength]);
+  // const startIndex = (currentPage - 1) * itemsPerPage;
+  // const endIndex = startIndex + itemsPerPage;
+
+  // const currentProducts = productData?.slice(startIndex, endIndex);
   return (
     <div className="container mx-auto bg-CardColor lg:mt-4 mt-2">
       <Helmet>
@@ -57,13 +64,11 @@ const BrandProductsPage = () => {
         <BrandShopCart data={data}></BrandShopCart>
       </div>
       <div className="p-4">
-        <h1 className="text-SubTextColor pb-4">
-          Products:
-        </h1>
+        <h1 className="text-SubTextColor pb-4">Products:</h1>
         <div className="grid 2xl:grid-cols-6 xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4">
           {productData ? (
             productData?.length > 0 ? (
-              currentProducts?.map((product, i) => (
+              productData?.map((product, i) => (
                 <ProductCart product={product} key={i}></ProductCart>
               ))
             ) : (
@@ -73,15 +78,19 @@ const BrandProductsPage = () => {
               </div>
             )
           ) : (
-            <Box padding="6" boxShadow="lg" bg="#FAD7A0">
-              <Skeleton height="200px" />
-              <SkeletonText
-                mt="4"
-                noOfLines={3}
-                spacing="4"
-                skeletonHeight="2"
-              />
-            </Box>
+            array.map((i) => {
+              return (
+                <Box key={i} padding="6" boxShadow="lg" bg="#FAD7A0">
+                  <Skeleton height="200px" />
+                  <SkeletonText
+                    mt="4"
+                    noOfLines={3}
+                    spacing="4"
+                    skeletonHeight="2"
+                  />
+                </Box>
+              );
+            })
           )}
         </div>
         {/* Pagination */}
@@ -113,8 +122,10 @@ const BrandProductsPage = () => {
                   <Stack direction="row">
                     {hasPrev() && (
                       <Button
-                      size='sm'
-                        leftIcon={<AiOutlineDoubleLeft className="text-[14px]" />}
+                        size="sm"
+                        leftIcon={
+                          <AiOutlineDoubleLeft className="text-[14px]" />
+                        }
                         colorScheme="blue"
                         onClick={() => updateCurrentPage(currentPage - 1)}
                       >
@@ -126,7 +137,7 @@ const BrandProductsPage = () => {
                     <Stack direction="row">
                       {getFirstBoundary().map((boundary) => (
                         <Button
-                        size='sm'
+                          size="sm"
                           key={boundary}
                           colorScheme="blue"
                           variant="outline"
@@ -138,12 +149,17 @@ const BrandProductsPage = () => {
                       {isPrevTruncated && <span>...</span>}
                       {pages.map((page) => {
                         return page === currentPage ? (
-                          <Button size='sm' key={page} colorScheme="blue" variant="solid">
+                          <Button
+                            size="sm"
+                            key={page}
+                            colorScheme="blue"
+                            variant="solid"
+                          >
                             {page}
                           </Button>
                         ) : (
                           <Button
-                          size='sm'
+                            size="sm"
                             key={page}
                             colorScheme="blue"
                             variant="outline"
@@ -157,7 +173,7 @@ const BrandProductsPage = () => {
                       {isNextTruncated && <span>...</span>}
                       {getLastBoundary().map((boundary) => (
                         <Button
-                        size='sm'
+                          size="sm"
                           key={boundary}
                           colorScheme="blue"
                           variant="outline"
@@ -172,8 +188,8 @@ const BrandProductsPage = () => {
                   <Stack direction="row">
                     {hasNext() && (
                       <Button
-                      size='sm'
-                        rightIcon={<AiOutlineDoubleRight className="text-"/>}
+                        size="sm"
+                        rightIcon={<AiOutlineDoubleRight className="text-" />}
                         colorScheme="blue"
                         onClick={() => updateCurrentPage(currentPage + 1)}
                       >
