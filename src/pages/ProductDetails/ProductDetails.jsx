@@ -993,10 +993,10 @@ const ProductDetails = () => {
                         <div className="mr-4">
                           <TbUserCheck className="text-3xl text-MainColor"></TbUserCheck>
                         </div>
-                        <div>
+                        <div className="border-l-2 border-l-BorderColor ml-2 pl-1">
                           {c?.replay ? (
                             <div>
-                              <h2>okay</h2>
+                              <h2 className="text-SubTextColor">{c?.replay}</h2>
                               <p className="text-SubTextColor">
                                 Authentic Reply by seller
                               </p>
