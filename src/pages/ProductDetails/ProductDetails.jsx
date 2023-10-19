@@ -583,9 +583,9 @@ const ProductDetails = () => {
                       >
                         <p className="font-bold mr-[2px]">
                           {size.label}
-                          {"("}
+                          {" "}:{" "}
                           {size.value}
-                          {")"}
+                          
                         </p>
                       </Radio>
                     );
