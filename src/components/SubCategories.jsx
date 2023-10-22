@@ -37,7 +37,7 @@ const SubCategory = ({ subCategories }) => {
           </SkeletonTheme>
         )}
       </h2>
-      <div className="pl-1 ml-1 mb-2 border-l-2 border-l-BorderColor ">
+      <div className="pl-1 ml-1 mb-2 border-l-2 border-l-BorderColor">
         {options ? (
           options.map((option, i) => {
             
