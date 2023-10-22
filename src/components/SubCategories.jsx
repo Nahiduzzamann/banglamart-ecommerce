@@ -43,7 +43,7 @@ const SubCategory = ({ subCategories }) => {
             
             return (
               <Link to={`/products/${option.id}`} key={i} className="flex p-1">
-                <p className="text-SubTextColor font-semibold hover:text-TextColor hover:underline tracking-[2px]">
+                <p className="text-SubTextColor font-semibold hover:text-[#6feb6f] hover:underline tracking-[2px]">
                   {option.name}
                 </p>
               </Link>
