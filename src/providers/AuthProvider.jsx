@@ -16,6 +16,8 @@ const provider = new GoogleAuthProvider();
 const url = "https://api.banglamartecommerce.com.bd";
 
 const AuthProvider = ({ children }) => {
+  const [language, setLanguage] = useState(true);
+
   const [user, setUser] = useState(null);
   // console.log(user);
   const [loading, setLoading] = useState(true);
@@ -103,6 +105,8 @@ const AuthProvider = ({ children }) => {
     logOut,
     signInWithGoogle,
     updateUser,
+    language, 
+    setLanguage
   };
 
   return (

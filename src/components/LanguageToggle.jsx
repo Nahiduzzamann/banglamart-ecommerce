@@ -1,10 +1,12 @@
-import { useState } from "react";
+
 import { useTranslation } from "react-i18next";
 import { AiOutlineRight } from "react-icons/ai";
 import { motion } from "framer-motion";
+import { AuthContext } from "../providers/AuthProvider";
+import { useContext } from "react";
 
 const LanguageToggle = () => {
-  const [language, setLanguage] = useState(true);
+  const {language, setLanguage} = useContext(AuthContext);
   const { i18n } = useTranslation();
 
   const handleLanguageChange = (lang) => {
