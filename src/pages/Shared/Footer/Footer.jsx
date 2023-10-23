@@ -58,7 +58,7 @@ const Footer = () => {
                 onClick={handlePhoneClick}
                 className="text-TextColor cursor-pointer"
               >
-                +8809611677639
+                +8809649110110
               </p>
             </div>
             <div>
@@ -67,7 +67,7 @@ const Footer = () => {
                 href="mailto:banglamartecommerceltd@gmail.com"
                 className="text-TextColor cursor-pointer"
               >
-                <p>banglamartecommerceltd@gmail.com</p>
+                <p>banglamartecommerce@gmail.com</p>
               </a>
             </div>
           </div>
