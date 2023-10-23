@@ -57,7 +57,7 @@ const Categories = () => {
                 <div
                   id={`${category.name}`}
                   key={i}
-                  className="h-min bg-CardColor rounded-md border-[1px] border-BorderColor"
+                  className=" bg-CardColor rounded-md border-[1px] border-BorderColor"
                 >
                   <div className="p-2 ">
                     <h1 className="text-center text-SubTextColor p-1 border-b-[3px] border-b-BorderColor">

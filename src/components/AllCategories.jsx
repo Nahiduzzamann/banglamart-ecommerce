@@ -46,7 +46,7 @@ const AllCategory = () => {
                 key={category.id}
                 className="flex pl-2 pt-2 pb-2 items-center w-full shadow-sm shadow-BackgroundColor hover:shadow-md mt-1 mb-1"
               >
-                {/* TODO  */}
+               
                 <img
                   className="h-6 w-6 mr-2"
                    
