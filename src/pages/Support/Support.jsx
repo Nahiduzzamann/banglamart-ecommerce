@@ -98,7 +98,7 @@ const Support = () => {
             <h1 className=" mb-4 text-SubTextColor">Branch Office</h1>
             <div className="flex items-center mb-2 text-blue-900">
               <AiOutlinePhone className=" mr-2 text-SubTextColor" />
-              <p onClick={handlePhoneClick} className="text-SubTextColor cursor-pointer">+8801713-337752</p>
+              <p onClick={handlePhoneClick} className="text-SubTextColor cursor-pointer">+8809649220220</p>
             </div>
             <div className="flex items-center mb-2 text-blue-900">
               <AiOutlineMail className=" mr-2 text-SubTextColor" />
@@ -151,7 +151,7 @@ const Support = () => {
             <div className="flex items-center mb-2 text-blue-900">
               <BiCurrentLocation className=" mr-2 text-SubTextColor" />
               <p className="text-SubTextColor">
-                House 381, Level-5, Road- 28, New DOSH, Mohakhali, Dhaka- 1206
+              8, Gulfesha Plaza (4th floor), Shahid Sangbadik Selina Parvin Sarak, Mogbazar, Dhaka
               </p>
             </div>
             <div className="mt-6 lg:mt-10">

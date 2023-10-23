@@ -59,7 +59,7 @@ const Faq = () => {
                         <div className="mt-4">
                             <strong>Product Return Address:</strong><br />
                             8, Gulfesha Plaza (4th floor), Shahid Sangbadik Selina Parvin Sarak, Mogbazar, Dhaka<br />
-                            Ph: +8809611677639
+                            Ph: +8809649110110
                         </div>
                     </div>
 

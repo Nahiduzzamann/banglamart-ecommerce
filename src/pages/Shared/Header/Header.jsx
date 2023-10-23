@@ -374,6 +374,12 @@ const Header = () => {
                 </NavLink>
                 <NavLink
                   className="hover:underline text-SubTextColor hover:text-TextColor"
+                  to="/category"
+                >
+                  <h2>Categories</h2>
+                </NavLink>
+                <NavLink
+                  className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/flash-sell"
                 >
                   <h2>Flash Sale</h2>
@@ -393,12 +399,7 @@ const Header = () => {
                 {/* <Link className="hover:underline text-SubTextColor hover:text-TextColor" to="/">
                   Affiliating
                 </Link> */}
-                <NavLink
-                  className="hover:underline text-SubTextColor hover:text-TextColor"
-                  to="/category"
-                >
-                  <h2>Categories</h2>
-                </NavLink>
+                
                 <NavLink
                   className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/brands"
