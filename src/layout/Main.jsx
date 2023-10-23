@@ -22,6 +22,7 @@ import { fetchBestSellingProducts } from "../services/actions/bestSellingAction"
 import { fetchNewProducts } from "./../services/actions/newProductsAction";
 import { fetchTopProducts } from "./../services/actions/topProductsAction";
 import { fetchBrand } from "../services/actions/brandAction";
+import socket from "./../socket";
 
 const Main = () => {
   const { user } = useContext(AuthContext);
@@ -30,7 +31,14 @@ const Main = () => {
 
   useEffect(() => {
     fetch();
-  }, []);
+
+    user &&
+      socket.emit("join", {
+        user: user,
+        id: socket.id,
+      });
+  }, [user]);
+
   const fetch = async () => {
     const data = await init(user?.uid);
     localStorage.setItem("visitorId", data?.id);

@@ -44,6 +44,7 @@ import { useLocation } from "react-router";
 import ReviewSection from "../../components/ReviewSection";
 import { PiSmileySadLight } from "react-icons/pi";
 import ReactImageMagnify from "react-image-magnify";
+import socket from "../../socket";
 
 const ProductDetails = () => {
   const { user, setCartUpdate } = useContext(AuthContext);
@@ -83,16 +84,56 @@ const ProductDetails = () => {
 
     fetchProductDetails();
   }, [id]);
-
+  // console.log(product);
+  // console.log(user);
   const [formData, setFormData] = useState("");
-
+  const [allMessages, setAllMessages] = useState(null);
+  const [conversation, setConversation] = useState(null);
   const sendMessage = (e) => {
     e.preventDefault();
+
+    const token = localStorage.getItem("token");
+    const from = new FormData();
+    from.append("conversationId", conversation.id);
+    from.append("message", formData);
+    // from.append("image")
+    from.append("receiverId", product.user.id);
+    postApi("/message/send", from, token);
     setFormData("");
   };
   const handleMessageShow = () => {
-    setMessageShow(!messageShow);
+    if (!user) {
+      return navigate("/login");
+    }
+    const token = localStorage.getItem("token");
+    postApi(
+      "/message/create",
+      {
+        userId: product?.user?.id,
+        productId: id,
+      },
+      token
+    ).then((res) => {
+      setMessageShow(!messageShow);
+      const id = res.data.data.id;
+
+      setConversation(res.data.data);
+      getApi(`/message/chats?conversationId=${id}`, token).then((res) => {
+        setAllMessages(res.data.data);
+      });
+    });
   };
+  const handleAddMessage = (event) => {
+    if (event.conversationId === conversation?.id) {
+      setAllMessages((res) => [...res, event]);
+    }
+  };
+
+  useEffect(() => {
+    socket.on("message", (event) => {
+      handleAddMessage(event, conversation);
+    });
+  }, []);
 
   const [minOrder, setQuantity] = useState(null);
   const [totalPrice, setTotalPrice] = useState();
@@ -403,93 +444,37 @@ const ProductDetails = () => {
                 )}
               >
                 <div className="p-3 ">
-                  {/* chat start  */}
-                  <div className="chat chat-start">
-                    <div className="chat-image avatar">
-                      <Avatar
-                        size="sm"
-                        name="Dan Abrahmov"
-                        src="https://bit.ly/dan-abramov"
-                      />
+                  {allMessages?.map((message, i) => (
+                    <div key={i}>
+                      {/* chat start  */}
+                      <div
+                        className={`chat ${
+                          user.id === message.receiverId
+                            ? "chat-start"
+                            : "chat-end"
+                        } `}
+                      >
+                        <div className="chat-image avatar">
+                          <Avatar
+                            size="sm"
+                            name="Dan Abrahmov"
+                            src={`${url}${conversation?.receiver?.image}`}
+                          />
+                        </div>
+                        <div className="text-xs chat-header flex items-center text-SubTextColor">
+                          <p>
+                            {user.id === message.receiverId
+                              ? conversation?.receiver?.name
+                              : user.name}
+                          </p>
+                          <time className=" ml-2">
+                            {new Date(message?.date).toLocaleDateString()}
+                          </time>
+                        </div>
+                        <div className="chat-bubble">{message.message}</div>
+                      </div>
                     </div>
-                    <div className="text-xs chat-header flex items-center text-SubTextColor">
-                      <p>Sazzad Hossain</p>
-                      <time className=" ml-2">12:45</time>
-                    </div>
-                    <div className="chat-bubble">UI complete hoiche?</div>
-                    <div className="chat-footer text-SubTextColor">
-                      <p>Delivered</p>
-                    </div>
-                  </div>
-                  <div className="chat chat-start">
-                    <div className="chat-image avatar">
-                      <Avatar
-                        size="sm"
-                        name="Dan Abrahmov"
-                        src="https://bit.ly/dan-abramov"
-                      />
-                    </div>
-                    <div className="text-xs chat-header flex items-center text-SubTextColor">
-                      <p>Sazzad Hossain</p>
-                      <time className=" ml-2">12:45</time>
-                    </div>
-                    <div className="chat-bubble">kaj koto dur??</div>
-                    <div className="chat-footer text-SubTextColor">
-                      <p>Delivered</p>
-                    </div>
-                  </div>
-                  {/* chat end  */}
-                  <div className="chat chat-end">
-                    <div className="chat-image avatar">
-                      <Avatar
-                        size="sm"
-                        name="Dan Abrahmov"
-                        src="https://bit.ly/sage-adebayo"
-                      />
-                    </div>
-                    <div className="chat-header flex items-center text-xs text-SubTextColor">
-                      <p>Md. Nahiduzzaman</p>
-                      <time className=" ml-2">12:46</time>
-                    </div>
-                    <div className="chat-bubble ">Almost done!</div>
-                    <div className="chat-footer text-SubTextColor">
-                      Seen at 12:46
-                    </div>
-                  </div>
-                  <div className="chat chat-end">
-                    <div className="chat-image avatar">
-                      <Avatar
-                        size="sm"
-                        name="Dan Abrahmov"
-                        src="https://bit.ly/sage-adebayo"
-                      />
-                    </div>
-                    <div className="chat-header flex items-center text-xs text-SubTextColor">
-                      <p>Md. Nahiduzzaman</p>
-                      <time className=" ml-2">12:46</time>
-                    </div>
-                    <div className="chat-bubble ">Shorir er ki obostha?!</div>
-                    <div className="chat-footer text-SubTextColor">
-                      Seen at 12:46
-                    </div>
-                  </div>
-                  <div className="chat chat-start">
-                    <div className="chat-image avatar">
-                      <Avatar
-                        size="sm"
-                        name="Dan Abrahmov"
-                        src="https://bit.ly/dan-abramov"
-                      />
-                    </div>
-                    <div className="text-xs chat-header flex items-center text-SubTextColor">
-                      <p>Sazzad Hossain</p>
-                      <time className=" ml-2">12:45</time>
-                    </div>
-                    <div className="chat-bubble">Time lagbe shere uthte</div>
-                    <div className="chat-footer text-SubTextColor">
-                      <p>Delivered</p>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </Scrollbars>
 
@@ -582,10 +567,7 @@ const ProductDetails = () => {
                         onClick={() => handleSizeChange(size)}
                       >
                         <p className="font-bold mr-[2px]">
-                          {size.label}
-                          {" "}:{" "}
-                          {size.value}
-                          
+                          {size.label} : {size.value}
                         </p>
                       </Radio>
                     );
@@ -1069,7 +1051,7 @@ const ImageShow = ({ product }) => {
           // />
 
           <ReactImageMagnify
-          enlargedImagePosition='over'
+            enlargedImagePosition="over"
             {...{
               smallImage: {
                 width: 350,
