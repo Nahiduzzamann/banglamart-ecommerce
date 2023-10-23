@@ -49,7 +49,7 @@ const Footer = () => {
             <div className="mb-2">
               <p className="text-SubTextColor">Address:</p>
               <p className="text-TextColor">
-                House-65, Road-2, RK Road, Islambag, Rangpur
+              House 381, Level-5, Road- 28, New DOSH, Mohakhali, Dhaka- 1206
               </p>
             </div>
             <div className="mb-2">

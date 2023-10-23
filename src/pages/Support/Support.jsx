@@ -132,7 +132,7 @@ const Support = () => {
             <h1 className=" mb-4 text-SubTextColor">Head Office</h1>
             <div className="flex items-center mb-2 text-blue-900">
               <AiOutlinePhone className=" mr-2 text-SubTextColor" />
-              <p onClick={handlePhoneClick} className="text-SubTextColor cursor-pointer">+8809611677639</p>
+              <p onClick={handlePhoneClick} className="text-SubTextColor cursor-pointer">+8809649110110</p>
             </div>
             <div className="flex items-center mb-2 text-blue-900">
               <AiOutlineMail className=" mr-2 text-SubTextColor" />
