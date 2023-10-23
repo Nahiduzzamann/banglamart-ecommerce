@@ -102,7 +102,12 @@ const Support = () => {
             </div>
             <div className="flex items-center mb-2 text-blue-900">
               <AiOutlineMail className=" mr-2 text-SubTextColor" />
-              <p className="text-SubTextColor">banglamartecommerce@gmail.com</p>
+              <a
+                href="mailto:banglamartecommerce@gmail.com"
+                className="text-TextColor cursor-pointer"
+              >
+                <p>banglamartecommerce@gmail.com</p>
+              </a>
             </div>
             <div className="flex items-center mb-2 text-blue-900">
               <BiCurrentLocation className=" mr-2 text-SubTextColor" />
@@ -136,7 +141,12 @@ const Support = () => {
             </div>
             <div className="flex items-center mb-2 text-blue-900">
               <AiOutlineMail className=" mr-2 text-SubTextColor" />
-              <p className="text-SubTextColor">banglamartecommerce@gmail.com</p>
+              <a
+                href="mailto:banglamartecommerce@gmail.com"
+                className="text-TextColor cursor-pointer"
+              >
+                <p>banglamartecommerce@gmail.com</p>
+              </a>
             </div>
             <div className="flex items-center mb-2 text-blue-900">
               <BiCurrentLocation className=" mr-2 text-SubTextColor" />

@@ -64,7 +64,7 @@ const Footer = () => {
             <div>
               <p className="text-SubTextColor">Email:</p>
               <a
-                href="mailto:banglamartecommerceltd@gmail.com"
+                href="mailto:banglamartecommerce@gmail.com"
                 className="text-TextColor cursor-pointer"
               >
                 <p>banglamartecommerce@gmail.com</p>
