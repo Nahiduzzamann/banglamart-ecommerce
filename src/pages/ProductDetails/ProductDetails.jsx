@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import {
   AiFillStar,
   AiOutlineLine,
@@ -89,6 +89,7 @@ const ProductDetails = () => {
   const [formData, setFormData] = useState("");
   const [allMessages, setAllMessages] = useState(null);
   const [conversation, setConversation] = useState(null);
+
   const sendMessage = (e) => {
     e.preventDefault();
 
@@ -101,6 +102,7 @@ const ProductDetails = () => {
     postApi("/message/send", from, token);
     setFormData("");
   };
+
   const handleMessageShow = () => {
     if (!user) {
       return navigate("/login");
@@ -133,7 +135,7 @@ const ProductDetails = () => {
     socket.on("message", (event) => {
       handleAddMessage(event, conversation);
     });
-  }, []);
+  }, [conversation]);
 
   const [minOrder, setQuantity] = useState(null);
   const [totalPrice, setTotalPrice] = useState();
@@ -350,6 +352,25 @@ const ProductDetails = () => {
       });
   };
 
+  const scrollbarsRef = useRef();
+
+  // Function to scroll to the bottom
+  const scrollToBottom = () => {
+    if (scrollbarsRef.current) {
+      scrollbarsRef.current.scrollToBottom();
+    }
+  };
+
+  // Scroll to the bottom when the component mounts
+  useEffect(() => {
+    scrollToBottom();
+  }, []);
+
+  // Scroll to the bottom whenever new messages arrive
+  useEffect(() => {
+    scrollToBottom();
+  }, [allMessages]);
+
   const shareUrl = `https://banglamartecommerce.com.bd/productDetails/${id}`;
   if (product == null) {
     return (
@@ -429,7 +450,21 @@ const ProductDetails = () => {
               <div className="flex justify-end text-SubTextColor">
                 <CloseButton onClick={handleMessageShow} size="md" />
               </div>
-
+              <div className="flex justify-center p-2">
+                <div>
+                  <div className="flex">
+                    <img
+                      src={`${url}${product?.thumbnail}`}
+                      className="h-16 w-16 rounded-full"
+                      alt=""
+                    />
+                    <div>
+                      <p>{product?.title}</p>
+                      <p>{totalPrice?.toFixed(1)} ৳</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <Scrollbars
                 style={{ height: 350 }}
                 renderThumbVertical={({ style }) => (
@@ -442,6 +477,7 @@ const ProductDetails = () => {
                     }}
                   />
                 )}
+                ref={scrollbarsRef}
               >
                 <div className="p-3 ">
                   {allMessages?.map((message, i) => (
@@ -461,14 +497,14 @@ const ProductDetails = () => {
                             src={`${url}${conversation?.receiver?.image}`}
                           />
                         </div>
-                        <div className="text-xs chat-header flex items-center text-SubTextColor">
+                        <div className="text-xs chat-header flex flex-col  text-SubTextColor ">
                           <p>
                             {user.id === message.receiverId
                               ? conversation?.receiver?.name
                               : user.name}
                           </p>
-                          <time className=" ml-2">
-                            {new Date(message?.date).toLocaleDateString()}
+                          <time className=" ">
+                            {new Date(message?.date).toLocaleString()}
                           </time>
                         </div>
                         <div className="chat-bubble">{message.message}</div>
