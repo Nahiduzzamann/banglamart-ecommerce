@@ -74,7 +74,7 @@ const Header = () => {
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
-    setSearchText(e.target.value)
+    setSearchText(e.target.value);
   };
   const handleSearch = (e) => {
     setReLoad(e.timeStamp);
@@ -218,7 +218,7 @@ const Header = () => {
                       </div>
                     </MenuButton>
                     <MenuList bg="#ecf8f8">
-                      <ConversationList />
+                      <ConversationList user={user} />
                     </MenuList>
                   </Menu>
                 </div>
@@ -399,7 +399,7 @@ const Header = () => {
                 {/* <Link className="hover:underline text-SubTextColor hover:text-TextColor" to="/">
                   Affiliating
                 </Link> */}
-                
+
                 <NavLink
                   className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/brands"
@@ -436,7 +436,7 @@ const Header = () => {
                     </MenuButton>
                     <MenuList bg="#ecf8f8">
                       <MenuItem bg="#ecf8f8">
-                        <ConversationList />
+                        <ConversationList useu={user} />
                       </MenuItem>
                     </MenuList>
                   </Menu>
@@ -478,68 +478,32 @@ const Header = () => {
 
 export default Header;
 
-const ConversationList = () => {
-  // Dummy conversation data
-  const conversations = [
-    {
-      id: 1,
-      img: "https://imgv3.fotor.com/images/gallery/Realistic-Male-Profile-Picture.jpg",
-      name: "John Doe",
-      senderMessage: "Hey there Hey there Hey there Hey there Hey there!",
-      timestamp: "2 mins ago",
-    },
-    {
-      id: 2,
-      img: "https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg",
-      name: "Alice Smith",
-      senderMessage: "Hello!",
-      timestamp: "5 mins ago",
-    },
-    {
-      id: 3,
-      img: "https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg",
-      name: "Alice Smith",
-      senderMessage: "Hello!",
-      timestamp: "5 mins ago",
-    },
-    {
-      id: 4,
-      img: "https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg",
-      name: "Alice Smith",
-      senderMessage: "Hello!",
-      timestamp: "5 mins ago",
-    },
-    {
-      id: 5,
-      img: "https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg",
-      name: "Alice Smith",
-      senderMessage: "Hello!",
-      timestamp: "5 mins ago",
-    },
-    // Add more conversation objects as needed
-  ];
+const ConversationList = ({ user }) => {
+  const [conversations, setConversations] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    getApi("/message/get", token).then((res) => {
+      setConversations(res.data.data);
+    });
+  }, [user]);
 
   return (
     <div className="max-h-[300px] overflow-y-auto">
-      {conversations.map((conversation, i) => (
+      {conversations?.map((conversation, i) => (
         <ConversationCard
           key={i}
-          senderImage={conversation.img}
-          senderMessage={conversation.senderMessage}
-          senderName={conversation.name}
-          timestamp={conversation.timestamp}
+          productImage={conversation.product.thumbnail}
+          lastMessage={conversation?.messages[0]?.message}
+          shopName={conversation.product.title}
         />
       ))}
     </div>
   );
 };
 
-const ConversationCard = ({
-  senderImage,
-  senderMessage,
-  senderName,
-  timestamp,
-}) => {
+const ConversationCard = ({ productImage, lastMessage, shopName }) => {
+  const url = "https://api.banglamartecommerce.com.bd";
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
@@ -547,16 +511,20 @@ const ConversationCard = ({
     >
       <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
         <img
-          src={senderImage}
+          src={`${url}${productImage}`}
+          className="h-16 w-16 rounded-full"
           alt="Sender"
-          className="w-full h-full object-cover"
         />
       </div>
       <div className="flex-grow w-36">
-        <div className="font-semibold line-clamp-1">{senderName}</div>
-        <div className="text-gray-600 w-36 line-clamp-1 ">{senderMessage}</div>
+        <div className="font-semibold line-clamp-1">{shopName}</div>
+        {lastMessage ? (
+          <div className="text-gray-600 w-36 line-clamp-1 ">{lastMessage}</div>
+        ) : (
+          "start conversation!"
+        )}
       </div>
-      <div className="text-xs text-gray-400">{timestamp}</div>
+      {/* <div className="text-xs text-gray-400">ok</div> */}
     </motion.div>
   );
 };

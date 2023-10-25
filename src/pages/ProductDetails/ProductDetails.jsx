@@ -48,6 +48,7 @@ import socket from "../../socket";
 
 const ProductDetails = () => {
   const { user, setCartUpdate } = useContext(AuthContext);
+  console.log(user);
   const [messageShow, setMessageShow] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -450,7 +451,7 @@ const ProductDetails = () => {
               <div className="flex justify-end text-SubTextColor">
                 <CloseButton onClick={handleMessageShow} size="md" />
               </div>
-              <div className="flex justify-center p-2">
+              <div className="border border-BorderColor flex justify-center p-2 shadow-lg shadow-TextColor ">
                 <div>
                   <div className="flex">
                     <img
@@ -459,8 +460,8 @@ const ProductDetails = () => {
                       alt=""
                     />
                     <div>
-                      <p>{product?.title}</p>
-                      <p>{totalPrice?.toFixed(1)} ৳</p>
+                      <p className="text-MainColor">{product?.title}</p>
+                      <p className="text-[#ff3838]">{totalPrice?.toFixed(1)} ৳</p>
                     </div>
                   </div>
                 </div>
