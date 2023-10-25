@@ -34,6 +34,7 @@ const Chat = () => {
     scrollToBottom();
   }, [allMessages]);
   const [formData, setFormData] = useState("");
+  
   const sendMessage = (e) => {
     e.preventDefault();
 
