@@ -54,7 +54,6 @@ const Header = () => {
   };
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [reLoad, setReLoad] = useState(null);
@@ -74,7 +73,6 @@ const Header = () => {
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
-    setSearchText(e.target.value);
   };
   const handleSearch = (e) => {
     setReLoad(e.timeStamp);
@@ -148,7 +146,7 @@ const Header = () => {
                   <input
                     className="focus:border-MainColor outline-MainColor w-full rounded-full py-2 pl-4 pr-4 focus:outline-1"
                     type="text"
-                    value={searchText}
+                    value={searchQuery}
                     onChange={handleSearchChange}
                     placeholder="Search..."
                   />
