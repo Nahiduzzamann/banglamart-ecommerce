@@ -102,7 +102,7 @@ const Header = () => {
 
   const headerOpacity = scrollingDown ? 0 : 1;
   const handlePhoneClick = () => {
-    window.location.href = "tel:+8809611677639";
+    window.location.href = "tel:+8809649110110";
   };
   return (
     <div className="pt-[120px] md:pt-[150px] lg:pt-[175px]">
@@ -537,6 +537,7 @@ const ConversationCard = ({
   const url = "https://api.banglamartecommerce.com.bd";
   return (
     <motion.div
+    // onClick={handleMessageOpen}
       whileHover={{ scale: 1.02 }}
       className="bg-CardColor border-[1px] border-MainColor rounded-lg shadow-md p-2 m-2 flex items-center w-[300px] md:w-[400px] cursor-pointer"
     >
