@@ -102,6 +102,14 @@ const Header = () => {
   const handlePhoneClick = () => {
     window.location.href = "tel:+8809649110110";
   };
+const [countMessage, setCountMessage]=useState(0);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    getApi("/message/unread",token)
+    .then((res)=>{
+      setCountMessage(res.data.data)
+    })
+  },[])
   return (
     <div className="pt-[120px] md:pt-[150px] lg:pt-[175px]">
       <div
@@ -211,9 +219,11 @@ const Header = () => {
                       <MenuButton className="hover:border-BorderColor border-CardColor relative ml-2 md:flex hidden items-center rounded-md border hover:border ">
                         <AiOutlineComment className="text-SubTextColor text-[30px]" />
                         <div>
-                          <div className="bg-MainColor text-CardColor absolute right-[15px] -top-3 flex h-5 w-5 items-center justify-center rounded-full text-[10px]">
-                            10
-                          </div>
+                          {countMessage > 0 ? (
+                            <div className="bg-MainColor text-CardColor absolute right-[15px] -top-3 flex h-5 w-5 items-center justify-center rounded-full text-[10px]">
+                              {countMessage}
+                            </div>
+                          ) : null}
                         </div>
                       </MenuButton>
                       <MenuList bg="#ecf8f8">
@@ -542,24 +552,30 @@ const ConversationCard = ({
   const url = "https://api.banglamartecommerce.com.bd";
   return (
     <motion.div
-      onClick={() => handleMessageShow(conversation)}
       whileHover={{ scale: 1.02 }}
-      className="bg-CardColor border-[1px] border-MainColor rounded-lg shadow-md p-2 m-2 flex items-center w-[300px] md:w-[400px] cursor-pointer"
+      className="bg-CardColor border-[1px] border-MainColor rounded-lg shadow-md p-2 m-2 flex items-center justify-between w-[300px] md:w-[400px] cursor-pointer"
     >
-      <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
-        <img
-          src={`${url}${productImage}`}
-          className="h-16 w-16 rounded-full"
-          alt="Sender"
-        />
-      </div>
-      <div className="flex-grow w-36">
-        <div className="font-semibold line-clamp-1">{shopName}</div>
-        {lastMessage ? (
-          <div className="text-gray-600 w-36 line-clamp-1 ">{lastMessage}</div>
-        ) : (
-          "start conversation!"
-        )}
+      <div
+        onClick={() => handleMessageShow(conversation)}
+        className="flex items-center"
+      >
+        <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
+          <img
+            src={`${url}${productImage}`}
+            className="h-16 w-16 rounded-full"
+            alt="Sender"
+          />
+        </div>
+        <div className="">
+          <div className="font-semibold line-clamp-1">{shopName}</div>
+          {lastMessage ? (
+            <div className="text-gray-600 w-36 line-clamp-1 ">
+              {lastMessage}
+            </div>
+          ) : (
+            "start conversation!"
+          )}
+        </div>
       </div>
       <motion.div
         whileHover={{ scale: 1.1 }}
