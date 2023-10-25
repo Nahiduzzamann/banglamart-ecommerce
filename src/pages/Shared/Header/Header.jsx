@@ -208,19 +208,21 @@ const Header = () => {
                 </button> */}
               <div className="flex items-center">
                 <div className="md:flex hidden">
-                  <Menu>
-                    <MenuButton className="hover:border-BorderColor border-CardColor relative ml-2 md:flex hidden items-center rounded-md border hover:border ">
-                      <AiOutlineComment className="text-SubTextColor text-[30px]" />
-                      <div>
-                        <div className="bg-MainColor text-CardColor absolute right-[15px] -top-3 flex h-5 w-5 items-center justify-center rounded-full text-[10px]">
-                          10
+                  {user ? (
+                    <Menu>
+                      <MenuButton className="hover:border-BorderColor border-CardColor relative ml-2 md:flex hidden items-center rounded-md border hover:border ">
+                        <AiOutlineComment className="text-SubTextColor text-[30px]" />
+                        <div>
+                          <div className="bg-MainColor text-CardColor absolute right-[15px] -top-3 flex h-5 w-5 items-center justify-center rounded-full text-[10px]">
+                            10
+                          </div>
                         </div>
-                      </div>
-                    </MenuButton>
-                    <MenuList bg="#ecf8f8">
-                      <ConversationList user={user} />
-                    </MenuList>
-                  </Menu>
+                      </MenuButton>
+                      <MenuList bg="#ecf8f8">
+                        <ConversationList user={user} />
+                      </MenuList>
+                    </Menu>
+                  ) : null}
                 </div>
                 <Link
                   to="/notifications"
@@ -425,21 +427,23 @@ const Header = () => {
               <Burger></Burger>
               <div className="flex items-center">
                 <div>
-                  <Menu>
-                    <MenuButton className="hover:border-BorderColor border-CardColor relative ml-2 flex md:hidden items-center rounded-md border hover:border ">
-                      <AiOutlineComment className="text-SubTextColor text-[20px]" />
-                      <div>
-                        <div className="bg-MainColor text-CardColor absolute right-[12px] -top-[6px] flex h-4 w-4 items-center justify-center rounded-full text-[10px]">
-                          <p className="text-[10px]">10</p>
+                  {user ? (
+                    <Menu>
+                      <MenuButton className="hover:border-BorderColor border-CardColor relative ml-2 flex md:hidden items-center rounded-md border hover:border ">
+                        <AiOutlineComment className="text-SubTextColor text-[20px]" />
+                        <div>
+                          <div className="bg-MainColor text-CardColor absolute right-[12px] -top-[6px] flex h-4 w-4 items-center justify-center rounded-full text-[10px]">
+                            <p className="text-[10px]">10</p>
+                          </div>
                         </div>
-                      </div>
-                    </MenuButton>
-                    <MenuList bg="#ecf8f8">
-                      <MenuItem bg="#ecf8f8">
-                        <ConversationList useu={user} />
-                      </MenuItem>
-                    </MenuList>
-                  </Menu>
+                      </MenuButton>
+                      <MenuList bg="#ecf8f8">
+                        <MenuItem bg="#ecf8f8">
+                          <ConversationList useu={user} />
+                        </MenuItem>
+                      </MenuList>
+                    </Menu>
+                  ) : null}
                 </div>
                 <Link
                   to="/notifications"
@@ -533,15 +537,14 @@ const ConversationCard = ({
   shopName,
   handleDeleteConversation,
   conversationId,
-  conversation
+  conversation,
 }) => {
-
   const { handleMessageShow } = useContext(AuthContext);
- 
+
   const url = "https://api.banglamartecommerce.com.bd";
   return (
     <motion.div
-    onClick={()=>handleMessageShow(conversation)}
+      onClick={() => handleMessageShow(conversation)}
       whileHover={{ scale: 1.02 }}
       className="bg-CardColor border-[1px] border-MainColor rounded-lg shadow-md p-2 m-2 flex items-center w-[300px] md:w-[400px] cursor-pointer"
     >
