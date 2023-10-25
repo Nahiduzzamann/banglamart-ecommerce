@@ -31,7 +31,7 @@ import {
 import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { PiSmileySadLight } from "react-icons/pi";
-import { getApi } from "../../../apis";
+import { deleteApi, getApi } from "../../../apis";
 import { FaCoins } from "react-icons/fa";
 const Header = () => {
   const { user, logOut, cart } = useContext(AuthContext);
@@ -480,29 +480,60 @@ export default Header;
 
 const ConversationList = ({ user }) => {
   const [conversations, setConversations] = useState(null);
-
+  const [update, setUpdate] = useState(null);
+  console.log(conversations);
   useEffect(() => {
     const token = localStorage.getItem("token");
     getApi("/message/get", token).then((res) => {
       setConversations(res.data.data);
     });
-  }, [user]);
+  }, [user, update]);
 
+  const handleDeleteConversation = (conversationId) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const token = localStorage.getItem("token");
+        deleteApi(
+          `/message/delete?conversationId=${conversationId}`,
+          token
+        ).then((res) => {
+          setUpdate(res);
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        });
+      }
+    });
+  };
   return (
     <div className="max-h-[300px] overflow-y-auto">
       {conversations?.map((conversation, i) => (
         <ConversationCard
           key={i}
+          conversationId={conversation.id}
           productImage={conversation.product.thumbnail}
           lastMessage={conversation?.messages[0]?.message}
           shopName={conversation.product.title}
+          handleDeleteConversation={handleDeleteConversation}
         />
       ))}
     </div>
   );
 };
 
-const ConversationCard = ({ productImage, lastMessage, shopName }) => {
+const ConversationCard = ({
+  productImage,
+  lastMessage,
+  shopName,
+  handleDeleteConversation,
+  conversationId,
+}) => {
   const url = "https://api.banglamartecommerce.com.bd";
   return (
     <motion.div
@@ -524,13 +555,20 @@ const ConversationCard = ({ productImage, lastMessage, shopName }) => {
           "start conversation!"
         )}
       </div>
-      {/* <div className="text-xs text-gray-400">ok</div> */}
+      <motion.div
+        whileHover={{ scale: 1.1 }}
+        onClick={() => handleDeleteConversation(conversationId)}
+        className="bg-SubTextColor p-1 rounded-full"
+      >
+        <MdDeleteForever className="text-xl text-[#ff3e3e]"></MdDeleteForever>
+      </motion.div>
     </motion.div>
   );
 };
 
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import Rating from "react-rating";
+import { MdDeleteForever } from "react-icons/md";
 
 const SearchProductCart = ({ product, handleSearchClose }) => {
   // console.log(product);
