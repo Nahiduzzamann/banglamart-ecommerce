@@ -516,6 +516,7 @@ const ConversationList = ({ user }) => {
       {conversations?.map((conversation, i) => (
         <ConversationCard
           key={i}
+          conversation={conversation}
           conversationId={conversation.id}
           productImage={conversation.product.thumbnail}
           lastMessage={conversation?.messages[0]?.message}
@@ -533,11 +534,15 @@ const ConversationCard = ({
   shopName,
   handleDeleteConversation,
   conversationId,
+  conversation
 }) => {
+
+  const { handleMessageShow } = useContext(AuthContext);
+ 
   const url = "https://api.banglamartecommerce.com.bd";
   return (
     <motion.div
-    // onClick={handleMessageOpen}
+    onClick={()=>handleMessageShow(conversation)}
       whileHover={{ scale: 1.02 }}
       className="bg-CardColor border-[1px] border-MainColor rounded-lg shadow-md p-2 m-2 flex items-center w-[300px] md:w-[400px] cursor-pointer"
     >

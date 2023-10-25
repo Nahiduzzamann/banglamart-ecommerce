@@ -93,6 +93,22 @@ const AuthProvider = ({ children }) => {
       setUser(null);
     }
   }, [userState]);
+  const [conversationShow, setConversationShow] = useState(false);
+  const [allMessages, setAllMessages] = useState(null);
+  const [conversation, setConversation] = useState(null);
+
+  const handleMessageShow = (conversation) => {
+    setConversation(conversation)
+    setConversationShow(!conversationShow);
+    const token = localStorage.getItem("token");
+    getApi(`/message/chats?conversationId=${conversation.id}`, token).then(
+      (res) => {
+        // const id = res.data.data.id;
+        setAllMessages(res.data.data);
+
+      }
+    );
+  };
 
   const authInfo = {
     user,
@@ -106,7 +122,12 @@ const AuthProvider = ({ children }) => {
     signInWithGoogle,
     updateUser,
     language, 
-    setLanguage
+    setLanguage,
+    handleMessageShow,
+    conversationShow,
+    allMessages,
+    conversation,
+    setConversationShow
   };
 
   return (

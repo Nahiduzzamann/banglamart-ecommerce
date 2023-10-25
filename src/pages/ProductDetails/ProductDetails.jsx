@@ -48,6 +48,7 @@ import socket from "../../socket";
 
 const ProductDetails = () => {
   const { user, setCartUpdate } = useContext(AuthContext);
+  
   const [messageShow, setMessageShow] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();

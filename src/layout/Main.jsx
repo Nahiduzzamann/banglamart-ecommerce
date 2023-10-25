@@ -23,6 +23,7 @@ import { fetchNewProducts } from "./../services/actions/newProductsAction";
 import { fetchTopProducts } from "./../services/actions/topProductsAction";
 import { fetchBrand } from "../services/actions/brandAction";
 import socket from "./../socket";
+import Chat from "../components/Chat";
 
 const Main = () => {
   const { user } = useContext(AuthContext);
@@ -100,6 +101,8 @@ const Main = () => {
         <Header></Header>
         <Outlet></Outlet>
         <Footer></Footer>
+        <Chat></Chat>
+
         <ScrollToTop />
       </div>
     </div>
