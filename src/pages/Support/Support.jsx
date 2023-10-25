@@ -151,7 +151,7 @@ const Support = () => {
             <div className="flex items-center mb-2 text-blue-900">
               <BiCurrentLocation className=" mr-2 text-SubTextColor" />
               <p className="text-SubTextColor">
-              8, Gulfesha Plaza (4th floor), Shahid Sangbadik Selina Parvin Sarak, Mogbazar, Dhaka
+              House-65, Road-2, RK Road,Islambag, Rangpur
               </p>
             </div>
             <div className="mt-6 lg:mt-10">

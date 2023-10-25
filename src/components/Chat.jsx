@@ -5,16 +5,21 @@ import { AiOutlineSend } from "react-icons/ai";
 import { postApi } from "../apis";
 import { AuthContext } from "../providers/AuthProvider";
 import { motion } from "framer-motion";
+import socket from "../socket";
 const Chat = () => {
   const {
     user,
     conversation,
     conversationShow,
-    allMessages,
+    messages,
     setConversationShow,
   } = useContext(AuthContext);
   const url = "https://api.banglamartecommerce.com.bd";
-
+  const [allMessages, setAllMessages] = useState(null);
+  useEffect(() => {
+    setAllMessages(messages);
+  }, [messages]);
+  console.log(allMessages);
   const scrollbarsRef = useRef();
 
   // Function to scroll to the bottom
@@ -34,19 +39,30 @@ const Chat = () => {
     scrollToBottom();
   }, [allMessages]);
   const [formData, setFormData] = useState("");
-  
   const sendMessage = (e) => {
     e.preventDefault();
-
+    console.log(conversation);
     const token = localStorage.getItem("token");
     const from = new FormData();
     from.append("conversationId", conversation.id);
     from.append("message", formData);
     // from.append("image")
-    from.append("receiverId", conversation.product.user.id);
+    from.append("receiverId", conversation.product.userId);
     postApi("/message/send", from, token);
     setFormData("");
   };
+
+  const handleAddMessage = (event) => {
+    if (event.conversationId === conversation?.id) {
+      setAllMessages((res) => [...res, event]);
+    }
+  };
+
+  useEffect(() => {
+    socket.on("message", (event) => {
+      handleAddMessage(event, conversation);
+    });
+  }, [conversation]);
 
   return (
     <div
@@ -61,7 +77,7 @@ const Chat = () => {
       </div>
       <div className="border border-BorderColor flex justify-center p-2 shadow-lg shadow-TextColor ">
         <div>
-          <div className="flex">
+          <div className="flex items-center gap-2">
             <img
               src={`${url}${conversation?.product.thumbnail}`}
               className="h-16 w-16 rounded-full"

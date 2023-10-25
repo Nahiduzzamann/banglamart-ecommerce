@@ -94,7 +94,7 @@ const AuthProvider = ({ children }) => {
     }
   }, [userState]);
   const [conversationShow, setConversationShow] = useState(false);
-  const [allMessages, setAllMessages] = useState(null);
+  const [messages, setAllMessages] = useState(null);
   const [conversation, setConversation] = useState(null);
 
   const handleMessageShow = (conversation) => {
@@ -125,7 +125,7 @@ const AuthProvider = ({ children }) => {
     setLanguage,
     handleMessageShow,
     conversationShow,
-    allMessages,
+    messages,
     conversation,
     setConversationShow
   };

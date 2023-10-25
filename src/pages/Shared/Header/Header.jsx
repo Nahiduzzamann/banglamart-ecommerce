@@ -481,7 +481,6 @@ export default Header;
 const ConversationList = ({ user }) => {
   const [conversations, setConversations] = useState(null);
   const [update, setUpdate] = useState(null);
-  console.log(conversations);
   useEffect(() => {
     const token = localStorage.getItem("token");
     getApi("/message/get", token).then((res) => {
