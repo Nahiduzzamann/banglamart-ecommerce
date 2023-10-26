@@ -149,7 +149,7 @@ const Footer = () => {
               </Link>
               <Link
                 className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
-                to="/"
+                to="/track-order"
               >
                 Order History
               </Link>
