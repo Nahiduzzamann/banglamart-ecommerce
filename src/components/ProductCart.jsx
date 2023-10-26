@@ -72,11 +72,11 @@ const ProductCart = ({ product }) => {
         onMouseLeave={() => setHover(false)}
         className="w-[95%] cursor-pointer group aspect-[20/25] rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor hover:shadow-lg"
       >
-        <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
-          {/* TODO  */}
+        <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300 bg-[#ffffffd7]">
+          
           <img
             src={`${url}${product?.thumbnail}`}
-            className="object-fill w-full h-full"
+            className="object-fill w-full h-full pb-14 p-4"
           />
         </div>
         <div
