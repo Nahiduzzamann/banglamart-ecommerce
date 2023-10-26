@@ -48,7 +48,7 @@ import socket from "../../socket";
 
 const ProductDetails = () => {
   const { user, setCartUpdate } = useContext(AuthContext);
-  
+
   const [messageShow, setMessageShow] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -461,7 +461,9 @@ const ProductDetails = () => {
                     />
                     <div>
                       <p className="text-MainColor">{product?.title}</p>
-                      <p className="text-[#ff3838]">{totalPrice?.toFixed(1)} ৳</p>
+                      <p className="text-[#ff3838]">
+                        {totalPrice?.toFixed(1)} ৳
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -494,8 +496,16 @@ const ProductDetails = () => {
                         <div className="chat-image avatar">
                           <Avatar
                             size="sm"
-                            name="Dan Abrahmov"
-                            src={`${url}${conversation?.receiver?.image}`}
+                            name={
+                              user.id === message.receiverId
+                                ? conversation?.receiver?.name
+                                : user.name
+                            }
+                            src={`${url}${
+                              user.id === message.receiverId
+                                ? conversation?.receiver?.image
+                                : user.image
+                            }`}
                           />
                         </div>
                         <div className="text-xs chat-header flex flex-col  text-SubTextColor ">

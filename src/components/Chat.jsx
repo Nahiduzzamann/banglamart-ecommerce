@@ -73,7 +73,7 @@ const Chat = () => {
       } ease-in-out duration-700 shadow-2xl shadow-SubTextColor`}
     >
       <div className="flex justify-end text-SubTextColor">
-        <CloseButton onClick={()=>setConversationShow(v=>!v)} size="md" />
+        <CloseButton onClick={() => setConversationShow((v) => !v)} size="md" />
       </div>
       <div className="border border-BorderColor flex justify-center p-2 shadow-lg shadow-TextColor ">
         <div>
@@ -115,8 +115,16 @@ const Chat = () => {
                 <div className="chat-image avatar">
                   <Avatar
                     size="sm"
-                    name="Dan Abrahmov"
-                    src={`${url}${conversation?.receiver?.image}`}
+                    name={
+                      user.id === message.receiverId
+                        ? conversation?.receiver?.name
+                        : user.name
+                    }
+                    src={`${url}${
+                      user.id === message.receiverId
+                        ? conversation?.receiver?.image
+                        : user.image
+                    }`}
                   />
                 </div>
                 <div className="text-xs chat-header flex flex-col  text-SubTextColor ">
