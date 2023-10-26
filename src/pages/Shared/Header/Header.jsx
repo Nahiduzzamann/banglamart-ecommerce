@@ -239,7 +239,7 @@ const [countMessage, setCountMessage]=useState(0);
                   <AiOutlineBell className="text-SubTextColor text-[30px]" />
                   <div>
                     <div className="bg-MainColor text-CardColor absolute right-[12px] -top-3 flex h-5 w-5 items-center justify-center rounded-full text-[10px]">
-                      10
+                      0
                     </div>
                   </div>
                 </Link>
