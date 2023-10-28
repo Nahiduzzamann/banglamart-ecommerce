@@ -41,6 +41,19 @@ const SupportPolicy = () => {
                 <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.mayCampaignPolicyDescriptions(8)")}</p>
                 <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.mayCampaignPolicyDescriptions(9)")}</p>
                 <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.mayCampaignPolicyDescriptions(10)")}</p>
+
+
+                <h1 className="mt-4 mb-1 mr-4 text-TextColor">{t("SupportPolicy.octCampaignPolicy")}</h1>
+                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.octCampaignPolicyDescriptions(1)")}</p>
+                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.octCampaignPolicyDescriptions(2)")}</p>
+                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.octCampaignPolicyDescriptions(3)")}</p>
+                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.octCampaignPolicyDescriptions(4)")}</p>
+                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.octCampaignPolicyDescriptions(5)")}</p>
+                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.octCampaignPolicyDescriptions(6)")}</p>
+                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.octCampaignPolicyDescriptions(7)")}</p>
+                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.octCampaignPolicyDescriptions(8)")}</p>
+                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.octCampaignPolicyDescriptions(9)")}</p>
+                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.octCampaignPolicyDescriptions(10)")}</p>
                 
             </div>
         </div>

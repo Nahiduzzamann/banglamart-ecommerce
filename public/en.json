@@ -103,7 +103,7 @@
     },
     "SupportPolicy": {
       "CashOn": "Cash On Delivery 'COD' CAMPAIGN POLICY",
-      "CashOnDescription(1)": "1. The campaign shall be ongoing for a tenure starts from July 09, 2023 8.00 PM to July 15, 2023.",
+      "CashOnDescription(1)": "1. The campaign shall be ongoing for a tenure starts from January 1, 2023 8.00 PM to February 1, 2023.",
       "CashOnDescription(2)": "2. The items ordered during this campaign, will be delivered by 10 days which may differ on sourcing the item and to deliver the item in different place outside Dhaka.",
       "CashOnDescription(3)": "3. For item/s delivery charge shall be applicable proportionately. Delivery charge may vary upon size, weight and the delivery location.",
       "CashOnDescription(4)": "4. Any order/s placed by any person/s shall be canceled immediately, if it is found and proved that s/he has bribed or tried to overrule the delivery order channel or tried any unethical practices through any of the Banglamart officials or merchants.",
@@ -113,7 +113,7 @@
       "CashOnDescription(8)": "8. Banglamart Limited reserves the right to withdraw the campaign without any prior notice. But during this situation items those were ordered till the date of cancellation shall be delivered accordingly.",
       "CashOnDescription(9)": "9. If customer finds any damage or item missing as per paid value than customer needs to share the Unboxing video to 'support@Banglamart.com', upon verification by the IR Team necessities will be taken as per company policy.",
       "mayCampaignPolicy":"MAY CAMPAIGN POLICY",
-      "mayCampaignPolicyDescriptions(1)":"1. The campaign shall be ongoing for a tenure starts from October 01, 2023 8.00 PM to December 29, 2023.",
+      "mayCampaignPolicyDescriptions(1)":"1. The campaign shall be ongoing for a tenure starts from May 01, 2023 8.00 PM to June 29, 2023.",
       "mayCampaignPolicyDescriptions(2)":"2. The items ordered during the campaign shall be delivered by 45 days after completing the full payment and necessary formalities. Please proceed your orders acknowledging this timeframe, as no request for “Early/Emergency Delivery” shall be entertained.",
       "mayCampaignPolicyDescriptions(3)":"3. During delivery of Motorbike, the customer shall provide the copy of NID, recent 4 copies of passport size photo, Banglamart Limited provided order invoice and SSLCommerz payment confirmation invoice.",
       "mayCampaignPolicyDescriptions(4)":"4. Banglamart Limited shall provide free delivery for the items weighed below 5 kg, ordered during this campaign. For item/s weighed more than 5kg, delivery charge shall be applicable proportionately.",
@@ -123,8 +123,24 @@
       "mayCampaignPolicyDescriptions(8)":"8. For the successful completion of the order and delivery, your utmost co-operation and supports shall be highly appreciated.",
       "mayCampaignPolicyDescriptions(9)":"9. Banglamart Limited reserves the right to withdraw the campaign without any prior notice. But during this situation items those were ordered till the date of cancellation shall be delivered accordingly.",
       "mayCampaignPolicyDescriptions(10)":"10. After placing the Order, customer will get 72 hours to complete the full payment, If not then order will get cancelled, Customer will get the refund as per company policy and his/her issuer bank timeline.",
+
+
+      "octCampaignPolicy":"OCTOBER CAMPAIGN POLICY",
+      "octCampaignPolicyDescriptions(1)":"1. The campaign shall be ongoing for a tenure starts from October 01, 2023 8.00 PM to November 29, 2023.",
+      "octCampaignPolicyDescriptions(2)":"2. The items ordered during the campaign shall be delivered by 45 days after completing the full payment and necessary formalities. Please proceed your orders acknowledging this timeframe, as no request for “Early/Emergency Delivery” shall be entertained.",
+      "octCampaignPolicyDescriptions(3)":"3. During delivery of Motorbike, the customer shall provide the copy of NID, recent 4 copies of passport size photo, Banglamart Limited provided order invoice and SSLCommerz payment confirmation invoice.",
+      "octCampaignPolicyDescriptions(4)":"4. Banglamart Limited shall provide free delivery for the items weighed below 5 kg, ordered during this campaign. For item/s weighed more than 5kg, delivery charge shall be applicable proportionately.",
+      "octCampaignPolicyDescriptions(5)":"5. Any order/s placed by any person/s shall be cancelled immediately, if it is found and proved that s/he has bribed or tried to overrule the delivery order channel or tried any unethical practices through any of the Banglamart officials or merchants.",
+      "octCampaignPolicyDescriptions(6)":"6. Once any order is placed and confirmed by the client, in no way there shall be any refund for the ordered items.",
+      "octCampaignPolicyDescriptions(7)":"7. In case of any unavoidable circumstances, state emergency or any Act of Gods, if any product is not delivered timely or if any order is cancelled by Banglamart Limited authority, the customer shall get the refund by Banglamart Limited as per company policy.",
+      "octCampaignPolicyDescriptions(8)":"8. For the successful completion of the order and delivery, your utmost co-operation and supports shall be highly appreciated.",
+      "octCampaignPolicyDescriptions(9)":"9. Banglamart Limited reserves the right to withdraw the campaign without any prior notice. But during this situation items those were ordered till the date of cancellation shall be delivered accordingly.",
+      "octCampaignPolicyDescriptions(10)":"10. After placing the Order, customer will get 72 hours to complete the full payment, If not then order will get cancelled, Customer will get the refund as per company policy and his/her issuer bank timeline.",
+
+
+
       "aprilCampaignPolicy":"APRIL CAMPAIGN POLICY",
-      "aprilCampaignPolicyDescriptions(1)":"1. The campaign shall be ongoing for a tenure starts from April 01, 2023 8.00 PM to May 12, 2023.",
+      "aprilCampaignPolicyDescriptions(1)":"1. The campaign shall be ongoing for a tenure starts from April 01, 2023 8.00 PM to May 1, 2023.",
       "aprilCampaignPolicyDescriptions(2)":"2. The items ordered during the campaign shall be delivered by 45 days. Please, proceed your ordered acknowledging this timeframe as no request for “Early/Emergency Delivery” shall be entertained.",
       "aprilCampaignPolicyDescriptions(3)":"3. During delivery of Motorbike, the customer shall provide the copy of NID, recent 4 copies of passport size photo, Banglamart Limited provided order invoice and SSLCommerz payment confirmation invoice.",
       "aprilCampaignPolicyDescriptions(4)":"4. Banglamart Limited shall provide free delivery for the items weighed below 5 kg, ordered during campaign. For item/s weighed more than 5kg, delivery charge shall be applicable proportionately.",
