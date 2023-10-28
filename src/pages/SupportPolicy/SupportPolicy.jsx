@@ -20,6 +20,16 @@ const SupportPolicy = () => {
                 <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.CashOnDescription(7)")}</p>
                 <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.CashOnDescription(8)")}</p>
                 <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.CashOnDescription(9)")}</p>
+                <h1 className="mt-4 mb-1 mr-4 text-TextColor">{t("SupportPolicy.aprilCampaignPolicy")}</h1>
+                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.aprilCampaignPolicyDescriptions(1)")}</p>
+                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.aprilCampaignPolicyDescriptions(2)")}</p>
+                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.aprilCampaignPolicyDescriptions(3)")}</p>
+                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.aprilCampaignPolicyDescriptions(4)")}</p>
+                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.aprilCampaignPolicyDescriptions(5)")}</p>
+                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.aprilCampaignPolicyDescriptions(6)")}</p>
+                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.aprilCampaignPolicyDescriptions(7)")}</p>
+                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.aprilCampaignPolicyDescriptions(8)")}</p>
+                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.aprilCampaignPolicyDescriptions(9)")}</p>
                 <h1 className="mt-4 mb-1 mr-4 text-TextColor">{t("SupportPolicy.mayCampaignPolicy")}</h1>
                 <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.mayCampaignPolicyDescriptions(1)")}</p>
                 <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.mayCampaignPolicyDescriptions(2)")}</p>
@@ -31,16 +41,7 @@ const SupportPolicy = () => {
                 <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.mayCampaignPolicyDescriptions(8)")}</p>
                 <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.mayCampaignPolicyDescriptions(9)")}</p>
                 <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.mayCampaignPolicyDescriptions(10)")}</p>
-                <h1 className="mt-4 mb-1 mr-4 text-TextColor">{t("SupportPolicy.aprilCampaignPolicy")}</h1>
-                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.aprilCampaignPolicyDescriptions(1)")}</p>
-                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.aprilCampaignPolicyDescriptions(2)")}</p>
-                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.aprilCampaignPolicyDescriptions(3)")}</p>
-                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.aprilCampaignPolicyDescriptions(4)")}</p>
-                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.aprilCampaignPolicyDescriptions(5)")}</p>
-                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.aprilCampaignPolicyDescriptions(6)")}</p>
-                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.aprilCampaignPolicyDescriptions(7)")}</p>
-                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.aprilCampaignPolicyDescriptions(8)")}</p>
-                <p className="mb-2 mr-2 text-SubTextColor">{t("SupportPolicy.aprilCampaignPolicyDescriptions(9)")}</p>
+                
             </div>
         </div>
     );  
