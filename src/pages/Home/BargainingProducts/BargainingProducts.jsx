@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import FlashSaleBanner from "../../../components/FlashSaleBanner";
 import { useEffect, useState } from "react";
-import Rating from "react-rating";
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+// import Rating from "react-rating";
+// import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 // import { BsFillCartCheckFill } from "react-icons/bs";
 import { TbTruckDelivery } from "react-icons/tb";
 import { useSelector } from "react-redux";
@@ -128,10 +128,10 @@ const Cart2 = ({ product }) => {
         isSm && "w-[16%]"
       } snap-start cursor-pointer group aspect-[230/310]  rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor`}
     >
-      <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
+      <div className="inset-0 bg-CardColor absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
         <img
           src={`${url}${product?.thumbnail}`}
-          className="object-fill w-full h-full"
+          className="object-fill w-full h-full pb-10"
         />
       </div>
       <div
@@ -150,7 +150,7 @@ const Cart2 = ({ product }) => {
                 {product?.price} ৳
               </p>
             </div>
-            <Rating
+            {/* <Rating
               initialRating={3.5}
               readonly
               emptySymbol={
@@ -167,7 +167,7 @@ const Cart2 = ({ product }) => {
                   }`}
                 />
               }
-            />
+            /> */}
             <Link
               to={`/productDetails/${product?.id}`}
               className={`relative line-clamp-1 break-all hover:underline ${
