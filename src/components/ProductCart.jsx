@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+// import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 // import { BsFillCartCheckFill, BsFillHeartFill } from "react-icons/bs";
 import { TbTruckDelivery } from "react-icons/tb";
-import Rating from "react-rating";
+// import Rating from "react-rating";
 import { Link } from "react-router-dom";
 // import { postApi } from "../apis";
 // import Swal from "sweetalert2";
@@ -100,7 +100,7 @@ const ProductCart = ({ product }) => {
                   {newPrice.toFixed()} ৳
                 </p>
               </div>
-              <Rating
+              {/* <Rating
                 initialRating={3.5}
                 readonly
                 emptySymbol={
@@ -117,7 +117,7 @@ const ProductCart = ({ product }) => {
                     }`}
                   />
                 }
-              />
+              /> */}
               <Link
                 to={`/productDetails/${product?.id}`}
                 className={`relative hover:underline break-all line-clamp-1 ${

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+// import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { TbTruckDelivery } from "react-icons/tb";
 // import { BsFillCartCheckFill } from "react-icons/bs";
-import Rating from "react-rating";
+// import Rating from "react-rating";
 import { Link } from "react-router-dom";
 // import Swal from "sweetalert2";
 // import { postApi } from "../apis";
@@ -72,10 +72,10 @@ const ProductCartFlashSell = ({ data }) => {
         onMouseLeave={() => setHover(false)}
         className="w-[95%] cursor-pointer group aspect-[20/25] rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor hover:shadow-lg"
       >
-        <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
+        <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300 bg-CardColor">
           <img
             src={`${url}${product?.thumbnail}`}
-            className="object-fill w-full h-full"
+            className="object-fill w-full h-full pb-14 p-4"
           />
         </div>
         <div
@@ -99,7 +99,7 @@ const ProductCartFlashSell = ({ data }) => {
                   {newPrice.toFixed()} ৳
                 </p>
               </div>
-              <Rating
+              {/* <Rating
                 initialRating={3.5}
                 readonly
                 emptySymbol={
@@ -116,7 +116,7 @@ const ProductCartFlashSell = ({ data }) => {
                     }`}
                   />
                 }
-              />
+              /> */}
               <Link
                 to={`/productDetails/${product?.id}`}
                 className={`relative hover:underline break-all line-clamp-1 ${
