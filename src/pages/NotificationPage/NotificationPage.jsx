@@ -21,13 +21,13 @@ const NotificationPage = () => {
           ? notifications?.map((notification) => (
               <div
                 key={notification.id}
-                className="bg-white p-4 rounded-lg shadow-md flex items-center justify-between"
+                className="bg-CardColor p-4 rounded-lg shadow-md flex items-center justify-between"
               >
                 <div>
                   <p className="text-lg">{notification.message}</p>
-                  <p className="text-gray-500 text-sm">{notification.date}</p>
+                  <p className="text-SubTextColor text-sm">{notification.date}</p>
                 </div>
-                <button className="text-red-500">Dismiss</button>
+                {/* <button className="text-red-500">Read</button> */}
               </div>
             ))
           : (<EmptyContent text={"No notification found!"}></EmptyContent>)}
