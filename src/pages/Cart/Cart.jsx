@@ -131,7 +131,7 @@ const Cart = () => {
       });
   };
   const [paymentName, setPaymentName] = React.useState('offline')
-  
+
   const handleOrder = () => {
     setOrderLoading(true);
     const token = localStorage.getItem("token");
@@ -146,15 +146,7 @@ const Cart = () => {
     )
       .then((res) => {
         setOrderLoading(false);
-        console.log(res.data);
-
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Order Submitted",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+       
         // navigate(res.data.url);
         window.location.href = `${res.data.url}`;
       })
