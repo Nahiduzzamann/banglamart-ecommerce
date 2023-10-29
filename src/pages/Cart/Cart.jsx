@@ -131,6 +131,7 @@ const Cart = () => {
       });
   };
   const [paymentName, setPaymentName] = React.useState('offline')
+  
   const handleOrder = () => {
     setOrderLoading(true);
     const token = localStorage.getItem("token");
@@ -145,7 +146,7 @@ const Cart = () => {
     )
       .then((res) => {
         setOrderLoading(false);
-        // console.log(res.data);
+        console.log(res.data);
 
         Swal.fire({
           position: "top-end",
