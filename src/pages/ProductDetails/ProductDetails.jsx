@@ -1097,43 +1097,44 @@ const ImageShow = ({ product }) => {
           //   className="object-cover h-[500px] w-full"
           // />
 
-          <ReactImageMagnify
-            enlargedImagePosition="over"
-            {...{
-              smallImage: {
-                width: 350,
-                height: 500,
+          <div className="object-cover h-[500px] w-full">
+            <ReactImageMagnify
+              enlargedImagePosition="over"
 
-                src: `${url}${product?.images[currentImageIndex]}`,
-              },
-              largeImage: {
-                src: `${url}${product?.images[currentImageIndex]}`,
-                height: 1000,
-                width: 700,
-              },
-            }}
-          />
+              {...{
+                smallImage: {
+                  isFluidWidth: true,
+                  src: `${url}${product?.images[currentImageIndex]}`,
+                },
+                largeImage: {
+                  src: `${url}${product?.images[currentImageIndex]}`,
+                  width: 1200,
+                  height: 1000,
+                },
+              }}
+            />
+          </div>
         ) : (
           // <img
           //   src={`${url}${product?.thumbnail}`}
           //   className="object-cover h-[500px] w-full"
           // />
 
-          <ReactImageMagnify
-            {...{
-              smallImage: {
-                width: 500,
-                height: 500,
-
-                src: `${url}${product?.thumbnail}`,
-              },
-              largeImage: {
-                src: `${url}${product?.thumbnail}`,
-                height: 1000,
-                width: 1000,
-              },
-            }}
-          />
+          <div className="object-cover h-[500px] w-full">
+            <ReactImageMagnify
+              {...{
+                smallImage: {
+                  isFluidWidth: true,
+                  src: `${url}${product?.thumbnail}`,
+                },
+                largeImage: {
+                  src: `${url}${product?.thumbnail}`,
+                  width: 1200,
+                  height: 1000,
+                },
+              }}
+            />
+          </div>
         )}
       </div>
       <div className="flex flex-wrap space-x-4">

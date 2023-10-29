@@ -19,7 +19,7 @@ const Chat = () => {
   useEffect(() => {
     setAllMessages(messages);
   }, [messages]);
-  console.log(allMessages);
+  // console.log(allMessages);
   const scrollbarsRef = useRef();
 
   // Function to scroll to the bottom

@@ -2,9 +2,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { PiSmileySadLight } from "react-icons/pi";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import { Spinner, Tooltip } from "@chakra-ui/react";
+import { Radio, RadioGroup, Spinner, Stack, Tooltip } from "@chakra-ui/react";
 import CartComponent from "../../components/CartComponent";
 import { useLocation } from "react-router";
 import { getApi, postApi } from "../../apis";
@@ -130,7 +130,7 @@ const Cart = () => {
         console.log(err);
       });
   };
-
+  const [paymentName, setPaymentName] = React.useState('offline')
   const handleOrder = () => {
     setOrderLoading(true);
     const token = localStorage.getItem("token");
@@ -138,8 +138,8 @@ const Cart = () => {
       "/order/create",
       {
         token: orderToken,
-        paymentMethod: "offline",
-        redirectUrl: "/track-order",
+        paymentMethod: paymentName,
+        redirectUrl: "https://banglamartecommerce.com.bd/track-order",
       },
       token
     )
@@ -154,7 +154,8 @@ const Cart = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate(res.data.url);
+        // navigate(res.data.url);
+        window.location.href = `${res.data.url}`;
       })
       .catch((err) => {
         setOrderLoading(false);
@@ -399,14 +400,26 @@ const Cart = () => {
                 <span className="loading loading-spinner loading-md"></span>
               </div>
             ) : user?.address?.subDistrict ? (
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.8 }}
-                onClick={handleOrder}
-                className="py-2 px-2 mt-4 shadow-md shadow-SubTextColor hover:shadow-TextColor rounded-full bg-TextColor w-full"
-              >
-                <h1 className="text-CardColor">Order Now</h1>
-              </motion.button>
+              <div>
+                <div className="mt-2">
+                  <h1 className="text-center mb-2 text-[#ff5b5b] ">Select Your payment method</h1>
+                  <RadioGroup onChange={setPaymentName} value={paymentName}>
+                    <Stack direction="column">
+                      <Radio value="offline"><img className="rounded-lg h-16"  src="https://i.ibb.co/djdf4tk/Cashondeliveryjpgjpg-15946486664.jpg" alt="" /></Radio>
+                      <Radio value="Bkash"><img className="rounded-lg h-16"  src="https://i.ibb.co/tYcp9LT/bkash-payment-logo.jpg" alt="" /></Radio>
+                      <Radio value="amarpay"><img className="rounded-lg h-16" src="https://i.ibb.co/XjK9Wt8/aamarpay-logo.jpg" alt="" /></Radio>
+                    </Stack>
+                  </RadioGroup>
+                </div>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.8 }}
+                  onClick={handleOrder}
+                  className="py-2 px-2 mt-4 shadow-md shadow-SubTextColor hover:shadow-TextColor rounded-full bg-TextColor w-full"
+                >
+                  <h1 className="text-CardColor">Order Now</h1>
+                </motion.button>
+              </div>
             ) : (
               <Link
                 to="/addDeliveryAddress"
