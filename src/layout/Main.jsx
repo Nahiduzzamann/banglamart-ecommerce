@@ -24,7 +24,9 @@ import { fetchTopProducts } from "./../services/actions/topProductsAction";
 import { fetchBrand } from "../services/actions/brandAction";
 import socket from "./../socket";
 import Chat from "../components/Chat";
-
+import { getToken } from "firebase/messaging";
+import { messaging } from "../firebase/firebase.config";
+import { putApi } from "../apis";
 const Main = () => {
   const { user } = useContext(AuthContext);
   // const [isLoading, setIsLoading] = useState(true);
@@ -89,6 +91,35 @@ const Main = () => {
     dispatch(fetchFlashSell());
   }, [dispatch]);
 
+
+  const permissionNotification = async () => {
+    const uToken = localStorage.getItem("token");
+    const permission = await Notification.requestPermission();
+    if (permission === "granted") {
+      const token = await getToken(messaging, {
+        vapidKey:
+          "BAGY8xyEozImmuKGGvtxWvsXVj4cf9Xe0Cj_MQdQUS4IbAEBjjZOXF3XcHBMaGfSPhqpuhtHccXAJ_ZXKTo_OoE",
+      });
+      // console.log(token);
+      await putApi(
+        "/auth/update",
+        {
+          pushToken: token,
+        },
+        uToken
+      );
+    } else {
+      alert.error("We are unable to send you notification");
+    }
+  };
+
+  useEffect(() => {
+    if (user) {
+      permissionNotification().catch(() => {
+        alert.error("Failed to send permission notification");
+      });
+    }
+  }, [user]);
   return (
     <div>
       <Helmet>
