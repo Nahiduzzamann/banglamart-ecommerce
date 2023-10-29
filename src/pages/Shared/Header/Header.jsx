@@ -102,14 +102,13 @@ const Header = () => {
   const handlePhoneClick = () => {
     window.location.href = "tel:+8809649110110";
   };
-const [countMessage, setCountMessage]=useState(0);
+  const [countMessage, setCountMessage] = useState(0);
   useEffect(() => {
     const token = localStorage.getItem("token");
-    getApi("/message/unread",token)
-    .then((res)=>{
-      setCountMessage(res.data.data)
-    })
-  },[])
+    getApi("/message/unread", token).then((res) => {
+      setCountMessage(res.data.data);
+    });
+  }, []);
   return (
     <div className="pt-[120px] md:pt-[150px] lg:pt-[175px]">
       <div
@@ -239,7 +238,7 @@ const [countMessage, setCountMessage]=useState(0);
                   <AiOutlineBell className="text-SubTextColor text-[30px]" />
                   <div>
                     <div className="bg-MainColor text-CardColor absolute right-[12px] -top-3 flex h-5 w-5 items-center justify-center rounded-full text-[10px]">
-                      0
+                      1
                     </div>
                   </div>
                 </Link>
@@ -440,9 +439,11 @@ const [countMessage, setCountMessage]=useState(0);
                       <MenuButton className="hover:border-BorderColor border-CardColor relative ml-2 flex md:hidden items-center rounded-md border hover:border ">
                         <AiOutlineComment className="text-SubTextColor text-[20px]" />
                         <div>
-                          <div className="bg-MainColor text-CardColor absolute right-[12px] -top-[6px] flex h-4 w-4 items-center justify-center rounded-full text-[10px]">
-                            <p className="text-[10px]">10</p>
-                          </div>
+                          {countMessage > 0 && (
+                            <div className="bg-MainColor text-CardColor absolute right-[12px] -top-[6px] flex h-4 w-4 items-center justify-center rounded-full text-[10px]">
+                              <p className="text-[10px]">{countMessage}</p>
+                            </div>
+                          )}
                         </div>
                       </MenuButton>
                       <MenuList bg="#ecf8f8">
@@ -460,7 +461,7 @@ const [countMessage, setCountMessage]=useState(0);
                   <AiOutlineBell className="text-SubTextColor text-[20px]" />
                   <div>
                     <div className="bg-MainColor text-CardColor absolute right-[12px] -top-[6px] flex h-4 w-4 items-center justify-center rounded-full text-[10px]">
-                      <p className="text-[10px]">10</p>
+                      <p className="text-[10px]">1</p>
                     </div>
                   </div>
                 </Link>
