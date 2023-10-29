@@ -405,9 +405,9 @@ const Cart = () => {
                   <h1 className="text-center mb-2 text-[#ff5b5b] ">Select Your payment method</h1>
                   <RadioGroup onChange={setPaymentName} value={paymentName}>
                     <Stack direction="column">
-                      <Radio value="offline"><img className="rounded-lg h-16"  src="https://i.ibb.co/djdf4tk/Cashondeliveryjpgjpg-15946486664.jpg" alt="" /></Radio>
-                      <Radio value="Bkash"><img className="rounded-lg h-16"  src="https://i.ibb.co/tYcp9LT/bkash-payment-logo.jpg" alt="" /></Radio>
-                      <Radio value="amarpay"><img className="rounded-lg h-16" src="https://i.ibb.co/XjK9Wt8/aamarpay-logo.jpg" alt="" /></Radio>
+                      <Radio size={'lg'} value="offline"><img className="rounded-lg h-16"  src="https://i.ibb.co/djdf4tk/Cashondeliveryjpgjpg-15946486664.jpg" alt="" /></Radio>
+                      <Radio size={'lg'} value="Bkash"><img className="rounded-lg h-16"  src="https://i.ibb.co/tYcp9LT/bkash-payment-logo.jpg" alt="" /></Radio>
+                      <Radio size={'lg'} value="amarpay"><img className="rounded-lg h-16" src="https://i.ibb.co/XjK9Wt8/aamarpay-logo.jpg" alt="" /></Radio>
                     </Stack>
                   </RadioGroup>
                 </div>
