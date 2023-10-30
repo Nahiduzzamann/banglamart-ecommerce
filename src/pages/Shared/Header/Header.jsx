@@ -222,7 +222,9 @@ const Header = () => {
                             <div className="bg-MainColor text-CardColor absolute right-[15px] -top-3 flex h-5 w-5 items-center justify-center rounded-full text-[10px]">
                               {countMessage}
                             </div>
-                          ) : null}
+                          ) : (
+                            null
+                          )}
                         </div>
                       </MenuButton>
                       <MenuList bg="#ecf8f8">
@@ -525,7 +527,9 @@ const ConversationList = ({ user }) => {
   };
   return (
     <div className="max-h-[300px] overflow-y-auto">
-      {conversations?.map((conversation, i) => (
+      {
+      conversations >0? (
+      conversations?.map((conversation, i) => (
         <ConversationCard
           key={i}
           conversation={conversation}
@@ -535,7 +539,14 @@ const ConversationList = ({ user }) => {
           shopName={conversation.product.title}
           handleDeleteConversation={handleDeleteConversation}
         />
-      ))}
+      ))):(<div className="flex flex-col items-center justify-center">
+      <PiSmileySadLight className="text-SubTextColor text-xl"></PiSmileySadLight>
+      <h3 className="text-SubTextColor">
+        Empty Message
+      </h3>
+    </div>)
+      
+      }
     </div>
   );
 };
