@@ -54,11 +54,12 @@ const Header = () => {
   };
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState(null);
   const [loading, setLoading] = useState(false);
   const [reLoad, setReLoad] = useState(null);
   useEffect(() => {
-    setLoading(true);
+    if(searchQuery.length >3){
+      setLoading(true);
 
     getApi(`/product/search?query=${searchQuery}`, null)
       .then((results) => {
@@ -69,6 +70,7 @@ const Header = () => {
         console.log(error);
         setLoading(false);
       });
+    }
   }, [searchQuery, reLoad]);
 
   const handleSearchChange = (e) => {
@@ -169,7 +171,7 @@ const Header = () => {
                     </motion.button>
                   </div>
                 </div>
-                {searchQuery && (
+                {searchResults && (
                   <div className="mr-2 ml-2 md:mr-0 md:ml-0 search-results absolute bg-BorderColor z-10 w-[220px] sm:w-[300px] md:w-[400px] lg:w-[500px] xl:w-[600px] p-2 rounded-md text-SubTextColor max-h-[400px] lg:max-h-[500px] overflow-y-auto">
                     <h1 className="text-center bg-CardColor rounded">
                       Products
