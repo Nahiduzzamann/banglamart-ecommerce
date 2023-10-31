@@ -150,9 +150,9 @@ const ProductDetails = () => {
       actualAmount -= product?.offer;
     }
 
-    if (product?.vat > 0) {
-      actualAmount += (product?.vat / 100) * actualAmount;
-    }
+    // if (product?.vat > 0) {
+    //   actualAmount += (product?.vat / 100) * actualAmount;
+    // }
 
     setTotalPrice(actualAmount);
 
