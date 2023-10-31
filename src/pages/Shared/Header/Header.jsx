@@ -58,18 +58,18 @@ const Header = () => {
   const [loading, setLoading] = useState(false);
   const [reLoad, setReLoad] = useState(null);
   useEffect(() => {
-    if(searchQuery.length >3){
+    if (searchQuery.length > 3) {
       setLoading(true);
 
-    getApi(`/product/search?query=${searchQuery}`, null)
-      .then((results) => {
-        setSearchResults(results.data.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false);
-      });
+      getApi(`/product/search?query=${searchQuery}`, null)
+        .then((results) => {
+          setSearchResults(results.data.data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
+          setLoading(false);
+        });
     }
   }, [searchQuery, reLoad]);
 
@@ -224,9 +224,7 @@ const Header = () => {
                             <div className="bg-MainColor text-CardColor absolute right-[15px] -top-3 flex h-5 w-5 items-center justify-center rounded-full text-[10px]">
                               {countMessage}
                             </div>
-                          ) : (
-                            null
-                          )}
+                          ) : null}
                         </div>
                       </MenuButton>
                       <MenuList bg="#ecf8f8">
@@ -496,7 +494,8 @@ const Header = () => {
 export default Header;
 
 const ConversationList = ({ user }) => {
-  const [conversations, setConversations] = useState(null);
+  const [conversations, setConversations] = useState([]);
+  // console.log(conversations);
   const [update, setUpdate] = useState(null);
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -529,26 +528,24 @@ const ConversationList = ({ user }) => {
   };
   return (
     <div className="max-h-[300px] overflow-y-auto">
-      {
-      conversations >0? (
-      conversations?.map((conversation, i) => (
-        <ConversationCard
-          key={i}
-          conversation={conversation}
-          conversationId={conversation.id}
-          productImage={conversation.product.thumbnail}
-          lastMessage={conversation?.messages[0]?.message}
-          shopName={conversation.product.title}
-          handleDeleteConversation={handleDeleteConversation}
-        />
-      ))):(<div className="flex flex-col items-center justify-center">
-      <PiSmileySadLight className="text-SubTextColor text-xl"></PiSmileySadLight>
-      <h3 className="text-SubTextColor">
-        Empty Message
-      </h3>
-    </div>)
-      
-      }
+      {conversations.length > 0 ? (
+        conversations?.map((conversation, i) => (
+          <ConversationCard
+            key={i}
+            conversation={conversation}
+            conversationId={conversation.id}
+            productImage={conversation.product.thumbnail}
+            lastMessage={conversation?.messages[0]?.message}
+            shopName={conversation.product.title}
+            handleDeleteConversation={handleDeleteConversation}
+          />
+        ))
+      ) : (
+        <div className="flex flex-col items-center justify-center">
+          <PiSmileySadLight className="text-SubTextColor text-xl"></PiSmileySadLight>
+          <h3 className="text-SubTextColor">Empty Message</h3>
+        </div>
+      )}
     </div>
   );
 };
