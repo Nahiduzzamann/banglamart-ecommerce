@@ -131,7 +131,7 @@ const Cart2 = ({ product }) => {
       <div className="inset-0 bg-CardColor absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
         <img
           src={`${url}${product?.thumbnail}`}
-          className="object-fill w-full h-full pb-10"
+          className="object-fill w-full h-full pb-10 p-4"
         />
       </div>
       <div
