@@ -197,7 +197,7 @@ const Cart2 = ({ data }) => {
       <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
         <img
           src={`${url}${product?.thumbnail}`}
-          className="object-cover w-full h-full pb-14 p-4"
+          className="object-cover w-full h-full pb-10 p-4"
         />
       </div>
       <div
@@ -222,7 +222,7 @@ const Cart2 = ({ data }) => {
                 {newPrice.toFixed()} ৳
               </p>
             </div>
-            <Rating
+            {/* <Rating
               initialRating={3.5}
               readonly
               emptySymbol={
@@ -239,7 +239,7 @@ const Cart2 = ({ data }) => {
                   }`}
                 />
               }
-            />
+            /> */}
             <Link
               to={`/productDetails/${product?.id}`}
               className={`relative line-clamp-1 break-all hover:underline ${

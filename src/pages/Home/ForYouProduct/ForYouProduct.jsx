@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { Spinner } from "@chakra-ui/react";
 import Slider from "react-slick/lib/slider";
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
-import Rating from "react-rating";
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+// import Rating from "react-rating";
+// import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 // import { AiOutlineShoppingCart } from "react-icons/ai";
 // import { BsFillCartCheckFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
@@ -243,7 +243,7 @@ const Cart2 = ({ product }) => {
       <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
         <img
           src={`${url}${product?.thumbnail}`}
-          className="object-cover w-full h-full pb-14 p-4"
+          className="object-cover w-full h-full pb-10 p-4"
         />
       </div>
       <div
@@ -268,7 +268,7 @@ const Cart2 = ({ product }) => {
                 {newPrice.toFixed()} ৳
               </p>
             </div>
-            <Rating
+            {/* <Rating
               initialRating={3.5}
               readonly
               emptySymbol={
@@ -285,7 +285,7 @@ const Cart2 = ({ product }) => {
                   }`}
                 />
               }
-            />
+            /> */}
             <Link
               to={`/productDetails/${product?.id}`}
               className={`relative line-clamp-1 break-all hover:underline ${
