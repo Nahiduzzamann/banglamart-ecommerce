@@ -166,15 +166,16 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className=" pt-4 pb-4 bg-CardColor">
+      <div className=" pt-4 pb-4 bg-[#DCDCDC]">
         <div className="md:flex justify-between items-center container mx-auto p-1">
           <p className="text-SubTextColor  md:block hidden">
             &copy; {new Date().getFullYear()} Banglamart E-commerce Ltd. All
             rights reserved.
           </p>
-          <div className="flex items-center">
+          <div className="flex items-center bg-CardColor p-1 md:p-4 rounded-lg">
             <p className="text-TextColor md:text-4xl font-bold">Pay With: </p>
             <div>
+            <p className="text-TextColor text-center md:text-4xl font-bold mb-2">We Accept </p>
               <div className="grid grid-cols-4 md:grid-cols-6 ml-1">
                 <img
                   className="h-8 w-20 md:h-16 md:w-32"
