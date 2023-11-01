@@ -399,7 +399,7 @@ const Cart = () => {
                   <RadioGroup onChange={setPaymentName} value={paymentName}>
                     <Stack direction="column">
                       <Radio size={'lg'} value="offline"><img className="rounded-lg h-16"  src="https://i.ibb.co/djdf4tk/Cashondeliveryjpgjpg-15946486664.jpg" alt="" /></Radio>
-                      <Radio size={'lg'} value="Bkash"><img className="rounded-lg h-16"  src="https://i.ibb.co/tYcp9LT/bkash-payment-logo.jpg" alt="" /></Radio>
+                      <Radio size={'lg'} value="bkash"><img className="rounded-lg h-16"  src="https://i.ibb.co/tYcp9LT/bkash-payment-logo.jpg" alt="" /></Radio>
                       <Radio size={'lg'} value="amarpay"><img className="rounded-lg h-16" src="https://i.ibb.co/XjK9Wt8/aamarpay-logo.jpg" alt="" /></Radio>
                     </Stack>
                   </RadioGroup>
