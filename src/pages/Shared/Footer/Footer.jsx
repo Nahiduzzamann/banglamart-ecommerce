@@ -176,7 +176,7 @@ const Footer = () => {
             <p className="text-TextColor md:text-4xl font-bold">Pay With: </p>
             <div>
             <p className="text-TextColor text-center md:text-4xl font-bold mb-2">We Accept </p>
-              <div className="grid grid-cols-4 md:grid-cols-6 ml-1">
+              <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-7 ml-1">
                 <img
                   className="h-8 w-20 md:h-16 md:w-32"
                   src="https://i.ibb.co/QK77SRH/Trust-bank.png"
