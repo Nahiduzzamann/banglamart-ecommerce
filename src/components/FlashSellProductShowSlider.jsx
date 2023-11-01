@@ -1,8 +1,8 @@
 import Slider from "react-slick/lib/slider";
 import { useEffect, useState } from "react";
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
-import Rating from "react-rating";
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+// import Rating from "react-rating";
+// import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 // import {  AiOutlineShoppingCart } from "react-icons/ai";
 // import { BsFillCartCheckFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
