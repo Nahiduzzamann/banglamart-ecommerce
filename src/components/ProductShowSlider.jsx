@@ -189,12 +189,12 @@ const Cart2 = ({ product }) => {
       to={`/productDetails/${product?.id}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className={`flex-shrink-0 w-[45%] snap-start cursor-pointer group aspect-[228/347]  rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor`}
+      className={`flex-shrink-0 w-[45%] snap-start cursor-pointer group aspect-[228/400] bg-CardColor rounded-xl relative overflow-hidden border border-BorderColor hover:border-MainColor`}
     >
       <div className="inset-0 absolute w-full h-full group-hover:scale-110 ease-in-out duration-300">
         <img
           src={`${url}${product?.thumbnail}`}
-          className="object-cover w-full h-full"
+          className="object-cover w-full h-full pb-14 p-4"
         />
       </div>
       <div

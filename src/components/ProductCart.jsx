@@ -76,7 +76,7 @@ const ProductCart = ({ product }) => {
           
           <img
             src={`${url}${product?.thumbnail}`}
-            className="object-fill w-full h-full pb-14 p-4"
+            className="object-fill w-full h-full pb-10 md:pb-14 p-4 "
           />
         </div>
         <div
