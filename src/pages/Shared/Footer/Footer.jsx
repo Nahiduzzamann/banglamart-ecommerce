@@ -72,21 +72,21 @@ const Footer = () => {
                 </a>
               </div>
               <div className="flex gap-2 mt-4">
-                <a href="">
+                <a href="https://www.facebook.com/banglamart.ecommerce" target="blank">
                   <img
                     className="h-8 w-8 rounded-full"
                     src="https://i.ibb.co/3SxH2yF/Facebook-Logo-2023.png"
                     alt=""
                   />
                 </a>
-                <a href="">
+                <a href="https://www.youtube.com/channel/UCGub85mobLmELhgxNh3HKRA" target="blank">
                   <img
                     className="h-8 w-8 rounded-full"
                     src="https://i.ibb.co/1X7wgdD/6-8.png"
                     alt=""
                   />
                 </a>
-                <a href="">
+                <a href="https://www.linkedin.com/in/banglamart-ecommerce-77058127a/" target="blank">
                   <img
                     className="h-8 w-8 rounded-full"
                     src="https://i.ibb.co/QQw4nJk/linkedin-icon-2048x2048-ya5g47j2.png"
