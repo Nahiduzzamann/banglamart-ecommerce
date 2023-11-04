@@ -72,10 +72,27 @@ const Footer = () => {
                 </a>
               </div>
               <div className="flex gap-2 mt-4">
-                <img className="h-8 w-8 rounded-full" src="https://i.ibb.co/3SxH2yF/Facebook-Logo-2023.png" alt="" />
-                <img className="h-8 w-8 rounded-full" src="https://i.ibb.co/1X7wgdD/6-8.png" alt="" />
-                <img className="h-8 w-8 rounded-full" src="https://i.ibb.co/QQw4nJk/linkedin-icon-2048x2048-ya5g47j2.png" alt="" />
-                
+                <a href="">
+                  <img
+                    className="h-8 w-8 rounded-full"
+                    src="https://i.ibb.co/3SxH2yF/Facebook-Logo-2023.png"
+                    alt=""
+                  />
+                </a>
+                <a href="">
+                  <img
+                    className="h-8 w-8 rounded-full"
+                    src="https://i.ibb.co/1X7wgdD/6-8.png"
+                    alt=""
+                  />
+                </a>
+                <a href="">
+                  <img
+                    className="h-8 w-8 rounded-full"
+                    src="https://i.ibb.co/QQw4nJk/linkedin-icon-2048x2048-ya5g47j2.png"
+                    alt=""
+                  />
+                </a>
               </div>
             </div>
             <div>
@@ -181,7 +198,9 @@ const Footer = () => {
           <div className="flex items-center bg-CardColor p-1 md:p-4 rounded-lg">
             <p className="text-TextColor md:text-4xl font-bold">Pay With: </p>
             <div>
-            <p className="text-TextColor text-center md:text-4xl font-bold mb-2">We Accept </p>
+              <p className="text-TextColor text-center md:text-4xl font-bold mb-2">
+                We Accept{" "}
+              </p>
               <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-7 ml-1">
                 <img
                   className="h-8 w-20 md:h-16 md:w-32"
@@ -258,9 +277,9 @@ const Footer = () => {
                 />
               </div>
               <p className="text-right mt-2 text-SubTextColor  md:hidden block">
-            &copy; {new Date().getFullYear()} Banglamart E-commerce Ltd. All
-            rights reserved.
-          </p>
+                &copy; {new Date().getFullYear()} Banglamart E-commerce Ltd. All
+                rights reserved.
+              </p>
             </div>
           </div>
         </div>
