@@ -71,6 +71,12 @@ const Footer = () => {
                   <p>banglamartecommerce@gmail.com</p>
                 </a>
               </div>
+              <div className="flex gap-2 mt-4">
+                <img className="h-8 w-8 rounded-full" src="https://i.ibb.co/3SxH2yF/Facebook-Logo-2023.png" alt="" />
+                <img className="h-8 w-8 rounded-full" src="https://i.ibb.co/1X7wgdD/6-8.png" alt="" />
+                <img className="h-8 w-8 rounded-full" src="https://i.ibb.co/QQw4nJk/linkedin-icon-2048x2048-ya5g47j2.png" alt="" />
+                
+              </div>
             </div>
             <div>
               <div className="border-b border-b-SubTextColor mb-4">
