@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
   const { user } = useContext(AuthContext);
   const handlePhoneClick = () => {
     window.location.href = "tel:+8809611677639";
@@ -14,15 +16,10 @@ const Footer = () => {
           <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4">
             <div>
               <div className="border-b border-b-SubTextColor mb-4">
-                <h1>ABOUT US</h1>
+                <h1 className="uppercase">{t("aboutUs.aboutUs")}</h1>
               </div>
               <p>
-                <span className="font-bold">Banglamart</span> is the operator of
-                the eCommerce platform intended to provide food, grocery,
-                classifieds, accounting, and inventory solutions. The company
-                platform provides a wide range of food, grocery, electronics,
-                clothing, and other similar products, enabling customers to
-                access all products on one platform.
+              {t("aboutUs.descriptions")}
               </p>
               <div className="flex mt-4">
                 <a
@@ -45,12 +42,12 @@ const Footer = () => {
             </div>
             <div>
               <div className="border-b border-b-SubTextColor mb-4">
-                <h1>CONTACT US</h1>
+                <h1 className="uppercase">{t("contactUs.contactUs")}</h1>
               </div>
               <div className="mb-2">
                 <p className="text-SubTextColor">Address:</p>
                 <p className="text-TextColor">
-                  House-65, Road-2, RK Road,Islambag, Rangpur
+                {t("contactUs.address")}
                 </p>
               </div>
               <div className="mb-2">
@@ -97,62 +94,62 @@ const Footer = () => {
             </div>
             <div>
               <div className="border-b border-b-SubTextColor mb-4">
-                <h1>USEFUL LINKS</h1>
+                <h1 className="uppercase"> {t("usefulLinks.usefulLinks")}</h1>
               </div>
               <div className="flex flex-col">
                 <Link
                   to="/termsConditions"
                   className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
                 >
-                  Terms & Conditions
+                  {t("usefulLinks.Terms")}
                 </Link>
                 <Link
                   className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
                   to="/privacyPolicy"
                 >
-                  Privacy Policy
+                  {t("usefulLinks.Privacy")}
                 </Link>
                 <Link
                   className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
                   to="/sellerPolicy"
                 >
-                  Seller Policy
+                   {t("usefulLinks.Seller")}
                 </Link>
                 <Link
                   className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
                   to="/returnPolicy"
                 >
-                  Return Policy
+                  {t("usefulLinks.return")}
                 </Link>
                 <Link
                   className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
                   to="/supportPolicy"
                 >
-                  Support Policy
+                   {t("usefulLinks.support")}
                 </Link>
                 <Link
                   className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
                   to="/cancellationPolicy"
                 >
-                  Cancellation policy
+                   {t("usefulLinks.cancellation")}
                 </Link>
                 <Link
                   className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
                   to="/faq"
                 >
-                  FAQ
+                  {t("usefulLinks.raq")}
                 </Link>
                 <Link
                   className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
                   to="/blog"
                 >
-                  Blog
+                   {t("usefulLinks.blog")}
                 </Link>
               </div>
             </div>
             <div>
               <div className="border-b border-b-SubTextColor mb-4">
-                <h1>ACCOUNT</h1>
+                <h1 className="uppercase">{t("account.account")}</h1>
               </div>
               <div className="flex flex-col">
                 {user ? (
@@ -169,20 +166,20 @@ const Footer = () => {
                   className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
                   to="/track-order"
                 >
-                  Track Order
+                  {t("account.track")}
                 </Link>
                 <Link
                   className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
                   to="/track-order"
                 >
-                  Order History
+                  {t("account.history")}
                 </Link>
                 {/* <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Affiliating</Link> */}
                 <Link
                   className="mt-4 p-2 text-center rounded-full bg-MainColor hover:bg-MainColorHover text-CardColor shadow-md"
                   to="/seller-form"
                 >
-                  BE A SELLER
+                    {t("beAseller.beAseller")}
                 </Link>
               </div>
             </div>
