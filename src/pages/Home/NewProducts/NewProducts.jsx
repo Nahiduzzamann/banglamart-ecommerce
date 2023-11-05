@@ -3,8 +3,10 @@ import ProductShowSlider from "../../../components/ProductShowSlider";
 import { useSelector } from "react-redux";
 import { Spinner } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const NewProducts = () => {
+  const { t } = useTranslation();
   const encodedData = encodeURIComponent(JSON.stringify("/product/get/new"));
   const [products, setProducts] = useState(null);
   const data = useSelector((state) => state.newProduct.newProduct.data);
@@ -18,14 +20,14 @@ const NewProducts = () => {
     <div className=" mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg">
       <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
         <div className="border-b-[3px] border-b-MainColor ">
-          <h1 className="">New Products</h1>
+          <h1 className="">{t("newProduct.newProduct")}</h1>
         </div>
         {products?.length > 10 && (
           <Link
             to={`/various-products-page?data=${encodedData}`}
             className="mr-5 md:mr-10 pb-1 pt-1 pl-2 pr-2 md:pl-3 md:pr-3 bg-MainColor rounded-full text-CardColor shadow-lg hover:bg-MainColorHover text-sm"
           >
-            View More
+            {t("viewMore.viewMore")}
           </Link>
         )}
       </div>
