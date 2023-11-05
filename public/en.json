@@ -3,7 +3,15 @@
   "header": {
     "number": "+8809649110110",
     "login": "LogIn",
-    "registration": "Registration"
+    "registration": "Registration",
+    "home": "Home",
+    "category": "Categories",
+    "flash":"Flash Sale",
+    "bargaining":"Bargaining Products",
+    "seller": "All Seller",
+    "brand":"Brands",
+    "track":"Track Order",
+    "support":"Support"
   },
   "PrivacyPolicy": {
     "preamble": "PREAMBLE",
@@ -171,4 +179,5 @@
   "beAseller": {
     "beAseller": "BE A SELLER"
   }
+  
 }

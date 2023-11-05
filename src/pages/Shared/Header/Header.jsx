@@ -384,31 +384,31 @@ const Header = () => {
                   className="text-SubTextColor hover:underline hover:text-TextColor"
                   to="/"
                 >
-                  <h2>Home</h2>
+                  <h2>{t("header.home")}</h2>
                 </NavLink>
                 <NavLink
                   className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/category"
                 >
-                  <h2>Categories</h2>
+                  <h2>{t("header.category")}</h2>
                 </NavLink>
                 <NavLink
                   className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/flash-sell"
                 >
-                  <h2>Flash Sale</h2>
+                  <h2>{t("header.flash")}</h2>
                 </NavLink>
                 <NavLink
                   className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/bargaining-products"
                 >
-                  <h2>Bargaining Products</h2>
+                  <h2>{t("header.bargaining")}</h2>
                 </NavLink>
                 <NavLink
                   className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/all-seller"
                 >
-                  <h2>All Seller</h2>
+                  <h2>{t("header.seller")}</h2>
                 </NavLink>
                 {/* <Link className="hover:underline text-SubTextColor hover:text-TextColor" to="/">
                   Affiliating
@@ -418,19 +418,19 @@ const Header = () => {
                   className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/brands"
                 >
-                  <h2>Brands</h2>
+                  <h2>{t("header.brand")}</h2>
                 </NavLink>
                 <NavLink
                   className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/track-order"
                 >
-                  <h2>Track Order</h2>
+                  <h2>{t("header.track")}</h2>
                 </NavLink>
                 <NavLink
                   className="hover:underline text-SubTextColor hover:text-TextColor"
                   to="/support"
                 >
-                  <h2>Support</h2>
+                  <h2>{t("header.support")}</h2>
                 </NavLink>
               </div>
             </div>
