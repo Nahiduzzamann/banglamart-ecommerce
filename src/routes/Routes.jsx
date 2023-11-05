@@ -35,6 +35,7 @@ import BrandProductsPage from "../pages/BrandProductsPage/BrandProductsPage";
 import VariousProductsPage from "../pages/VariousProducts/VariousProducts";
 import SignUpWithPhone from "../pages/PhoneAuthentication/PhoneAuthentication";
 import Search from "../pages/search/Search";
+import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 
 export const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/forgot-password",
+        element: <ForgotPassword></ForgotPassword>,
       },
       {
         path: "/registration",
