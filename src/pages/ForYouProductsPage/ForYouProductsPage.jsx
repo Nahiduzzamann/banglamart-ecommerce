@@ -1,15 +1,13 @@
 import {
-  AiFillFilter,
   AiOutlineDoubleLeft,
   AiOutlineDoubleRight,
 } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { Helmet } from "react-helmet";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import FlashSaleBanner from "../../components/FlashSaleBanner";
-import FilterCart from "../../components/FilterCart";
 import ProductCart from "../../components/ProductCart";
 import EmptyContent from "../../components/EmptyContent";
 import {
