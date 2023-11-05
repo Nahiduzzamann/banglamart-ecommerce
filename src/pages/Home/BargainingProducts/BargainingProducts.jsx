@@ -7,11 +7,13 @@ import { useEffect, useState } from "react";
 import { TbTruckDelivery } from "react-icons/tb";
 import { useSelector } from "react-redux";
 import EmptyContent from "../../../components/EmptyContent";
+import { useTranslation } from "react-i18next";
 // import { postApi } from "../../../apis";
 // import Swal from "sweetalert2";
 // import { AuthContext } from "../../../providers/AuthProvider";
 
 const BargainingProducts = () => {
+  const { t } = useTranslation();
   const [bargainingProducts, setBargainingProducts] = useState([]);
   const data = useSelector(
     (state) => state.bargainingProducts.bargainingProducts?.data
@@ -24,13 +26,13 @@ const BargainingProducts = () => {
     <div className=" mt-4 lg:mt-8 m-1 lg:m-0 bg-[#440a96] rounded-lg p-4">
       <div className="flex pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
         <div className="border-b-[3px] border-b-MainColor ">
-          <h1 className="text-CardColor">Bargaining Products</h1>
+          <h1 className="text-CardColor">{t("header.bargaining")}</h1>
         </div>
         <Link
           to="/bargaining-products"
           className="mr-5 md:mr-10 pb-1 pt-1 pl-2 pr-2 md:pl-3 md:pr-3 bg-MainColor rounded-full text-CardColor shadow-lg hover:bg-MainColorHover text-sm"
         >
-          View More
+          {t("viewMore.viewMore")}
         </Link>
       </div>
       <FlashSaleBanner
