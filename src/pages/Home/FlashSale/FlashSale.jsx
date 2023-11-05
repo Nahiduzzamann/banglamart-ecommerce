@@ -73,7 +73,7 @@ const FlashSale = () => {
             to="flash-sell"
             className="mr-5 md:mr-10 pb-1 pt-1 pl-2 pr-2 md:pl-3 md:pr-3 bg-MainColor rounded-full text-CardColor shadow-lg hover:bg-MainColorHover text-sm"
           >
-            View More
+            {t("viewMore.viewMore")}
           </Link>
         )}
       </div>
