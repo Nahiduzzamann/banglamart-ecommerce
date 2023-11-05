@@ -10,13 +10,14 @@ import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { TbTruckDelivery } from "react-icons/tb";
 import ProductCart from "../../../components/ProductCart";
+import { useTranslation } from "react-i18next";
 // import { postApi } from "../../../apis";
 // import Swal from "sweetalert2";
 // import { AuthContext } from "../../../providers/AuthProvider";
 
 const ForYouProducts = () => {
   const [products, setProducts] = useState(null);
-
+  const { t } = useTranslation();
   const data = useSelector(
     (state) => state.forYouProducts.forYouProducts?.data
   );
@@ -28,14 +29,14 @@ const ForYouProducts = () => {
     <div className=" mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg">
       <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
         <div className="border-b-[3px] border-b-MainColor ">
-          <h1 className="">For You</h1>
+          <h1 className="">  {t("forYou.forYou")}</h1>
         </div>
         {products?.length > 10 && (
           <Link
             to="/for-you-product-page"
             className="mr-5 md:mr-10 pb-1 pt-1 pl-2 pr-2 md:pl-3 md:pr-3 bg-MainColor rounded-full text-CardColor shadow-lg hover:bg-MainColorHover text-sm"
           >
-            View More
+            {t("viewMore.viewMore")}
           </Link>
         )}
       </div>
