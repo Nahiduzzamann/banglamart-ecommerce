@@ -1,11 +1,6 @@
 import { useState } from "react";
 
-const FilterCart = ({ title }) => {
-  const [isChecked, setIsChecked] = useState(false);
-
-  const handleCheckBox = () => {
-    setIsChecked(!isChecked);
-  };
+const FilterCart = ({ title, data,Child }) => {
   return (
     <div className="mb-2">
       <div className="collapse bg-CardColor border border-BorderColor collapse-plus">
@@ -15,24 +10,9 @@ const FilterCart = ({ title }) => {
         </div>
         <div className="collapse-content bg-CardColor">
           <div className="flex flex-col max-h-[250px] overflow-y-auto">
-            <div className="flex items-center mt-2">
-              <div>
-                <input
-                  onClick={handleCheckBox}
-                  type="checkbox"
-                  checked={`${isChecked ? "checkbox" : ""}`}
-                  className="checkbox checkbox-sm"
-                />
-              </div>
-              <p
-                className={`text-SubTextColor ml-2 ${
-                  isChecked && "text-TextColor"
-                }`}
-              >
-                Red
-              </p>
-            </div>
-            
+            {data?.map((doc,i)=>(
+              <Child data={doc} key={i}/>
+            ))}
           </div>
         </div>
       </div>
@@ -41,3 +21,26 @@ const FilterCart = ({ title }) => {
 };
 
 export default FilterCart;
+export const FilterCartData = ({ title, onClick,value }) => {
+  const [isChecked, setIsChecked] = useState(value?value:false);
+
+  const handleCheckBox = () => {
+    setIsChecked(!isChecked);
+    onClick(!isChecked)
+  };
+  return (
+    <div className="flex items-center mt-2">
+      <div>
+        <input
+          onClick={handleCheckBox}
+          type="checkbox"
+          checked={`${isChecked ? "checkbox" : ""}`}
+          className="checkbox checkbox-sm"
+        />
+      </div>
+      <p className={`text-SubTextColor ml-2 ${isChecked && "text-TextColor"}`}>
+        {title}
+      </p>
+    </div>
+  );
+};

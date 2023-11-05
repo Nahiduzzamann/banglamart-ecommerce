@@ -9,7 +9,7 @@ import {
 } from "react-icons/ai";
 import LanguageToggle from "../../../components/LanguageToggle";
 import { useTranslation } from "react-i18next";
-import { Link, NavLink, Navigate } from "react-router-dom";
+import { Link, NavLink, Navigate, useNavigate } from "react-router-dom";
 import Burger from "./Nav/Burger";
 import { motion } from "framer-motion";
 import { CgProfile } from "react-icons/cg";
@@ -36,6 +36,7 @@ import { FaCoins } from "react-icons/fa";
 const Header = () => {
   const { user, logOut, cart } = useContext(AuthContext);
   const url = "https://api.banglamartecommerce.com.bd";
+  const navigate=useNavigate()
   // console.log(user);
   const from = location.state?.from?.pathname || "/";
 
@@ -58,10 +59,10 @@ const Header = () => {
   const [loading, setLoading] = useState(false);
   const [reLoad, setReLoad] = useState(null);
   useEffect(() => {
-    if (searchQuery.length > 3) {
+    if (searchQuery.length > 0) {
       setLoading(true);
 
-      getApi(`/product/search?query=${searchQuery}`, null)
+      getApi(`/product/search?query=${searchQuery}&limit=10`, null)
         .then((results) => {
           setSearchResults(results.data.data);
           setLoading(false);
@@ -78,6 +79,8 @@ const Header = () => {
   };
   const handleSearch = (e) => {
     setReLoad(e.timeStamp);
+    navigate(`/search/${searchQuery}`)
+    setSearchQuery("");
   };
   const handleSearchClose = () => {
     setSearchQuery("");
@@ -171,7 +174,7 @@ const Header = () => {
                     </motion.button>
                   </div>
                 </div>
-                {searchResults && (
+                {searchQuery && (
                   <div className="mr-2 ml-2 md:mr-0 md:ml-0 search-results absolute bg-BorderColor z-10 w-[220px] sm:w-[300px] md:w-[400px] lg:w-[500px] xl:w-[600px] p-2 rounded-md text-SubTextColor max-h-[400px] lg:max-h-[500px] overflow-y-auto">
                     <h1 className="text-center bg-CardColor rounded">
                       Products
@@ -607,7 +610,7 @@ const SearchProductCart = ({ product, handleSearchClose }) => {
   // console.log(product);
 
   const url = "https://api.banglamartecommerce.com.bd";
-
+  const navigate=useNavigate()
   const [newPrice, setNewPrice] = useState(product?.price);
 
   function calculatePercentage(value, percentage) {
@@ -627,7 +630,10 @@ const SearchProductCart = ({ product, handleSearchClose }) => {
   }, [product]);
 
   return (
-    <Link onClick={handleSearchClose} to={`/productDetails/${product?.id}`}>
+    <div onClick={()=>{
+      handleSearchClose()
+      navigate(`/productDetails/${product?.id}`)
+    }} >
       <motion.div
         whileHover={{ scale: 1.03 }}
         className="m-1 lg:m-3 bg-CardColor p-1 rounded shadow shadow-MainColor"
@@ -668,6 +674,6 @@ const SearchProductCart = ({ product, handleSearchClose }) => {
           </div>
         </div>
       </motion.div>
-    </Link>
+    </div>
   );
 };

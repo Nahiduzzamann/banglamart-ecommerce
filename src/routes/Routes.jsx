@@ -34,6 +34,7 @@ import ForYouProductsPage from "../pages/ForYouProductsPage/ForYouProductsPage";
 import BrandProductsPage from "../pages/BrandProductsPage/BrandProductsPage";
 import VariousProductsPage from "../pages/VariousProducts/VariousProducts";
 import SignUpWithPhone from "../pages/PhoneAuthentication/PhoneAuthentication";
+import Search from "../pages/search/Search";
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
       {
         path: "/products/:id",
         element: <Products></Products>,
+      },
+      {
+        path: "/search/:query",
+        element: <Search></Search>,
       },
       {
         path: "/login",
