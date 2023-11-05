@@ -6,11 +6,12 @@ import { fetchFlashSellData } from "../../../services/actions/flashSellDataActio
 import EmptyContent from "../../../components/EmptyContent";
 import FlashSellProductShowSlider from "../../../components/FlashSellProductShowSlider";
 import { getApi } from "../../../apis";
+import { useTranslation } from "react-i18next";
 
 const FlashSale = () => {
   const dispatch = useDispatch();
   const [flashSellInfo, setFlashSellInfo] = useState(null);
-
+  const { t } = useTranslation();
   // console.log(flashSellInfo);
 
   useEffect(() => {
@@ -59,7 +60,7 @@ const FlashSale = () => {
     >
       <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
         <div className="border-b-[3px] border-b-MainColor ">
-          <h1 className="">Flash Sale</h1>
+          <h1 className="">{t("header.flash")}</h1>
         </div>
         <div className={`${flashSellData?.length > 10 || "mr-4"}`}>
           {flashSaleData && flashSaleData.endAt && (
