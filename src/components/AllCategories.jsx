@@ -5,8 +5,10 @@ import SubCategory from "./SubCategories";
 import "./Style/ScrollbarStyles.css";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const AllCategory = () => {
+  const { t } = useTranslation();
   const url = "https://api.banglamartecommerce.com.bd";
 
   // const [categories, setCategories] = useState(null);
@@ -27,7 +29,7 @@ const AllCategory = () => {
   return (
     <div className="relative ">
       <div className="bg-MainColor p-3 rounded-lg">
-        <h2 className="text-CardColor">All Categories</h2>
+        <h2 className="text-CardColor">{t("allCatego.allCatego")}</h2>
       </div>
       <div className="bg-CardColor p-3 lg:h-[364px] xl:h-[390px] 2xl:h-[414px] overflow-y-auto">
         {allCategoriesData ? (
