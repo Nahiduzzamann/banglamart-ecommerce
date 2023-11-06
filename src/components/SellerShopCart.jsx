@@ -3,8 +3,10 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import Rating from "react-rating";
 import { Link, useLocation } from "react-router-dom";
 import { url } from "../apis";
+import { useTranslation } from "react-i18next";
 
 const SellerShopCart = ({ data }) => {
+  const { t } = useTranslation();
   const encodedData = encodeURIComponent(JSON.stringify(data));
  // console.log(data);
   const location = useLocation();
@@ -40,7 +42,7 @@ const SellerShopCart = ({ data }) => {
               to={`/shop-page?data=${encodedData}`}
               className="pl-3 pr-3 pt-1 pb-1 rounded-full text-CardColor bg-MainColor hover:bg-MainColorHover shadow-md shadow-[#77ddfc] text-center"
             >
-              Visit Store
+              {t("visitStore.visitStore")}
             </Link>
           )}
         </div>
