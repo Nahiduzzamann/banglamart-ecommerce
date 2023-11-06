@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
@@ -22,6 +23,7 @@ const Ul = styled.ul`
 `;
 
 const RightNav = ({ open, setOpen }) => {
+  const { t } = useTranslation();
   const handleClose = () => {
     setOpen(false);
   };
@@ -33,28 +35,28 @@ const RightNav = ({ open, setOpen }) => {
           className="text-CardColor hover:text-TextColor"
           to="/"
         >
-          <h3 className="p-2">Home</h3>
+          <h3 className="p-2">{t("header.home")}</h3>
         </NavLink>
         <NavLink
           onClick={handleClose}
           className="text-CardColor hover:text-TextColor"
           to="/flash-sell"
         >
-          <h3 className="p-2">Flash Sale</h3>
+          <h3 className="p-2">{t("header.flash")}</h3>
         </NavLink>
         <NavLink
           onClick={handleClose}
           className="text-CardColor hover:text-TextColor"
           to="bargaining-products"
         >
-          <h3 className="p-2">Bargaining Products</h3>
+          <h3 className="p-2">{t("header.bargaining")}</h3>
         </NavLink>
         <NavLink
           onClick={handleClose}
           className="text-CardColor hover:text-TextColor"
           to="/all-seller"
         >
-          <h3 className="p-2">All Seller</h3>
+          <h3 className="p-2">{t("header.seller")}</h3>
         </NavLink>
         {/* <Link className="text-CardColor hover:text-TextColor" to="/">
         <h3 className="p-2">Affiliating</h3>
@@ -64,28 +66,28 @@ const RightNav = ({ open, setOpen }) => {
           className="text-CardColor hover:text-TextColor"
           to="/category"
         >
-          <h3 className="p-2">Categories</h3>
+          <h3 className="p-2">{t("header.category")}</h3>
         </NavLink>
         <NavLink
           onClick={handleClose}
           className="text-CardColor hover:text-TextColor"
           to="/brands"
         >
-          <h3 className="p-2">Brands</h3>
+          <h3 className="p-2">{t("header.brand")}</h3>
         </NavLink>
         <NavLink
           onClick={handleClose}
           className="text-CardColor hover:text-TextColor"
           to="/track-order"
         >
-          <h3 className="p-2">Track Order</h3>
+          <h3 className="p-2">{t("header.track")}</h3>
         </NavLink>
         <NavLink
           onClick={handleClose}
           className="text-CardColor hover:text-TextColor"
           to="/support"
         >
-          <h3 className="p-2">Support</h3>
+          <h3 className="p-2">{t("header.support")}</h3>
         </NavLink>
       </div>
     </Ul>

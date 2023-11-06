@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import FilterCart from "../../components/FilterCart";
+import FilterCart, { FilterCartData } from "../../components/FilterCart";
 import FlashSaleBanner from "../../components/FlashSaleBanner";
 import {
   AiFillFilter,
@@ -16,16 +16,18 @@ import { Paginated } from "@makotot/paginated";
 import { Button, Center, Grid, Stack } from "@chakra-ui/react";
 
 const Products = () => {
+  const [options, setOptions] = useState(null);
+  const [brand, setBrand] = useState();
+  const [color, setColor] = useState();
   const [products, setProducts] = useState(null);
-  const { id } = useParams();
+  const { query,id } = useParams();
+  // const { id } = useParams();
   // console.log(products);
   const url = "https://api.banglamartecommerce.com.bd";
   useEffect(() => {
     const fetchOptionProducts = async () => {
       try {
-        const response = await fetch(
-          `${url}/product/getProductByOption?optionId=${id}`
-        );
+        const response = await fetch(`${url}/product/search?query=${query}&byBrad=${brand?brand:""}&byOption=${id}&byColor=${color?color:""}`);
         const data = await response.json();
         setProducts(data.data);
       } catch (error) {
@@ -34,8 +36,23 @@ const Products = () => {
     };
 
     fetchOptionProducts();
-  }, [id]);
+  }, [query,brand,color]);
 
+  useEffect(() => {
+    const fetchOption = async () => {
+      try {
+        const response = await fetch(
+          `${url}/product/searchFilter?query=${query}&byOption=${id}`
+        );
+        const data = await response.json();
+        console.log(data);
+        setOptions(data);
+      } catch (error) {
+        console.error("Error fetching instructor classes:", error);
+      }
+    };
+    fetchOption();
+  },[query]);
   const itemsPerPage = 24; // Number of items per page
   const [currentPage, updateCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(null);
@@ -48,6 +65,8 @@ const Products = () => {
   const endIndex = startIndex + itemsPerPage;
 
   const currentProducts = products?.slice(startIndex, endIndex);
+
+
   return (
     <div className="">
       <Helmet>
@@ -65,11 +84,60 @@ const Products = () => {
               </h1>
               <h1 className="text-MainColor">Filters</h1>
             </div>
-            <div>
-              <FilterCart title="filter by color"></FilterCart>
-              <FilterCart title="filter by Brand"></FilterCart>
-              <FilterCart title="filter by Vendors"></FilterCart>
-            </div>
+            {options ? (
+              <div>
+                {options.color?.length > 0 && (
+                  <FilterCart
+                    data={options.color}
+                    title="filter by color"
+                    Child={(e) => <FilterCartData value={e.data.label===color?true:false} onClick={()=>{
+                      setColor(v=>v===e.data.label?undefined:e.data.label)
+                  }} title={e.data.label} />}
+                  ></FilterCart>
+                )}
+                {options.brand?.length > 0 && (
+                  <FilterCart
+                    data={options.brand}
+                    Child={(e) => <FilterCartData value={e.data.id===brand?true:false} onClick={()=>{
+                        setBrand(v=>v===e.data.id?undefined:e.data.id)
+                    }} title={e.data.brandName} />}
+                    title="filter by Brand"
+                  ></FilterCart>
+                )}
+                {options.seller?.length > 0 && (
+                  <FilterCart
+                    data={options.seller}
+                    Child={(e) => <FilterCartData title={e.data.sellerName} />}
+                    title="filter by Seller"
+                  ></FilterCart>
+                )}
+                {options.size?.length > 0 && (
+                  <FilterCart
+                    data={options.size}
+                    Child={(e) => (
+                      <FilterCartData
+                        title={`${e.data.label}: ${e.data.value}`}
+                      />
+                    )}
+                    title="filter by Size"
+                  />
+                )}
+{/* 
+                <FilterCart
+                  data={options.option}
+                  Child={(e) => <FilterCartData title={`${e.data.name}`} />}
+                  title="filter by Option"
+                ></FilterCart> */}
+              </div>
+            ):(
+                <div>
+                    <FilterCart/>
+                    <FilterCart/>
+                    <FilterCart/>
+                    <FilterCart/>
+                    <FilterCart/>
+                </div>
+            )}
           </div>
           <div className="col-span-5 lg:col-span-4">
             <div className="flex justify-between items-center mb-4">

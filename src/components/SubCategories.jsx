@@ -42,7 +42,7 @@ const SubCategory = ({ subCategories }) => {
           options.map((option, i) => {
             
             return (
-              <Link to={`/products/${option.id}`} key={i} className="flex p-1">
+              <Link to={`/products/${option.id}/${option?.name}`} key={i} className="flex p-1">
                 <p className="text-SubTextColor font-semibold hover:text-[#6feb6f] hover:underline tracking-[2px]">
                   {option.name}
                 </p>
