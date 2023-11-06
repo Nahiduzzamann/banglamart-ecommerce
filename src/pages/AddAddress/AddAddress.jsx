@@ -10,6 +10,7 @@ const AddDeliveryAddressForm = () => {
   const { user, setUserState, updateUser } = useContext(AuthContext);
   const [divisions, setDivisions] = useState([]);
   const [districts, setDistricts] = useState([]);
+  const [fullAddress, setFullAddress] = useState('');
   const [subDistricts, setSubDistricts] = useState([]);
   const [unions, setUnions] = useState([]);
   useEffect(() => {
@@ -81,7 +82,7 @@ const AddDeliveryAddressForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const [fullName, setFullName] = useState(user?.name);
+  const [fullName, setFullName] = useState('');
   const [gender, setGender] = useState(user?.gender);
   const [birthDate, setBirthDate] = useState(user?.birthday);
   const [image, setImage] = useState(null);
@@ -96,6 +97,8 @@ const AddDeliveryAddressForm = () => {
       sortedAddressName(subDistricts, user?.address?.subDistrict)
     );
     setSelectedUnion(sortedAddressName(unions, user?.address?.union));
+    setFullName(user?.name)
+    setFullAddress(user?.address?.fullAddress)
   }, [user, user?.address, divisions, districts, subDistricts, unions]);
 
   const handleSubmit = (event) => {
@@ -119,6 +122,7 @@ const AddDeliveryAddressForm = () => {
             district: sortedAddress(districts, selectedDistrict),
             subDistrict: sortedAddress(subDistricts, selectedSubDistrict),
             union: sortedAddress(unions, selectedUnion),
+            fullAddress: fullAddress
           })
         );
         data.append("gender", gender);
@@ -127,9 +131,9 @@ const AddDeliveryAddressForm = () => {
         const token = localStorage.getItem("token");
         setIsLoading(true);
         updateUser("/auth/update", data, token)
-          .then(() => {
+          .then((r) => {
             setIsLoading(false);
-            setUserState(5464);
+            setUserState(r);
             Swal.fire("Updated!", "", "success");
           })
           .catch((error) => {
@@ -281,6 +285,18 @@ const AddDeliveryAddressForm = () => {
             </select>
           </div>
 
+          <div className="mb-4">
+            <label className="block mb-1">Full Address</label>
+            <textarea
+              type="text"
+              name="name"
+              value={fullAddress}
+              onChange={(e) => setFullAddress(e.target.value)}
+              className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md"
+              placeholder="Enter your full address"
+              required
+            />
+          </div>
           <div className="mb-4">
             <label className="block mb-1">Gender</label>
             <div className="flex">
