@@ -45,6 +45,7 @@ import ReviewSection from "../../components/ReviewSection";
 import { PiSmileySadLight } from "react-icons/pi";
 import ReactImageMagnify from "react-image-magnify";
 import socket from "../../socket";
+import ImageZoom from "react-image-zooom";
 
 const ProductDetails = () => {
   const { user, setCartUpdate } = useContext(AuthContext);
@@ -1092,49 +1093,17 @@ const ImageShow = ({ product }) => {
     <div className="flex flex-col  items-center">
       <div className="mb-4 z-10">
         {product?.images ? (
-          // <img
-          //   src={`${url}${product?.images[currentImageIndex]}`}
-          //   className="object-cover h-[500px] w-full"
-          // />
-
-          <div className="object-cover h-[500px] w-full">
-            <ReactImageMagnify
-              enlargedImagePosition="over"
-
-              {...{
-                smallImage: {
-                  isFluidWidth: true,
-                  src: `${url}${product?.images[currentImageIndex]}`,
-                },
-                largeImage: {
-                  src: `${url}${product?.images[currentImageIndex]}`,
-                  width: 1200,
-                  height: 1000,
-                },
-              }}
-            />
-          </div>
+          <ImageZoom
+            src={`${url}${product?.images[currentImageIndex]}`}
+            alt="A image to apply the ImageZoom plugin"
+            zoom="260"
+          />
         ) : (
-          // <img
-          //   src={`${url}${product?.thumbnail}`}
-          //   className="object-cover h-[500px] w-full"
-          // />
-
-          <div className="object-cover h-[500px] w-full">
-            <ReactImageMagnify
-              {...{
-                smallImage: {
-                  isFluidWidth: true,
-                  src: `${url}${product?.thumbnail}`,
-                },
-                largeImage: {
-                  src: `${url}${product?.thumbnail}`,
-                  width: 1200,
-                  height: 1000,
-                },
-              }}
-            />
-          </div>
+          <ImageZoom
+            src={`${url}${product?.thumbnail}`}
+            alt="A image to apply the ImageZoom plugin"
+            zoom="260"
+          />
         )}
       </div>
       <div className="flex flex-wrap space-x-4">
