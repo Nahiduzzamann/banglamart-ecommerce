@@ -56,7 +56,7 @@ const Footer = () => {
                   onClick={handlePhoneClick}
                   className="text-TextColor cursor-pointer"
                 >
-                  +8809649110110
+                 {t("header.number")}
                 </p>
               </div>
               <div>

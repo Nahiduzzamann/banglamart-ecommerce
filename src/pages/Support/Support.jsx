@@ -5,6 +5,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { postApi } from "../../apis";
 import Swal from "sweetalert2";
+import { useTranslation } from "react-i18next";
 
 const initialFormState = {
   title: "",
@@ -15,6 +16,7 @@ const initialFormState = {
 };
 
 const Support = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState(initialFormState);
   const [send, setSent] = useState(false);
   const [phoneError, setPhoneError] = useState("");
@@ -90,15 +92,15 @@ const Support = () => {
     <div className="">
       <div className="container mx-auto p-4 mt-4 lg:mt-12 pb-12 bg-CardColor">
         <h4 className="text-2xl text-center font-bold mb-8 text-SubTextColor">
-          Contact Us
+        {t("contactUs.contactUs")}
         </h4>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <h1 className=" mb-4 text-SubTextColor">Branch Office</h1>
+            <h1 className=" mb-4 text-SubTextColor"> {t("contactUs.branch")}</h1>
             <div className="flex items-center mb-2 text-blue-900">
               <AiOutlinePhone className=" mr-2 text-SubTextColor" />
-              <p onClick={handlePhoneClick} className="text-SubTextColor cursor-pointer">+8809649220220</p>
+              <p onClick={handlePhoneClick} className="text-SubTextColor cursor-pointer">{t("header.number")}</p>
             </div>
             <div className="flex items-center mb-2 text-blue-900">
               <AiOutlineMail className=" mr-2 text-SubTextColor" />
@@ -112,7 +114,7 @@ const Support = () => {
             <div className="flex items-center mb-2 text-blue-900">
               <BiCurrentLocation className=" mr-2 text-SubTextColor" />
               <p className="text-SubTextColor">
-                House-65, Road-2, RK Road,Islambag, Rangpur
+              {t("contactUs.address")}
               </p>
             </div>
             <div className="mt-6 lg:mt-10">
@@ -137,7 +139,7 @@ const Support = () => {
             <h1 className=" mb-4 text-SubTextColor">Head Office</h1>
             <div className="flex items-center mb-2 text-blue-900">
               <AiOutlinePhone className=" mr-2 text-SubTextColor" />
-              <p onClick={handlePhoneClick} className="text-SubTextColor cursor-pointer">+8809649110110</p>
+              <p onClick={handlePhoneClick} className="text-SubTextColor cursor-pointer">{t("header.number")}</p>
             </div>
             <div className="flex items-center mb-2 text-blue-900">
               <AiOutlineMail className=" mr-2 text-SubTextColor" />
@@ -151,7 +153,7 @@ const Support = () => {
             <div className="flex items-center mb-2 text-blue-900">
               <BiCurrentLocation className=" mr-2 text-SubTextColor" />
               <p className="text-SubTextColor">
-              House-65, Road-2, RK Road,Islambag, Rangpur
+              {t("contactUs.address")}
               </p>
             </div>
             <div className="mt-6 lg:mt-10">
