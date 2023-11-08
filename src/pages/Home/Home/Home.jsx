@@ -11,6 +11,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import ForYouProducts from "../ForYouProduct/ForYouProduct";
+import Campaign from "../Campaign/Campaign";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
@@ -18,6 +19,7 @@ const Home = () => {
   return (
     <div>
       <TopBannerSection></TopBannerSection>
+      <Campaign></Campaign>
       <FlashSaleBanner></FlashSaleBanner>
       <div className="container mx-auto ">
         <FlashSale></FlashSale>

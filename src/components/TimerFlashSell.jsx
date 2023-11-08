@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 const TimerFlashSell = ({ flashSaleData }) => {
+  
   const endTimestamp = new Date(flashSaleData?.endAt).getTime(); // Convert endAt to Unix timestamp
 
   const [remainingTime, setRemainingTime] = useState(
