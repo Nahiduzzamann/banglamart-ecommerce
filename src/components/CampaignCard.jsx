@@ -19,7 +19,7 @@ const CampaignCard = ({ data }) => {
   }, [remainingTime,data]);
   console.log(remainingTime);
   return (
-    <div className="flex justify-center items-center bg-CardColor gap-4 p-4 rounded-lg">
+    <div className="flex justify-center items-center bg-CardColor gap-4 p-4 rounded-lg m-2">
       <div className="flex flex-col items-center">
         <img className="h-16 w-40" src={`${url}${data?.image}`} alt="" />
         <h3 className="p-2 text-[#ff4343] font-semibold">Campaign start in</h3>
