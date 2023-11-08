@@ -90,6 +90,13 @@ const Footer = () => {
                     alt=""
                   />
                 </a>
+                <a href="https://www.linkedin.com/in/banglamart-ecommerce-77058127a/" target="blank">
+                  <img
+                    className="h-8 w-8 rounded-full"
+                    src="https://i.ibb.co/x3bMz2t/640px-Instagram-logo-2022-svg.png"
+                    alt=""
+                  />
+                </a>
               </div>
             </div>
             <div>
