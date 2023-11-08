@@ -6,6 +6,7 @@ import {
   AiOutlineDoubleLeft,
   AiOutlineDoubleRight,
 } from "react-icons/ai";
+import { FaArrowsAltH } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import ProductCart from "../../components/ProductCart";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
@@ -13,21 +14,37 @@ import EmptyContent from "../../components/EmptyContent";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { Paginated } from "@makotot/paginated";
-import { Button, Center, Grid, Stack } from "@chakra-ui/react";
+import {
+  Button,
+  Center,
+  Grid,
+  RangeSlider,
+  RangeSliderFilledTrack,
+  RangeSliderThumb,
+  RangeSliderTrack,
+  Stack,
+} from "@chakra-ui/react";
 
 const Products = () => {
   const [options, setOptions] = useState(null);
   const [brand, setBrand] = useState();
   const [color, setColor] = useState();
   const [products, setProducts] = useState(null);
-  const { query,id } = useParams();
-  // const { id } = useParams();
-  // console.log(products);
+  const { query, id } = useParams();
+
+  // Set initial minimum and maximum values
+  const [minValue, setMinValue] = useState(10);
+  const [maxValue, setMaxValue] = useState(30);
+
   const url = "https://api.banglamartecommerce.com.bd";
   useEffect(() => {
     const fetchOptionProducts = async () => {
       try {
-        const response = await fetch(`${url}/product/search?query=${query}&byBrad=${brand?brand:""}&byOption=${id}&byColor=${color?color:""}`);
+        const response = await fetch(
+          `${url}/product/search?query=${query}&byBrad=${
+            brand ? brand : ""
+          }&byOption=${id}&byColor=${color ? color : ""}`
+        );
         const data = await response.json();
         setProducts(data.data);
       } catch (error) {
@@ -36,7 +53,7 @@ const Products = () => {
     };
 
     fetchOptionProducts();
-  }, [query,brand,color]);
+  }, [query, brand, color]);
 
   useEffect(() => {
     const fetchOption = async () => {
@@ -52,7 +69,7 @@ const Products = () => {
       }
     };
     fetchOption();
-  },[query]);
+  }, [query]);
   const itemsPerPage = 24; // Number of items per page
   const [currentPage, updateCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(null);
@@ -66,6 +83,11 @@ const Products = () => {
 
   const currentProducts = products?.slice(startIndex, endIndex);
 
+  // Handle changes to the slider values
+  const handleChange = (newValues) => {
+    setMinValue(newValues[0]);
+    setMaxValue(newValues[1]);
+  };
 
   return (
     <div className="">
@@ -84,23 +106,58 @@ const Products = () => {
               </h1>
               <h1 className="text-MainColor">Filters</h1>
             </div>
+            <div className="bg-CardColor p-2 rounded-lg mb-2">
+              <h3 className="text-center mb-1 font-semibold">Price Range</h3>
+              <RangeSlider
+                aria-label={["min", "max"]}
+                defaultValue={[minValue, maxValue]}
+                onChange={handleChange}
+              >
+                <RangeSliderTrack>
+                  <RangeSliderFilledTrack />
+                </RangeSliderTrack>
+                <RangeSliderThumb index={0} />
+                <RangeSliderThumb index={1} />
+              </RangeSlider>
+              <div className="flex justify-evenly items-center">
+                <div className="p-1">{minValue}৳</div>
+                <FaArrowsAltH></FaArrowsAltH>
+                <div>{maxValue}৳</div>
+              </div>
+            </div>
             {options ? (
               <div>
                 {options.color?.length > 0 && (
                   <FilterCart
                     data={options.color}
                     title="filter by color"
-                    Child={(e) => <FilterCartData value={e.data.label===color?true:false} onClick={()=>{
-                      setColor(v=>v===e.data.label?undefined:e.data.label)
-                  }} title={e.data.label} />}
+                    Child={(e) => (
+                      <FilterCartData
+                        value={e.data.label === color ? true : false}
+                        onClick={() => {
+                          setColor((v) =>
+                            v === e.data.label ? undefined : e.data.label
+                          );
+                        }}
+                        title={e.data.label}
+                      />
+                    )}
                   ></FilterCart>
                 )}
                 {options.brand?.length > 0 && (
                   <FilterCart
                     data={options.brand}
-                    Child={(e) => <FilterCartData value={e.data.id===brand?true:false} onClick={()=>{
-                        setBrand(v=>v===e.data.id?undefined:e.data.id)
-                    }} title={e.data.brandName} />}
+                    Child={(e) => (
+                      <FilterCartData
+                        value={e.data.id === brand ? true : false}
+                        onClick={() => {
+                          setBrand((v) =>
+                            v === e.data.id ? undefined : e.data.id
+                          );
+                        }}
+                        title={e.data.brandName}
+                      />
+                    )}
                     title="filter by Brand"
                   ></FilterCart>
                 )}
@@ -122,21 +179,21 @@ const Products = () => {
                     title="filter by Size"
                   />
                 )}
-{/* 
+                {/* 
                 <FilterCart
                   data={options.option}
                   Child={(e) => <FilterCartData title={`${e.data.name}`} />}
                   title="filter by Option"
                 ></FilterCart> */}
               </div>
-            ):(
-                <div>
-                    <FilterCart/>
-                    <FilterCart/>
-                    <FilterCart/>
-                    <FilterCart/>
-                    <FilterCart/>
-                </div>
+            ) : (
+              <div>
+                <FilterCart />
+                <FilterCart />
+                <FilterCart />
+                <FilterCart />
+                <FilterCart />
+              </div>
             )}
           </div>
           <div className="col-span-5 lg:col-span-4">
