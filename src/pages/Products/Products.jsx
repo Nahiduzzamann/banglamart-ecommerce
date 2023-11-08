@@ -114,7 +114,7 @@ const Products = () => {
               <h1 className="text-MainColor">Filters</h1>
             </div>
             {/* price range start  */}
-            {products && (
+            {min === 43955677 || (
               <div className="bg-CardColor p-2 pl-6 pr-6 rounded-lg mb-2 border border-BorderColor">
                 <h3 className="text-center mb-1 font-semibold">Price Range</h3>
                 <RangeSlider
