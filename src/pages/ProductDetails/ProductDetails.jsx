@@ -943,7 +943,7 @@ const ProductDetails = () => {
           </div>
           <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
             <h1 className="text-center">{product?.title}</h1>
-            <h2 dangerouslySetInnerHTML={{ __html: htmlContent }}></h2>
+            <h1 className="" dangerouslySetInnerHTML={{ __html: htmlContent }}></h1>
           </div>
         </div>
       </div>

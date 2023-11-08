@@ -17,7 +17,7 @@ const CampaignCard = ({ data }) => {
       clearInterval(interval);
     };
   }, [remainingTime,data]);
-  console.log(remainingTime);
+//   console.log(remainingTime);
   return (
     <div className="flex justify-center items-center bg-CardColor gap-4 p-4 rounded-lg m-2">
       <div className="flex flex-col items-center">

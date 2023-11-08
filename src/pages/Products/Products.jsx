@@ -33,8 +33,10 @@ const Products = () => {
   const { query, id } = useParams();
 
   // Set initial minimum and maximum values
-  const [minValue, setMinValue] = useState(10);
-  const [maxValue, setMaxValue] = useState(30);
+  const [minValue, setMinValue] = useState(0);
+  const [maxValue, setMaxValue] = useState(0);
+  const [min, setMin] = useState(0);
+  const [max, setMax] = useState(0);
 
   const url = "https://api.banglamartecommerce.com.bd";
   useEffect(() => {
@@ -43,17 +45,19 @@ const Products = () => {
         const response = await fetch(
           `${url}/product/search?query=${query}&byBrad=${
             brand ? brand : ""
-          }&byOption=${id}&byColor=${color ? color : ""}`
+          }&byOption=${id}&byColor=${color ? color : ""}&byPriceFrom=${minValue ? minValue : ""}&byPriceTo=${maxValue ? maxValue : ""}`
         );
         const data = await response.json();
         setProducts(data.data);
+        
       } catch (error) {
         console.error("Error fetching instructor classes:", error);
       }
     };
 
     fetchOptionProducts();
-  }, [query, brand, color]);
+  }, [query, brand, color,minValue,maxValue]);
+
 
   useEffect(() => {
     const fetchOption = async () => {
@@ -62,7 +66,10 @@ const Products = () => {
           `${url}/product/searchFilter?query=${query}&byOption=${id}`
         );
         const data = await response.json();
-        console.log(data);
+        setMin(data.minPrice)
+        setMax(data.maxPrice)
+        setMinValue(data.minPrice)
+        setMaxValue(data.maxPrice)
         setOptions(data);
       } catch (error) {
         console.error("Error fetching instructor classes:", error);
@@ -88,7 +95,7 @@ const Products = () => {
     setMinValue(newValues[0]);
     setMaxValue(newValues[1]);
   };
-
+console.log(minValue,maxValue);
   return (
     <div className="">
       <Helmet>
@@ -106,11 +113,13 @@ const Products = () => {
               </h1>
               <h1 className="text-MainColor">Filters</h1>
             </div>
+            {/* price range start  */}
             <div className="bg-CardColor p-2 rounded-lg mb-2">
               <h3 className="text-center mb-1 font-semibold">Price Range</h3>
               <RangeSlider
                 aria-label={["min", "max"]}
                 defaultValue={[minValue, maxValue]}
+                min={min} max={max}
                 onChange={handleChange}
               >
                 <RangeSliderTrack>
@@ -125,6 +134,7 @@ const Products = () => {
                 <div>{maxValue}৳</div>
               </div>
             </div>
+            {/* price range end  */}
             {options ? (
               <div>
                 {options.color?.length > 0 && (
