@@ -34,7 +34,7 @@ import { PiSmileySadLight } from "react-icons/pi";
 import { deleteApi, getApi } from "../../../apis";
 import { FaCoins } from "react-icons/fa";
 const Header = () => {
-  const { user, logOut, cart } = useContext(AuthContext);
+  const { user, logOut, cart,language } = useContext(AuthContext);
   const url = "https://api.banglamartecommerce.com.bd";
   const navigate=useNavigate()
   // console.log(user);
@@ -256,7 +256,7 @@ const Header = () => {
                     <div className="bg-MainColor text-CardColor absolute right-[35px] -top-3 flex h-5 w-5 items-center justify-center rounded-full text-[10px]">
                       {user ? (cart?.length > 9 ? "9+" : cart?.length) : "0"}
                     </div>
-                    <p className=" text-SubTextColor">Cart</p>
+                    <p className=" text-SubTextColor">{language ? 'Cart':'ঝুরি'}</p>
                   </div>
                 </Link>
 
@@ -283,7 +283,7 @@ const Header = () => {
                           >
                             <CgProfile className="text-[18px] text-SubTextColor mr-2" />
 
-                            <h3 className="hover:underline">Profile</h3>
+                            <h3 className="hover:underline">{language ? 'Profile':'প্রফাইল'}</h3>
                             <FaCoins className="ml-4 mr-1 text-[16px] text-[#ffdb3a]" />
                             <p className="text-[#ffdb3a]">{user?.coin}</p>
                           </Link>
@@ -296,7 +296,7 @@ const Header = () => {
                               target="blank"
                             >
                               <TbUserShield className="text-[18px] text-SubTextColor mr-2" />
-                              <h3 className="hover:underline">Admin Panel</h3>
+                              <h3 className="hover:underline">{language ? 'Admin Panel':'এডমিন পেনেল'}</h3>
                             </a>
                           </MenuItem>
                         ) : (
@@ -309,7 +309,7 @@ const Header = () => {
                           >
                             <TbListDetails className="text-[18px] text-SubTextColor mr-2" />
 
-                            <h3 className="hover:underline">My Orders</h3>
+                            <h3 className="hover:underline">{language ? 'My Orders':'মাই অরডার'}</h3>
                           </Link>
                         </MenuItem>
                         {/* <MenuItem>
@@ -329,7 +329,7 @@ const Header = () => {
                           >
                             <TbTruckDelivery className="text-[18px] text-SubTextColor mr-2" />
                             <h3 className="hover:underline">
-                              Delivery Address
+                            {language ? 'Delivery Address':'ডেলিভারি ঠিকানা'}
                             </h3>
                           </Link>
                         </MenuItem>
@@ -340,7 +340,7 @@ const Header = () => {
                               className="hover:underline"
                               onClick={handleLogOut}
                             >
-                              Log out
+                            {language ? 'Log Out':'লগ আউট'}
                             </h3>
                           </Link>
                         </MenuItem>
@@ -481,7 +481,7 @@ const Header = () => {
                         {cart?.length > 9 ? "9+" : cart?.length}
                       </p>
                     </div>
-                    <p className=" text-SubTextColor">Cart</p>
+                    <p className=" text-SubTextColor">{language ? 'Cart':'ঝুরি'}</p>
                   </div>
                 </Link>
                 <LanguageToggle></LanguageToggle>
