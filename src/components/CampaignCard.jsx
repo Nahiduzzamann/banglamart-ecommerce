@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { url } from "../apis";
 import { useTranslation } from "react-i18next";
+import { AuthContext } from "../providers/AuthProvider";
 
 const CampaignCard = ({ data }) => {
+  const { language } = useContext(AuthContext);
+
   const {t} = useTranslation()
   //   const startTimestamp = new Date(data?.startAt).getTime();
 
@@ -32,25 +35,25 @@ const CampaignCard = ({ data }) => {
             <span className="text-lg font-mono">
               {(remainingTime / 86400).toFixed(0)}
             </span>
-            <span className="text-lg font-mono">days</span>
+            <span className="text-lg font-mono">{language? 'days':'দিন'}</span>
           </div>
           <div className="flex flex-col p-1 bg-neutral rounded-box text-neutral-content">
             <span className="text-lg font-mono">
               {((remainingTime / 3600) % 24).toFixed(0)}
             </span>
-            <span className="text-lg font-mono">hours</span>
+            <span className="text-lg font-mono line-clamp-1">{language? 'hours':'ঘন্টা'}</span>
           </div>
           <div className="flex flex-col p-1 bg-neutral rounded-box text-neutral-content">
             <span className="text-lg font-mono">
               {((remainingTime / 60) % 60).toFixed(0)}
             </span>
-            <span className="text-lg font-mono"> min</span>
+            <span className="text-lg font-mono"> {language? 'min':'মিন'}</span>
           </div>
           <div className="flex flex-col items-center pt-3 bg-neutral rounded-box text-neutral-content">
             <span className="countdown font-mono text-lg">
               <span style={{ "--value": remainingTime % 60 }}></span>
             </span>
-            <span className="text-lg font-mono"> sec</span>
+            <span className="text-lg font-mono"> {language? 'sec':'সেক'}</span>
           </div>
         </div>
       </div>
