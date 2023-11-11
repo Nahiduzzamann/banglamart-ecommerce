@@ -62,6 +62,7 @@ const ForYouProducts = () => {
 export default ForYouProducts;
 
 const ProductShowSlider = ({ products }) => {
+ 
   // console.log(products);
   const totalSlides = products?.length || 1;
   const [mainSlider, setMainSlider] = useState();
@@ -181,6 +182,7 @@ const ProductShowSlider = ({ products }) => {
 };
 
 const Cart2 = ({ product }) => {
+  const { t } = useTranslation();
   const url = "https://api.banglamartecommerce.com.bd";
   // const { user, setCartUpdate } = useContext(AuthContext);
   // const navigate = useNavigate();
@@ -351,7 +353,7 @@ const Cart2 = ({ product }) => {
       </div>
       {product.percentage && (
         <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-r-full top-2 p-1">
-          <p className="text-xs text-[#fc3e3e] mr-1">OFF</p>
+          <p className="text-xs text-[#fc3e3e] mr-1">{t("off")}</p>
           <p className="text-sm text-CardColor p-1 bg-[#fc3e3e] rounded-full">
             {product.offer}%
           </p>
@@ -362,7 +364,7 @@ const Cart2 = ({ product }) => {
           <TbTruckDelivery className="text-MainColor text-[25px] ml-1 mr-1"></TbTruckDelivery>
 
           <p className="text-sm text-CardColor p-1 bg-MainColor rounded-full">
-            off
+            {t("off")}
           </p>
         </div>
       ) : (
