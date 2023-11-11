@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import { getApi, postApi } from "../../apis";
 
 const SignUp = () => {
-  const { signInWithGoogle, createUser, setUserState } =
+  const { signInWithGoogle, createUser, setUserState ,language} =
     useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -134,31 +134,31 @@ const SignUp = () => {
         <title>Sign Up | Banglamart E-commerce</title>
       </Helmet>
       <div className="w-full max-w-md p-6 bg-BackgroundColor rounded-md shadow-lg m-4 ld:m-0">
-        <h2 className="text-2xl font-semibold text-center mb-6">SignUp</h2>
+        <h2 className="text-2xl font-semibold text-center mb-6">{language? 'Sign Up':'সাইন আপ'}</h2>
 
         <form onSubmit={handleSubmit}>
           <div className="mb-2 relative">
             <label className="block font-medium mb-2 text-SubTextColor">
-              Full Name
+            {language? 'Full Name':'পুরো নাম'}
             </label>
             <input
               type="text"
               name="name"
               className="input input-bordered w-full pr-10"
-              placeholder="Enter your Name"
+              placeholder={language? 'Full Name':'পুরো নাম'}
               value={formData.name}
               onChange={handleChange}
               required
             />
           </div>
           <label className="block font-medium mb-2 text-SubTextColor">
-            Email
+          {language? 'Email':'ইমেইল'}
           </label>
           <input
             type="email"
             name="email"
             className="input input-bordered w-full pr-10 mb-4"
-            placeholder="Enter your Email Address"
+            placeholder= {language? 'Email':'ইমেইল'}
             value={formData.email}
             onChange={handleChange}
             required
@@ -168,13 +168,13 @@ const SignUp = () => {
               htmlFor="password"
               className="block font-medium mb-2 text-SubTextColor"
             >
-              Password
+              {language? 'Password':'পাসওয়ার্ড'}
             </label>
             <input
               type="password"
               id="password"
               className="input input-bordered w-full"
-              placeholder="Enter your password"
+              placeholder= {language? 'Password':'পাসওয়ার্ড'}
               name="password"
               value={formData.password}
               onChange={handleChange}
@@ -186,13 +186,13 @@ const SignUp = () => {
               htmlFor="confirmPassword"
               className="block font-medium mb-2 text-SubTextColor"
             >
-              Confirm Password
+               {language? 'Confirm Password':'কনফার্ম পাসওয়ার্ড'}
             </label>
             <input
               type="password"
               id="confirmPassword"
               className="input input-bordered w-full"
-              placeholder="Confirm your password"
+              placeholder={language? 'Confirm Password':'কনফার্ম পাসওয়ার্ড'}
               name="confirmPassword"
               onChange={handleChange}
               required
@@ -216,7 +216,7 @@ const SignUp = () => {
             {isLoading ? (
               <span className="loading loading-bars loading-md"></span>
             ) : (
-              "Register"
+              language? 'Register':'রেজিস্টার'
             )}
           </motion.button>
         </form>
@@ -234,7 +234,7 @@ const SignUp = () => {
             ) : (
               <div className="flex justify-center items-center">
                 <AiOutlineGoogle className="text-2xl mr-1" />
-                <h2>Sign Up with Google</h2>
+                <h2>{language? 'SignUp With Google':'গুগল সাইন আপ'}</h2>
               </div>
             )}
           </motion.button>
@@ -249,19 +249,19 @@ const SignUp = () => {
               ) : (
                 <div className="flex justify-center items-center">
                   <AiFillPhone className="text-2xl mr-1" />
-                  <h2>Sign Up with Phone</h2>
+                  <h2>{language? 'SignUp With Phone':'ফোন সাইন আপ'}</h2>
                 </div>
               )}
             </motion.button>
           </Link>
 
           <p className="mt-10 text-center">
-            Already have an account?{" "}
+          {language? 'Already have an account?':'একাউন্ট থাকলে লগিন করুন'}{" "}
             <Link
               to="/login"
               className="text-MainColor hover:text-MainColorHover hover:underline"
             >
-              <h3>Login here</h3>
+              <h3>{language? 'Login here':'লগিন করুন'}</h3>
             </Link>
           </p>
         </div>
