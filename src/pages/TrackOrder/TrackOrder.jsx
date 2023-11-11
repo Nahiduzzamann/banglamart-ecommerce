@@ -13,7 +13,9 @@ import { getApi } from "../../apis";
 import { TbReceiptRefund } from "react-icons/tb";
 import Swal from "sweetalert2";
 import { PiSmileySadLight } from "react-icons/pi";
+import { useTranslation } from "react-i18next";
 const TrackOrder = () => {
+  const {t}=useTranslation()
   const url = "https://api.banglamartecommerce.com.bd";
   const [loading, setLoading] = useState(false);
   const [loading2, setLoading2] = useState(false);
@@ -166,7 +168,7 @@ const TrackOrder = () => {
       </Helmet>
       <div className=" p-6 bg-CardColor rounded-md shadow-md">
         <h2 className="text-2xl font-semibold text-center mb-6 text-SubTextColor">
-          Track Your Order
+          {t('header.track')}
         </h2>
         <div className="mb-4 flex flex-wrap justify-center">
           {deliveryStates.map((state) => (
@@ -256,7 +258,7 @@ const TrackOrder = () => {
                           className="btn btn-info text-CardColor"
                           onClick={() => handleCancelOrder(order.id)}
                         >
-                          Cancel Order
+                          {t("cancelOrder") }
                         </motion.button>
                       )}
                     </div>
@@ -274,7 +276,7 @@ const TrackOrder = () => {
                           className="btn btn-info text-CardColor"
                           onClick={() => handleRefund(order.id)}
                         >
-                          Refund Request
+                          {t("refundRequest") }
                         </motion.button>
                       )}
                     </div>

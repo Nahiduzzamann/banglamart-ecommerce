@@ -1,5 +1,4 @@
 {
-  "heading": "You will build the roof, calculate the construction materials yourself easily.",
   "header": {
     "number": "+8809649110110",
     "login": "LogIn",
@@ -211,6 +210,12 @@
   "off":"Off",
   "allseller":"All Seller",
   "allsellerBigBtn":"Go Your Panel and Add Your Product!",
-  "choseBrand":"Choose Your Favorite Brand"
+  "choseBrand":"Choose Your Favorite Brand",
+  "cancelOrder":"Cancel Order",
+  "refundRequest":"Refund Request",
+  "headOffice": "Head Office",
+  "location": "Location",
+  "sendUsMsg":"Send Us Message",
+  "send":"SEND"
   
 }

@@ -1,11 +1,12 @@
 import emailjs from "@emailjs/browser";
 import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
 import { BiCurrentLocation } from "react-icons/bi";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import { postApi } from "../../apis";
 import Swal from "sweetalert2";
 import { useTranslation } from "react-i18next";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const initialFormState = {
   title: "",
@@ -16,6 +17,7 @@ const initialFormState = {
 };
 
 const Support = () => {
+  const { language } = useContext(AuthContext);
   const { t } = useTranslation();
   const [formData, setFormData] = useState(initialFormState);
   const [send, setSent] = useState(false);
@@ -118,7 +120,7 @@ const Support = () => {
               </p>
             </div>
             <div className="mt-6 lg:mt-10">
-              <h1 className=" text-SubTextColor">Location</h1>
+              <h1 className=" text-SubTextColor">{t("location")}</h1>
               <div className="mt-2">
                 <iframe
                   title="Google Maps"
@@ -136,7 +138,7 @@ const Support = () => {
           </div>
 
           <div>
-            <h1 className=" mb-4 text-SubTextColor">Head Office</h1>
+            <h1 className=" mb-4 text-SubTextColor">{t("headOffice")}</h1>
             <div className="flex items-center mb-2 text-blue-900">
               <AiOutlinePhone className=" mr-2 text-SubTextColor" />
               <p onClick={handlePhoneClick} className="text-SubTextColor cursor-pointer">{t("header.number")}</p>
@@ -158,14 +160,14 @@ const Support = () => {
             </div>
             <div className="mt-6 lg:mt-10">
               {/* Send us a message section */}
-              <h1 className=" mb-4 text-SubTextColor">Send us message</h1>
+              <h1 className=" mb-4 text-SubTextColor">{t("sendUsMsg")}</h1>
               <form onSubmit={sendEmail}>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="Enter Your Name"
+                  placeholder={`${ language ? 'Enter Your Name':'আপনার নাম'} `}
                   required
                   className="bg-BackgroundColor rounded-md w-full p-2 mb-4"
                 />
@@ -175,7 +177,7 @@ const Support = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="Your Phone Number"
+                    placeholder={`${ language ? 'Your Phone Number':'আপনার নাম্বার'} `}
                     required
                     className="bg-BackgroundColor rounded-md w-full p-2 "
                   />
@@ -187,7 +189,7 @@ const Support = () => {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="Your Email"
+                  placeholder={`${ language ? 'Your Email':'আপনার ইমেইল'} `}
                   className="bg-BackgroundColor rounded-md w-full p-2 mb-4 mt-4"
                 />
                 <input
@@ -195,7 +197,7 @@ const Support = () => {
                   name="title"
                   value={formData.title}
                   onChange={handleChange}
-                  placeholder="Title"
+                  placeholder={`${ language ? 'Title':'উদ্দেশ্য'} `}
                   required
                   className="bg-BackgroundColor rounded-md w-full p-2 mb-4"
                 />
@@ -203,7 +205,7 @@ const Support = () => {
                   name="description"
                   value={formData.description}
                   onChange={handleChange}
-                  placeholder="Description"
+                  placeholder={`${ language ? 'Description':'বর্ণনা'} `}
                   className="bg-BackgroundColor rounded-md w-full p-2 mb-4 "
                   rows="4"
                 ></textarea>
@@ -212,7 +214,7 @@ const Support = () => {
                     disabled
                     className="text-CardColor btn btn-info rounded"
                   >
-                    Send
+                   {t('send')}
                   </button>
                 ) : (
                   <motion.button
@@ -221,7 +223,7 @@ const Support = () => {
                     type="submit"
                     className="text-CardColor btn btn-info rounded"
                   >
-                    {send ? "Sending.." : "Send"}
+                    {send ? "Sending.." : ` ${t('send')}`}
                   </motion.button>
                 )}
               </form>
