@@ -42,7 +42,7 @@ const SignUp = () => {
     const name = form.name.value;
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
-    const passwordRegex = /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[!@#$%^&*]).{6,}$/;
+    // const passwordRegex = /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[!@#$%^&*]).{6,}$/;
 
     if (
       name.trim() === "" ||
@@ -55,12 +55,15 @@ const SignUp = () => {
     } else if (password.length < 6) {
       // Password length error
       setErrorMessage("Password must be at least 6 characters long");
-    } else if (!passwordRegex.test(password)) {
-      // Password requirements error
-      setErrorMessage(
-        "Password must contain at least one capital letter, one special character, and one digit"
-      );
-    } else if (password !== confirmPassword) {
+    } 
+    // else if (!passwordRegex.test(password)) {
+    //   // Password requirements error
+    //   setErrorMessage(
+    //     "Password must contain at least one capital letter, one special character, and one digit"
+    //   );
+    // } 
+    
+    else if (password !== confirmPassword) {
       // Password mismatch error
       setErrorMessage("Passwords do not match");
     } else {

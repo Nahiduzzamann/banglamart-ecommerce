@@ -7,7 +7,7 @@ import { FaUserEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
 const url = "https://api.banglamartecommerce.com.bd";
 const AddDeliveryAddressForm = () => {
-  const { user, setUserState, updateUser } = useContext(AuthContext);
+  const { user, setUserState, updateUser,language } = useContext(AuthContext);
   const [divisions, setDivisions] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [fullAddress, setFullAddress] = useState('');
@@ -153,7 +153,7 @@ const AddDeliveryAddressForm = () => {
         <title>Add address | Banglamart E-commerce</title>
       </Helmet>
       <div className="">
-        <h1 className="font-semibold mb-4">Update Your Profile</h1>
+        <h1 className="font-semibold mb-4">{language? 'Update your profile':'আপনার প্রোফাইল আপডেট করুন'}</h1>
         <form
           className="bg-white p-6 rounded shadow-xl"
           onSubmit={handleSubmit}
@@ -199,7 +199,7 @@ const AddDeliveryAddressForm = () => {
           </div>
 
           <div className="mb-4">
-            <label className="block mb-1">Full Name</label>
+            <label className="block mb-1">{language? 'Full Name':'পুরো নাম'}</label>
             <input
               type="text"
               name="name"
@@ -212,14 +212,14 @@ const AddDeliveryAddressForm = () => {
           </div>
 
           <div className="relative mb-4">
-            <label className="block mb-1">Division</label>
+            <label className="block mb-1">{language? 'Division':'বিভাগ'}</label>
             <select
               required
               value={selectedDivision}
               onChange={(e) => setSelectedDivision(e.target.value)}
               className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md pr-10"
             >
-              <option value="">Select Division</option>
+              <option value="">{language? 'Select Division':'বিভাগ দিন'}</option>
               {divisions.map((division) => (
                 <option key={division.id} value={division.id}>
                   {division.name}
@@ -229,14 +229,14 @@ const AddDeliveryAddressForm = () => {
           </div>
 
           <div className="relative mb-4">
-            <label className="block mb-1">District</label>
+            <label className="block mb-1">{language? 'District':'জেলা'}</label>
             <select
               required
               value={selectedDistrict}
               onChange={(e) => setSelectedDistrict(e.target.value)}
               className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md pr-10"
             >
-              <option value="">Select District</option>
+              <option value="">{language? 'Select District':'জেলা দিন'}</option>
               {districts
                 .filter((d) => d.divisionId.match(selectedDivision))
                 .map((district) => (
@@ -248,14 +248,14 @@ const AddDeliveryAddressForm = () => {
           </div>
 
           <div className="relative mb-4">
-            <label className="block mb-1">Sub Districts</label>
+            <label className="block mb-1">{language? 'Sub District':'উপ জেলা'}</label>
             <select
               required
               value={selectedSubDistrict}
               onChange={(e) => setSelectedSubDistrict(e.target.value)}
               className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md pr-10"
             >
-              <option value="">Select Sub-district</option>
+              <option value="">{language? 'Select Sub District':'উপ জেলা দিন'}</option>
               {subDistricts
                 .filter((sd) => sd.districtId.match(selectedDistrict))
                 .map((subDistrict) => (
@@ -267,14 +267,14 @@ const AddDeliveryAddressForm = () => {
           </div>
 
           <div className="relative mb-4">
-            <label className="block mb-1">Union</label>
+            <label className="block mb-1">{language? 'Union':'ইউনিঅন'}</label>
             <select
               required
               value={selectedUnion}
               onChange={(e) => setSelectedUnion(e.target.value)}
               className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md pr-10"
             >
-              <option value="">Select Union</option>
+              <option value="">{language? 'Union Union':'ইউনিঅন দিন'}</option>
               {unions
                 .filter((u) => u.subDistrictId.match(selectedSubDistrict))
                 .map((union) => (
@@ -286,7 +286,7 @@ const AddDeliveryAddressForm = () => {
           </div>
 
           <div className="mb-4">
-            <label className="block mb-1">Full Address</label>
+            <label className="block mb-1">{language? 'Full Address':'পুরো ঠিকানা'}</label>
             <textarea
               type="text"
               name="name"
@@ -309,7 +309,7 @@ const AddDeliveryAddressForm = () => {
                   onChange={() => setGender("Male")}
                   className="mr-1"
                 />
-                Male
+                {language? 'Male':'ছেলে'}
               </label>
               <label>
                 <input
@@ -320,13 +320,13 @@ const AddDeliveryAddressForm = () => {
                   onChange={() => setGender("Female")}
                   className="mr-1"
                 />
-                Female
+                {language? 'Female':'মেয়ে'}
               </label>
             </div>
           </div>
 
           <div className="mb-4">
-            <label className="block mb-1">Birth Date</label>
+            <label className="block mb-1">{language? 'Birth Date':'জন্মদিন'}</label>
             <input
               type="date"
               name="birthday"
@@ -355,7 +355,7 @@ const AddDeliveryAddressForm = () => {
               {isLoading ? (
                 <span className="loading loading-bars loading-md"></span>
               ) : (
-                "Update Profile"
+               language? 'Update Profile':'প্রোফাইল আপডেট'
               )}
             </motion.button>
           </div>

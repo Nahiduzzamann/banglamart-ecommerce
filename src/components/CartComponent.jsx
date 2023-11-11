@@ -15,7 +15,7 @@ const CartComponent = ({
   setSubTotal,
   setDeliveryCharge,
 }) => {
-  const { setCartUpdate } = useContext(AuthContext);
+  const { setCartUpdate,language } = useContext(AuthContext);
   let product = data.product;
   // console.log(data?.colors.label);
   const url = "https://api.banglamartecommerce.com.bd";
@@ -160,7 +160,7 @@ const CartComponent = ({
                   {product?.title}
                 </Link>
                 <div className="flex items-center">
-                  <p className="mr-2 text-SubTextColor">Quantity:</p>
+                  <p className="mr-2 text-SubTextColor">{language? 'Quantity:':'পরিমানঃ'}</p>
                   {increaseLoad ? (
                     <div className="mr-4 rounded-full bg-[#d2eefd] h-[33px] w-[33px] flex items-center justify-center shadow-sm cursor-not-allowed">
                       <span className="loading loading-spinner loading-xs"></span>
@@ -199,7 +199,7 @@ const CartComponent = ({
                     </motion.button>
                   )}
                   <p className="mr-2 text-SubTextColor">
-                    available (<span>{product?.quantity}</span>)
+                  {language? 'Available:':'অবশিষ্ট'} (<span>{product?.quantity}</span>)
                   </p>
                 </div>
               </div>
@@ -252,7 +252,7 @@ const CartComponent = ({
                       whileTap={{ scale: 0.8 }}
                       className="text-CardColor flex bg-[#e65b5b] hover:underline pb-1 pl-2 pr-2 rounded-full"
                     >
-                      remove
+                      {language? 'remove':'সরান'}
                     </motion.button>
                   )}
                 </div>
