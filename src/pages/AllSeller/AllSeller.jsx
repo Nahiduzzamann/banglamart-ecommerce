@@ -7,7 +7,9 @@ import { motion } from "framer-motion";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 const AllSeller = () => {
+  const {t}=useTranslation()
   const { user } = useContext(AuthContext);
   const AllSellers = useSelector(
     (state) => state.allSellerData.allSeller?.data
@@ -34,18 +36,18 @@ const AllSeller = () => {
                 id="animatedButton"
               >
                 <h1 className="z-10 text-CardColor text-center p-2">
-                  Go Your Panel and Add Your Product!
+                  {t("allsellerBigBtn")}
                 </h1>
               </a>
             ) : (
               <Link to="/seller-form" id="animatedButton">
-                <h1 className="z-10 text-CardColor">Be A Seller</h1>
+                <h1 className="z-10 text-CardColor">{t("beAseller")}</h1>
               </Link>
             )}
           </motion.div>
         </div>
         <div className="shadow-xl shadow-BackgroundColor rounded">
-          <h1 className=" lg:mt-10 text-SubTextColor">All Sellers</h1>
+          <h1 className=" lg:mt-10 text-SubTextColor">{t("allseller")}</h1>
           <div className="p-4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
             {AllSellers?.length > 0 ? (
               AllSellers?.map((data, i) => (
