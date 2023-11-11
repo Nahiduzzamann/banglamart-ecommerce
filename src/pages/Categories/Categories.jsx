@@ -4,8 +4,10 @@ import SubCategory from "../../components/SubCategories";
 import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const Categories = () => {
+  const {t}=useTranslation()
   // const [Categories, setCategories] = useState(null);
 
   const Categories = useSelector(
@@ -26,7 +28,7 @@ const Categories = () => {
         <title>Categories | Banglamart E-commerce</title>
       </Helmet>
       <div className="container mx-auto">
-        <h1 className="pt-4 pb-4 text-SubTextColor">All Categories</h1>
+        <h1 className="pt-4 pb-4 text-SubTextColor">{t("allCatego.allCatego")}</h1>
         <div className="flex flex-wrap">
           {Categories ? (
             Categories.map((category, i) => {
