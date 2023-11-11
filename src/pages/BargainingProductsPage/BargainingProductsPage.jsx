@@ -24,11 +24,13 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { Paginated } from "@makotot/paginated";
+import { useTranslation } from "react-i18next";
 // import Swal from "sweetalert2";
 // import { postApi } from "../../apis";
 // import { AuthContext } from "../../providers/AuthProvider";
 
 const BargainingProductsPage = () => {
+  const {t}=useTranslation()
   const [bargainingProducts, setBargainingProducts] = useState(null);
   const data = useSelector(
     (state) => state.bargainingProducts.bargainingProducts?.data
@@ -58,7 +60,7 @@ const BargainingProductsPage = () => {
         }
       ></FlashSaleBanner>
       <div className="mt-4">
-        <h1 className="">Bargaining Products</h1>
+        <h1 className="">{t("header.bargaining")}</h1>
         <div className="mt-4 m-1 ">
           <div className="grid 2xl:grid-cols-6 xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4">
             {bargainingProducts ? (

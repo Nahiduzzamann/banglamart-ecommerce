@@ -207,6 +207,7 @@
   "campaign":{
     "campaign":"Upcoming Campaign",
     "start":"Campaign start in"
-  }
+  },
+  "off":"Off"
   
 }

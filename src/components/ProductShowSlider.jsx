@@ -8,6 +8,7 @@ import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
 import ProductCart from "./ProductCart";
 import { Link } from "react-router-dom";
 import { TbTruckDelivery } from "react-icons/tb";
+import { useTranslation } from "react-i18next";
 // import { AuthContext } from "./../providers/AuthProvider";
 // import { postApi } from './../apis';
 // import Swal from "sweetalert2";
@@ -131,6 +132,8 @@ const ProductShowSlider = ({ products }) => {
 export default ProductShowSlider;
 
 const Cart2 = ({ product }) => {
+  const { t } = useTranslation();
+
   const url = "https://api.banglamartecommerce.com.bd";
   // const { user, setCartUpdate } = useContext(AuthContext);
   // const navigate = useNavigate();
@@ -301,7 +304,7 @@ const Cart2 = ({ product }) => {
       </div>
       {product.percentage && (
         <div className="absolute flex items-center justify-center bg-CardColor shadow-lg rounded-r-full top-2 p-1">
-          <p className="text-xs text-[#fc3e3e] mr-1">OFF</p>
+          <p className="text-xs text-[#fc3e3e] mr-1"> {t("off")}</p>
           <p className="text-sm text-CardColor p-1 bg-[#fc3e3e] rounded-full">
             {product.offer}%
           </p>
@@ -312,7 +315,7 @@ const Cart2 = ({ product }) => {
           <TbTruckDelivery className="text-MainColor text-[25px] ml-1 mr-1"></TbTruckDelivery>
 
           <p className="text-sm text-CardColor p-1 bg-MainColor rounded-full">
-            off
+          {t("off")}
           </p>
         </div>
       ) : (
