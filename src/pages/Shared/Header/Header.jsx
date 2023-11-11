@@ -348,7 +348,7 @@ const Header = () => {
                       <MenuGroup title="Help">
                         <MenuItem>
                           <Link to="/support">
-                            <h3 className="hover:underline">Support</h3>
+                            <h3 className="hover:underline">{language ? 'Support':'যোগাযোগ'}</h3>
                           </Link>
                         </MenuItem>
                         <MenuItem>
@@ -366,7 +366,7 @@ const Header = () => {
                   >
                     <div className="flex items-center justify-between">
                       <AiOutlineUser className="text-SubTextColor text-[30px]" />
-                      <p className=" text-SubTextColor">Sign Up</p>
+                      <p className=" text-SubTextColor">{language ? 'Sign Up':'সাইন আপ'}</p>
                     </div>
                   </Link>
                 )}
