@@ -160,7 +160,7 @@ const Header = () => {
                     type="text"
                     value={searchQuery}
                     onChange={handleSearchChange}
-                    placeholder="Search..."
+                    placeholder={`${language? 'Search...':'সার্চ...'}`}
                   />
 
                   <div className="bg-MainColor absolute inset-y-0 right-0 flex items-center justify-center rounded-r-full pl-3 pr-3 rounded-e-lg">
@@ -177,7 +177,7 @@ const Header = () => {
                 {searchQuery && (
                   <div className="mr-2 ml-2 md:mr-0 md:ml-0 search-results absolute bg-BorderColor z-10 w-[220px] sm:w-[300px] md:w-[400px] lg:w-[500px] xl:w-[600px] p-2 rounded-md text-SubTextColor max-h-[400px] lg:max-h-[500px] overflow-y-auto">
                     <h1 className="text-center bg-CardColor rounded">
-                      Products
+                    {language ? 'Products':'পণ্য'}
                     </h1>
                     {loading ? (
                       <div className="flex justify-center items-center p-10">
@@ -200,7 +200,7 @@ const Header = () => {
                     ) : (
                       <div className="flex flex-col items-center justify-center mt-4">
                         <PiSmileySadLight className="text-SubTextColor text-4xl"></PiSmileySadLight>
-                        <p className="text-SubTextColor">No Result Found</p>
+                        <p className="text-SubTextColor">{language ? 'No result found':'কিছু খুজে পাওয়া জাইনি'}</p>
                       </div>
                     )}
                   </div>
