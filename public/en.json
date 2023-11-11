@@ -203,6 +203,10 @@
   },
   "beAseller": {
     "beAseller": "BE A SELLER"
+  },
+  "campaign":{
+    "campaign":"Upcoming Campaign",
+    "start":"Campaign start in"
   }
   
 }

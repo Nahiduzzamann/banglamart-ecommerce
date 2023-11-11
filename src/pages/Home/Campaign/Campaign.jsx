@@ -3,7 +3,9 @@ import { getApi } from "../../../apis";
 import CampaignCard from "../../../components/CampaignCard";
 
 import Slider from "react-slick";
+import { useTranslation } from "react-i18next";
 const Campaign = () => {
+  const {t}=useTranslation()
   const [campaign, setCampaign] = useState([]);
 
   useEffect(() => {
@@ -57,7 +59,7 @@ const Campaign = () => {
       className={`container mt-4 mx-auto ${campaign.length > 0 || "hidden"}`}
     >
       <div className="bg-gradient-to-r from-[#924e4e] to-[#4e9287] py-4 w-full">
-        <h2 className="text-center text-CardColor mb-4">Upcoming Campaign</h2>
+        <h2 className="text-center text-CardColor mb-4">{t("campaign.campaign")}</h2>
         <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
           <div className="flex justify-center">
             <div className="container ">

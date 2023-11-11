@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { url } from "../apis";
+import { useTranslation } from "react-i18next";
 
 const CampaignCard = ({ data }) => {
+  const {t} = useTranslation()
   //   const startTimestamp = new Date(data?.startAt).getTime();
 
   const [remainingTime, setRemainingTime] = useState(
@@ -22,7 +24,7 @@ const CampaignCard = ({ data }) => {
     <div className="flex justify-center items-center bg-CardColor gap-4 p-4 rounded-lg m-2">
       <div className="flex flex-col items-center">
         <img className="object-fill w-36" src={`${url}${data?.image}`} alt="" />
-        <h3 className="p-2 text-[#ff4343] font-semibold">Campaign start in</h3>
+        <h3 className="p-2 text-[#ff4343] font-semibold">{t("campaign.campaign")}</h3>
       </div>
       <div>
         <div className="grid grid-cols-2 gap-2 text-center auto-cols-max">
