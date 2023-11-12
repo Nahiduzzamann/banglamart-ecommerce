@@ -117,8 +117,8 @@ const Header = () => {
   return (
     <div className="pt-[120px] md:pt-[150px] lg:pt-[175px]">
       <div
-        className="fixed top-0 left-0 w-full z-30 shadow-lg shadow-SubTextColor"
-        style={{ opacity: headerOpacity, transition: "opacity 0.3s" }}
+        className={`fixed ${scrollingDown?"top-[-180px]":"top-0"} left-0 w-full z-30 shadow-lg shadow-SubTextColor`}
+        style={{  transition: "top 0.5s" }}
       >
         {/* number Section  */}
         <div className=" bg-CardColor border-b-BorderColor hidden border-b-[1px]  md:block">
