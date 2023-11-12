@@ -120,7 +120,6 @@ const Campaign = () => {
           <div>
             <div className=" m-1 lg:m-0  rounded-lg">
               <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
-                
                 {products?.length > 10 && (
                   <Link
                     to={`/various-products-page?data=${encodedData}`}
@@ -131,12 +130,12 @@ const Campaign = () => {
                 )}
               </div>
               <div className="flex justify-center">
-                  <img
-                    className="h-28 w-80"
-                    src={`${url}${currentCampaignImg}`}
-                    alt=""
-                  />
-                </div>
+                <img
+                  className="h-28 w-80"
+                  src={`${url}${currentCampaignImg}`}
+                  alt=""
+                />
+              </div>
               {products ? (
                 <div className="pl-5 md:pl-10 pr-5 md:pr-10 pb-3 md:pb-5">
                   <ProductShowSlider products={products}></ProductShowSlider>
