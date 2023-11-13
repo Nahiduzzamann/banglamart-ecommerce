@@ -29,6 +29,8 @@ const Cart = () => {
   const [orderLoading, setOrderLoading] = useState(false);
   const [subTotal, setSubTotal] = useState(0);
   const [deliveryCharge, setDeliveryCharge] = useState(0);
+  const [transactionId, setTransactionId] = useState("");
+  const [image, setImage] = useState(null);
   const handleCheckboxChange = (productId) => {
     if (selectedProducts.includes(productId)) {
       // If the product ID is in the array, remove it.
@@ -130,7 +132,7 @@ const Cart = () => {
         console.log(err);
       });
   };
-  const [paymentName, setPaymentName] = React.useState('offline')
+  const [paymentName, setPaymentName] = React.useState("offline");
 
   const handleOrder = () => {
     setOrderLoading(true);
@@ -146,7 +148,7 @@ const Cart = () => {
     )
       .then((res) => {
         setOrderLoading(false);
-       
+
         // navigate(res.data.url);
         window.location.href = `${res.data.url}`;
       })
@@ -395,12 +397,61 @@ const Cart = () => {
             ) : user?.address?.subDistrict ? (
               <div>
                 <div className="mt-2">
-                  <h1 className="text-center mb-2 text-[#ff5b5b] ">Select Your payment method</h1>
+                  <h1 className="text-center mb-2 text-[#ff5b5b] ">
+                    Select Your payment method
+                  </h1>
                   <RadioGroup onChange={setPaymentName} value={paymentName}>
                     <Stack direction="column">
-                      <Radio size={'lg'} value="offline"><img className="rounded-lg h-16"  src="https://i.ibb.co/djdf4tk/Cashondeliveryjpgjpg-15946486664.jpg" alt="" /></Radio>
-                      <Radio size={'lg'} value="bkash"><img className="rounded-lg h-16"  src="https://i.ibb.co/tYcp9LT/bkash-payment-logo.jpg" alt="" /></Radio>
-                      <Radio size={'lg'} value="amarpay"><img className="rounded-lg h-16" src="https://i.ibb.co/XjK9Wt8/aamarpay-logo.jpg" alt="" /></Radio>
+                      <Radio size={"lg"} value="offline">
+                        <img
+                          className="rounded-lg h-10"
+                          src="https://i.ibb.co/djdf4tk/Cashondeliveryjpgjpg-15946486664.jpg"
+                          alt=""
+                        />
+                      </Radio>
+                      <Radio size={"lg"} value="bkash">
+                        <img
+                          className="rounded-lg h-10"
+                          src="https://i.ibb.co/tYcp9LT/bkash-payment-logo.jpg"
+                          alt=""
+                        />
+                      </Radio>
+                      <Radio size={"lg"} value="amarpay">
+                        <img
+                          className="rounded-lg h-10"
+                          src="https://i.ibb.co/XjK9Wt8/aamarpay-logo.jpg"
+                          alt=""
+                        />
+                      </Radio>
+                      <Radio size={"lg"} value="">
+                        <div className="p-4 border border-[#ff8484]">
+                          <p className="text-[#ff3434]">
+                            বিকাশে পেমেন্ট করুন ০১৭১৩৩৩৭৮২৫
+                          </p>
+                          <label className="block text-SubTextColor text-sm font-bold mb-1">
+                            Transaction ID{" "}
+                            <span className="text-[#ff3434]">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            className="shadow appearance-none border rounded-full py-2 px-3 text-SubTextColor leading-tight focus:outline-MainColor"
+                            placeholder="Transaction ID"
+                            value={transactionId}
+                            onChange={(e) => setTransactionId(e.target.value)}
+                            required
+                          />
+                          <label className="block text-SubTextColor text-sm font-bold mb-1">
+                            Photo
+                          </label>
+                          <input
+                            type="file"
+                            accept="image/*"
+                            className=" w-60"
+                            onChange={(e) => setImage(e.target.files[0])}
+                          />
+                          
+                        </div>
+                      </Radio>
                     </Stack>
                   </RadioGroup>
                 </div>
