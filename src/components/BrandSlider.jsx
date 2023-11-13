@@ -102,7 +102,7 @@ const BrandCart = ({ data }) => {
                 hover ? "text-CardColor underline" : "text-SubTextColor"
               } `}
             >
-              <p className="font-semibold">{data?.brandName}</p>
+              <p className="font-semibold  line-clamp-1">{data?.brandName}</p>
             </Link>
           </div>
         </div>
