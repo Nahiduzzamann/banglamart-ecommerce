@@ -11,7 +11,7 @@ import { getApi, postApi } from "../../apis";
 import Swal from "sweetalert2";
 
 const Cart = () => {
-  const { user, cart } = useContext(AuthContext);
+  const { user, cart,language } = useContext(AuthContext);
   const navigate = useNavigate();
   // console.log(user);
   const location = useLocation();
@@ -187,7 +187,7 @@ const Cart = () => {
               ) : (
                 <div className="flex flex-col items-center justify-center">
                   <PiSmileySadLight className="text-SubTextColor text-8xl"></PiSmileySadLight>
-                  <h1 className="text-SubTextColor">No Product Added</h1>
+                  <h1 className="text-SubTextColor">{language?'No Product Added':'পণ্য জুক্ত করেননি'}</h1>
                 </div>
               )
             ) : (
@@ -225,12 +225,12 @@ const Cart = () => {
             <form onSubmit={applyPromoCode}>
               <div className="relative">
                 <label className="block text-SubTextColor text-sm font-bold mb-1">
-                  Apply Promo Code
+                {language?'Apply Promo Code':'প্রমো কোড ব্যাবহার করুন'}
                 </label>
                 <input
                   type="text"
                   className="shadow appearance-none border rounded-full w-full py-2 px-3 text-SubTextColor leading-tight focus:outline-MainColor"
-                  placeholder="Enter Coupon Code"
+                  placeholder={language?'Enter Promo Code':'প্রমো কোড দিন'}
                   value={promoCode}
                   onChange={handlePromoCodeChange}
                   required
@@ -247,7 +247,7 @@ const Cart = () => {
                   )
                 ) : (
                   <p className="text-xs text-[#ff6868]">
-                    *Apply promo code to get a discount
+                     {language?'*Apply promo code to get a discount':'প্রমো কোড ব্যাবহার করে ডিসকাউন্ট নিন'}
                   </p>
                 )}
                 {promoLoading ? (
@@ -263,7 +263,7 @@ const Cart = () => {
                     type="submit"
                     className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
                   >
-                    Apply
+                    {language?'Apply':'আবেদন'}
                   </motion.button>
                 )}
               </div>
@@ -272,7 +272,7 @@ const Cart = () => {
             <form onSubmit={applyMemberCode}>
               <div className="relative">
                 <label className="block text-SubTextColor text-sm font-bold mb-1">
-                  Apply Member Code
+                {language?'Apply Member Code':'মেম্বার কোড ব্যাবহার করুন'}
                 </label>
                 <input
                   type="text"
@@ -295,7 +295,7 @@ const Cart = () => {
                   )
                 ) : (
                   <p className="text-xs text-[#ff6868]">
-                    *Apply member code to get a discount
+                    {language?'*Apply member code to get a discount':'মেম্বার কোড ব্যাবহার করে ডিসকাউন্ট নিন'}
                   </p>
                 )}
                 {memberLoading ? (
@@ -311,7 +311,7 @@ const Cart = () => {
                     type="submit"
                     className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
                   >
-                    Apply
+                     {language?'Apply':'আবেদন'}
                   </motion.button>
                 )}
               </div>
