@@ -13,8 +13,8 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Profile = () => {
-  const { user } = useContext(AuthContext);
-  console.log(user);
+  const { user, language } = useContext(AuthContext);
+  // console.log(user);
   const url = "https://api.banglamartecommerce.com.bd";
 
   return (
@@ -27,11 +27,13 @@ const Profile = () => {
           </div>
           <div className="flex justify-center items-center">
             <FaCoins className="mr-1 text-[18px] text-[#ffdb3a]" />
-            <h3>Your available coin:</h3>
+            <h3>{language ? "Your available coin:" : "আপনার কয়েন আছে:"}</h3>
             <h1 className="ml-1 text-[#ffdb3a]">{user?.coin}</h1>{" "}
           </div>
           {user?.coin <= 0 && (
-            <p className="text-[#f35454] text-center text-xs">Buy product and earn COIN</p>
+            <p className="text-[#f35454] text-center text-xs">
+              {language ? "Buy product and earn COIN" : "পণ্য কিনুন কয়েন জিতুন"}
+            </p>
           )}
           <div className="mt-4">
             <div className="flex items-center mb-2">
@@ -70,7 +72,7 @@ const Profile = () => {
             {user?.address?.union ? (
               <span></span>
             ) : (
-              <p className="text-[#f35454]">*Please Update Your Profile</p>
+              <p className="text-[#f35454]"> {language ? "*Please Update Your Profile" : "আপনার প্রোফাইল আপডেট করুন"}</p>
             )}
           </div>
 
@@ -79,7 +81,7 @@ const Profile = () => {
               className="bg-MainColor text-CardColor py-2 px-4 rounded-md mt-4 hover:bg-MainColorHover shadow-md shadow-MainColor "
               to="/addDeliveryAddress"
             >
-              Update Profile
+              {language ? "Update Profile" : "প্রোফাইল আপডেট"}
             </Link>
           </div>
         </div>
