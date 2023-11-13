@@ -27,7 +27,7 @@ import {
 } from "@chakra-ui/react";
 
 const Login = () => {
-  const { signIn, signInWithGoogle, setUserState } = useContext(AuthContext);
+  const { signIn, signInWithGoogle, setUserState, language } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -160,7 +160,7 @@ const Login = () => {
         <title>Login | Banglamart E-commerce</title>
       </Helmet>
       <div className="w-full max-w-md p-6 bg-BackgroundColor rounded-md shadow-lg m-4 ld:m-0">
-        <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
+        <h2 className="text-2xl font-semibold text-center mb-6">{language? 'Login':'লগইন'}</h2>
         {errorMessage && (
           <div
             className="bg-[#fdd5d5] border-l-4 border-[#ff8383] text-[#ff2b2b] p-4 mb-4"
@@ -170,25 +170,25 @@ const Login = () => {
           </div>
         )}
         <form onSubmit={handleSubmit}>
-          <label className="block font-medium mb-2 text-TextColor">Email</label>
+          <label className="block font-medium mb-2 text-TextColor">{language? 'Email':'ইমেইল'}</label>
           <input
             type="email"
             name="email"
             className="input input-bordered w-full pr-10 mb-4"
-            placeholder="Enter your Email Address"
+            placeholder={language? "Enter your Email Address":'ইমেইল দিন'}
             value={formData.email}
             onChange={handleChange}
             required
           />
           <div className="mb-2 relative">
             <label className="block font-medium mb-2 text-TextColor">
-              Password
+            {language? 'Password':'পাসওয়ার্ড'}
             </label>
             <input
               type={showPassword ? "text" : "password"}
               name="password"
               className="input input-bordered w-full pr-10"
-              placeholder="Enter your password"
+              placeholder={language? "Enter your password":'পাসওয়ার্ড দিন'}
               value={formData.password}
               onChange={handleChange}
               required
@@ -208,7 +208,7 @@ const Login = () => {
               to="/forgot-password"
               className="text-MainColor hover:text-MainColorHover hover:underline"
             >
-              Forgot Password?
+               {language? 'Forgot Password?':'পাসওয়ার্ড ভুলে গেছেন?'}
             </Link>
           </div>
           <motion.button
@@ -221,7 +221,7 @@ const Login = () => {
             {isLoading ? (
               <span className="loading loading-bars loading-xs "></span>
             ) : (
-              "Log in"
+              language? 'Login':'লগইন'
             )}
           </motion.button>
         </form>
@@ -239,7 +239,7 @@ const Login = () => {
             ) : (
               <div className="flex justify-center items-center">
                 <AiOutlineGoogle className="text-2xl mr-1" />
-                <h2>Sign in with Google</h2>
+                <h2>{language? 'Login With Google':'গুগল লগইন'}</h2>
               </div>
             )}
           </motion.button>
@@ -255,7 +255,7 @@ const Login = () => {
             ) : (
               <div className="flex justify-center items-center">
                 <AiFillPhone className="text-2xl mr-1" />
-                <h2>Sign in with Phone</h2>
+                <h2>{language? 'Login With Phone':'ফোন লগইন'}</h2>
               </div>
             )}
           </motion.button>
@@ -269,21 +269,21 @@ const Login = () => {
             >
               <ModalOverlay />
               <ModalContent>
-                <ModalHeader>Login using Phone Number</ModalHeader>
+                <ModalHeader>{language? 'Login using Phone Number':'ফোন লগইন'}</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody pb={6}>
                   <FormControl>
-                    <FormLabel>Phone Number</FormLabel>
+                    <FormLabel>{language? 'Phone Number':'ফোন লগইন'}</FormLabel>
                     <Input
                       ref={initialRef}
-                      placeholder="Phone Number"
+                      placeholder={language? 'Phone Number':'ফোন লগইন'}
                       value={phone}
                       onChange={(e)=>setPhone(e.target.value)}
                     />
                   </FormControl>
 
                   <FormControl mt={4}>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>{language? 'Password':'পাসওয়ার্ড'}</FormLabel>
                     <Input
                     
                       value={phonePass}
@@ -310,18 +310,18 @@ const Login = () => {
                       "Log in"
                     )}
                   </Button>
-                  <Button onClick={onClose}>Cancel</Button>
+                  <Button onClick={onClose}>{language? 'Cancel':'বাতিল'}</Button>
                 </ModalFooter>
               </ModalContent>
             </Modal>
           </div>
           <p className="mt-10 text-SubTextColor">
-            Do not have an account?{" "}
+          {language? 'Do not have an account?':'আপনার আকাউন্ট নেই?'} {" "}
             <Link
               to="/registration"
               className="text-MainColor hover:text-MainColorHover hover:underline"
             >
-              <h3>Register here</h3>
+              <h3>{language? 'Register here':'রেজিস্ট্রেশন করুন'}</h3>
             </Link>
           </p>
         </div>
