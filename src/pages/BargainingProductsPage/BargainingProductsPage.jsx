@@ -1,6 +1,6 @@
 import { PiSmileySadLight } from "react-icons/pi";
 import FlashSaleBanner from "../../components/FlashSaleBanner";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 // import { useContext } from "react";
 import {
@@ -28,8 +28,10 @@ import { useTranslation } from "react-i18next";
 // import Swal from "sweetalert2";
 // import { postApi } from "../../apis";
 // import { AuthContext } from "../../providers/AuthProvider";
+import { AuthContext } from './../../providers/AuthProvider';
 
 const BargainingProductsPage = () => {
+  const { language } = useContext(AuthContext);
   const {t}=useTranslation()
   const [bargainingProducts, setBargainingProducts] = useState(null);
   const data = useSelector(
@@ -71,7 +73,7 @@ const BargainingProductsPage = () => {
               ) : (
                 <div className="flex flex-col items-center justify-center mt-1">
                   <PiSmileySadLight className="text-SubTextColor text-4xl"></PiSmileySadLight>
-                  <h1 className="text-SubTextColor">No Product Available</h1>
+                  <h1 className="text-SubTextColor">{language?'No Product Available':'পণ্য নেই'}</h1>
                 </div>
               )
             ) : (
@@ -208,9 +210,7 @@ const BargainingProductsPage = () => {
 export default BargainingProductsPage;
 
 const ProductCart = ({ product }) => {
-  // console.log(product);
-  // const { user, setCartUpdate } = useContext(AuthContext);
-  // const navigate = useNavigate();
+  const {t}=useTranslation()
 
   const url = "https://api.banglamartecommerce.com.bd";
 
@@ -391,7 +391,7 @@ const ProductCart = ({ product }) => {
             className="absolute flex flex-col  bg-[#fc3e3e] shadow-md shadow-[#f59090] top-0 h-24 w-24"
           >
             <span className="ml-5 mt-[6px] text-CardColor font-semibold text-[10px]">
-              Off
+            {t("off")}
             </span>
             <span className="text-[12px] font-semibold ml-[10px] text-CardColor bg-[#fc3e3e]">
               {product?.offer}%
@@ -401,7 +401,7 @@ const ProductCart = ({ product }) => {
           product?.offer && (
             <div className="absolute flex items-center justify-center bg-CardColor shadow-md shadow-[#f59090] rounded-r-full top-2 p-1">
               <span className="font-semibold text-[10px] text-[#fc3e3e] mr-1">
-                OFF
+              {t("off")}
               </span>
               <span className="pl-[2px] pr-[2px] text-[14px] font-semibold text-CardColor bg-[#fc3e3e] rounded-r-full">
                 -{product?.offer}৳
@@ -414,7 +414,7 @@ const ProductCart = ({ product }) => {
             <TbTruckDelivery className="text-MainColor text-[25px] ml-1 mr-1"></TbTruckDelivery>
 
             <p className="text-sm text-CardColor p-1 bg-MainColor rounded-full">
-              off
+            {t("off")}
             </p>
           </div>
         ) : (

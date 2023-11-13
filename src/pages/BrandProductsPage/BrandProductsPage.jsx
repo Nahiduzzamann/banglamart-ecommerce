@@ -16,7 +16,10 @@ import {
 } from "@chakra-ui/react";
 import { Paginated } from "@makotot/paginated";
 import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from "react-icons/ai";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 const BrandProductsPage = () => {
+  const { language } = useContext(AuthContext);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const encodedData = queryParams.get("data");
@@ -64,7 +67,7 @@ const BrandProductsPage = () => {
         <BrandShopCart data={data}></BrandShopCart>
       </div>
       <div className="p-4">
-        <h1 className="text-SubTextColor pb-4">Products:</h1>
+        <h1 className="text-SubTextColor pb-4">{language?'Products:':'পণ্য'}</h1>
         <div className="grid 2xl:grid-cols-6 xl:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4">
           {productData ? (
             productData?.length > 0 ? (
@@ -74,7 +77,7 @@ const BrandProductsPage = () => {
             ) : (
               <div className="flex flex-col items-center justify-center mt-1">
                 <PiSmileySadLight className="text-SubTextColor text-4xl"></PiSmileySadLight>
-                <h1 className="text-SubTextColor">No Product Available</h1>
+                <h1 className="text-SubTextColor">{language?'No Product Available':'পণ্য নেই'}</h1>
               </div>
             )
           ) : (
