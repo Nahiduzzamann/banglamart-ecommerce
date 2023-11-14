@@ -43,12 +43,11 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { useLocation } from "react-router";
 import ReviewSection from "../../components/ReviewSection";
 import { PiSmileySadLight } from "react-icons/pi";
-import ReactImageMagnify from "react-image-magnify";
 import socket from "../../socket";
 import ImageZoom from "react-image-zooom";
 
 const ProductDetails = () => {
-  const { user, setCartUpdate } = useContext(AuthContext);
+  const { user, setCartUpdate, language } = useContext(AuthContext);
 
   const [messageShow, setMessageShow] = useState(false);
   const navigate = useNavigate();
@@ -417,18 +416,18 @@ const ProductDetails = () => {
           <div className="border-b border-b-BorderColor flex flex-wrap items-center p-4">
             {product?.brand && (
               <div className="mt-2 mb-2 mr-2">
-                <p className="text-SubTextColor">Sold by:</p>
+                <p className="text-SubTextColor">{language ?'Sold by:':'বিক্রেতা:'}</p>
                 <h3 className="text-TextColor">
                   {product?.brand?.brandName}
                   <span className="badge badge-md border-[1px] border-BorderColor">
-                    brand
+                  {language ?'brand':'ব্রান্ড'}
                   </span>
                 </h3>
               </div>
             )}
             {product?.seller && (
               <div className="mt-2 mb-2 mr-2">
-                <p className="text-SubTextColor">Sold by:</p>
+                <p className="text-SubTextColor">{language ?'Sold by:':'বিক্রেতা:'}</p>
                 <h3 className="text-TextColor">{product?.seller?.shopName}</h3>
               </div>
             )}
@@ -439,7 +438,7 @@ const ProductDetails = () => {
               whileTap={{ scale: 0.8 }}
               className="ml-4 mr-4 pl-3 pr-3 pt-2 pb-2 bg-[#d2eefd] rounded-full shadow-md"
             >
-              <p className="text-MainColor">Message Seller</p>
+              <p className="text-MainColor">{language ?'Message Seller':'বিক্রেতা কে ম্যাসেজ দিন'}</p>
             </motion.button>
             {/* message section  */}
             <div
@@ -577,7 +576,7 @@ const ProductDetails = () => {
 
           <div className="border-b border-b-BorderColor flex flex-wrap p-4 gap-2">
             <div className="flex flex-col ml-2 mr-2">
-              {product?.colors && <p>Select Color:</p>}
+              {product?.colors && <p>{language ?'Select Color:':'কালার সিলেক্ট'}</p>}
               <RadioGroup onChange={setColor} value={color}>
                 <Stack>
                   {product?.colors?.map((color, i) => {
@@ -602,7 +601,7 @@ const ProductDetails = () => {
               </RadioGroup>
             </div>
             <div className="flex flex-col ml-2 mr-2">
-              {product?.sizes && <p className="mr-1">Select Size:</p>}
+              {product?.sizes && <p className="mr-1">{language ?'Select Size:':'সাইজ সিলেক্ট'}</p>}
 
               <RadioGroup onChange={setSize} value={size}>
                 <Stack>
@@ -625,7 +624,7 @@ const ProductDetails = () => {
             </div>
             <div className="flex flex-col ml-2 mr-2">
               {product?.specifications && (
-                <p className="mr-1 ">Specifications:</p>
+                <p className="mr-1 ">{language ?'Specifications:':'স্পেসিফিকেশন্স:'}</p>
               )}
 
               <RadioGroup onChange={setSpecification} value={specification}>
@@ -652,25 +651,25 @@ const ProductDetails = () => {
             <div className=" p-4">
               {product?.price && (
                 <p className="text-SubTextColor">
-                  Old Price:
+                  {language ?'Old Price:':'আগের মূল্য:'}
                   <span className="line-through text-[18px] text-SubTextColor ml-2">
                     {product?.price} ৳
                   </span>
-                  /pc
+                  {language ?'/pc':'/পিচ'}
                 </p>
               )}
               <p className="text-SubTextColor">
-                Current Price:
+              {language ?'Current Price:':'বর্তমান মূল্য:'}
                 <span className="text-[18px] text-MainColor ml-2 font-semibold">
                   {totalPrice?.toFixed(1)} ৳
                 </span>
-                /pc
+                {language ?'/pc':'/পিচ'}
               </p>
             </div>
             {product?.fixedPrice || (
               <div className="relative m-2">
                 <label className="block text-MainColor text-sm font-semibold mb-1">
-                  Offer Your Price
+                {language ?'Offer Your Price':'আপনি কত টাকা দিতে চান'}
                 </label>
                 <input
                   type="number"
@@ -684,13 +683,13 @@ const ProductDetails = () => {
                   className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
                   onClick={handleOfferPrice}
                 >
-                  Offer
+                  {language ?'Offer':'অফার'}
                 </motion.button>
               </div>
             )}
           </div>
           <div className="border-b border-b-BorderColor p-4 flex items-center">
-            <p className="mr-4 text-SubTextColor">Quantity:</p>
+            <p className="mr-4 text-SubTextColor">{language ?'Quantity:':'পরিমান'}</p>
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.8 }}
@@ -719,7 +718,7 @@ const ProductDetails = () => {
             )}
 
             <p className="mr-4 text-SubTextColor">
-              (<span>{product?.quantity}</span>) available
+              (<span>{product?.quantity}</span>) {language ?'available:':'অবশিষ্ট'}
             </p>
           </div>
           <div className="p-4">
@@ -728,12 +727,13 @@ const ProductDetails = () => {
                 <form onSubmit={applyCouponCode}>
                   <div className="relative">
                     <label className="block text-SubTextColor text-sm font-bold mb-1">
-                      Apply Coupon Code
+                    {language ?' Apply Coupon Code':'কুপন কোড দিন'}
+                     
                     </label>
                     <input
                       type="text"
                       className="shadow appearance-none border rounded-full w-full py-2 px-3 text-SubTextColor leading-tight focus:outline-MainColor"
-                      placeholder="Enter Coupon Code"
+                      placeholder={language ?'Enter Coupon Code':'কুপন কোড দিন'}
                       value={couponCode}
                       onChange={handleCouponCodeChange}
                       required
@@ -741,16 +741,17 @@ const ProductDetails = () => {
                     {couponOffer ? (
                       couponOffer?.percentage ? (
                         <p className="text-TextColor">
-                          Discount: {couponOffer.offer}%
+                          {language ?'Discount:':'অফার'} {couponOffer.offer}%
                         </p>
                       ) : (
                         <p className="text-TextColor">
-                          Discount: {couponOffer.offer}tk
+                          {language ?'Discount:':'অফার'} {couponOffer.offer}tk
                         </p>
                       )
                     ) : (
                       <p className="text-xs text-[#ff6868]">
-                        *Apply coupon code to get a discount
+                        
+                        {language ?'*Apply coupon code to get a discount':'কুপন কোড ব্যাবহার করে অফার নিন'}
                       </p>
                     )}
                     {couponLoading ? (
@@ -766,7 +767,7 @@ const ProductDetails = () => {
                         type="submit"
                         className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
                       >
-                        Apply
+                       {language ?'Apply':'এপ্লাই'} 
                       </motion.button>
                     )}
                   </div>
@@ -823,7 +824,7 @@ const ProductDetails = () => {
                 <p>
                   <AiOutlineShopping className="text-MainColor  mr-1" />
                 </p>
-                <p className="text-MainColor">Add to cart</p>
+                <p className="text-MainColor">{language ?'Add to cart':'ঝুরিতে যুক্ত করুন'}</p>
               </motion.button>
               {isAddToCartEnabled ? (
                 <Link
@@ -836,7 +837,7 @@ const ProductDetails = () => {
                   <p>
                     <AiOutlineShoppingCart className="text-CardColor  mr-1" />
                   </p>
-                  <p className="text-CardColor">Buy Now</p>
+                  <p className="text-CardColor">{language ?'Buy Now':'কিনুন'}</p>
                 </Link>
               ) : (
                 <motion.button
@@ -848,7 +849,7 @@ const ProductDetails = () => {
                   <p>
                     <AiOutlineShoppingCart className="text-CardColor  mr-1" />
                   </p>
-                  <p className="text-CardColor">Buy Now</p>
+                  <p className="text-CardColor">{language ?'Buy Now':'কিনুন'}</p>
                 </motion.button>
               )}
 
