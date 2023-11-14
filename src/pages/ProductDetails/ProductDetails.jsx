@@ -895,7 +895,7 @@ const ProductDetails = () => {
         <div className=" mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg">
           <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
             <div className="border-b-[3px] border-b-MainColor ">
-              <h1 className="">Reviews</h1>
+              <h1 className="">{language ?'Reviews':'রিভিউ'}</h1>
             </div>
           </div>
           <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
@@ -909,7 +909,7 @@ const ProductDetails = () => {
                           _expanded={{ bg: "#5dade2", color: "white" }}
                         >
                           <Box as="span" flex="1" textAlign="left">
-                            <h1>Customer Reviews</h1>
+                            <h1>{language ?'Customer Reviews':'ক্রেতার রিভিউ'}</h1>
                           </Box>
                           {isExpanded ? (
                             <MdRemove fontSize="18px" />
@@ -939,7 +939,7 @@ const ProductDetails = () => {
         <div className=" mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg">
           <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
             <div className="border-b-[3px] border-b-MainColor ">
-              <h1 className="">Descriptions</h1>
+              <h1 className="">{language ?'Descriptions':'ডেসক্রিপশন'}</h1>
             </div>
           </div>
           <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
@@ -953,7 +953,7 @@ const ProductDetails = () => {
         <div className=" mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg">
           <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
             <div className="border-b-[3px] border-b-MainColor ">
-              <h1 className="">Comments</h1>
+              <h1 className="">{language ?'Comments':'কোমেন্টস'}</h1>
             </div>
           </div>
           {user ? (
@@ -1061,16 +1061,16 @@ const ProductDetails = () => {
             </div>
           ) : (
             <h2 className="text-SubTextColor pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
-              Please{" "}
+              {language ?'Please':'প্লিজ'}{" "}
               <Link
                 to="/login"
                 state={{ from: location }}
                 replace
                 className="text-MainColor font-bold cursor-pointer hover:underline"
               >
-                Login
+                {language ?'Login':'লগইন'}
               </Link>{" "}
-              to write & see comments{" "}
+              {language ?'to write & see comments':'করুন দেখার জন্য'}{" "}
             </h2>
           )}
         </div>
