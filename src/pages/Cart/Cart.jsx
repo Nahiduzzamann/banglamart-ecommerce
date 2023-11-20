@@ -323,7 +323,7 @@ const Cart = () => {
             {user?.address?.division ? (
               <div className="text-SubTextColor bg-BackgroundColor rounded p-2">
                 <h1 className="text-MainColor">{language?'Your Delivery Address:':'আপনার ডেলিভারি ঠিকানা:'}</h1>
-                <h2>{`${user.address.union}, ${user.address.subDistrict}, ${user.address.district}, ${user.address.division}`}</h2>
+                <h2>{`${user.address.union}, ${user.address.subDistrict}, ${user.address.district}, ${user.address.division} | Phone: ${user.phone}`}</h2>
                 {/* <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.8 }}

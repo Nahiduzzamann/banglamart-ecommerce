@@ -11,6 +11,7 @@ const AddDeliveryAddressForm = () => {
   const [divisions, setDivisions] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [fullAddress, setFullAddress] = useState('');
+  const [phone, setPhone] = useState('');
   const [subDistricts, setSubDistricts] = useState([]);
   const [unions, setUnions] = useState([]);
   useEffect(() => {
@@ -98,6 +99,7 @@ const AddDeliveryAddressForm = () => {
     );
     setSelectedUnion(sortedAddressName(unions, user?.address?.union));
     setFullName(user?.name)
+    setPhone(user?.phone)
     setFullAddress(user?.address?.fullAddress)
   }, [user, user?.address, divisions, districts, subDistricts, unions]);
 
@@ -105,7 +107,7 @@ const AddDeliveryAddressForm = () => {
     event.preventDefault();
 
     Swal.fire({
-      title: "Do you want to update the changes?",
+      title: `phone: ${phone} fullAddress: ${fullAddress}`,
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: "Update",
@@ -126,6 +128,7 @@ const AddDeliveryAddressForm = () => {
           })
         );
         data.append("gender", gender);
+        data.append("phone", phone);
         data.append("birthday", birthDate);
 
         const token = localStorage.getItem("token");
@@ -293,7 +296,19 @@ const AddDeliveryAddressForm = () => {
               value={fullAddress}
               onChange={(e) => setFullAddress(e.target.value)}
               className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md"
-              placeholder="Enter your full address"
+              placeholder={language? 'Full address here':'পুরো ঠিকানা দিন'}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block mb-1">{language? 'Phone Number':'মোবাইল নামবার'}</label>
+            <input
+              type="text"
+              name="phone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md"
+              placeholder={language? 'Phone Number':'মোবাইল নামবার'}
               required
             />
           </div>
