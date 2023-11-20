@@ -28,7 +28,7 @@ const BrandCart = ({ data }) => {
           <div className="">
             <Link
               to={`/brand-product-page?data=${encodedData}`}
-              className={`p-1 flex justify-center ${
+              className={`p-1 flex font-semibold justify-center ${
                 hover ? "text-CardColor underline" : "text-SubTextColor"
               } `}
             >
