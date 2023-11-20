@@ -7,11 +7,11 @@ import { FaUserEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
 const url = "https://api.banglamartecommerce.com.bd";
 const AddDeliveryAddressForm = () => {
-  const { user, setUserState, updateUser,language } = useContext(AuthContext);
+  const { user, setUserState, updateUser, language } = useContext(AuthContext);
   const [divisions, setDivisions] = useState([]);
   const [districts, setDistricts] = useState([]);
-  const [fullAddress, setFullAddress] = useState('');
-  const [phone, setPhone] = useState('');
+  const [fullAddress, setFullAddress] = useState("");
+  const [phone, setPhone] = useState("");
   const [subDistricts, setSubDistricts] = useState([]);
   const [unions, setUnions] = useState([]);
   useEffect(() => {
@@ -83,7 +83,7 @@ const AddDeliveryAddressForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const [fullName, setFullName] = useState('');
+  const [fullName, setFullName] = useState("");
   const [gender, setGender] = useState(user?.gender);
   const [birthDate, setBirthDate] = useState(user?.birthday);
   const [image, setImage] = useState(null);
@@ -98,9 +98,9 @@ const AddDeliveryAddressForm = () => {
       sortedAddressName(subDistricts, user?.address?.subDistrict)
     );
     setSelectedUnion(sortedAddressName(unions, user?.address?.union));
-    setFullName(user?.name)
-    setPhone(user?.phone)
-    setFullAddress(user?.address?.fullAddress)
+    setFullName(user?.name);
+    setPhone(user?.phone);
+    setFullAddress(user?.address?.fullAddress);
   }, [user, user?.address, divisions, districts, subDistricts, unions]);
 
   const handleSubmit = (event) => {
@@ -124,7 +124,7 @@ const AddDeliveryAddressForm = () => {
             district: sortedAddress(districts, selectedDistrict),
             subDistrict: sortedAddress(subDistricts, selectedSubDistrict),
             union: sortedAddress(unions, selectedUnion),
-            fullAddress: fullAddress
+            fullAddress: fullAddress,
           })
         );
         data.append("gender", gender);
@@ -156,7 +156,11 @@ const AddDeliveryAddressForm = () => {
         <title>Add address | Banglamart E-commerce</title>
       </Helmet>
       <div className="">
-        <h1 className="font-semibold mb-4">{language? 'Update your profile':'আপনার প্রোফাইল আপডেট করুন'}</h1>
+        <h1 className="font-semibold mb-4">
+          {language
+            ? "Update your delivery profile"
+            : "আপনার ডেলিভারি প্রোফাইল আপডেট করুন"}
+        </h1>
         <form
           className="bg-white p-6 rounded shadow-xl"
           onSubmit={handleSubmit}
@@ -200,9 +204,10 @@ const AddDeliveryAddressForm = () => {
               </label>
             </div>
           </div>
-
           <div className="mb-4">
-            <label className="block mb-1">{language? 'Full Name':'পুরো নাম'}</label>
+            <label className="block mb-1">
+              {language ? "Full Name" : "পুরো নাম"}
+            </label>
             <input
               type="text"
               name="name"
@@ -213,104 +218,126 @@ const AddDeliveryAddressForm = () => {
               required
             />
           </div>
-
-          <div className="relative mb-4">
-            <label className="block mb-1">{language? 'Division':'বিভাগ'}</label>
-            <select
-              required
-              value={selectedDivision}
-              onChange={(e) => setSelectedDivision(e.target.value)}
-              className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md pr-10"
-            >
-              <option value="">{language? 'Select Division':'বিভাগ দিন'}</option>
-              {divisions.map((division) => (
-                <option key={division.id} value={division.id}>
-                  {division.name}
+          <div className="border border-MainColor p-2 m-2">
+            <h2 className="text-center">Delivery Address</h2>
+            <div className="relative mb-4">
+              <label className="block mb-1">
+                {language ? "Division" : "বিভাগ"}
+              </label>
+              <select
+                required
+                value={selectedDivision}
+                onChange={(e) => setSelectedDivision(e.target.value)}
+                className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md pr-10"
+              >
+                <option value="">
+                  {language ? "Select Division" : "বিভাগ দিন"}
                 </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="relative mb-4">
-            <label className="block mb-1">{language? 'District':'জেলা'}</label>
-            <select
-              required
-              value={selectedDistrict}
-              onChange={(e) => setSelectedDistrict(e.target.value)}
-              className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md pr-10"
-            >
-              <option value="">{language? 'Select District':'জেলা দিন'}</option>
-              {districts
-                .filter((d) => d.divisionId.match(selectedDivision))
-                .map((district) => (
-                  <option key={district.id} value={district.id}>
-                    {district.name}
+                {divisions.map((division) => (
+                  <option key={division.id} value={division.id}>
+                    {division.name}
                   </option>
                 ))}
-            </select>
-          </div>
+              </select>
+            </div>
 
-          <div className="relative mb-4">
-            <label className="block mb-1">{language? 'Sub District':'উপ জেলা'}</label>
-            <select
-              required
-              value={selectedSubDistrict}
-              onChange={(e) => setSelectedSubDistrict(e.target.value)}
-              className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md pr-10"
-            >
-              <option value="">{language? 'Select Sub District':'উপ জেলা দিন'}</option>
-              {subDistricts
-                .filter((sd) => sd.districtId.match(selectedDistrict))
-                .map((subDistrict) => (
-                  <option key={subDistrict.id} value={subDistrict.id}>
-                    {subDistrict.name}
-                  </option>
-                ))}
-            </select>
-          </div>
+            <div className="relative mb-4">
+              <label className="block mb-1">
+                {language ? "District" : "জেলা"}
+              </label>
+              <select
+                required
+                value={selectedDistrict}
+                onChange={(e) => setSelectedDistrict(e.target.value)}
+                className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md pr-10"
+              >
+                <option value="">
+                  {language ? "Select District" : "জেলা দিন"}
+                </option>
+                {districts
+                  .filter((d) => d.divisionId.match(selectedDivision))
+                  .map((district) => (
+                    <option key={district.id} value={district.id}>
+                      {district.name}
+                    </option>
+                  ))}
+              </select>
+            </div>
 
-          <div className="relative mb-4">
-            <label className="block mb-1">{language? 'Union':'ইউনিঅন'}</label>
-            <select
-              required
-              value={selectedUnion}
-              onChange={(e) => setSelectedUnion(e.target.value)}
-              className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md pr-10"
-            >
-              <option value="">{language? 'Union Union':'ইউনিঅন দিন'}</option>
-              {unions
-                .filter((u) => u.subDistrictId.match(selectedSubDistrict))
-                .map((union) => (
-                  <option key={union.id} value={union.id}>
-                    {union.name}
-                  </option>
-                ))}
-            </select>
-          </div>
+            <div className="relative mb-4">
+              <label className="block mb-1">
+                {language ? "Sub District" : "উপ জেলা"}
+              </label>
+              <select
+                required
+                value={selectedSubDistrict}
+                onChange={(e) => setSelectedSubDistrict(e.target.value)}
+                className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md pr-10"
+              >
+                <option value="">
+                  {language ? "Select Sub District" : "উপ জেলা দিন"}
+                </option>
+                {subDistricts
+                  .filter((sd) => sd.districtId.match(selectedDistrict))
+                  .map((subDistrict) => (
+                    <option key={subDistrict.id} value={subDistrict.id}>
+                      {subDistrict.name}
+                    </option>
+                  ))}
+              </select>
+            </div>
 
-          <div className="mb-4">
-            <label className="block mb-1">{language? 'Full Address':'পুরো ঠিকানা'}</label>
-            <textarea
-              type="text"
-              name="name"
-              value={fullAddress}
-              onChange={(e) => setFullAddress(e.target.value)}
-              className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md"
-              placeholder={language? 'Full address here':'পুরো ঠিকানা দিন'}
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block mb-1">{language? 'Phone Number':'মোবাইল নামবার'}</label>
-            <input
-              type="text"
-              name="phone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md"
-              placeholder={language? 'Phone Number':'মোবাইল নামবার'}
-              required
-            />
+            <div className="relative mb-4">
+              <label className="block mb-1">
+                {language ? "Union" : "ইউনিঅন"}
+              </label>
+              <select
+                required
+                value={selectedUnion}
+                onChange={(e) => setSelectedUnion(e.target.value)}
+                className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md pr-10"
+              >
+                <option value="">
+                  {language ? "Union Union" : "ইউনিঅন দিন"}
+                </option>
+                {unions
+                  .filter((u) => u.subDistrictId.match(selectedSubDistrict))
+                  .map((union) => (
+                    <option key={union.id} value={union.id}>
+                      {union.name}
+                    </option>
+                  ))}
+              </select>
+            </div>
+
+            <div className="mb-4">
+              <label className="block mb-1">
+                {language ? "Full Address" : "পুরো ঠিকানা"}
+              </label>
+              <textarea
+                type="text"
+                name="name"
+                value={fullAddress}
+                onChange={(e) => setFullAddress(e.target.value)}
+                className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md"
+                placeholder={language ? "Full address here" : "পুরো ঠিকানা দিন"}
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block mb-1">
+                {language ? "Phone Number" : "মোবাইল নামবার"}
+              </label>
+              <input
+                type="text"
+                name="phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="w-full p-2 rounded focus:outline-none focus:border focus:border-BorderColor shadow-md"
+                placeholder={language ? "Phone Number" : "মোবাইল নামবার"}
+                required
+              />
+            </div>
           </div>
           <div className="mb-4">
             <label className="block mb-1">Gender</label>
@@ -324,7 +351,7 @@ const AddDeliveryAddressForm = () => {
                   onChange={() => setGender("Male")}
                   className="mr-1"
                 />
-                {language? 'Male':'ছেলে'}
+                {language ? "Male" : "ছেলে"}
               </label>
               <label>
                 <input
@@ -335,13 +362,15 @@ const AddDeliveryAddressForm = () => {
                   onChange={() => setGender("Female")}
                   className="mr-1"
                 />
-                {language? 'Female':'মেয়ে'}
+                {language ? "Female" : "মেয়ে"}
               </label>
             </div>
           </div>
 
           <div className="mb-4">
-            <label className="block mb-1">{language? 'Birth Date':'জন্মদিন'}</label>
+            <label className="block mb-1">
+              {language ? "Birth Date" : "জন্মদিন"}
+            </label>
             <input
               type="date"
               name="birthday"
@@ -369,8 +398,10 @@ const AddDeliveryAddressForm = () => {
             >
               {isLoading ? (
                 <span className="loading loading-bars loading-md"></span>
+              ) : language ? (
+                "Update Profile"
               ) : (
-               language? 'Update Profile':'প্রোফাইল আপডেট'
+                "প্রোফাইল আপডেট"
               )}
             </motion.button>
           </div>

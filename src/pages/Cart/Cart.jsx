@@ -11,7 +11,7 @@ import { getApi, postApi } from "../../apis";
 import Swal from "sweetalert2";
 
 const Cart = () => {
-  const { user, cart,language } = useContext(AuthContext);
+  const { user, cart, language } = useContext(AuthContext);
   const navigate = useNavigate();
   // console.log(user);
   const location = useLocation();
@@ -187,7 +187,9 @@ const Cart = () => {
               ) : (
                 <div className="flex flex-col items-center justify-center">
                   <PiSmileySadLight className="text-SubTextColor text-8xl"></PiSmileySadLight>
-                  <h1 className="text-SubTextColor">{language?'No Product Added':'পণ্য জুক্ত করেননি'}</h1>
+                  <h1 className="text-SubTextColor">
+                    {language ? "No Product Added" : "পণ্য জুক্ত করেননি"}
+                  </h1>
                 </div>
               )
             ) : (
@@ -225,12 +227,12 @@ const Cart = () => {
             <form onSubmit={applyPromoCode}>
               <div className="relative">
                 <label className="block text-SubTextColor text-sm font-bold mb-1">
-                {language?'Apply Promo Code':'প্রমো কোড ব্যাবহার করুন'}
+                  {language ? "Apply Promo Code" : "প্রমো কোড ব্যাবহার করুন"}
                 </label>
                 <input
                   type="text"
                   className="shadow appearance-none border rounded-full w-full py-2 px-3 text-SubTextColor leading-tight focus:outline-MainColor"
-                  placeholder={language?'Enter Promo Code':'প্রমো কোড দিন'}
+                  placeholder={language ? "Enter Promo Code" : "প্রমো কোড দিন"}
                   value={promoCode}
                   onChange={handlePromoCodeChange}
                   required
@@ -247,7 +249,9 @@ const Cart = () => {
                   )
                 ) : (
                   <p className="text-xs text-[#ff6868]">
-                     {language?'*Apply promo code to get a discount':'প্রমো কোড ব্যাবহার করে ডিসকাউন্ট নিন'}
+                    {language
+                      ? "*Apply promo code to get a discount"
+                      : "প্রমো কোড ব্যাবহার করে ডিসকাউন্ট নিন"}
                   </p>
                 )}
                 {promoLoading ? (
@@ -263,7 +267,7 @@ const Cart = () => {
                     type="submit"
                     className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
                   >
-                    {language?'Apply':'আবেদন'}
+                    {language ? "Apply" : "আবেদন"}
                   </motion.button>
                 )}
               </div>
@@ -272,7 +276,7 @@ const Cart = () => {
             <form onSubmit={applyMemberCode}>
               <div className="relative">
                 <label className="block text-SubTextColor text-sm font-bold mb-1">
-                {language?'Apply Member Code':'মেম্বার কোড ব্যাবহার করুন'}
+                  {language ? "Apply Member Code" : "মেম্বার কোড ব্যাবহার করুন"}
                 </label>
                 <input
                   type="text"
@@ -295,7 +299,9 @@ const Cart = () => {
                   )
                 ) : (
                   <p className="text-xs text-[#ff6868]">
-                    {language?'*Apply member code to get a discount':'মেম্বার কোড ব্যাবহার করে ডিসকাউন্ট নিন'}
+                    {language
+                      ? "*Apply member code to get a discount"
+                      : "মেম্বার কোড ব্যাবহার করে ডিসকাউন্ট নিন"}
                   </p>
                 )}
                 {memberLoading ? (
@@ -311,7 +317,7 @@ const Cart = () => {
                     type="submit"
                     className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
                   >
-                     {language?'Apply':'আবেদন'}
+                    {language ? "Apply" : "আবেদন"}
                   </motion.button>
                 )}
               </div>
@@ -322,24 +328,37 @@ const Cart = () => {
           <div className="">
             {user?.address?.division ? (
               <div className="text-SubTextColor bg-BackgroundColor rounded p-2">
-                <h1 className="text-MainColor">{language?'Your Delivery Address:':'আপনার ডেলিভারি ঠিকানা:'}</h1>
+                <h1 className="text-MainColor">
+                  {language
+                    ? "Your Delivery Address:"
+                    : "আপনার ডেলিভারি ঠিকানা:"}
+                </h1>
                 <h2>{`${user.address.union}, ${user.address.subDistrict}, ${user.address.district}, ${user.address.division} | Phone: ${user.phone}`}</h2>
-                {/* <motion.button
+                <Link
+                  to="/addDeliveryAddress"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.8 }}
-                  className="py-1 px-2 mt-2 shadow-md shadow-SubTextColor hover:shadow-TextColor rounded-full bg-TextColor"
+                  className="bg-TextColor text-center p-1 block rounded mt-1 shadow-sm shadow-BackgroundColor hover:shadow-TextColor"
                 >
-                  <p className="text-CardColor">Update address</p>
-                </motion.button> */}
+                  <p className="text-CardColor">
+                    {language ? "Add Another Address" : "অন্য ঠিকানা যোগ করুন"}
+                  </p>
+                </Link>
               </div>
             ) : (
               <div className="flex flex-col justify-center items-center p-2 bg-BackgroundColor rounded">
-                <p className="text-TextColor">{language?'Please add your address':'আপনার ঠিকানা যোগ করুন'}</p>
+                <p className="text-TextColor">
+                  {language
+                    ? "Please add your address"
+                    : "আপনার ঠিকানা যোগ করুন"}
+                </p>
                 <Link
                   to="/addDeliveryAddress"
                   className="bg-TextColor pl-4 pr-4 p-1 rounded mt-1 shadow-sm shadow-BackgroundColor hover:shadow-TextColor"
                 >
-                  <p className="text-CardColor ">{language?'Add Address':'ঠিকানা যোগ করুন'}</p>
+                  <p className="text-CardColor ">
+                    {language ? "Add Address" : "ঠিকানা যোগ করুন"}
+                  </p>
                 </Link>
               </div>
             )}
@@ -377,7 +396,10 @@ const Cart = () => {
                   </h3>
                 ) : (
                   <h3 className="text-CardColor font-semibold">
-                    {language?'Click To Calculate amount ':'হিসাব গণনা করতে ক্লিক করুন'}({selectedProducts.length})
+                    {language
+                      ? "Click To Calculate amount "
+                      : "হিসাব গণনা করতে ক্লিক করুন"}
+                    ({selectedProducts.length})
                   </h3>
                 )}
               </div>
@@ -385,7 +407,10 @@ const Cart = () => {
           ) : (
             <div className="flex justify-center w-full mt-2 shadow-md shadow-SubTextColor hover:shadow-TextColor items-center bg-TextColor  p-1 rounded-sm cursor-not-allowed">
               <Tooltip label="Please select product" aria-label="A tooltip">
-                <h2 className="text-CardColor"> {language?'Select Product To Checkout':'পণ্যে ক্লিক করুন'}</h2>
+                <h2 className="text-CardColor">
+                  {" "}
+                  {language ? "Select Product To Checkout" : "পণ্যে ক্লিক করুন"}
+                </h2>
               </Tooltip>
             </div>
           )}
@@ -398,7 +423,9 @@ const Cart = () => {
               <div>
                 <div className="mt-2">
                   <h1 className="text-center mb-2 text-[#ff5b5b] ">
-                  {language?'Select Your payment method':'আপনার পেমেন্ট পদ্ধতি নির্বাচন করুন'}
+                    {language
+                      ? "Select Your payment method"
+                      : "আপনার পেমেন্ট পদ্ধতি নির্বাচন করুন"}
                   </h1>
                   <RadioGroup onChange={setPaymentName} value={paymentName}>
                     <Stack direction="column">
@@ -429,7 +456,7 @@ const Cart = () => {
                             বিকাশে পেমেন্ট করুন ০১৭১৩৩৩৭৮২৫
                           </p>
                           <label className="block text-SubTextColor text-sm font-bold mb-1">
-                          {language?'Transaction ID':'লেনদেন নাম্বার'}{" "}
+                            {language ? "Transaction ID" : "লেনদেন নাম্বার"}{" "}
                             <span className="text-[#ff3434]">*</span>
                           </label>
                           <input
@@ -441,7 +468,7 @@ const Cart = () => {
                             required
                           />
                           <label className="block text-SubTextColor text-sm font-bold mb-1">
-                          {language?'Photo':'ছবি'}
+                            {language ? "Photo" : "ছবি"}
                           </label>
                           <input
                             type="file"
@@ -449,7 +476,6 @@ const Cart = () => {
                             className=" w-60"
                             onChange={(e) => setImage(e.target.files[0])}
                           />
-                          
                         </div>
                       </Radio>
                     </Stack>
@@ -461,7 +487,9 @@ const Cart = () => {
                   onClick={handleOrder}
                   className="py-2 px-2 mt-4 shadow-md shadow-SubTextColor hover:shadow-TextColor rounded-full bg-TextColor w-full"
                 >
-                  <h1 className="text-CardColor">{language?'Order Now':'অর্ডার করুন'}</h1>
+                  <h1 className="text-CardColor">
+                    {language ? "Order Now" : "অর্ডার করুন"}
+                  </h1>
                 </motion.button>
               </div>
             ) : (
@@ -469,7 +497,11 @@ const Cart = () => {
                 to="/addDeliveryAddress"
                 className="py-2 px-2 mt-4 shadow-md shadow-SubTextColor hover:shadow-TextColor rounded-full bg-TextColor w-full"
               >
-                <p className="text-CardColor ">{language?'Add Address to Order':'অর্ডারে ঠিকানা যোগ করুন'}</p>
+                <p className="text-CardColor ">
+                  {language
+                    ? "Add Address to Order"
+                    : "অর্ডারে ঠিকানা যোগ করুন"}
+                </p>
               </Link>
             )
           ) : (
