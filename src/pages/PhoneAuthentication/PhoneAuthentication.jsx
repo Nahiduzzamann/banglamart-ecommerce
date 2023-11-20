@@ -9,7 +9,7 @@ import { Helmet } from "react-helmet";
 const SignUpWithPhone = () => {
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
-  const { setUserState } = useContext(AuthContext);
+  const { setUserState,language } = useContext(AuthContext);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -166,7 +166,7 @@ const SignUpWithPhone = () => {
       </Helmet>
       <div className="w-full max-w-md p-6 bg-BackgroundColor rounded-md shadow-lg m-4 ld:m-0">
         <h2 className="text-2xl font-semibold text-center mb-6">
-          Sign Up with Phone
+        {language? 'SignUp With Phone':'ফোন সাইন আপ'}
         </h2>
         <div className="mb-4">
           <input
@@ -186,7 +186,7 @@ const SignUpWithPhone = () => {
             onChange={handlePhoneNumberChange}
             className="rounded-md p-2 w-full outline-none shadow focus:shadow-SubTextColor"
           />
-          {!isValid && <p className="text-[#fd4e4e]">*Invalid phone number</p>}
+          {!isValid && <p className="text-[#fd4e4e]">{language? '*Invalid phone number':'ফোন নাম্বার ভুল'}</p>}
 
           <input
             required
@@ -253,7 +253,7 @@ const SignUpWithPhone = () => {
         </div>
         {!isCountdownCompleted ? (
           <div className="text-red-500">
-            Resend OTP in{" "}
+           {language? 'Resend OTP in':'ওটিপি আবার পাঠাইতে পারবেন'}{" "}
             <Countdown
               date={Date.now() + 60000}
               onComplete={handleCountdownComplete}
@@ -270,7 +270,7 @@ const SignUpWithPhone = () => {
               }}
               className="bg-MainColor text-CardColor rounded-md p-2 w-28"
             >
-              Resend OTP
+               {language? 'Resend OTP':'ওটিপি পাঠান'}
             </button>
           </div>
         )}
