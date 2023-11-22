@@ -147,7 +147,7 @@ const Messenger = () => {
     <MessengerCustomerChat
       pageId="100400156313605"
       appId="3431963443781979"
-      htmlRef="<REF_STRING>"
+     
     />
     // <div className="h-10 w-10 bg-MainColor"></div>
   );
