@@ -27,6 +27,8 @@ import Chat from "../components/Chat";
 import { getToken } from "firebase/messaging";
 import { messaging } from "../firebase/firebase.config";
 import { putApi } from "../apis";
+import MessengerCustomerChat from "react-messenger-customer-chat";
+
 const Main = () => {
   const { user } = useContext(AuthContext);
   // const [isLoading, setIsLoading] = useState(true);
@@ -91,7 +93,6 @@ const Main = () => {
     dispatch(fetchFlashSell());
   }, [dispatch]);
 
-
   const permissionNotification = async () => {
     const uToken = localStorage.getItem("token");
     const permission = await Notification.requestPermission();
@@ -133,7 +134,7 @@ const Main = () => {
         <Outlet></Outlet>
         <Footer></Footer>
         <Chat></Chat>
-
+        <Messenger></Messenger>
         <ScrollToTop />
       </div>
     </div>
@@ -141,3 +142,13 @@ const Main = () => {
 };
 
 export default Main;
+const Messenger = () => {
+  return (
+    <MessengerCustomerChat
+      pageId="100400156313605"
+      appId="3431963443781979"
+      htmlRef="<REF_STRING>"
+    />
+    // <div className="h-10 w-10 bg-MainColor"></div>
+  );
+};
