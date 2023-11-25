@@ -390,6 +390,31 @@ const ProductDetails = () => {
     <div className="container mx-auto mt-4">
       <Helmet>
         <title>Product Details | Banglamart E-commerce</title>
+        <meta name="title" content={product?.title} />
+        <meta name="keywords" content="" />
+        <meta
+          name="msapplication-TileImage"
+          content={`${url}${product?.thumbnail}`}
+        />
+
+        <meta property="og:site_name" content="Banglamart E-commerce" />
+        <meta property="og:title" content={product?.title} />
+        {/* <meta
+          property="og:description"
+          content="The best photo studio for your events"
+        /> */}
+
+        <meta property="og:image" content={`${url}${product?.thumbnail}`} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content="300" />
+        <meta property="og:image:height" content="300" />
+
+        <meta
+          property="og:url"
+          content="https://banglamartecommerce.com.bd"
+        ></meta>
       </Helmet>
       {/* product details  */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 bg-CardColor p-4">
@@ -416,18 +441,22 @@ const ProductDetails = () => {
           <div className="border-b border-b-BorderColor flex flex-wrap items-center p-4">
             {product?.brand && (
               <div className="mt-2 mb-2 mr-2">
-                <p className="text-SubTextColor">{language ?'Sold by:':'বিক্রেতা:'}</p>
+                <p className="text-SubTextColor">
+                  {language ? "Sold by:" : "বিক্রেতা:"}
+                </p>
                 <h3 className="text-TextColor">
                   {product?.brand?.brandName}
                   <span className="badge badge-md border-[1px] border-BorderColor">
-                  {language ?'brand':'ব্রান্ড'}
+                    {language ? "brand" : "ব্রান্ড"}
                   </span>
                 </h3>
               </div>
             )}
             {product?.seller && (
               <div className="mt-2 mb-2 mr-2">
-                <p className="text-SubTextColor">{language ?'Sold by:':'বিক্রেতা:'}</p>
+                <p className="text-SubTextColor">
+                  {language ? "Sold by:" : "বিক্রেতা:"}
+                </p>
                 <h3 className="text-TextColor">{product?.seller?.shopName}</h3>
               </div>
             )}
@@ -438,7 +467,9 @@ const ProductDetails = () => {
               whileTap={{ scale: 0.8 }}
               className="ml-4 mr-4 pl-3 pr-3 pt-2 pb-2 bg-[#d2eefd] rounded-full shadow-md"
             >
-              <p className="text-MainColor">{language ?'Message Seller':'বিক্রেতা কে ম্যাসেজ দিন'}</p>
+              <p className="text-MainColor">
+                {language ? "Message Seller" : "বিক্রেতা কে ম্যাসেজ দিন"}
+              </p>
             </motion.button>
             {/* message section  */}
             <div
@@ -576,7 +607,9 @@ const ProductDetails = () => {
 
           <div className="border-b border-b-BorderColor flex flex-wrap p-4 gap-2">
             <div className="flex flex-col ml-2 mr-2">
-              {product?.colors && <p>{language ?'Select Color:':'কালার সিলেক্ট'}</p>}
+              {product?.colors && (
+                <p>{language ? "Select Color:" : "কালার সিলেক্ট"}</p>
+              )}
               <RadioGroup onChange={setColor} value={color}>
                 <Stack>
                   {product?.colors?.map((color, i) => {
@@ -601,7 +634,11 @@ const ProductDetails = () => {
               </RadioGroup>
             </div>
             <div className="flex flex-col ml-2 mr-2">
-              {product?.sizes && <p className="mr-1">{language ?'Select Size:':'সাইজ সিলেক্ট'}</p>}
+              {product?.sizes && (
+                <p className="mr-1">
+                  {language ? "Select Size:" : "সাইজ সিলেক্ট"}
+                </p>
+              )}
 
               <RadioGroup onChange={setSize} value={size}>
                 <Stack>
@@ -624,7 +661,9 @@ const ProductDetails = () => {
             </div>
             <div className="flex flex-col ml-2 mr-2">
               {product?.specifications && (
-                <p className="mr-1 ">{language ?'Specifications:':'স্পেসিফিকেশন্স:'}</p>
+                <p className="mr-1 ">
+                  {language ? "Specifications:" : "স্পেসিফিকেশন্স:"}
+                </p>
               )}
 
               <RadioGroup onChange={setSpecification} value={specification}>
@@ -651,25 +690,25 @@ const ProductDetails = () => {
             <div className=" p-4">
               {product?.price && (
                 <p className="text-SubTextColor">
-                  {language ?'Old Price:':'আগের মূল্য:'}
+                  {language ? "Old Price:" : "আগের মূল্য:"}
                   <span className="line-through text-[18px] text-SubTextColor ml-2">
                     {product?.price} ৳
                   </span>
-                  {language ?'/pc':'/পিচ'}
+                  {language ? "/pc" : "/পিচ"}
                 </p>
               )}
               <p className="text-SubTextColor">
-              {language ?'Current Price:':'বর্তমান মূল্য:'}
+                {language ? "Current Price:" : "বর্তমান মূল্য:"}
                 <span className="text-[18px] text-MainColor ml-2 font-semibold">
                   {totalPrice?.toFixed(1)} ৳
                 </span>
-                {language ?'/pc':'/পিচ'}
+                {language ? "/pc" : "/পিচ"}
               </p>
             </div>
             {product?.fixedPrice || (
               <div className="relative m-2">
                 <label className="block text-MainColor text-sm font-semibold mb-1">
-                {language ?'Offer Your Price':'আপনি কত টাকা দিতে চান'}
+                  {language ? "Offer Your Price" : "আপনি কত টাকা দিতে চান"}
                 </label>
                 <input
                   type="number"
@@ -683,13 +722,15 @@ const ProductDetails = () => {
                   className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
                   onClick={handleOfferPrice}
                 >
-                  {language ?'Offer':'অফার'}
+                  {language ? "Offer" : "অফার"}
                 </motion.button>
               </div>
             )}
           </div>
           <div className="border-b border-b-BorderColor p-4 flex items-center">
-            <p className="mr-4 text-SubTextColor">{language ?'Quantity:':'পরিমান'}</p>
+            <p className="mr-4 text-SubTextColor">
+              {language ? "Quantity:" : "পরিমান"}
+            </p>
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.8 }}
@@ -718,7 +759,8 @@ const ProductDetails = () => {
             )}
 
             <p className="mr-4 text-SubTextColor">
-              (<span>{product?.quantity}</span>) {language ?'available:':'অবশিষ্ট'}
+              (<span>{product?.quantity}</span>){" "}
+              {language ? "available:" : "অবশিষ্ট"}
             </p>
           </div>
           <div className="p-4">
@@ -727,13 +769,14 @@ const ProductDetails = () => {
                 <form onSubmit={applyCouponCode}>
                   <div className="relative">
                     <label className="block text-SubTextColor text-sm font-bold mb-1">
-                    {language ?' Apply Coupon Code':'কুপন কোড দিন'}
-                     
+                      {language ? " Apply Coupon Code" : "কুপন কোড দিন"}
                     </label>
                     <input
                       type="text"
                       className="shadow appearance-none border rounded-full w-full py-2 px-3 text-SubTextColor leading-tight focus:outline-MainColor"
-                      placeholder={language ?'Enter Coupon Code':'কুপন কোড দিন'}
+                      placeholder={
+                        language ? "Enter Coupon Code" : "কুপন কোড দিন"
+                      }
                       value={couponCode}
                       onChange={handleCouponCodeChange}
                       required
@@ -741,17 +784,19 @@ const ProductDetails = () => {
                     {couponOffer ? (
                       couponOffer?.percentage ? (
                         <p className="text-TextColor">
-                          {language ?'Discount:':'অফার'} {couponOffer.offer}%
+                          {language ? "Discount:" : "অফার"} {couponOffer.offer}%
                         </p>
                       ) : (
                         <p className="text-TextColor">
-                          {language ?'Discount:':'অফার'} {couponOffer.offer}tk
+                          {language ? "Discount:" : "অফার"} {couponOffer.offer}
+                          tk
                         </p>
                       )
                     ) : (
                       <p className="text-xs text-[#ff6868]">
-                        
-                        {language ?'*Apply coupon code to get a discount':'কুপন কোড ব্যাবহার করে অফার নিন'}
+                        {language
+                          ? "*Apply coupon code to get a discount"
+                          : "কুপন কোড ব্যাবহার করে অফার নিন"}
                       </p>
                     )}
                     {couponLoading ? (
@@ -767,7 +812,7 @@ const ProductDetails = () => {
                         type="submit"
                         className="text-sm absolute text-CardColor top-[25px] right-0 rounded-r-full bg-MainColor p-2"
                       >
-                       {language ?'Apply':'এপ্লাই'} 
+                        {language ? "Apply" : "এপ্লাই"}
                       </motion.button>
                     )}
                   </div>
@@ -824,7 +869,9 @@ const ProductDetails = () => {
                 <p>
                   <AiOutlineShopping className="text-MainColor  mr-1" />
                 </p>
-                <p className="text-MainColor">{language ?'Add to cart':'ঝুরিতে যুক্ত করুন'}</p>
+                <p className="text-MainColor">
+                  {language ? "Add to cart" : "ঝুরিতে যুক্ত করুন"}
+                </p>
               </motion.button>
               {isAddToCartEnabled ? (
                 <Link
@@ -837,7 +884,9 @@ const ProductDetails = () => {
                   <p>
                     <AiOutlineShoppingCart className="text-CardColor  mr-1" />
                   </p>
-                  <p className="text-CardColor">{language ?'Buy Now':'কিনুন'}</p>
+                  <p className="text-CardColor">
+                    {language ? "Buy Now" : "কিনুন"}
+                  </p>
                 </Link>
               ) : (
                 <motion.button
@@ -849,7 +898,9 @@ const ProductDetails = () => {
                   <p>
                     <AiOutlineShoppingCart className="text-CardColor  mr-1" />
                   </p>
-                  <p className="text-CardColor">{language ?'Buy Now':'কিনুন'}</p>
+                  <p className="text-CardColor">
+                    {language ? "Buy Now" : "কিনুন"}
+                  </p>
                 </motion.button>
               )}
 
@@ -895,7 +946,7 @@ const ProductDetails = () => {
         <div className=" mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg">
           <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
             <div className="border-b-[3px] border-b-MainColor ">
-              <h1 className="">{language ?'Reviews':'রিভিউ'}</h1>
+              <h1 className="">{language ? "Reviews" : "রিভিউ"}</h1>
             </div>
           </div>
           <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
@@ -909,7 +960,9 @@ const ProductDetails = () => {
                           _expanded={{ bg: "#5dade2", color: "white" }}
                         >
                           <Box as="span" flex="1" textAlign="left">
-                            <h1>{language ?'Customer Reviews':'ক্রেতার রিভিউ'}</h1>
+                            <h1>
+                              {language ? "Customer Reviews" : "ক্রেতার রিভিউ"}
+                            </h1>
                           </Box>
                           {isExpanded ? (
                             <MdRemove fontSize="18px" />
@@ -939,12 +992,15 @@ const ProductDetails = () => {
         <div className=" mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg">
           <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
             <div className="border-b-[3px] border-b-MainColor ">
-              <h1 className="">{language ?'Descriptions':'ডেসক্রিপশন'}</h1>
+              <h1 className="">{language ? "Descriptions" : "ডেসক্রিপশন"}</h1>
             </div>
           </div>
           <div className="pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
             <h1 className="text-center">{product?.title}</h1>
-            <h1 className="" dangerouslySetInnerHTML={{ __html: htmlContent }}></h1>
+            <h1
+              className=""
+              dangerouslySetInnerHTML={{ __html: htmlContent }}
+            ></h1>
           </div>
         </div>
       </div>
@@ -953,7 +1009,7 @@ const ProductDetails = () => {
         <div className=" mt-4 lg:mt-8 m-1 lg:m-0 bg-CardColor rounded-lg">
           <div className="flex border-b-[1px] border-b-BorderColor pl-5 md:pl-10 pb-2 pt-2 justify-between items-center">
             <div className="border-b-[3px] border-b-MainColor ">
-              <h1 className="">{language ?'Comments':'কোমেন্টস'}</h1>
+              <h1 className="">{language ? "Comments" : "কোমেন্টস"}</h1>
             </div>
           </div>
           {user ? (
@@ -1061,16 +1117,16 @@ const ProductDetails = () => {
             </div>
           ) : (
             <h2 className="text-SubTextColor pl-5 md:pl-10 pr-5 md:pr-10 pt:3 md:pt-5 pb-3 md:pb-5">
-              {language ?'Please':'প্লিজ'}{" "}
+              {language ? "Please" : "প্লিজ"}{" "}
               <Link
                 to="/login"
                 state={{ from: location }}
                 replace
                 className="text-MainColor font-bold cursor-pointer hover:underline"
               >
-                {language ?'Login':'লগইন'}
+                {language ? "Login" : "লগইন"}
               </Link>{" "}
-              {language ?'to write & see comments':'করুন দেখার জন্য'}{" "}
+              {language ? "to write & see comments" : "করুন দেখার জন্য"}{" "}
             </h2>
           )}
         </div>

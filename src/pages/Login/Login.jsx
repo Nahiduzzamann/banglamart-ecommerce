@@ -285,7 +285,7 @@ const Login = () => {
                   <FormControl mt={4}>
                     <FormLabel>{language? 'Password':'পাসওয়ার্ড'}</FormLabel>
                     <Input
-                    
+                    type="password"
                       value={phonePass}
                       onChange={(e)=>setPhonePass(e.target.value)}
                       placeholder="Enter Password"
