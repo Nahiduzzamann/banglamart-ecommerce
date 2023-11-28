@@ -200,18 +200,18 @@ const Footer = () => {
             rights reserved.
           </p>
           <div className="flex items-center bg-CardColor p-1 md:p-4 rounded-lg">
-            <p className="text-TextColor md:text-4xl font-bold">Pay With: </p>
+            <p className="text-TextColor md:text-2xl font-bold">Pay With: </p>
             <div>
-              <p className="text-TextColor text-center md:text-4xl font-bold mb-2">
+              <p className="text-TextColor text-center md:text-2xl font-bold mb-2">
                 We Accept{" "}
               </p>
-              <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-7 ml-1">
+              <div className="ml-1">
                 <img
-                  className="h-8 w-20 md:h-16 md:w-32"
-                  src="https://i.ibb.co/QK77SRH/Trust-bank.png"
+                  className="lg:w-96 md:w-80"
+                  src="https://i.ibb.co/kD2RfPN/Wallet-01.jpg"
                   alt=""
                 />
-                <img
+                {/* <img
                   className="h-8 w-20 md:h-16 md:w-32"
                   src="https://i.ibb.co/WvL3Bcg/southeast-bank.jpg"
                   alt=""
@@ -271,11 +271,11 @@ const Footer = () => {
                   className="h-8 w-20 md:h-16 md:w-32"
                   src="https://i.ibb.co/BGH0jg4/10-8.png"
                   alt="jamuna bank"
-                />
+                /> */}
               </div>
               <div className="flex justify-center mt-2">
                 <img
-                  className="h-10 md:h-16"
+                  className="lg:w-96 md:w-80"
                   src="https://i.ibb.co/tssWPGr/pvn10-R2o-Vjv-Ta-TH02-G4ykx-Bz1-Igl0-Ew-Bh-Ifk-U3o4.png"
                   alt=""
                 />
