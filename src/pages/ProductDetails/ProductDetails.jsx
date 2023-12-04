@@ -691,7 +691,7 @@ const ProductDetails = () => {
               {product?.price && (
                 <p className="text-SubTextColor">
                   {language ? "Old Price:" : "আগের মূল্য:"}
-                  <span className="line-through text-[18px] text-SubTextColor ml-2">
+                  <span className="line-through text-[18px] text-MainColor ml-2">
                     {product?.price} ৳
                   </span>
                   {language ? "/pc" : "/পিচ"}

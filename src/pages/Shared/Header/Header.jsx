@@ -656,7 +656,7 @@ const SearchProductCart = ({ product, handleSearchClose }) => {
             <div className="flex flex-wrap">
               <div className="flex flex-wrap mr-2">
                 {product?.price > newPrice && (
-                  <p className={`relative mr-1 line-through text-SubTextColor`}>
+                  <p className={`relative mr-1 line-through text-MainColor`}>
                     {Math.ceil(product?.price)} ৳
                   </p>
                 )}

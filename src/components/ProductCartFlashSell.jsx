@@ -89,7 +89,7 @@ const ProductCartFlashSell = ({ data }) => {
             <div>
               <div className="flex flex-wrap">
                 {product?.price > newPrice && (
-                  <p className={`relative mr-1 line-through text-SubTextColor`}>
+                  <p className={`relative mr-1 line-through text-MainColor`}>
                     {product?.price.toFixed()} ৳
                   </p>
                 )}
