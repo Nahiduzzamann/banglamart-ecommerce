@@ -46,7 +46,7 @@ import { PiSmileySadLight } from "react-icons/pi";
 import socket from "../../socket";
 import ImageZoom from "react-image-zooom";
 import logo from "../../logo.png"
-const hostname="http://localhost:5173"
+const hostname="https://banglamartecommerce.com.bd"
 
 const ProductDetails = () => {
   const { user, setCartUpdate, language } = useContext(AuthContext);
