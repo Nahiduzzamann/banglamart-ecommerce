@@ -111,7 +111,7 @@ const Footer = () => {
               <div className="border-b border-b-SubTextColor mb-4">
                 <h1 className="uppercase"> {t("usefulLinks.usefulLinks")}</h1>
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col  items-center md:items-start">
                 <Link
                   to="/termsConditions"
                   className="mb-1 hover:underline text-[14px] text-SubTextColor hover:text-TextColor"
@@ -166,7 +166,7 @@ const Footer = () => {
               <div className="border-b border-b-SubTextColor mb-4">
                 <h1 className="uppercase">{t("account.account")}</h1>
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col items-center md:items-start">
                 {user ? (
                   ""
                 ) : (
@@ -191,7 +191,7 @@ const Footer = () => {
                 </Link>
                 {/* <Link  className="mb-1 text-[14px] text-SubTextColor hover:text-TextColor" to="/">Affiliating</Link> */}
                 <Link
-                  className="mt-4 p-2 text-center rounded-full bg-MainColor hover:bg-MainColorHover text-CardColor shadow-md"
+                  className="mt-4 p-2 w-full text-center rounded-full bg-MainColor hover:bg-MainColorHover text-CardColor shadow-md"
                   to="/seller-form"
                 >
                   {t("beAseller.beAseller")}
