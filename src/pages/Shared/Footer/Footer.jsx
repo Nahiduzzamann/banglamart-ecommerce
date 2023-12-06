@@ -211,67 +211,7 @@ const Footer = () => {
                   src="https://i.ibb.co/kD2RfPN/Wallet-01.jpg"
                   alt=""
                 />
-                {/* <img
-                  className="h-8 w-20 md:h-16 md:w-32"
-                  src="https://i.ibb.co/WvL3Bcg/southeast-bank.jpg"
-                  alt=""
-                />
-                <img
-                  className="h-8 w-20 md:h-16 md:w-32"
-                  src="https://i.ibb.co/9HH0b87/Mutual-Truest-bank.png"
-                  alt=""
-                />
-                <img
-                  className="h-8 w-20 md:h-16 md:w-32"
-                  src="https://i.ibb.co/1d4YGrg/meghna-bank-ltd.jpg"
-                  alt=""
-                />
-                <img
-                  className="h-8 w-20 md:h-16 md:w-32"
-                  src="https://i.ibb.co/Sr28r6P/download-2023-11-01-T105802-197.png"
-                  alt=""
-                />
-                <img
-                  className="h-8 w-20 md:h-16 md:w-32"
-                  src="https://i.ibb.co/qkQFk7z/dhaka-bank-logo.png"
-                  alt=""
-                />
-                <img
-                  className="h-8 w-20 md:h-16 md:w-32"
-                  src="https://i.ibb.co/MMJSj5C/Bank-Asia-Limited-Logo.png"
-                  alt=""
-                />
-                <img
-                  className="h-8 w-20 md:h-16 md:w-32"
-                  src="https://i.ibb.co/VtN7Z2n/bkash.jpg"
-                  alt=""
-                />
-
-                <img
-                  className="h-8 w-20 md:h-16 md:w-32"
-                  src="https://i.ibb.co/jH5Pgfh/download-2023-11-01-T111007-893.png"
-                  alt=""
-                />
-                <img
-                  className="h-8 w-20 md:h-16 md:w-32"
-                  src="https://i.ibb.co/0sVZ3ZQ/download-2023-11-01-T110924-683.png"
-                  alt=""
-                />
-                <img
-                  className="h-8 w-20 md:h-16 md:w-32"
-                  src="https://i.ibb.co/G9WWBmw/IFIC-bank.png"
-                  alt=""
-                />
-                <img
-                  className="h-8 w-20 md:h-16 md:w-32"
-                  src="https://i.ibb.co/GMNY4Lq/Dutch-Bangla-Bank-Limited.jpg"
-                  alt=""
-                />
-                <img
-                  className="h-8 w-20 md:h-16 md:w-32"
-                  src="https://i.ibb.co/BGH0jg4/10-8.png"
-                  alt="jamuna bank"
-                /> */}
+               
               </div>
               <div className="flex justify-center mt-2">
                 <img
