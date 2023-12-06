@@ -195,15 +195,14 @@ const Footer = () => {
       </div>
       <div className=" pt-4 pb-4 bg-[#DCDCDC]">
         <div className="md:flex justify-between items-center container mx-auto p-1">
-          <p className="text-SubTextColor  md:block hidden">
-            &copy; {new Date().getFullYear()} Banglamart E-commerce Ltd. All
-            rights reserved.
-          </p>
-          <div className="flex items-center bg-CardColor p-1 md:p-4 rounded-lg">
-            <p className="text-TextColor md:text-2xl font-bold">Pay With: </p>
+          <div>
+            e cab
+          </div>
+          <div className="flex items-center p-1 md:p-4 rounded-lg">
+            {/* <p className="text-TextColor md:text-2xl font-bold">Pay With: </p> */}
             <div>
               <p className="text-TextColor text-center md:text-2xl font-bold mb-2">
-                We Accept{" "}
+                Accepted Payments{" "}
               </p>
               <div className="ml-1">
                 <img
@@ -220,13 +219,13 @@ const Footer = () => {
                   alt=""
                 />
               </div>
-              <p className="text-right mt-2 text-SubTextColor  md:hidden block">
-                &copy; {new Date().getFullYear()} Banglamart E-commerce Ltd. All
-                rights reserved.
-              </p>
             </div>
           </div>
         </div>
+        <p className="text-SubTextColor text-center">
+            &copy; {new Date().getFullYear()} Banglamart E-commerce Ltd. All
+            rights reserved.
+          </p>
       </div>
     </div>
   );
