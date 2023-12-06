@@ -204,7 +204,7 @@ const Footer = () => {
       <div className=" pt-4 pb-4 bg-[#DCDCDC]">
         <div className="md:flex justify-between items-center container mx-auto p-1">
           <div className="flex justify-center items-center">
-            logo
+            <img src="../../../../public/get_attachment_url.png" alt="" />
           </div>
           <div className="flex items-center p-1 md:p-4 rounded-lg">
             {/* <p className="text-TextColor md:text-2xl font-bold">Pay With: </p> */}
