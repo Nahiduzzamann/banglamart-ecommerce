@@ -45,6 +45,8 @@ import ReviewSection from "../../components/ReviewSection";
 import { PiSmileySadLight } from "react-icons/pi";
 import socket from "../../socket";
 import ImageZoom from "react-image-zooom";
+import logo from "../../logo.png"
+const hostname="http://localhost:5173"
 
 const ProductDetails = () => {
   const { user, setCartUpdate, language } = useContext(AuthContext);
@@ -371,6 +373,7 @@ const ProductDetails = () => {
   useEffect(() => {
     scrollToBottom();
   }, [allMessages]);
+  //console.log(logo);
 
   const shareUrl = `https://banglamartecommerce.com.bd/productDetails/${id}`;
   if (product == null) {
@@ -389,32 +392,38 @@ const ProductDetails = () => {
   return (
     <div className="container mx-auto mt-4">
       <Helmet>
-        <title>Product Details | Banglamart E-commerce</title>
-        <meta name="title" content={product?.title} />
-        <meta name="keywords" content="" />
+        <title>{product?.title}</title>
+        <meta name="title" content={product?.title}></meta>
+        <meta name="keywords" content=""></meta>
         <meta
           name="msapplication-TileImage"
-          content={`${url}${product?.thumbnail}`}
-        />
+          content={hostname+logo}
+        ></meta>
 
-        <meta property="og:site_name" content="Banglamart E-commerce" />
-        <meta property="og:title" content={product?.title} />
+        <meta property="og:site_name" content="Banglamart E-commerce"></meta>
+        <meta property="og:title" content={product?.title}></meta>
         {/* <meta
           property="og:description"
           content="The best photo studio for your events"
         /> */}
 
-        <meta property="og:image" content={`${url}${product?.thumbnail}`} />
+        <meta
+          property="og:image"
+          content={hostname+logo}
+        ></meta>
 
-        <meta property="og:type" content="website" />
-        <meta property="og:image:type" content="image/jpeg" />
-        <meta property="og:image:width" content="300" />
-        <meta property="og:image:height" content="300" />
+        <meta property="og:type" content="ecommerce"></meta>
+        <meta property="og:image:type" content="image/jpeg"></meta>
+        <meta property="og:image:width" content="300"></meta>
+        <meta property="og:image:height" content="300"></meta>
 
         <meta
           property="og:url"
-          content="https://banglamartecommerce.com.bd"
+          content={hostname+window.location.pathname+window.location.search}
         ></meta>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:site_name" content="Banglamart E-commerce" />
+        <meta name="twitter:image:alt" content="Alt text for image"></meta>
       </Helmet>
       {/* product details  */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 bg-CardColor p-4">
