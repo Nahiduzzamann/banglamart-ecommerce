@@ -237,7 +237,7 @@ const Header = () => {
                   ) : null}
                 </div>
                 {
-                  user ? (<div><Link
+                  user ? (<div className="flex"><Link
                     to="/notifications"
                     className="hover:border-BorderColor border-CardColor relative ml-2 md:flex hidden items-center rounded-md border hover:border "
                   >
