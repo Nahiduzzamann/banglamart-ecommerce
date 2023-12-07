@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useTranslation } from "react-i18next";
+import footer from "../../../footer.png"
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -204,7 +205,7 @@ const Footer = () => {
       <div className=" pt-4 pb-4 bg-[#DCDCDC]">
         <div className="md:flex justify-between items-center container mx-auto p-1">
           <div className="flex justify-center items-center">
-            <img src="../../../../src/footer.png" alt="" />
+            <img src={footer} alt="" />
           </div>
           <div className="flex items-center p-1 md:p-4 rounded-lg">
             {/* <p className="text-TextColor md:text-2xl font-bold">Pay With: </p> */}
