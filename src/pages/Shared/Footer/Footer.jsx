@@ -212,7 +212,7 @@ const Footer = () => {
               <p className="text-SubTextColor text-center md:text-2xl font-bold mb-2">
                 Accepted Payments{" "}
               </p>
-              <div className="ml-1">
+              <div className="">
                 <img
                   className="lg:w-96 md:w-80"
                   src="https://i.ibb.co/kD2RfPN/Wallet-01.jpg"
