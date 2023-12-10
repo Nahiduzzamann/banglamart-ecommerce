@@ -235,7 +235,7 @@ const Footer = () => {
           rights reserved.
         </p>
       </div>
-    </div>
+    </div>  
   );
 };
 
