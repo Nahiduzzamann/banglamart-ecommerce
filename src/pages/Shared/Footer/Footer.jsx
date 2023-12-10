@@ -227,7 +227,7 @@ const Footer = () => {
                   alt=""
                 />
               </div>
-            </div>
+            </div>  
           </div>
         </div>
         <p className="text-SubTextColor text-center">
