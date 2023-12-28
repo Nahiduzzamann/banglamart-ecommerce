@@ -45,8 +45,8 @@ import ReviewSection from "../../components/ReviewSection";
 import { PiSmileySadLight } from "react-icons/pi";
 import socket from "../../socket";
 import ImageZoom from "react-image-zooom";
-import logo from "../../logo.png"
-const hostname="https://banglamartecommerce.com.bd"
+// import logo from "../../logo.png"
+// const hostname="https://banglamartecommerce.com.bd"
 
 const ProductDetails = () => {
   const { user, setCartUpdate, language } = useContext(AuthContext);
@@ -56,7 +56,7 @@ const ProductDetails = () => {
   const location = useLocation();
   const { id } = useParams();
   const [product, setProductDetails] = useState(null);
-  console.log(product);
+  // console.log(product);
   const [shopDetails, setShopDetails] = useState(null);
   // console.log(product);
   const url = "https://banglamartecommerce.com.bd";
