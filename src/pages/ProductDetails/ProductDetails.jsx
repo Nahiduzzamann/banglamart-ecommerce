@@ -56,6 +56,7 @@ const ProductDetails = () => {
   const location = useLocation();
   const { id } = useParams();
   const [product, setProductDetails] = useState(null);
+  console.log(product);
   const [shopDetails, setShopDetails] = useState(null);
   // console.log(product);
   const url = "https://banglamartecommerce.com.bd";
